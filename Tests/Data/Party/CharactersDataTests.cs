@@ -15,7 +15,7 @@ namespace Tests.Data.Party
         [TestMethod] public void LastNameTest() => isProperty<string?>();
         [TestMethod] public void GenderTest() => isProperty<bool?>();
         [TestMethod] public void DoBTest() => isProperty<DateTime?>();
-        [TestMethod] public void HoqwartsHouseTest() => isProperty<string?>();
-        [TestMethod] public void OrganisatsionTest() => isProperty<string?>();
+        [TestMethod] public void HogwartsHouseTest() => isProperty<string?>();
+        [TestMethod] public void OrganisationTest() => isProperty<string?>();
     }
 }

@@ -14,36 +14,7 @@
         <form method="post" asp-page-handler = "Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Character.ID" />
-            <div class="form-group">
-                <label asp-for="Character.FirstName" class="control-label"></label>
-                <input asp-for="Character.FirstName" class="form-control" />
-                <span asp-validation-for="Character.FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.LastName" class="control-label"></label>
-                <input asp-for="Character.LastName" class="form-control" />
-                <span asp-validation-for="Character.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.Gender" class="control-label"></label>
-                <input asp-for="Character.Gender" class="form-control" />
-                <span asp-validation-for="Character.Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.DoB" class="control-label"></label>
-                <input asp-for="Character.DoB" class="form-control" />
-                <span asp-validation-for="Character.DoB" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.HogwartsHouse" class="control-label"></label>
-                <input asp-for="Character.HogwartsHouse" class="form-control" />
-                <span asp-validation-for="Character.HogwartsHouse" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Character.Organisation" class="control-label"></label>
-                <input asp-for="Character.Organisation" class="form-control" />
-                <span asp-validation-for="Character.Organisation" class="text-danger"></span>
-            </div>
+            <partial name = "_EditCharacter" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
