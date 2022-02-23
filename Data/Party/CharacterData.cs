@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace WizardingWorld.Data.Party
 {
-    public class CharacterData
+    public class CharacterData : EntityData
     {
-        public string? ID { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public bool? Gender { get; set; }

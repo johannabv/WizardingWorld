@@ -1,52 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using WizardingWorld.Data;
-using WizardingWorld.Domain.Party;
+using WizardingWorld.Data.Party;
 using WizardingWorld.Facade.Party;
+using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Pages.Characters
 {
-    //TODO To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-
-    //TODO To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see https://aka.ms/RazorPagesCRUD.
     public class CharactersPage : PageModel
     {
         [BindProperty] public CharacterView Character { get; set; }
-        private readonly ApplicationDbContext context;
+        private readonly ICharacterRepo repo;
         public IList<CharacterView> Characters { get; set; }
-        
-        public CharactersPage(ApplicationDbContext c) => context = c;
-        public IActionResult OnGetCreate()
-        {
-            return Page();
-        }
-        
+
+        public CharactersPage(ApplicationDbContext c) => repo = new CharacterRepo(c, c.Characters);
+        public IActionResult OnGetCreate() => Page();
+
         public async Task<IActionResult> OnPostCreateAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            var d = new CharacterViewFactory().Create(Character).Data;
-
-            context.Characters.Add(d);
-            await context.SaveChangesAsync();
-
+            if (!ModelState.IsValid) return Page();
+            await repo.AddAsync(new CharacterViewFactory().Create(Character));
             return RedirectToPage("./Index", "Index");
         }
         public async Task<IActionResult> OnGetDetailsAsync(string id)
         {
             Character = await getPerson(id);
             return Character == null ? NotFound() : Page();
-        }
-        private async Task<CharacterView> getPerson(string id)
-        {
-            if (id == null) return null;
-            var d = await context.Characters.FirstOrDefaultAsync(m => m.ID == id);
-            if (d == null) return null;
-            return new CharacterViewFactory().Create(new Character(d));
         }
         public async Task<IActionResult> OnGetDeleteAsync(string id)
         {
@@ -55,19 +34,8 @@ namespace WizardingWorld.Pages.Characters
         }
         public async Task<IActionResult> OnPostDeleteAsync(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var d = await context.Characters.FindAsync(id);
-
-            if (d != null)
-            {
-                context.Characters.Remove(d);
-                await context.SaveChangesAsync();
-            }
-
+            if (id == null) return NotFound();
+            await repo.DeleteAsync(id);
             return RedirectToPage("./Index", "Index");
         }
         public async Task<IActionResult> OnGetEditAsync(string id)
@@ -77,44 +45,24 @@ namespace WizardingWorld.Pages.Characters
         }
         public async Task<IActionResult> OnPostEditAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            var d = new CharacterViewFactory().Create(Character).Data;
-            context.Attach(d).State = EntityState.Modified;
-
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!characterExists(Character.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            if (!ModelState.IsValid) return Page();
+            var obj = new CharacterViewFactory().Create(Character);
+            var updated = await repo.UpdateAsync(obj);
+            if (!updated) return NotFound();
             return RedirectToPage("./Index", "Index");
         }
-        private bool characterExists(string id)
-            => context.Characters.Any(e => e.ID == id);
-
-        public async Task OnGetIndexAsync()
+        public async Task<PageResult> OnGetIndexAsync()
         {
-            var list = await context.Characters.ToListAsync();
+            var list = await repo.GetAsync();
             Characters = new List<CharacterView>();
-            foreach (var d in list)
+            foreach (var obj in list)
             {
-                var v = new CharacterViewFactory().Create(new Character(d));
+                var v = new CharacterViewFactory().Create(obj);
                 Characters.Add(v);
             }
-            
+            return Page();
         }
+
+        private async Task<CharacterView> getPerson(string id) => new CharacterViewFactory().Create(await repo.GetAsync(id));
     }
 }
