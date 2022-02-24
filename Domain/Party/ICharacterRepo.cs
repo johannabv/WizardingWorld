@@ -1,7 +1,5 @@
-﻿using WizardingWorld.Domain;
-using WizardingWorld.Domain.Party;
-
-namespace WizardingWorld.Data.Party
+﻿
+namespace WizardingWorld.Domain.Party
 {
     public interface ICharacterRepo : IRepo<Character>
     {
