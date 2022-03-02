@@ -1,5 +1,4 @@
-﻿namespace WizardingWorld.Aids
-{
+﻿namespace WizardingWorld.Aids {
     public static class Lists {
         public static T? GetFirst<T>(this List<T>? list) => ((list is null) || (list.Count < 1)) ? default : list[0];
         public static int? Remove<T>(this List<T>? list, Predicate<T> match) => Safe.Run(() => list?.RemoveAll(match), -1);

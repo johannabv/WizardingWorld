@@ -1,8 +1,4 @@
 ﻿
-namespace WizardingWorld.Domain.Party
-{
-    public interface ICharacterRepo : IRepo<Character>
-    {
-
-    }
+namespace WizardingWorld.Domain.Party {
+    public interface ICharacterRepo : IRepo<Character> { }
 }

@@ -1,9 +1,7 @@
 ﻿using WizardingWorld.Data.Party;
 
-namespace WizardingWorld.Domain.Party
-{
-    public class Character : Entity<CharacterData>
-    {
+namespace WizardingWorld.Domain.Party {
+    public class Character : Entity<CharacterData> {
         private const string defaultStr = "Undefined";
         private const bool defaultGender = true;
         private DateTime defaultDate => DateTime.MinValue;

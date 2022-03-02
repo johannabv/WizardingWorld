@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WizardingWorld.Data.Party
-{
-    public class CharacterData : EntityData
-    {
+namespace WizardingWorld.Data.Party {
+    public class CharacterData : EntityData {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public bool? Gender { get; set; }

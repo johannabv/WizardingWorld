@@ -1,8 +1,6 @@
 ﻿
-namespace WizardingWorld.Aids
-{
-    public class GetRandom
-    {
+namespace WizardingWorld.Aids {
+    public class GetRandom {
         public static int Int32(int min = int.MinValue, int max = int.MaxValue) => Random.Shared.Next(min, max);
         public static double Double(double min = short.MinValue, double max = short.MaxValue) => min + Random.Shared.NextDouble() * (max - min);
         public static char Char(char min = char.MinValue, char max = char.MaxValue) => (char)Int32(min, max);
@@ -16,15 +14,13 @@ namespace WizardingWorld.Aids
             d = d.AddDays(day).AddSeconds(seconds);
             return d;
         }
-        public static string String(ushort minLength = 5, ushort maxLength = 30)
-        {
+        public static string String(ushort minLength = 5, ushort maxLength = 30) {
             var s = string.Empty;
             var length = Int32(minLength, maxLength);
             for (var i = 0; i < length; i++) s += Char('a', 'z');
             return s;
         }
-        public static dynamic Value<T>()
-        {
+        public static dynamic Value<T>() {
             if (typeof(T) == typeof(bool) || typeof(T) == typeof(bool?)) return Bool();
             else if (typeof(T) == typeof(DateTime) || typeof(T) == typeof(DateTime?)) return DateTime();
             else return String();

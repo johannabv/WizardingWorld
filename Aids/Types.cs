@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 
-namespace WizardingWorld.Aids
-{
+namespace WizardingWorld.Aids {
     public static class Types {
         private static readonly BindingFlags allDeclaredOnly =
             BindingFlags.DeclaredOnly

@@ -2,18 +2,14 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq.Expressions;
 
-namespace WizardingWorld.Pages.Extensions
-{
-    public static class ViewerHtml
-    {
-        public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e)
-        {
+namespace WizardingWorld.Pages.Extensions {
+    public static class ViewerHtml {
+        public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
             var s = htmlStrings(h, e);
             return new HtmlContentBuilder(s);
         }
 
-        private static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e)
-        {
+        private static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
             var l = new List<object>();
             l.Add(new HtmlString("<dl class=\"row\">"));
             l.Add(new HtmlString("<dt class=\"col-sm-2\">"));

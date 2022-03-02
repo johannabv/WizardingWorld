@@ -7,10 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WizardingWorld.Aids;
 
-namespace Tests
-{
-    public class BaseTests<TClass> : AssertTests where TClass : class, new()
-    {
+namespace Tests {
+    public class BaseTests<TClass> : AssertTests where TClass : class, new() {
         protected TClass obj;
         protected BaseTests() => obj = new TClass();
         protected void isProperty<T>(T value = default, bool isReadOnly = false)
@@ -42,7 +40,6 @@ namespace Tests
                 if (n == memberName) isNext = true;
             }
             return string.Empty;
-        }
-
+        } 
     }
 }

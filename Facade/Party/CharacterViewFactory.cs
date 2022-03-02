@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 
-namespace WizardingWorld.Facade.Party
-{
-    public class CharacterViewFactory
-    {
-        public Character Create(CharacterView v) => new(new CharacterData
-        {
+namespace WizardingWorld.Facade.Party {
+    public class CharacterViewFactory {
+        public Character Create(CharacterView v) => new(new CharacterData {
             ID = v.ID,
             DoB = v.DoB,
             Gender = v.Gender,
@@ -20,8 +17,7 @@ namespace WizardingWorld.Facade.Party
             HogwartsHouse = v.HogwartsHouse,
             Organisation = v.Organisation,
         });
-        public CharacterView Create(Character o) => new()
-        {
+        public CharacterView Create(Character o) => new() {
             ID = o.ID,
             DoB = o.DoB,
             Gender = o.Gender,
