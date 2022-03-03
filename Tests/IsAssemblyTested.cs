@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using WizardingWorld.Aids;
 
-namespace Tests
-{
+namespace Tests {
     public abstract class IsAssemblyTested : AssertTests {
         private Assembly? testingAssembly;
         private Assembly? assemblyToBeTested;
