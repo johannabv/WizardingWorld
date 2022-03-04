@@ -15,8 +15,9 @@ namespace Tests {
         private List<string>? membersOfType;
         private List<string>? membersOfTest;
 
-        [TestMethod] public void IsAllTested() => isAllTested(); 
-        protected virtual void isAllTested() {
+        [TestMethod] public void IsAllTested() => isAllTested();
+        protected virtual void isAllTested()
+        {
             nameOfTest = getName(this);
             nameOfType = removeTestsTagFrom(nameOfTest);
             namespaceOfTest = getNamespace(this);
@@ -26,26 +27,28 @@ namespace Tests {
             membersOfType = getMembers(typeToBeTested);
             membersOfTest = getMembers(GetType());
             removeNotTests(GetType());
-            removeNotNeedingTesting();
+            removeNotNeedTesting();
             removeTested();
             if (allAreTested()) return;
             reportNotAllIsTested();
         }
 
-        private void reportNotAllIsTested() => isInconclusive($"Member \"{nameOfFirstNotTested()}\" is not tested"); 
-        private string nameOfFirstNotTested() => membersOfType?.GetFirst() ?? String.Empty; 
+        private void reportNotAllIsTested() => isInconclusive($"Member \"{nameOfFirstNotTested()}\" is not tested");
+        private string nameOfFirstNotTested() => membersOfType?.GetFirst() ?? string.Empty;
         private bool allAreTested() => membersOfType.IsEmpty();
-        private void removeTested() => membersOfType?.Remove(x => isItTested(x)); 
-        private bool isItTested(string x) => membersOfTest?.ContainsItem(y => isTestFor(y, x)) ?? false; 
-        private static bool isTestFor(string testingMember, string memberToBeTested) => testingMember.Equals(memberToBeTested + "Test");
-        private void removeNotNeedingTesting() => membersOfType?.Remove(x => !isTypeToBeTested(x)); 
+        private void removeTested() => membersOfType?.Remove(x => isItTested(x));
+        private bool isItTested(string x) => membersOfTest?.ContainsItem(y => isTestFor(y, x)) ?? false;
+        private static bool isTestFor(string testingMember, string memberToBeTested)
+             => testingMember.Equals(memberToBeTested + "Test");
+        private void removeNotNeedTesting() => membersOfType?.Remove(x => !isTypeToBeTested(x));
         private static bool isTypeToBeTested(string x) => x?.IsRealTypeName() ?? false;
-        private void removeNotTests(Type type) => membersOfTest?.Remove(x => !isCorrectTestMethod(x, type)); 
-        private static bool isCorrectTestMethod(string x, Type type) => isCorrectlyInherited(type) && isTestClass(type) && isTestMethod(x, type); 
-        private static bool isTestMethod(string methodName, Type type) =>  type?.Method(methodName).HasAttribute<TestMethodAttribute>() ?? false; 
-        private static bool isTestClass(Type type) => type?.HasAttribute<TestClassAttribute>() ?? false; 
-        private static bool isCorrectlyInherited(Type t) => t.IsInherited(typeof(IsTypeTested)); 
-        private static List<string>? getMembers(Type? type) => type?.DeclaredMembers();
+        private void removeNotTests(Type t) => membersOfTest?.Remove(x => !isCorrectTestMethod(x, t));
+        private static bool isCorrectTestMethod(string x, Type t) => isCorrectlyInherited(t) && isTestClass(t) && isTestMethod(x, t);
+        private static bool isTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
+        private static bool isTestMethod(string methodName, Type t) => t?.Method(methodName).HasAttribute<TestMethodAttribute>() ?? false;
+        private static bool isCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
+
+        private static List<string>? getMembers(Type? t) => t?.DeclaredMembers();
         private static Type? getType(Assembly? a, string? name) => a?.Type(name);
         private static Assembly? getAssembly(string? name) {
             while (!string.IsNullOrWhiteSpace(name)) {
@@ -56,7 +59,7 @@ namespace Tests {
             return null;
         }
         private static string? getNamespace(object o) => GetNamespace.OfType(o);
-        private static string? removeTestsTagFrom(string? s) => s?.Remove("Tests")?.Remove("Test")?.Replace("..",".");
+        private static string? removeTestsTagFrom(string? s) => s?.Remove("Tests")?.Remove("Test")?.Replace("..", ".");
         private static string? getName(object o) => Types.GetName(o?.GetType());
     }
 }

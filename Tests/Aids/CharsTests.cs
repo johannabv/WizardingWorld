@@ -8,7 +8,7 @@ namespace Tests.Aids {
             Assert.IsTrue(Chars.IsNameChar('9'));
             Assert.IsTrue(Chars.IsNameChar('.'));
             Assert.IsTrue(Chars.IsNameChar('_'));
-            Assert.IsTrue(Chars.IsNameChar(':'));
+            Assert.IsFalse(Chars.IsNameChar(':'));
         }
     }
 }
