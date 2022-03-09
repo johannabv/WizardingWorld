@@ -12,7 +12,8 @@ namespace Tests {
             var propertyInfo = obj.GetType().GetProperty(memberName);
             isNotNull(propertyInfo);
             if (isNullOrDefault(value)) value = random<T>();
-            if (canWrite(propertyInfo, isReadOnly)) propertyInfo.SetValue(obj, value);
+            if (!canWrite(propertyInfo, isReadOnly)) return;
+            propertyInfo.SetValue(obj, value);
             areEqual(value, propertyInfo.GetValue(obj));
         }
         private static bool isNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;

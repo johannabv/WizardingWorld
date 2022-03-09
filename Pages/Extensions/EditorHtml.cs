@@ -5,8 +5,7 @@ using System.Linq.Expressions;
 namespace WizardingWorld.Pages.Extensions {
     public static class EditorHtml {
         public static IHtmlContent Editor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            var s = htmlStrings(h, e);
-            return new HtmlContentBuilder(s);
+            return new HtmlContentBuilder(htmlStrings(h, e));
         } 
         private static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
             var l = new List<object>();

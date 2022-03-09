@@ -47,7 +47,6 @@ namespace Tests {
         private static bool isTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
         private static bool isTestMethod(string methodName, Type t) => t?.Method(methodName).HasAttribute<TestMethodAttribute>() ?? false;
         private static bool isCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
-
         private static List<string>? getMembers(Type? t) => t?.DeclaredMembers();
         private static Type? getType(Assembly? a, string? name) => a?.Type(name);
         private static Assembly? getAssembly(string? name) {
