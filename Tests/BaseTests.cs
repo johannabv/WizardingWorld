@@ -6,8 +6,7 @@ namespace Tests {
     public class BaseTests<TClass> : IsTypeTested where TClass : class, new() {
         protected TClass obj;
         protected BaseTests() => obj = new TClass();
-        protected void isProperty<T>(T value = default, bool isReadOnly = false)
-        {
+        protected void isProperty<T>(T? value = default, bool isReadOnly = false) {
             var memberName = getCallingMember(nameof(isProperty)).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
             isNotNull(propertyInfo);
@@ -24,12 +23,10 @@ namespace Tests {
             return canWrite;
         }
         private static T random<T>() => GetRandom.Value<T>();
-        private string getCallingMember(string memberName)
-        {
+        private string getCallingMember(string memberName) {
             var s = new StackTrace();
             var isNext = false;
-            for (int i = 0; i < s.FrameCount - 1; i++)
-            {
+            for (int i = 0; i < s.FrameCount - 1; i++) {
                 var n = s.GetFrame(i)?.GetMethod()?.Name ?? string.Empty;
                 if (n is "MoveNext" or "Start") continue;
                 if (isNext) return n;
