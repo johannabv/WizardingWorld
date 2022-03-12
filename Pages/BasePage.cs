@@ -8,11 +8,11 @@ namespace WizardingWorld.Pages {
         where TView : BaseView
         where TEntity : Entity
         where TRepo : IBaseRepo<TEntity>{
-        [BindProperty] public TView Item { get; set; }
         private readonly TRepo repo;
-        protected abstract TEntity toObject(TView item);
-        protected abstract TView toView(TEntity entity);
-        public IList<TView> Items { get; set; }
+        protected abstract TEntity toObject(TView? item);
+        protected abstract TView toView(TEntity? entity);
+        [BindProperty] public TView? Item { get; set; }
+        public IList<TView>? Items { get; set; }
         public BasePage(TRepo r) => repo = r;
         public IActionResult OnGetCreate() => Page();
         public string ItemId => Item?.ID ?? string.Empty;
