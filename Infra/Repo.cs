@@ -30,7 +30,7 @@ namespace WizardingWorld.Infra.Party {
         public async Task<bool> DeleteAsync(string id) {
             try {
                 var d = await set.FindAsync(id);
-                if (d != null) return false;
+                if (d == null) return false;
                 set.Remove(d);
                 await db.SaveChangesAsync();
                 return true;

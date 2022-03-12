@@ -5,7 +5,8 @@ using System.Linq.Expressions;
 namespace WizardingWorld.Pages.Extensions {
     public static class ViewerHtml {
         public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            return new HtmlContentBuilder(htmlStrings(h, e));
+            var s = htmlStrings(h, e);
+            return new HtmlContentBuilder(s);
         }
 
         private static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
@@ -18,7 +19,6 @@ namespace WizardingWorld.Pages.Extensions {
             l.Add(h.DisplayFor(e));
             l.Add(new HtmlString("</dd>"));
             l.Add(new HtmlString("</dl>"));
-
             return l;
         }
     }

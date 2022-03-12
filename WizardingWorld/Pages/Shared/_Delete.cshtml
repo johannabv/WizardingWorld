@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("Page", string.Empty)?? "Unspecified";
+    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("Page", string.Empty) ?? "Unspecified";
     ViewData["Title"] = "Delete";
     Layout = "_Layout";
-    var itemId = Model?.ItemId?? string.Empty;
+    var itemId = Model?.ItemId?? string.Empty;  
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -13,7 +13,7 @@
     <hr />
 
     @RenderBody()
-
+    
     <form method="post">
         <input type="hidden" asp-for-id="@itemId" />
         <input type="submit" value="Delete" handler="Delete" class="btn btn-danger" /> |
