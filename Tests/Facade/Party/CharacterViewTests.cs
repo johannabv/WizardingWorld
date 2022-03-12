@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using WizardingWorld.Facade.Party;
 
 namespace Tests.Facade.Party {
-    [TestClass] public class CharacterViewTests : BaseTests<CharacterView> {
+    [TestClass] public class CharacterViewTests : SealedClassTests<CharacterView> {
         [TestMethod] public void IDTest() => isProperty<string?>();
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
         [TestMethod] public void LastNameTest() => isProperty<string?>();

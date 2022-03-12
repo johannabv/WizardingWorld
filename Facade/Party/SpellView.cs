@@ -6,8 +6,13 @@ using WizardingWorld.Domain.Party;
 namespace WizardingWorld.Facade.Party {
     public sealed class SpellViewFactory : BaseViewFactory<SpellView, Spell, SpellData> {
         protected override Spell toEntity(SpellData d) => new(d);
+        public override SpellView Create(Spell? e) {
+            var v = base.Create(e);
+            v.FullInfo = e?.ToString();
+            return v;
+        }
     }
-    public class SpellView : BaseView{
+    public sealed class SpellView : BaseView{
         [DisplayName("Name of spell"), Required] public string? SpellName { get; set; }
         [DisplayName("Description"), Required] public string? Description { get; set; }
         [DisplayName("Type")] public string? Type { get; set; }

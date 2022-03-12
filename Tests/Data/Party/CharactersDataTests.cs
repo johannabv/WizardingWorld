@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using WizardingWorld.Data.Party;
 
 namespace Tests.Data.Party {
-    [TestClass] public class CharactersDataTests : BaseTests<CharacterData> {
+    [TestClass] public class CharactersDataTests : SealedClassTests<CharacterData> {
         [TestMethod] public void IDTest() => isProperty<string?>();
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
         [TestMethod] public void LastNameTest() => isProperty<string?>();

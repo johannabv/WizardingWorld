@@ -3,9 +3,10 @@ using System.Reflection;
 using WizardingWorld.Aids;
 
 namespace Tests {
-    public class BaseTests<TClass> : IsTypeTested where TClass : class, new() {
-        protected TClass obj;
-        protected BaseTests() => obj = new TClass();
+    public abstract class BaseTests : IsTypeTested {
+        protected object obj;
+        protected BaseTests() => obj = createObject(); 
+        protected abstract object createObject(); 
         protected void isProperty<T>(T? value = default, bool isReadOnly = false) {
             var memberName = getCallingMember(nameof(isProperty)).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
