@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using WizardingWorld.Data.Party;
-using WizardingWorld.Data;
+using WizardingWorld.Infra;
 
 namespace WizardingWorld.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
+    public class ApplicationDbContext : IdentityDbContext {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        protected override void OnModelCreating(ModelBuilder b) {
+            base.OnModelCreating(b);
+            initializeTables(b);
         }
-        
-        public DbSet<CharacterData> Characters { get; set; }
+        private static void initializeTables(ModelBuilder b) {
+            WizardingWorldDb.InitializeTables(b);
+        }
     }
 }

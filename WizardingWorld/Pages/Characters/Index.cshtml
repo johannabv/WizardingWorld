@@ -14,28 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Characters[0].FirstName)
+                @Html.DisplayNameFor(model => model.Items[0].FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Characters[0].LastName)
+                @Html.DisplayNameFor(model => model.Items[0].LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Characters[0].Gender)
+                @Html.DisplayNameFor(model => model.Items[0].Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Characters[0].DoB)
+                @Html.DisplayNameFor(model => model.Items[0].DoB)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Characters[0].HogwartsHouse)
+                @Html.DisplayNameFor(model => model.Items[0].HogwartsHouse)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Characters[0].Organisation)
+                @Html.DisplayNameFor(model => model.Items[0].Organisation)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Characters) {
+@foreach (var item in Model.Items) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)

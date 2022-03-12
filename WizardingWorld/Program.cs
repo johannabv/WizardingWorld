@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using WizardingWorld.Data;
+using WizardingWorld.Infra;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WizardingWorldContext")));
+builder.Services.AddDbContext<WizardingWorldDb>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WizardingWorldContext")));
 
 var app = builder.Build();

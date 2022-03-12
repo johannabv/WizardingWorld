@@ -5,10 +5,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WizardingWorld.Migrations
 {
-    public partial class test : Migration
+    public partial class initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "WizardingWorld");
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -49,7 +52,8 @@ namespace WizardingWorld.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Character",
+                name: "Characters",
+                schema: "WizardingWorld",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -62,24 +66,7 @@ namespace WizardingWorld.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Character", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Character_1",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<bool>(type: "bit", nullable: true),
-                    DoB = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    HogwartsHouse = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Organisation = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Character_1", x => x.ID);
+                    table.PrimaryKey("PK_Characters", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -246,10 +233,8 @@ namespace WizardingWorld.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Character");
-
-            migrationBuilder.DropTable(
-                name: "Character_1");
+                name: "Characters",
+                schema: "WizardingWorld");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -12,14 +12,14 @@ using WizardingWorld.Data;
 namespace WizardingWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220207164900_newstuff")]
-    partial class newstuff
+    [Migration("20220312103309_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "7.0.0-preview.1.22076.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -247,7 +247,7 @@ namespace WizardingWorld.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Characters");
+                    b.ToTable("Characters", "WizardingWorld");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
