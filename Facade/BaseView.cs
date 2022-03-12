@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WizardingWorld.Facade.Party
-{
+namespace WizardingWorld.Facade.Party {
     public class BaseView {
-        [Required] public string? ID { get; set; }
+        [Required] public string? ID { get; set; } = Guid.NewGuid().ToString();
     }
 }
