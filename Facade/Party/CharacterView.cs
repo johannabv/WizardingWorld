@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WizardingWorld.Data.Party;
+using WizardingWorld.Domain.Party;
 
-namespace WizardingWorld.Facade.Party {
+namespace WizardingWorld.Facade.Party
+{
+    public sealed class CharacterViewFactory : BaseViewFactory<CharacterView, Character, CharacterData> {
+        protected override Character toEntity(CharacterData d) => new(d);
+    }
     public class CharacterView : BaseView{
         [DisplayName("First name")] public string? FirstName { get; set; }
         [DisplayName("Last name"), Required] public string? LastName { get; set; }
