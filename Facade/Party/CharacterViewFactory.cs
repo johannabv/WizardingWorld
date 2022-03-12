@@ -28,4 +28,20 @@ namespace WizardingWorld.Facade.Party {
             FullName = o.ToString()
         };
     }
+    public class SpellViewFactory {
+        public Spell Create(SpellView v) => new(new SpellData {
+            ID = v.ID,
+            SpellName = v.SpellName,
+            Description = v.Description,
+            Type = v.Type,
+        });
+        public SpellView Create(Spell o) => new()
+        {
+            ID = o.ID,
+            SpellName = o.SpellName,
+            Description = o.Description,
+            Type = o.Type,
+            FullInfo = o.ToString()
+        };
+    }
 }

@@ -16,7 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<ICharacterRepo, CharacterRepo>();
-//builder.Services.AddTransient<IAddressRepo, AddressRepo>();
+builder.Services.AddTransient<ISpellRepo, SpellRepo>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
