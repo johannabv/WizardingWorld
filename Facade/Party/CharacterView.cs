@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WizardingWorld.Facade.Party {
-    public class CharacterView {
-        [Required] public string? ID { get; set; }
+namespace WizardingWorld.Facade.Party
+{
+    public class CharacterView : BaseView{
         [DisplayName("First name")] public string? FirstName { get; set; }
         [DisplayName("Last name"), Required] public string? LastName { get; set; }
         [DisplayName("Gender"), Required] public bool? Gender { get; set; }

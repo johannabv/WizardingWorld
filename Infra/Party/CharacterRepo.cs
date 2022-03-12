@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {

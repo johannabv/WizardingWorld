@@ -5,19 +5,16 @@ using WizardingWorld.Domain;
 namespace WizardingWorld.Infra.Party {
     public abstract class Repo<TDomain, TData> : IRepo<TDomain> where TDomain : Entity<TData>, new() where TData : EntityData, new() {
         private readonly DbContext db;
-        private readonly DbSet<TData> set;
-
+        private readonly DbSet<TData> set; 
         protected Repo(DbContext c, DbSet<TData> s) {
             db = c;
             set = s;
-        }
-
+        } 
         public bool Add(TDomain obj) => AddAsync(obj).GetAwaiter().GetResult();
         public bool Delete(string id) => DeleteAsync(id).GetAwaiter().GetResult();
         public List<TDomain> Get() => GetAsync().GetAwaiter().GetResult();
         public TDomain Get(string id) => GetAsync(id).GetAwaiter().GetResult();
-        public bool Update(TDomain obj) => UpdateAsync(obj).GetAwaiter().GetResult();
-
+        public bool Update(TDomain obj) => UpdateAsync(obj).GetAwaiter().GetResult(); 
         public async Task<bool> AddAsync(TDomain obj) {
             var d = obj.Data;
             try {
