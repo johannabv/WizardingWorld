@@ -9,7 +9,7 @@ using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
     public class CharacterRepo : Repo<Character, CharacterData>, ICharacterRepo {
-        public CharacterRepo(DbContext c, DbSet<CharacterData> s) : base(c, s) { }
+        public CharacterRepo(WizardingWorldDb db) : base(db, db.Characters) { }
         protected override Character toDomain(CharacterData d) => new Character(d);
     }
 }

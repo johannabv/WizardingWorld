@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WizardingWorld.Domain.Party;
-using WizardingWorld.Facade.Party;
-using WizardingWorld.Infra;
-using WizardingWorld.Infra.Party;
+using WizardingWorld.Facade.Party; 
 
 namespace WizardingWorld.Pages {
     public class CharactersPage : PageModel {
         [BindProperty] public CharacterView Item { get; set; }
         private readonly ICharacterRepo repo;
         public IList<CharacterView> Items { get; set; } 
-        public CharactersPage(WizardingWorldDb c) => repo = new CharacterRepo(c, c.Characters);
+        public CharactersPage(ICharacterRepo r) => repo = r;
         public IActionResult OnGetCreate() => Page(); 
         public string ItemId => Item?.ID ?? string.Empty;
         public async Task<IActionResult> OnPostCreateAsync() {
