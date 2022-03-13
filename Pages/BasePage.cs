@@ -9,8 +9,8 @@ namespace WizardingWorld.Pages {
         where TEntity : Entity
         where TRepo : IBaseRepo<TEntity>{
         private readonly TRepo repo;
-        protected abstract TEntity toObject(TView? item);
-        protected abstract TView toView(TEntity? entity);
+        protected abstract TEntity ToObject(TView? item);
+        protected abstract TView ToView(TEntity? entity);
         [BindProperty] public TView? Item { get; set; }
         public IList<TView>? Items { get; set; }
         public BasePage(TRepo r) => repo = r;
@@ -18,15 +18,15 @@ namespace WizardingWorld.Pages {
         public string ItemId => Item?.ID ?? string.Empty;
         public async Task<IActionResult> OnPostCreateAsync() {
             if (!ModelState.IsValid) return Page();
-            await repo.AddAsync(toObject(Item));
+            await repo.AddAsync(ToObject(Item));
             return RedirectToPage("./Index", "Index");
         }
         public async Task<IActionResult> OnGetDetailsAsync(string id) {
-            Item = await getItem(id);
+            Item = await GetItem(id);
             return Item == null ? NotFound() : Page();
         }
         public async Task<IActionResult> OnGetDeleteAsync(string id) {
-            Item = await getItem(id);
+            Item = await GetItem(id);
             return Item == null ? NotFound() : Page();
         }
         public async Task<IActionResult> OnPostDeleteAsync(string id) {
@@ -35,12 +35,12 @@ namespace WizardingWorld.Pages {
             return RedirectToPage("./Index", "Index");
         }
         public async Task<IActionResult> OnGetEditAsync(string id) {
-            Item = await getItem(id);
+            Item = await GetItem(id);
             return Item == null ? NotFound() : Page();
         }
         public async Task<IActionResult> OnPostEditAsync() {
             if (!ModelState.IsValid) return Page();
-            var obj = toObject(Item);
+            var obj = ToObject(Item);
             var updated = await repo.UpdateAsync(obj);
             if (!updated) return NotFound();
             return RedirectToPage("./Index", "Index");
@@ -49,11 +49,11 @@ namespace WizardingWorld.Pages {
             var list = await repo.GetAsync();
             Items = new List<TView>();
             foreach (var obj in list) {
-                var v = toView(obj);
+                var v = ToView(obj);
                 Items.Add(v);
             }
             return Page();
         }
-        private async Task<TView> getItem(string id) => toView(await repo.GetAsync(id)); 
+        private async Task<TView> GetItem(string id) => ToView(await repo.GetAsync(id)); 
     }
 }

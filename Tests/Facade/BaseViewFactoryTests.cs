@@ -8,8 +8,8 @@ namespace Tests.Facade {
     [TestClass] public class BaseViewFactoryTests : AbstractClassTests {
         private class TestClass : BaseViewFactory<SpellView, Spell, SpellData>
         {
-            protected override Spell toEntity(SpellData d) => new Spell(d);
+            protected override Spell ToEntity(SpellData d) => new(d);
         }
-        protected override object createObject() => new TestClass();
+        protected override object CreateObject() => new TestClass();
     }
 }

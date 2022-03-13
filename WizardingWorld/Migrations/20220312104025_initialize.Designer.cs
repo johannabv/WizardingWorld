@@ -13,7 +13,7 @@ namespace WizardingWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220312104025_initialize")]
-    partial class initialize
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

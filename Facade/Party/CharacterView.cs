@@ -5,7 +5,7 @@ using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Facade.Party {
     public sealed class CharacterViewFactory : BaseViewFactory<CharacterView, Character, CharacterData> {
-        protected override Character toEntity(CharacterData d) => new(d);
+        protected override Character ToEntity(CharacterData d) => new(d);
         public override CharacterView Create(Character? e) {
             var v = base.Create(e);
             v.FullInfo=e?.ToString();

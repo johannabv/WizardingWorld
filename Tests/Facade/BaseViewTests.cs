@@ -4,7 +4,7 @@ using WizardingWorld.Facade.Party;
 namespace Tests.Facade.Party {
     [TestClass]
     public class BaseViewTests : AbstractClassTests {
-        private class testClass : BaseView { }
-        protected override object createObject() => new testClass(); 
+        private class TestClass : BaseView { }
+        protected override object CreateObject() => new TestClass(); 
     }
 }

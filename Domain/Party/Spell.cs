@@ -5,9 +5,9 @@ namespace WizardingWorld.Domain.Party {
     public sealed class Spell : Entity<SpellData>{
         public Spell() : this(new SpellData()) { }
         public Spell(SpellData d) : base(d) { }
-        public string SpellName => getValue(Data?.SpellName);
-        public string Description => getValue(Data?.Description);
-        public string Type => getValue(Data?.Type);
+        public string SpellName => GetValue(Data?.SpellName);
+        public string Description => GetValue(Data?.Description);
+        public string Type => GetValue(Data?.Type);
         public override string ToString() => $"{SpellName} ({Type}), {Description}";
     }
 }

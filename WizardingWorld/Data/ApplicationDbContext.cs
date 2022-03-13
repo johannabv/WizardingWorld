@@ -8,9 +8,9 @@ namespace WizardingWorld.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder b) {
             base.OnModelCreating(b);
-            initializeTables(b);
+            InitializeTables(b);
         }
-        private static void initializeTables(ModelBuilder b) {
+        private static void InitializeTables(ModelBuilder b) {
             WizardingWorldDb.InitializeTables(b);
         }
     }

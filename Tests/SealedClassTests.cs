@@ -2,7 +2,7 @@
 
 namespace Tests {
     public abstract class SealedClassTests<TClass> : BaseTests where TClass : class, new() {
-        protected override object createObject() => new TClass();
-        [TestMethod] public void isSealedTest() => isTrue(obj?.GetType()?.IsSealed ?? false);
+        protected override object CreateObject() => new TClass();
+        [TestMethod] public void IsSealedTest() => IsTrue(obj?.GetType()?.IsSealed ?? false);
     }
 }
