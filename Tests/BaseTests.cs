@@ -23,7 +23,7 @@ namespace Tests {
             AreEqual(canWrite, !isReadOnly);
             return canWrite;
         }
-        private static T Random<T>() => GetRandom.Value<T>();
+        private static T? Random<T>() => GetRandom.Value<T>();
         private static string GetCallingMember(string memberName) {
             var s = new StackTrace();
             var isNext = false;
