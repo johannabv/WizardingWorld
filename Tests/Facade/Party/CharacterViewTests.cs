@@ -8,7 +8,7 @@ using WizardingWorld.Facade.Party;
 
 namespace Tests.Facade.Party {
     [TestClass] public class CharacterViewTests : SealedClassTests<CharacterView> {
-        [TestMethod] public void IDTest() => isProperty<string?>();
+        [TestMethod] public void IDTest() => isProperty<string>();
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
         [TestMethod] public void LastNameTest() => isProperty<string?>();
         [TestMethod] public void GenderTest() => isProperty<bool?>();
