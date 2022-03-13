@@ -12,13 +12,11 @@ namespace Tests {
             var propertyInfo = obj.GetType().GetProperty(memberName);
             IsNotNull(propertyInfo);
             if (IsNullOrDefault(value)) value = Random<T>();
-            if (!CanWrite(propertyInfo, isReadOnly)) return;
-            propertyInfo.SetValue(obj, value);
+            if (CanWrite(propertyInfo, isReadOnly)) propertyInfo.SetValue(obj, value); 
             AreEqual(value, propertyInfo.GetValue(obj));
         }
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
-        private static bool CanWrite(PropertyInfo i, bool isReadOnly)
-        {
+        private static bool CanWrite(PropertyInfo i, bool isReadOnly) {
             var canWrite = i?.CanWrite ?? false;
             AreEqual(canWrite, !isReadOnly);
             return canWrite;

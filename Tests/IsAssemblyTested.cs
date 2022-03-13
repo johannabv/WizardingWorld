@@ -25,11 +25,11 @@ namespace Tests {
             if (AreAllTested()) return;
             ReportNotAllIsTested();
         }
-        private static List<Type>? GetAllTypes(Assembly? a) => GetAssembly.Types(a);
-        private static Assembly? GetTheAssembly(object o) => GetAssembly.OfType(o);
-        private static Assembly? GetTheAssembly(string? name) => GetAssembly.ByName(name);
         private static string? RemoveTestsTagFrom(string? s) => s?.Remove("Tests.");
         private static string? GetTheNamespace(object o) => GetNamespace.OfType(o);
+        private static Assembly? GetTheAssembly(object o) => GetAssembly.OfType(o);
+        private static Assembly? GetTheAssembly(string? name) => GetAssembly.ByName(name);
+        private static List<Type>? GetAllTypes(Assembly? a) => GetAssembly.Types(a); 
         private void ReportNotAllIsTested() => IsInconclusive($"Class \"{FullNameOfFirstNotTested()}\" is not tested");
         private string FullNameOfFirstNotTested() => FirstNotTestedType(typesToBeTested)?.FullName ?? string.Empty;
         private static Type? FirstNotTestedType(List<Type>? list) => list.GetFirst();
@@ -43,7 +43,7 @@ namespace Tests {
             var testName = typeToBeTested.Name;
             var length = testName.IndexOf('`');
             if (length >= 0) testName = testName[..length];
-            testName+= "Tests";
+            testName += "Tests";
             return testingType.NameEnds(testName);
         }
         private void RemoveNotNeedTesting() => typesToBeTested?.Remove(x => !IsTypeToBeTested(x));

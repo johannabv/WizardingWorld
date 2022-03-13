@@ -49,9 +49,8 @@ namespace Tests {
         private static List<string>? GetMembers(Type? t) => t?.DeclaredMembers();
         private static Type? GetType(Assembly? a, string? name) {
             if (string.IsNullOrWhiteSpace(name)) return null;
-            foreach (var type in a?.DefinedTypes ?? Array.Empty<TypeInfo>()) {
-                if (type.Name.StartsWith(name)) return type.AsType();
-            }
+            foreach (var t in a?.DefinedTypes ?? Array.Empty<TypeInfo>()) 
+                if (t.Name.StartsWith(name)) return t.AsType();
             return null;
         }
         private static Assembly? GetTheAssembly(string? name) {

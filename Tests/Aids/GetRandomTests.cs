@@ -44,8 +44,8 @@ namespace Tests.Aids {
 
         [DataRow(char.MinValue, char.MaxValue)]
         [DataRow('a', 'z')]
-        [DataRow('0', '9')]
-        [DataRow('0','L')]
+        [DataRow('1', 'P')]
+        [DataRow('A', 'z')]
         [TestMethod] public void CharTest(char min, char max) => Test<char>(min, max);
 
         [TestMethod] public void BoolTest() {

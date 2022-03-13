@@ -18,7 +18,7 @@ namespace WizardingWorld.Infra.Party {
         public async Task<bool> AddAsync(TDomain obj) {
             var d = obj.Data;
             try {
-                _ = (set is null)? null : await set.AddAsync(d);
+                _ = (set is null) ? null : await set.AddAsync(d);
                 _ = (db is null) ? 0 : await db.SaveChangesAsync();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace WizardingWorld.Infra.Party {
                 foreach (var d in list) items.Add(ToDomain(d));
                 return items;
             }
-            catch { return new List<TDomain> { }; }
+            catch { return new List<TDomain>(); }
         }
         public async Task<TDomain> GetAsync(string id) {
             try {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WizardingWorld.Data.Party {
+﻿namespace WizardingWorld.Data.Party {
     public sealed class CharacterData : EntityData {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

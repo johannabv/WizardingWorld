@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 namespace WizardingWorld.Pages.Extensions {
     public static class EditorHtml {
         public static IHtmlContent Editor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            return new HtmlContentBuilder(htmlStrings(h, e));
+            return new HtmlContentBuilder(HtmlStrings(h, e));
         } 
-        private static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
+        private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
             var l = new List<object>();
             l.Add(new HtmlString("<div class=\"row\">"));
             

@@ -48,9 +48,8 @@ namespace WizardingWorld.Pages {
         public async Task<PageResult> OnGetIndexAsync() {
             var list = await repo.GetAsync();
             Items = new List<TView>();
-            foreach (var obj in list) {
-                var v = ToView(obj);
-                Items.Add(v);
+            foreach (var obj in list) { 
+                Items.Add(ToView(obj));
             }
             return Page();
         }
