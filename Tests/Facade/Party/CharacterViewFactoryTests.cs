@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
@@ -7,15 +8,7 @@ namespace Tests.Facade.Party {
     [TestClass] public class CharacterViewFactoryTests : SealedClassTests<CharacterViewFactory> {
         [TestMethod] public void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
-            var d = new CharacterData() {
-                ID = "id",
-                FirstName = "Mari",
-                LastName = "Maasikas",
-                Gender = true,
-                DoB = System.DateTime.Now,
-                HogwartsHouse = "Slytherin",
-                Organisation = "Order"
-            };
+            var d = GetRandom.Value<CharacterData>();
             var e = new Character(d);
             var v = new CharacterViewFactory().Create(e);
             IsNotNull(v);
@@ -29,16 +22,7 @@ namespace Tests.Facade.Party {
             AreEqual(v.FullName, e.ToString()); 
         }
         [TestMethod] public void CreateEntityTest() {
-            var v = new CharacterView() {
-                ID = "id",
-                FirstName = "Mari",
-                LastName = "Maasikas",
-                Gender = true,
-                DoB = System.DateTime.Now,
-                HogwartsHouse = "Slytherin",
-                Organisation = "Order",
-                FullName="name"
-            };
+            var v = GetRandom.Value<CharacterView>();
             var e = new CharacterViewFactory().Create(v);
             IsNotNull(e);
             AreEqual(e.ID, v.ID);

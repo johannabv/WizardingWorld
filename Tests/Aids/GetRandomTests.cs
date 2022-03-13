@@ -44,7 +44,7 @@ namespace Tests.Aids {
 
         [DataRow(char.MinValue, char.MaxValue)]
         [DataRow('a', 'z')]
-        [DataRow('1', '9')]
+        [DataRow('0', '9')]
         [DataRow('0','L')]
         [TestMethod] public void CharTest(char min, char max) => Test<char>(min, max);
 

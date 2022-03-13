@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
@@ -7,12 +8,7 @@ namespace Tests.Facade.Party {
     [TestClass] public class SpellViewFactoryTests : SealedClassTests<SpellViewFactoryTests>{
         [TestMethod] public void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
-            var d = new SpellData() {
-                ID = "id",
-                SpellName = "spell",
-                Description = "something",
-                Type = "Slytherin"
-            };
+            var d = GetRandom.Value<SpellData>();
             var e = new Spell(d);
             var v = new SpellViewFactory().Create(e);
             IsNotNull(v);
@@ -23,12 +19,7 @@ namespace Tests.Facade.Party {
             AreEqual(v.FullName, e.ToString());
         }
         [TestMethod] public void CreateEntityTest() {
-            var v = new SpellView() {
-                ID = "id",
-                SpellName = "spell",
-                Description = "something",
-                Type = "Slytherin"
-            };
+            var v = GetRandom.Value<SpellView>();
             var e = new SpellViewFactory().Create(v);
             IsNotNull(e);
             AreEqual(e.ID, v.ID);
