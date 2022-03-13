@@ -12,8 +12,8 @@ namespace Tests {
         private List<Type>? typesToBeTested;
         private string? namespaceOfTest;
         private string? namespaceOfType;
-        [TestMethod] public void IsAllTested() => IsAllTestsDone();
-        protected virtual void IsAllTestsDone() {
+        [TestMethod] public void IsAllTested() => AreAllThingsTested();
+        protected virtual void AreAllThingsTested() {
             testingAssembly = GetTheAssembly(this);
             testingTypes = GetAllTypes(testingAssembly);
             namespaceOfTest = GetTheNamespace(this);
@@ -39,7 +39,13 @@ namespace Tests {
         private static bool IsCorrectTest(Type x) => IsCorrectlyInherited(x) && IsTestClass(x);
         private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
         private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
-        private static bool IsTestFor(Type testingType, Type typeToBeTested) => testingType.NameEnds(typeToBeTested.Name + "Tests");
+        private static bool IsTestFor(Type testingType, Type typeToBeTested) {
+            var testName = typeToBeTested.Name;
+            var length = testName.IndexOf('`');
+            if (length >= 0) testName = testName[..length];
+            testName+= "Tests";
+            return testingType.NameEnds(testName);
+        }
         private void RemoveNotNeedTesting() => typesToBeTested?.Remove(x => !IsTypeToBeTested(x));
         private bool IsTypeToBeTested(Type x) => x?.BelongsTo(namespaceOfType) ?? false;
     } 

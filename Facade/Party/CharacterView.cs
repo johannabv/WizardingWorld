@@ -8,7 +8,7 @@ namespace WizardingWorld.Facade.Party {
         protected override Character ToEntity(CharacterData d) => new(d);
         public override CharacterView Create(Character? e) {
             var v = base.Create(e);
-            v.FullInfo=e?.ToString();
+            v.FullName=e?.ToString();
             return v;
         }
     }
@@ -19,6 +19,6 @@ namespace WizardingWorld.Facade.Party {
         [DisplayName("Date of Birth")] public DateTime? DoB { get; set; }
         [DisplayName("Hogwartz House"), Required] public string? HogwartsHouse { get; set; }
         [Required] public string? Organisation { get; set; }
-        [DisplayName("Full info")] public string? FullInfo { get; set; }
+        [DisplayName("Full info")] public string? FullName { get; set; }
     }
 }

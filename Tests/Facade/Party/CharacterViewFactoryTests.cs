@@ -26,7 +26,7 @@ namespace Tests.Facade.Party {
             AreEqual(v.Gender, e.Gender);
             AreEqual(v.HogwartsHouse, e.HogwartsHouse);
             AreEqual(v.Organisation, e.Organisation);
-            AreEqual(v.FullInfo, e.ToString()); 
+            AreEqual(v.FullName, e.ToString()); 
         }
         [TestMethod] public void CreateEntityTest() {
             var v = new CharacterView() {
@@ -37,7 +37,7 @@ namespace Tests.Facade.Party {
                 DoB = System.DateTime.Now,
                 HogwartsHouse = "Slytherin",
                 Organisation = "Order",
-                FullInfo="name"
+                FullName="name"
             };
             var e = new CharacterViewFactory().Create(v);
             IsNotNull(e);
@@ -48,7 +48,7 @@ namespace Tests.Facade.Party {
             AreEqual(e.Gender, v.Gender);
             AreEqual(e.HogwartsHouse, v.HogwartsHouse);
             AreEqual(e.Organisation, v.Organisation);
-            AreNotEqual(e.ToString(), v.FullInfo);
+            AreNotEqual(e.ToString(), v.FullName);
         }
     }
 }

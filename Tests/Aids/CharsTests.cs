@@ -10,12 +10,12 @@ namespace Tests.Aids {
             Assert.IsFalse(Chars.IsNameChar('_'));
             Assert.IsFalse(Chars.IsNameChar(':'));
         }
-        [TestMethod] public void IsFullInfoCharTest() {
-            Assert.IsTrue(Chars.IsFullInfoChar('a'));
-            Assert.IsTrue(Chars.IsFullInfoChar('9'));
-            Assert.IsTrue(Chars.IsFullInfoChar('.'));
-            Assert.IsFalse(Chars.IsFullInfoChar('_'));
-            Assert.IsFalse(Chars.IsFullInfoChar(':'));
+        [TestMethod] public void IsFullNameCharTest() {
+            Assert.IsTrue(Chars.IsFullNameChar('a'));
+            Assert.IsTrue(Chars.IsFullNameChar('9'));
+            Assert.IsTrue(Chars.IsFullNameChar('.'));
+            Assert.IsFalse(Chars.IsFullNameChar('_'));
+            Assert.IsFalse(Chars.IsFullNameChar(':'));
         }
     }
 }
