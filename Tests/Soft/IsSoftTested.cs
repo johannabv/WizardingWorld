@@ -2,6 +2,6 @@
 
 namespace Tests.Soft {
     [TestClass] public class IsSoftTested : IsAssemblyTested{
-        protected override void AreAllThingsTested() => IsInconclusive("Namespace has to be changed to \"WizardingWord.Soft\"");
+        protected override void isAllTested() => isInconclusive("Namespace has to be changed to \"WizardingWord.Soft\"");
     }
 }

@@ -5,6 +5,6 @@ namespace Tests.Facade.Party {
     [TestClass]
     public class BaseViewTests : AbstractClassTests {
         private class TestClass : BaseView { }
-        protected override object CreateObject() => new TestClass(); 
+        protected override object createObj() => new TestClass(); 
     }
 }

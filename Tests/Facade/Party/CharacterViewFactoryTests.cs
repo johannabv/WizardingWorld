@@ -11,28 +11,28 @@ namespace Tests.Facade.Party {
             var d = GetRandom.Value<CharacterData>();
             var e = new Character(d);
             var v = new CharacterViewFactory().Create(e);
-            IsNotNull(v);
-            AreEqual(v.ID, e.ID);
-            AreEqual(v.DoB, e.DoB);
-            AreEqual(v.FirstName, e.FirstName);
-            AreEqual(v.LastName, e.LastName);
-            AreEqual(v.Gender, e.Gender);
-            AreEqual(v.HogwartsHouse, e.HogwartsHouse);
-            AreEqual(v.Organisation, e.Organisation);
-            AreEqual(v.FullName, e.ToString()); 
+            isNotNull(v);
+            areEqual(v.ID, e.ID);
+            areEqual(v.DoB, e.DoB);
+            areEqual(v.FirstName, e.FirstName);
+            areEqual(v.LastName, e.LastName);
+            areEqual(v.Gender, e.Gender);
+            areEqual(v.HogwartsHouse, e.HogwartsHouse);
+            areEqual(v.Organisation, e.Organisation);
+            areEqual(v.FullName, e.ToString()); 
         }
         [TestMethod] public void CreateEntityTest() {
             var v = GetRandom.Value<CharacterView>();
             var e = new CharacterViewFactory().Create(v);
-            IsNotNull(e);
-            AreEqual(e.ID, v.ID);
-            AreEqual(e.DoB, v.DoB);
-            AreEqual(e.FirstName, v.FirstName);
-            AreEqual(e.LastName, v.LastName);
-            AreEqual(e.Gender, v.Gender);
-            AreEqual(e.HogwartsHouse, v.HogwartsHouse);
-            AreEqual(e.Organisation, v.Organisation);
-            AreNotEqual(e.ToString(), v.FullName);
+            isNotNull(e);
+            areEqual(e.ID, v.ID);
+            areEqual(e.DoB, v.DoB);
+            areEqual(e.FirstName, v.FirstName);
+            areEqual(e.LastName, v.LastName);
+            areEqual(e.Gender, v.Gender);
+            areEqual(e.HogwartsHouse, v.HogwartsHouse);
+            areEqual(e.Organisation, v.Organisation);
+            areNotEqual(e.ToString(), v.FullName);
         }
     }
 }
