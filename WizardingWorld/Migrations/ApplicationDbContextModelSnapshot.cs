@@ -252,6 +252,40 @@ namespace WizardingWorld.Migrations
                     b.ToTable("Characters", "WizardingWorld");
                 });
 
+            modelBuilder.Entity("WizardingWorld.Data.Party.CountryData", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Countries", "WizardingWorld");
+                });
+
+            modelBuilder.Entity("WizardingWorld.Data.Party.CurrencyData", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Currencies", "WizardingWorld");
+                });
+
             modelBuilder.Entity("WizardingWorld.Data.Party.SpellData", b =>
                 {
                     b.Property<string>("ID")

@@ -1,0 +1,11 @@
+﻿@page
+@model WizardingWorld.Pages.CountriesPage
+@using WizardingWorld.Pages.Extensions
+
+@{
+    Layout = "_Create";
+}
+<body>
+        @Html.Editor(m=>m.Item.ID)
+        <partial name = "_EditCountry" />
+</body>

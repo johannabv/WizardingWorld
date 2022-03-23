@@ -6,6 +6,8 @@ namespace WizardingWorld.Infra {
         public WizardingWorldDb(DbContextOptions<WizardingWorldDb> options) : base(options) { }
         public DbSet<CharacterData>? Characters { get; set; }
         public DbSet<SpellData>? Spells { get; set; }
+        public DbSet<CountryData>? Countries { get; set; }
+        public DbSet<CurrencyData>? Currencies { get; set; }
         protected override void OnModelCreating(ModelBuilder b) {
             base.OnModelCreating(b);
             InitializeTables(b);
@@ -14,6 +16,8 @@ namespace WizardingWorld.Infra {
             var s = nameof(WizardingWorldDb)[0..^2];
             _ = (b?.Entity<CharacterData>()?.ToTable(nameof(Characters), s));
             _ = (b?.Entity<SpellData>()?.ToTable(nameof(Spells), s));
+            _ = (b?.Entity<CountryData>()?.ToTable(nameof(Countries), s));
+            _ = (b?.Entity<CurrencyData>()?.ToTable(nameof(Currencies), s));
         }
     }
 }
