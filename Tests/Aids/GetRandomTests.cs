@@ -6,8 +6,7 @@ using WizardingWorld.Data.Party;
 
 namespace Tests.Aids {
     [TestClass] public class GetRandomTests : IsTypeTested {
-        private void Test<T>(T min, T max) where T : IComparable<T>
-        {
+        private void Test<T>(T min, T max) where T : IComparable<T> {
             var x = GetRandom.Value(min, max);
             var y = GetRandom.Value(min, max);
             isInstanceOfType(x, typeof(T));
@@ -50,8 +49,7 @@ namespace Tests.Aids {
         [TestMethod] public void CharTest(char min, char max) => Test(min, max);
 
         [TestMethod]
-        public void BoolTest()
-        {
+        public void BoolTest() {
             var x = GetRandom.Bool();
             var y = GetRandom.Bool();
             var i = 0;
@@ -71,8 +69,7 @@ namespace Tests.Aids {
                  new object[]{ DateTime.MinValue, DateTime.MinValue.AddYears(100) }
         };
         [TestMethod]
-        public void StringTest()
-        {
+        public void StringTest() {
             var x = GetRandom.Value<string>();
             var y = GetRandom.Value<string>();
             isInstanceOfType(x, typeof(string));

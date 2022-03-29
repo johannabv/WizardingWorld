@@ -1,6 +1,6 @@
 ﻿namespace WizardingWorld.Domain {
-    public interface IRepo<T> : IBaseRepo<T> where T : Entity { } 
-    public interface IBaseRepo<T> where T : Entity {
+    public interface IRepo<T> : IBaseRepo<T> where T : BaseEntity { } 
+    public interface IBaseRepo<T> where T : BaseEntity {
         bool Add(T obj);
         List<T> Get();
         T Get(string id);

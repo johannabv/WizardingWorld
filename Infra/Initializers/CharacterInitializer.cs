@@ -2,7 +2,7 @@
 
 namespace WizardingWorld.Infra.Initializers {
     public sealed class CharacterInitializer : BaseInitializer<CharacterData> {
-        public CharacterInitializer(WizardingWorldDb db) : base(db, db?.Characters) { }
+        public CharacterInitializer(WizardingWorldDb? db) : base(db, db?.Characters) { }
         internal static CharacterData CreateCharacter(string firstName, string lastName, bool gender, DateTime DoB, string hogwartsHouse, string organisation) {
             var character = new CharacterData {
                 ID = firstName + lastName,

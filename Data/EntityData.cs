@@ -1,5 +1,6 @@
 ﻿namespace WizardingWorld.Data {
     public class EntityData {
-        public string ID { get; set; } = Guid.NewGuid().ToString();
+        public static string NewId => Guid.NewGuid().ToString();
+        public string ID { get; set; } = NewId;
     }
 }

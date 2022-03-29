@@ -6,7 +6,7 @@ namespace WizardingWorld.Facade {
     public abstract class BaseViewFactory<TView, TEntity, TData>
     where TView : class, new()
     where TData : EntityData, new()
-    where TEntity : Entity<TData> {
+    where TEntity : BaseEntity<TData> {
         protected abstract TEntity ToEntity(TData d);
         protected virtual void Copy(object? from, object? to) {
             var tFrom = from?.GetType();

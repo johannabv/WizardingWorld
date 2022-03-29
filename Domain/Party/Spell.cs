@@ -2,7 +2,7 @@
 
 namespace WizardingWorld.Domain.Party {
     public interface ISpellRepo : IRepo<Spell> { }
-    public sealed class Spell : Entity<SpellData>{
+    public sealed class Spell : BaseEntity<SpellData>{
         public Spell() : this(new SpellData()) { }
         public Spell(SpellData d) : base(d) { }
         public string SpellName => GetValue(Data?.SpellName);

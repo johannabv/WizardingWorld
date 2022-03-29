@@ -33,7 +33,7 @@ else {
 
 using(var scope = app.Services.CreateScope()) {
     var db = scope.ServiceProvider.GetService<WizardingWorldDb>();
-    db.Database.EnsureCreated();
+    db?.Database?.EnsureCreated();
     WizardingWorldDbInitializer.Init(db);
 }
 

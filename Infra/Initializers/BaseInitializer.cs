@@ -18,7 +18,7 @@ namespace WizardingWorld.Infra.Initializers {
     }
 
     public static class WizardingWorldDbInitializer {
-        public static void Init(WizardingWorldDb db) {
+        public static void Init(WizardingWorldDb? db) {
             new CharacterInitializer(db).Init();
             new SpellInitializer(db).Init();
             new CountriesInitializer(db).Init();
