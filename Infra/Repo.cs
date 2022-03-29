@@ -3,7 +3,7 @@ using WizardingWorld.Data;
 using WizardingWorld.Domain;
 
 namespace WizardingWorld.Infra.Party {
-    public abstract class Repo<TDomain, TData> : IRepo<TDomain> where TDomain : BaseEntity<TData>, new() where TData : EntityData, new() {
+    public abstract class Repo<TDomain, TData> : IRepo<TDomain> where TDomain : BaseEntity<TData>, new() where TData : BaseData, new() {
         private readonly DbContext? db;
         private readonly DbSet<TData>? set; 
         protected Repo(DbContext? c, DbSet<TData>? s) {

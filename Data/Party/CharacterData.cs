@@ -1,5 +1,5 @@
 ﻿namespace WizardingWorld.Data.Party {
-    public sealed class CharacterData : EntityData {
+    public sealed class CharacterData : BaseData {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public bool? Gender { get; set; }

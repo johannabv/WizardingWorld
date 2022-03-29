@@ -9,7 +9,7 @@ namespace WizardingWorld.Domain {
         protected static bool GetValue(bool? v) => v ?? defaultBool;
         protected static DateTime GetValue(DateTime? v) => v ?? DefaultDate;
     } 
-    public abstract class BaseEntity<TData> : BaseEntity where TData : EntityData, new() {
+    public abstract class BaseEntity<TData> : BaseEntity where TData : BaseData, new() {
         public readonly TData data;
         public TData Data => data;
         public BaseEntity() : this(new TData()) { }
