@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    var firstDisabled = false;
+    var nextDisabled = false;
+    var prevDisabled = false;
+    var lastDisabled = false;
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p><a asp-page="Create" asp-page-handler="Create">Create new</a></p>
+
+   @RenderBody()
+
+<div>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="0"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @firstDisabled">
+    First
+</a>&nbsp
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>&nbsp
+
+    Page 1 of Total 20 Pages&nbsp
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>&nbsp
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.PagesCount-1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @lastDisabled">
+    Last
+</a>&nbsp
+</div>
+
+

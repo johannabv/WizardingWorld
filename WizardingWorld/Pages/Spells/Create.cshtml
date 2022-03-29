@@ -1,11 +1,11 @@
 ﻿@page
-@model WizardingWorld.Pages.SpellsPage
+@model WizardingWorld.Pages.Party.SpellsPage
 @using WizardingWorld.Pages.Extensions
 
 @{
     Layout = "_Create";
 }
 <body>
-        @Html.Editor(m=>m.Item.ID)
-        <partial name = "_EditSpell" />
+    @Html.Editor(m=>m.Item.ID)
+    <partial name = "_EditSpell" />
 </body>

@@ -1,5 +1,6 @@
-﻿@model WizardingWorld.Pages.CurrenciesPage
+﻿@model WizardingWorld.Pages.Party.CurrenciesPage
 @using WizardingWorld.Pages.Extensions
-
-@Html.Editor(m=>m.Item.Name)
+ 
 @Html.Editor(m=>m.Item.Code)
+@Html.Editor(m=>m.Item.EnglishName)
+@Html.Editor(m=>m.Item.NativeName)
