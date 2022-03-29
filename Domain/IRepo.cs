@@ -1,5 +1,15 @@
 ﻿namespace WizardingWorld.Domain {
-    public interface IRepo<T> : IBaseRepo<T> where T : BaseEntity { } 
+    public interface IRepo<T> : IPagedRepo<T> where T : BaseEntity { }
+    public interface IPagedRepo<T> : IOrderedRepo<T> where T : BaseEntity {
+        public int PageIndex { get; set; }
+        public int TotalPages { get;}
+        public bool HasNextPage { get; }
+        public bool HasPreviousPage { get; }
+        public int PageSize { get; set; } 
+    }
+    public interface IOrderedRepo<T> : IFilteredRepo<T> where T : BaseEntity { }
+    public interface IFilteredRepo<T> : ICrudRepo<T> where T : BaseEntity { }
+    public interface ICrudRepo<T> : IBaseRepo<T> where T : BaseEntity { }
     public interface IBaseRepo<T> where T : BaseEntity {
         bool Add(T obj);
         List<T> Get();

@@ -32,13 +32,15 @@ namespace WizardingWorld.Infra {
         }
         public override async Task<List<TDomain>> GetAsync() {
             try {
-                var list = (set is null) ? new List<TData>() : await set.ToListAsync();
+                var list = await CrudRepo<TDomain, TData>.RunSQL(CreateSQL());
                 var items = new List<TDomain>();
                 foreach (var d in list) items.Add(ToDomain(d));
                 return items;
             }
             catch { return new List<TDomain>(); }
         }
+        internal static async Task<List<TData>> RunSQL(IQueryable<TData> query) => await query.AsNoTracking().ToListAsync(); 
+        internal protected virtual IQueryable<TData> CreateSQL() => from s in set select s; 
         public override async Task<TDomain> GetAsync(string id) {
             try {
                 if (id == null) return new TDomain();

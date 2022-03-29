@@ -8,7 +8,7 @@ namespace WizardingWorld.Pages {
         where TView : BaseView
         where TEntity : BaseEntity
         where TRepo : IBaseRepo<TEntity>{
-        private readonly TRepo repo;
+        protected readonly TRepo repo;
         protected abstract TEntity ToObject(TView? item);
         protected abstract TView ToView(TEntity? entity);
         [BindProperty] public TView? Item { get; set; }
@@ -45,7 +45,7 @@ namespace WizardingWorld.Pages {
             if (!updated) return NotFound();
             return RedirectToPage("./Index", "Index");
         }
-        public async Task<PageResult> OnGetIndexAsync() {
+        public async virtual Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
             var list = await repo.GetAsync();
             Items = new List<TView>();
             foreach (var obj in list) { 
