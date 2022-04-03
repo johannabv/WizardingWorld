@@ -13,20 +13,20 @@ namespace WizardingWorld.Infra {
         protected internal override IQueryable<TData> CreateSQL() => AddSort(base.CreateSQL());
         internal IQueryable<TData> AddSort(IQueryable<TData> q) { 
             if(string.IsNullOrWhiteSpace(CurrentSort)) return q;
-            var e = lambdaExpression;
+            var e = LambdaExpression;
             if (e == null) return q;
             if (IsDescending) return q.OrderByDescending(e);
             return q.OrderBy(e);
         }
         internal bool IsDescending => CurrentSort?.EndsWith(DescendingString) ?? false;
         internal bool IsSameProperty(string s) => (string.IsNullOrEmpty(s)? false : (CurrentSort?.StartsWith(s) ?? false));
-        internal string propertyName => CurrentSort?.Replace(DescendingString, "") ?? "";
-        internal PropertyInfo? propertyInfo => typeof(TData).GetProperty(propertyName);
-        internal Expression<Func<TData, object>>? lambdaExpression {
+        internal string PropertyName => CurrentSort?.Replace(DescendingString, "") ?? "";
+        internal PropertyInfo? PropertyInfo => typeof(TData).GetProperty(PropertyName);
+        internal Expression<Func<TData, object>>? LambdaExpression {
             get {
-                if(propertyInfo is null) return null;
+                if(PropertyInfo is null) return null;
                 var param = Expression.Parameter(typeof(TData), "x");
-                var property = Expression.Property(param, propertyInfo);
+                var property = Expression.Property(param, PropertyInfo);
                 var body = Expression.Convert(property, typeof(object));
                 return Expression.Lambda<Func<TData,object>>(body, param);
             }

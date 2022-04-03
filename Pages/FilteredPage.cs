@@ -7,5 +7,9 @@ namespace WizardingWorld.Pages {
         where TEntity : BaseEntity
         where TRepo : IFilteredRepo<TEntity> {
         protected FilteredPage(TRepo r) : base(r) { }
+        public string? CurrentFilter {
+            get => repo.CurrentFilter;
+            set => repo.CurrentFilter = value;
+        }
     }
 }

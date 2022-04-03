@@ -7,5 +7,10 @@ namespace WizardingWorld.Pages {
         where TEntity : BaseEntity
         where TRepo : IOrderedRepo<TEntity> {
         protected OrderedPage(TRepo r) : base(r) { }
+        public string? CurrentSort {
+            get => repo.CurrentSort;
+            set => repo.CurrentSort = value;
+        }
+        
     }
 }
