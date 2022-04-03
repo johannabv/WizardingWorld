@@ -8,9 +8,29 @@
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Items[0].SpellName) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Description) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Type) </th>
+            <th> 
+                <a asp-page="./Index" 
+                   asp-page-handler="Index" 
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.SpellName))"
+                   asp-route-pageIndex="@Model.PageIndex" 
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                >@nameof(Model.Item.SpellName)</a>
+             </th> 
+             <th> 
+                <a asp-page="./Index" 
+                   asp-page-handler="Index" 
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Description))"
+                   asp-route-pageIndex="@Model.PageIndex" 
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                >@nameof(Model.Item.Description)</a>
+             </th> 
+             <th> 
+                <a asp-page="./Index" 
+                   asp-page-handler="Index" 
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Type))"
+                   asp-route-pageIndex="@Model.PageIndex" 
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                >@nameof(Model.Item.Type)</a>
             <th></th>
         </tr>
     </thead>

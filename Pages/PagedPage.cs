@@ -8,7 +8,10 @@ namespace WizardingWorld.Pages {
         where TEntity : BaseEntity
         where TRepo : IPagedRepo<TEntity> {
         protected PagedPage(TRepo r) : base(r) { }
-        public string? CurrentSort { get; set; }
+        public string? CurrentSort {
+            get => repo.CurrentSort;
+            set => repo.CurrentSort = value;
+        }
         public string? CurrentFilter {
             get => repo.CurrentFilter;
             set => repo.CurrentFilter = value;
@@ -17,17 +20,20 @@ namespace WizardingWorld.Pages {
             get => repo.PageIndex;
             set => repo.PageIndex = value;
         }
+        public string? SortOrder(string propertyName) => repo.SortOrder(propertyName);
         public int TotalPages => repo.TotalPages;
         public bool HasNextPage  => repo.HasNextPage;
         public bool HasPreviousPage  => repo.HasPreviousPage;
         public override IActionResult OnGetCreate(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             return base.OnGetCreate(pageIndex, currentFilter, sortOrder);
         }
         public override async Task<IActionResult> OnPostCreateAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             ModelState.Remove(nameof(currentFilter));
             ModelState.Remove(nameof(sortOrder));
             return await base.OnPostCreateAsync(pageIndex, currentFilter, sortOrder);
@@ -35,26 +41,31 @@ namespace WizardingWorld.Pages {
         public override async Task<IActionResult> OnGetDetailsAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             return await base.OnGetDetailsAsync(id, pageIndex, currentFilter, sortOrder);
         }
         public override async Task<IActionResult> OnGetDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             return await base.OnGetDeleteAsync(id, pageIndex, currentFilter, sortOrder);
         }
         public override async Task<IActionResult> OnPostDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             return await base.OnPostDeleteAsync(id, pageIndex, currentFilter, sortOrder);
         }
         public override async Task<IActionResult> OnGetEditAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             return await base.OnGetEditAsync(id, pageIndex, currentFilter, sortOrder);
         }
         public override async Task<IActionResult> OnPostEditAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
+            CurrentSort = sortOrder;
             ModelState.Remove(nameof(currentFilter));
             ModelState.Remove(nameof(sortOrder));
             return await base.OnPostEditAsync(pageIndex, currentFilter ?? string.Empty, sortOrder ?? string.Empty);
@@ -62,6 +73,7 @@ namespace WizardingWorld.Pages {
         public async override Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {  
             PageIndex=pageIndex;
             CurrentFilter=currentFilter;
+            CurrentSort = sortOrder;
             return await base.OnGetIndexAsync(pageIndex, currentFilter, sortOrder);
         }
     }
