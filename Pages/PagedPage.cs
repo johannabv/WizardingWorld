@@ -7,9 +7,9 @@ namespace WizardingWorld.Pages {
         where TView : BaseView
         where TEntity : BaseEntity
         where TRepo : IPagedRepo<TEntity> {
-        protected PagedPage(TRepo r) : base(r) { } 
-        public string? CurrentSort { get; set; }
-        public string? CurrentFilter { get; set; }
+        protected PagedPage(TRepo r) : base(r) { }
+        public string? CurrentSort { get; set; } = "CurrentSort";
+        public string? CurrentFilter { get; set; } = "CurrentFilter";
         public int PageIndex {
             get => repo.PageIndex;
             set => repo.PageIndex = value;
@@ -17,35 +17,35 @@ namespace WizardingWorld.Pages {
         public int TotalPages => repo.TotalPages;
         public bool HasNextPage  => repo.HasNextPage;
         public bool HasPreviousPage  => repo.HasPreviousPage;
-        public IActionResult OnGetCreate(int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override IActionResult OnGetCreate(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             return base.OnGetCreate(pageIndex, currentFilter, sortOrder);
         }
-        public override async Task<IActionResult> OnPostCreateAsync(int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override async Task<IActionResult> OnPostCreateAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             return await base.OnPostCreateAsync(pageIndex, currentFilter, sortOrder);
         }
-        public override async Task<IActionResult> OnGetDetailsAsync(string id, int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override async Task<IActionResult> OnGetDetailsAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             return await base.OnGetDetailsAsync(id, pageIndex, currentFilter, sortOrder);
         }
-        public override async Task<IActionResult> OnGetDeleteAsync(string id, int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override async Task<IActionResult> OnGetDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             return await base.OnGetDeleteAsync(id, pageIndex, currentFilter, sortOrder);
         }
-        public override async Task<IActionResult> OnPostDeleteAsync(string id, int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override async Task<IActionResult> OnPostDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             return await base.OnPostDeleteAsync(id, pageIndex, currentFilter, sortOrder);
         }
-        public override async Task<IActionResult> OnGetEditAsync(string id, int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override async Task<IActionResult> OnGetEditAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
             return await base.OnGetEditAsync(id, pageIndex, currentFilter, sortOrder);
         }
-        public override async Task<IActionResult> OnPostEditAsync(int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public override async Task<IActionResult> OnPostEditAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
-            return await base.OnPostEditAsync(pageIndex, currentFilter, sortOrder);
+            return await base.OnPostEditAsync(pageIndex, currentFilter ?? string.Empty, sortOrder ?? string.Empty);
         }
-        public async override Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string currentFilter = null, string sortOrder = null) {  
+        public async override Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {  
             PageIndex=pageIndex;
             return await base.OnGetIndexAsync(pageIndex, currentFilter, sortOrder);
         }
