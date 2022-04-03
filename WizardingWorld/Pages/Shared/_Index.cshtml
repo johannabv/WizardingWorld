@@ -10,15 +10,30 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p><a asp-page="Create" asp-page-handler="Create">Create new</a></p>
+<p><a asp-page="Create" 
+      asp-page-handler="Create" 
+      asp-route-sortOrder="@Model.CurrentSort"
+      asp-route-pageIndex="@Model.PageIndex" 
+      asp-route-currentFilter="@Model.CurrentFilter"
+>Create new</a>
+</p>
 
-<form asp-page="./Index" method="get">
+<form asp-page="./Index" method="get"
+      asp-route-sortOrder="@Model.CurrentSort"
+      asp-route-pageIndex="@Model.PageIndex" 
+      asp-route-currentFilter="@Model.CurrentFilter"
+>
     <div class="form-actions no-color">
         <p>
             Find by name:&nbsp;
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />&nbsp;
             <input type="submit" value="Search" class="btn btn-primary disabled" /> &nbsp;
-            <a asp-page="./Index" asp-page-handler="Index">Back to full List</a>
+            <a asp-page="./Index"
+               asp-page-handler="Index"  
+               asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@Model.PageIndex" 
+               asp-route-currentFilter="@Model.CurrentFilter"
+            >Back to full List</a>
         </p>
     </div>
 </form>
@@ -26,14 +41,16 @@
    @RenderBody()
 
 <div>
-<a asp-page="./Index" asp-page-handler="Index"
+<a asp-page="./Index" 
+   asp-page-handler="Index"
    asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="0"
    asp-route-currentFilter="@Model.CurrentFilter"
    class="btn btn-primary @firstDisabled">
     First
 </a>&nbsp;
-<a asp-page="./Index" asp-page-handler="Index"
+<a asp-page="./Index" 
+   asp-page-handler="Index"
    asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@Model.CurrentFilter"
@@ -42,14 +59,16 @@
 </a>&nbsp; 
     @showMessage
     &nbsp;
-<a asp-page="./Index" asp-page-handler="Index"
+<a asp-page="./Index" 
+   asp-page-handler="Index"
    asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@Model.CurrentFilter"
    class="btn btn-primary @nextDisabled">
     Next
 </a>&nbsp;
-<a asp-page="./Index" asp-page-handler="Index"
+<a asp-page="./Index" 
+   asp-page-handler="Index"
    asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.TotalPages-1)"
    asp-route-currentFilter="@Model.CurrentFilter"

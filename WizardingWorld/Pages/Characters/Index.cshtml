@@ -27,9 +27,27 @@
             <td> @Html.DisplayFor(modelItem => item.HogwartsHouse) </td>
             <td> @Html.DisplayFor(modelItem => item.Organisation) </td>
             <td>
-                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.ID">Edit</a>&nbsp; 
-                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.ID">Details</a>&nbsp; 
-                <a asp-page="./Delete" asp-page-handler="Delete" asp-route-id="@item.ID">Delete</a>&nbsp;
+                <a asp-page="./Edit" 
+                   asp-page-handler="Edit" 
+                   asp-route-id="@item.ID"
+                   asp-route-sortOrder="@Model.CurrentSort"
+                   asp-route-pageIndex="@Model.PageIndex" 
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                >Edit</a>&nbsp; 
+                <a asp-page="./Details" 
+                   asp-page-handler="Details" 
+                   asp-route-id="@item.ID"
+                   asp-route-sortOrder="@Model.CurrentSort"
+                   asp-route-pageIndex="@Model.PageIndex" 
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                >Details</a>&nbsp; 
+                <a asp-page="./Delete" 
+                   asp-page-handler="Delete" 
+                   asp-route-id="@item.ID"
+                   asp-route-sortOrder="@Model.CurrentSort"
+                   asp-route-pageIndex="@Model.PageIndex" 
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                >Delete</a>&nbsp;
             </td>
         </tr>
 }
