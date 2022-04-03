@@ -12,7 +12,8 @@ namespace WizardingWorld.Infra.Party {
                 x => x.ID.Contains(y)
                 || x.Code.Contains(y)
                 || x.EnglishName.Contains(y)
-                || x.NativeName.Contains(y));
+                || x.NativeName.Contains(y)
+            );
         }
     }
 }
