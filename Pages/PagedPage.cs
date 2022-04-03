@@ -8,8 +8,11 @@ namespace WizardingWorld.Pages {
         where TEntity : BaseEntity
         where TRepo : IPagedRepo<TEntity> {
         protected PagedPage(TRepo r) : base(r) { }
-        public string? CurrentSort { get; set; } = "CurrentSort";
-        public string? CurrentFilter { get; set; } = "CurrentFilter";
+        public string? CurrentSort { get; set; }
+        public string? CurrentFilter {
+            get => repo.CurrentFilter;
+            set => repo.CurrentFilter = value;
+        }
         public int PageIndex {
             get => repo.PageIndex;
             set => repo.PageIndex = value;
@@ -23,6 +26,8 @@ namespace WizardingWorld.Pages {
         }
         public override async Task<IActionResult> OnPostCreateAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
+            ModelState.Remove(nameof(currentFilter));
+            ModelState.Remove(nameof(sortOrder));
             return await base.OnPostCreateAsync(pageIndex, currentFilter, sortOrder);
         }
         public override async Task<IActionResult> OnGetDetailsAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
@@ -43,10 +48,13 @@ namespace WizardingWorld.Pages {
         }
         public override async Task<IActionResult> OnPostEditAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             PageIndex = pageIndex;
+            ModelState.Remove(nameof(currentFilter));
+            ModelState.Remove(nameof(sortOrder));
             return await base.OnPostEditAsync(pageIndex, currentFilter ?? string.Empty, sortOrder ?? string.Empty);
         }
         public async override Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {  
             PageIndex=pageIndex;
+            CurrentFilter=currentFilter;
             return await base.OnGetIndexAsync(pageIndex, currentFilter, sortOrder);
         }
     }

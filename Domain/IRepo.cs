@@ -8,15 +8,16 @@
         public int PageSize { get; set; } 
     }
     public interface IOrderedRepo<T> : IFilteredRepo<T> where T : BaseEntity { }
-    public interface IFilteredRepo<T> : ICrudRepo<T> where T : BaseEntity { }
+    public interface IFilteredRepo<T> : ICrudRepo<T> where T : BaseEntity { 
+        public string CurrentFilter { get; set; }
+    }
     public interface ICrudRepo<T> : IBaseRepo<T> where T : BaseEntity { }
     public interface IBaseRepo<T> where T : BaseEntity {
         bool Add(T obj);
         List<T> Get();
         T Get(string id);
         bool Delete(string id);
-        bool Update(T obj);
-
+        bool Update(T obj); 
         Task<bool> AddAsync(T obj);
         Task<List<T>> GetAsync();
         Task<T> GetAsync(string id);
