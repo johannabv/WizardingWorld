@@ -9,7 +9,7 @@ namespace WizardingWorld.Pages.Extensions {
         }
         private static List<object> htmlStrings(string handler, string id, IPageModel? m) {
             var l = new List<object>();
-            l.Add(new HtmlString($"<a href=\"/{pageName(m)}?"));
+            l.Add(new HtmlString($"<a href=\"/{pageName(m)}/{handler}?"));
             l.Add(new HtmlString($"handler={handler}&amp;"));
             l.Add(new HtmlString($"id={id}&amp;"));
             l.Add(new HtmlString($"order={m?.CurrentSort}&amp;"));

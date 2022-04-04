@@ -30,11 +30,7 @@
             <td> @Html.DisplayFor(modelItem => item.DoB) </td>
             <td> @Html.DisplayFor(modelItem => item.HogwartsHouse) </td>
             <td> @Html.DisplayFor(modelItem => item.Organisation) </td>
-            <td>
-                @Html.Button("Edit", item.ID)&nbsp;
-                @Html.Button("Details", item.ID)&nbsp;
-                @Html.Button("Delete", item.ID)&nbsp;
-            </td>
+            <td> @Html.ItemButtons(item.ID) </td>
         </tr>
 }
     </tbody>

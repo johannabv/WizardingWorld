@@ -23,29 +23,7 @@
             <td> @Html.DisplayFor(modelItem => item.Code) </td>
             <td> @Html.DisplayFor(modelItem => item.EnglishName) </td>
             <td> @Html.DisplayFor(modelItem => item.NativeName) </td>
-            <td>
-                <a asp-page="./Edit" 
-                   asp-page-handler="Edit" 
-                   asp-route-id="@item.ID"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Edit</a>&nbsp; 
-                <a asp-page="./Details" 
-                   asp-page-handler="Details" 
-                   asp-route-id="@item.ID"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Details</a>&nbsp; 
-                <a asp-page="./Delete" 
-                   asp-page-handler="Delete" 
-                   asp-route-id="@item.ID"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Delete</a>&nbsp;
-            </td>
+            <td> @Html.ItemButtons(item.ID) </td>
         </tr>
 }
     </tbody>
