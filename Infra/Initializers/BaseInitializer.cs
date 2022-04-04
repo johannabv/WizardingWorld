@@ -23,6 +23,7 @@ namespace WizardingWorld.Infra.Initializers {
             new SpellInitializer(db).Init();
             new CountriesInitializer(db).Init();
             new CurrenciesInitializer(db).Init();
+            new HousesInitializer(db).Init();
         }
     }
 }

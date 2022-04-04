@@ -1,7 +1,6 @@
 ﻿using WizardingWorld.Data.Party;
 
-namespace WizardingWorld.Infra.Initializers
-{
+namespace WizardingWorld.Infra.Initializers {
     public sealed class SpellInitializer : BaseInitializer<SpellData> {
         public SpellInitializer(WizardingWorldDb? db) : base(db, db?.Spells) { }
         internal static SpellData CreateSpell(string spellName, string description, string type) {

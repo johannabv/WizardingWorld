@@ -12,6 +12,5 @@ namespace WizardingWorld.Pages.Party {
             nameof(SpellView.Description),
             nameof(SpellView.Type)
         };
-        
     }
 }

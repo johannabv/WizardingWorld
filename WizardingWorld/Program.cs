@@ -17,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<ICharacterRepo, CharacterRepo>();
 builder.Services.AddTransient<ISpellRepo, SpellRepo>();
+builder.Services.AddTransient<IHouseRepo, HouseRepo>();
 builder.Services.AddTransient<ICountryRepo, CountryRepo>();
 builder.Services.AddTransient<ICurrencyRepo, CurrencyRepo>();
 var app = builder.Build();
