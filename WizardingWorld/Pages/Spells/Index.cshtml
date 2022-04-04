@@ -1,6 +1,9 @@
 ﻿@page
 @model WizardingWorld.Pages.Party.SpellsPage
-
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using WizardingWorld.Pages
+@using WizardingWorld.Pages.Extensions
 @{
     Layout="_Index";
 }
@@ -8,29 +11,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.SpellName))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.SpellName)</a>
-             </th> 
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Description))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.Description)</a>
-             </th> 
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Type))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.Type)</a>
+            <th> @Html.TabHider(nameof(Model.Item.SpellName)) </th>   
+            <th> @Html.TabHider(nameof(Model.Item.Description)) </th> 
+            <th> @Html.TabHider(nameof(Model.Item.Type)) </th>
             <th></th>
         </tr>
     </thead>

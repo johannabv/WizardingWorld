@@ -3,7 +3,7 @@ using WizardingWorld.Domain;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages {
-    public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>
+    public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>, IPageModel
         where TView : BaseView
         where TEntity : BaseEntity
         where TRepo : IPagedRepo<TEntity> {
@@ -21,13 +21,10 @@ namespace WizardingWorld.Pages {
         public int TotalPages => repo.TotalPages;
         public bool HasNextPage  => repo.HasNextPage;
         public bool HasPreviousPage  => repo.HasPreviousPage; 
-        protected override IActionResult RedirectToIndex() {
-            return RedirectToPage("./Index", "Index", new {
-                pageIndex = PageIndex,
-                currentFilter = CurrentFilter,
-                sortOrder = CurrentSort
-            }
-            ) ;
-        }
+        protected override IActionResult RedirectToIndex() => RedirectToPage("./Index", "Index", new {
+            pageIndex = PageIndex,
+            currentFilter = CurrentFilter,
+            sortOrder = CurrentSort} 
+        );
     }
 }

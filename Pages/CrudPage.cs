@@ -10,34 +10,28 @@ namespace WizardingWorld.Pages {
         protected CrudPage(TRepo r) : base(r) { }
         protected override IActionResult GetCreate() => Page();
         public string ItemId => Item?.ID ?? string.Empty;
+        protected virtual async Task<IActionResult> GetItemPage(string id) {
+            Item = await GetItem(id);
+            return Item == null ? NotFound() : Page();
+        }
+        protected override async Task<IActionResult> GetDetailsAsync(string id) => await GetItemPage(id);
+        protected override async Task<IActionResult> GetDeleteAsync(string id) => await GetItemPage(id);
+        protected override async Task<IActionResult> GetEditAsync(string id) => await GetItemPage(id);
         protected override async Task<IActionResult> PostCreateAsync() {
             if (!ModelState.IsValid) return Page();
             await repo.AddAsync(ToObject(Item));
             return RedirectToIndex();
-        }
-        protected override async Task<IActionResult> GetDetailsAsync(string id) {
-            Item = await GetItem(id);
-            return Item == null ? NotFound() : Page();
-        }
-        protected override async Task<IActionResult> GetDeleteAsync(string id) {
-            Item = await GetItem(id);
-            return Item == null ? NotFound() : Page();
         }
         protected override async Task<IActionResult> PostDeleteAsync(string id) {
             if (id == null) return NotFound();
             await repo.DeleteAsync(id);
             return RedirectToIndex();
         }
-        protected override async Task<IActionResult> GetEditAsync(string id) {
-            Item = await GetItem(id);
-            return Item == null ? NotFound() : Page();
-        }
         protected override async Task<IActionResult> PostEditAsync() {
             if (!ModelState.IsValid) return Page();
             var obj = ToObject(Item);
             var updated = await repo.UpdateAsync(obj);
-            if (!updated) return NotFound();
-            return RedirectToIndex();
+            return !updated ? NotFound() : RedirectToIndex();
         }
         protected override async Task<IActionResult> GetIndexAsync() {
             var list = await repo.GetAsync();

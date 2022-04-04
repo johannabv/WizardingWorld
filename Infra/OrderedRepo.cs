@@ -8,7 +8,7 @@ namespace WizardingWorld.Infra {
     public abstract class OrderedRepo<TDomain, TData> : FilteredRepo<TDomain, TData>
         where TDomain : BaseEntity<TData>, new() where TData : BaseData, new() {
         protected OrderedRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
-        public string CurrentSort { get; set; }
+        public string? CurrentSort { get; set; }
         public static string DescendingString => "_desc";
         protected internal override IQueryable<TData> CreateSQL() => AddSort(base.CreateSQL());
         internal IQueryable<TData> AddSort(IQueryable<TData> q) { 

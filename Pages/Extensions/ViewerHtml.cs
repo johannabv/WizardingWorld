@@ -21,6 +21,6 @@ namespace WizardingWorld.Pages.Extensions {
                 new HtmlString("</dl>")
             };
             return l;
-        }
+        } 
     }
 }

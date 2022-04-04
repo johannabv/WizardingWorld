@@ -1,5 +1,9 @@
 ﻿@page
 @model WizardingWorld.Pages.Party.CharactersPage
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using WizardingWorld.Pages
+@using WizardingWorld.Pages.Extensions
 
 @{
     Layout="_Index";
@@ -8,54 +12,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.FirstName))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.FirstName)</a>
-             </th>   
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.LastName))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.LastName)</a>
-             </th> 
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Gender))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.Gender)</a>
-             </th> 
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.DoB))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.DoB)</a>
-             </th> 
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.HogwartsHouse))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.HogwartsHouse)</a>
-             </th> 
-             <th> 
-                <a asp-page="./Index" 
-                   asp-page-handler="Index" 
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Organisation))"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >@nameof(Model.Item.Organisation)</a>
-             </th> 
+            <th> @Html.TabHider(nameof(Model.Item.FirstName)) </th>   
+            <th> @Html.TabHider(nameof(Model.Item.LastName)) </th> 
+            <th> @Html.TabHider(nameof(Model.Item.Gender)) </th> 
+            <th> @Html.TabHider(nameof(Model.Item.DoB)) </th> 
+            <th> @Html.TabHider(nameof(Model.Item.HogwartsHouse)) </th> 
+            <th> @Html.TabHider(nameof(Model.Item.Organisation)) </th> 
             <th></th>
         </tr>
     </thead>
@@ -69,27 +31,9 @@
             <td> @Html.DisplayFor(modelItem => item.HogwartsHouse) </td>
             <td> @Html.DisplayFor(modelItem => item.Organisation) </td>
             <td>
-                <a asp-page="./Edit" 
-                   asp-page-handler="Edit" 
-                   asp-route-id="@item.ID"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Edit</a>&nbsp; 
-                <a asp-page="./Details" 
-                   asp-page-handler="Details" 
-                   asp-route-id="@item.ID"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Details</a>&nbsp; 
-                <a asp-page="./Delete" 
-                   asp-page-handler="Delete" 
-                   asp-route-id="@item.ID"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex" 
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Delete</a>&nbsp;
+                @Html.Button("Edit", item.ID)&nbsp;
+                @Html.Button("Details", item.ID)&nbsp;
+                @Html.Button("Delete", item.ID)&nbsp;
             </td>
         </tr>
 }
