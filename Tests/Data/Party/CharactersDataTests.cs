@@ -8,12 +8,12 @@ using WizardingWorld.Data.Party;
 
 namespace Tests.Data.Party {
     [TestClass] public class CharactersDataTests : SealedClassTests<CharacterData> {
-        [TestMethod] public void IDTest() => isProperty<string?>();
-        [TestMethod] public void FirstNameTest() => isProperty<string?>();
-        [TestMethod] public void LastNameTest() => isProperty<string?>();
-        [TestMethod] public void GenderTest() => isProperty<bool?>();
-        [TestMethod] public void DoBTest() => isProperty<DateTime?>();
-        [TestMethod] public void HogwartsHouseTest() => isProperty<string?>();
-        [TestMethod] public void OrganisationTest() => isProperty<string?>();
+        [TestMethod] public void IDTest() => IsProperty<string?>();
+        [TestMethod] public void FirstNameTest() => IsProperty<string?>();
+        [TestMethod] public void LastNameTest() => IsProperty<string?>();
+        [TestMethod] public void GenderTest() => IsProperty<bool?>();
+        [TestMethod] public void DoBTest() => IsProperty<DateTime?>();
+        [TestMethod] public void HogwartsHouseTest() => IsProperty<string?>();
+        [TestMethod] public void OrganisationTest() => IsProperty<string?>();
     }
 }

@@ -8,8 +8,8 @@ namespace WizardingWorld.Infra {
         internal int SkippedItemsCount => PageSize * PageIndex;
         internal static int itemsCountInPage = 10; 
         public int PageIndex { get; set; }
-        public int TotalPages => totalPages;
-        internal int totalPages => (int) Math.Ceiling(CountPages); 
+        public int TotalPages => TotalPagesCount;
+        internal int TotalPagesCount => (int) Math.Ceiling(CountPages); 
         internal double CountPages => ItemsCount / (double)PageSize;
         public int ItemsCount => base.CreateSQL().Count(); 
         public bool HasNextPage => PageIndex < TotalPages - 1;

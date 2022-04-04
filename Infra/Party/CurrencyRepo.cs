@@ -12,12 +12,11 @@ namespace WizardingWorld.Infra.Party {
         protected override Currency ToDomain(CurrencyData d) => new(d);
         internal override IQueryable<CurrencyData> AddFilter(IQueryable<CurrencyData> q) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return q;
-            return q.Where(
-                x => x.ID.Contains(y)
-                || x.Code.Contains(y)
-                || x.EnglishName.Contains(y)
-                || x.NativeName.Contains(y)
+            return string.IsNullOrWhiteSpace(y) ? q : q.Where(
+                x => DoesContain(x.ID, y)
+                || DoesContain(x.Code, y)
+                || DoesContain(x.EnglishName, y)
+                || DoesContain(x.NativeName, y)
             );
         }
     }

@@ -10,6 +10,6 @@ namespace Tests.Infra {
             public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { } 
             protected override Character ToDomain(CharacterData d)=> new(d);
         }
-        protected override object createObj() => new TestClass(null,null);
+        protected override object CreateObj() => new TestClass(null,null);
     }  
 }

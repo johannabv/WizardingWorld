@@ -19,7 +19,7 @@ namespace WizardingWorld.Infra {
             return q.OrderBy(e);
         }
         internal bool IsDescending => CurrentSort?.EndsWith(DescendingString) ?? false;
-        internal bool IsSameProperty(string s) => (string.IsNullOrEmpty(s)? false : (CurrentSort?.StartsWith(s) ?? false));
+        internal bool IsSameProperty(string s) => (!string.IsNullOrEmpty(s) && (CurrentSort?.StartsWith(s) ?? false));
         internal string PropertyName => CurrentSort?.Replace(DescendingString, "") ?? "";
         internal PropertyInfo? PropertyInfo => typeof(TData).GetProperty(PropertyName);
         internal Expression<Func<TData, object>>? LambdaExpression {

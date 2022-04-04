@@ -18,6 +18,7 @@
     public interface IBaseRepo<T> where T : BaseEntity {
         bool Add(T obj);
         List<T> Get();
+        List<T> GetAll<TKey>(Func<T, TKey>? orderBy = null);
         T Get(string id);
         bool Delete(string id);
         bool Update(T obj); 

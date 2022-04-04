@@ -7,12 +7,11 @@ namespace WizardingWorld.Infra.Party {
         protected override Country ToDomain(CountryData d) => new(d); 
         internal override IQueryable<CountryData> AddFilter(IQueryable<CountryData> q) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return q; 
-            return q.Where( 
-                x => x.ID.Contains(y)
-                || x.Code.Contains(y)
-                || x.EnglishName.Contains(y)
-                || x.NativeName.Contains(y)
+            return string.IsNullOrWhiteSpace(y) ? q : q.Where(
+                x => DoesContain(x.ID, y)
+                || DoesContain(x.Code, y)
+                || DoesContain(x.EnglishName, y)
+                || DoesContain(x.NativeName, y)
             );
         }
     }

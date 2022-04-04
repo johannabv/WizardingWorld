@@ -5,7 +5,7 @@ using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages {
     public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>, IPageModel, IIndexModel<TView>
-        where TView : BaseView
+        where TView : BaseView, new()
         where TEntity : BaseEntity
         where TRepo : IPagedRepo<TEntity> {
         protected PagedPage(TRepo r) : base(r) { }
@@ -27,10 +27,10 @@ namespace WizardingWorld.Pages {
             currentFilter = CurrentFilter,
             sortOrder = CurrentSort} 
         ); 
-        public object? GetValue(string name, TView v) 
+        public virtual object? GetValue(string name, TView v) 
             => Safe.Run(() => {
                 var propertyInfo = v?.GetType()?.GetProperty(name);
-                return propertyInfo == null ? null : propertyInfo.GetValue(v);
+                return propertyInfo?.GetValue(v);
             }, null);
     }
 }

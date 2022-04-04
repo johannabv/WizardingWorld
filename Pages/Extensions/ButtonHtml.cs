@@ -9,7 +9,7 @@ namespace WizardingWorld.Pages.Extensions {
         }
         private static List<object> HtmlStrings(string handler, string id, IPageModel? m) {
             var l = new List<object> {
-                new HtmlString($"<a style=\"text-decoration:none;\" href=\"/{pageName(m)}/{handler}?"),
+                new HtmlString($"<a style=\"text-decoration:none;\" href=\"/{PageName(m)}/{handler}?"),
                 new HtmlString($"handler={handler}&amp;"),
                 new HtmlString($"id={id}&amp;"),
                 new HtmlString($"order={m?.CurrentSort}&amp;"),
@@ -19,6 +19,6 @@ namespace WizardingWorld.Pages.Extensions {
             };
             return l;
         }
-        private static string? pageName(IPageModel? m) => m?.GetType()?.Name?.Replace("Page", "");
+        private static string? PageName(IPageModel? m) => m?.GetType()?.Name?.Replace("Page", "");
     }
 }

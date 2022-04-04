@@ -6,15 +6,15 @@ using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages {
     public abstract class BasePage<TView, TEntity, TRepo> : PageModel 
-        where TView : BaseView
+        where TView : BaseView, new() 
         where TEntity : BaseEntity
         where TRepo : IBaseRepo<TEntity>{
         protected readonly TRepo repo;
         protected abstract TEntity ToObject(TView? item);
         protected abstract TView ToView(TEntity? entity);
         protected abstract IActionResult RedirectToIndex();
-        [BindProperty] public TView? Item { get; set; }
-        public IList<TView>? Items { get; set; }
+        [BindProperty] public TView Item { get; set; } = new TView();
+        public IList<TView> Items { get; set; } = new List<TView>();
         public BasePage(TRepo r) => repo = r;
         protected abstract void SetAttributes(int index, string? filter, string? order);
         protected abstract IActionResult GetCreate();

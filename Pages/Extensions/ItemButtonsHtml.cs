@@ -8,12 +8,13 @@ namespace WizardingWorld.Pages.Extensions {
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel>(IHtmlHelper<TModel> h,  string id) {
-            var l = new List<object>();
-            l.Add(h.Button("Edit",id));
-            l.Add(new HtmlString("&nbsp;"));
-            l.Add(h.Button("Details", id));
-            l.Add(new HtmlString("&nbsp;"));
-            l.Add(h.Button("Delete", id));
+            var l = new List<object> {
+                h.Button("Edit", id),
+                new HtmlString("&nbsp;"),
+                h.Button("Details", id),
+                new HtmlString("&nbsp;"),
+                h.Button("Delete", id)
+            };
             return l;
         }
     }

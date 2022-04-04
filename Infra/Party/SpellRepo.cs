@@ -7,12 +7,11 @@ namespace WizardingWorld.Infra.Party {
         protected override Spell ToDomain(SpellData d) => new(d);
         internal override IQueryable<SpellData> AddFilter(IQueryable<SpellData> q) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return q;
-            return q.Where(
-                x => x.ID.Contains(y)
-                || x.SpellName.Contains(y)
-                || x.Type.Contains(y)
-                || x.Description.Contains(y)
+            return string.IsNullOrWhiteSpace(y) ? q : q.Where(
+                x => DoesContain(x.ID, y)
+                || DoesContain(x.SpellName, y)
+                || DoesContain(x.Type, y)
+                || DoesContain(x.Description, y)
             );
         }
     }

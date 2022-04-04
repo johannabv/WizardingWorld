@@ -12,10 +12,11 @@ namespace WizardingWorld.Pages.Extensions {
         private static List<object> HtmlStrings<TModel, TView>(IHtmlHelper<TModel> h, IList<TView>? items)
             where TModel : IIndexModel<TView> where TView : BaseView {
             var m = h.ViewData.Model;
-            var l = new List<object>();
-            l.Add(new HtmlString("<table class=\"table\">"));
-            l.Add(new HtmlString("<thead>"));
-            l.Add(new HtmlString("<tr>"));
+            var l = new List<object> {
+                new HtmlString("<table class=\"table\">"),
+                new HtmlString("<thead>"),
+                new HtmlString("<tr>")
+            };
             foreach (var name in m.IndexColumns) {
                 l.Add(new HtmlString("<th>"));
                 l.Add(h.TabHider(name));

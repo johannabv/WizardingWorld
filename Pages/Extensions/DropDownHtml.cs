@@ -3,18 +3,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq.Expressions;
 
 namespace WizardingWorld.Pages.Extensions {
-    public static class EditorHtml {
-        public static IHtmlContent Editor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            return new HtmlContentBuilder(HtmlStrings(h, e));
-        } 
-        private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
+    public static class DropDownHtml {
+        public static IHtmlContent DropDown<TModel, TResult>
+            (this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, IEnumerable<SelectListItem> list) {
+            return new HtmlContentBuilder(HtmlStrings(h, e, list));
+        }
+        private static List<object> HtmlStrings<TModel, TResult>
+            (IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, IEnumerable<SelectListItem> list) {
             var l = new List<object> {
                 new HtmlString("<dl class=\"row\">"), 
                 new HtmlString("<dd class=\"col-sn-2\">"),
                 h.LabelFor(e, null, new { @class = "control-label" }),
                 new HtmlString("</dd>"), 
                 new HtmlString("<dd class=\"col-sn-10\">"),
-                h.EditorFor(e, new { htmlAttributes = new { @class = "form-control" } }), 
+                h.DropDownListFor(e, list, new { @class = "form-control" }),
                 h.ValidationMessageFor(e, null, new { @class = "text-danger" }),
                 new HtmlString("</dd>"), 
                 new HtmlString("</dl>")

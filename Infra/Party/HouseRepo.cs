@@ -7,14 +7,13 @@ namespace WizardingWorld.Infra.Party {
         protected override House ToDomain(HouseData d) => new(d);
         internal override IQueryable<HouseData> AddFilter(IQueryable<HouseData> q) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return q;
-            return q.Where(
-                x => x.ID.Contains(y)
-                || x.HouseName.Contains(y)
-                || x.HeadOfHouseName.Contains(y)
-                || x.FounderName.Contains(y)
-                || x.Color.Contains(y)
-                || x.Description.Contains(y)
+            return string.IsNullOrWhiteSpace(y) ? q : q.Where(
+                x => DoesContain(x.ID, y)
+                || DoesContain(x.HouseName, y)
+                || DoesContain(x.HeadOfHouseName, y)
+                || DoesContain(x.FounderName, y)
+                || DoesContain(x.Color, y)
+                || DoesContain(x.Description, y)
             );
         }
     }

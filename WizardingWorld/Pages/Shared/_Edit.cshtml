@@ -11,9 +11,9 @@
 
 <form method="post" 
         asp-page-handler = "Edit" 
-        asp-route-order="@Model.CurrentSort"
-        asp-route-index="@Model.PageIndex" 
-        asp-route-filter="@Model.CurrentFilter"
+        asp-route-order="@Model?.CurrentSort"
+        asp-route-index="@Model?.PageIndex" 
+        asp-route-filter="@Model?.CurrentFilter"
 >
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     
@@ -23,9 +23,9 @@
         <input type="submit" value="Save" class="btn btn-primary" /> 
         <a asp-page="Index" 
            asp-page-handler = "Index" 
-           asp-route-order="@Model.CurrentSort"
-           asp-route-index="@Model.PageIndex" 
-           asp-route-filter="@Model.CurrentFilter"
+           asp-route-order="@Model?.CurrentSort"
+           asp-route-index="@Model?.PageIndex" 
+           asp-route-filter="@Model?.CurrentFilter"
         >Back to List</a>
     </div>
 </form>

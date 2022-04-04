@@ -16,16 +16,14 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.HogwartsHouse),
             nameof(CharacterView.Organisation),
         };
-        public IEnumerable<SelectListItem> Houses { 
-            get {
-                IEnumerable<SelectListItem> r = new List<SelectListItem>();
-                if (houses is null) return r;
-                var pageSize = houses.PageSize;
-                r = houses.Get().Select(x => new SelectListItem(x.HouseName, x.HouseName));
-                houses.PageSize = pageSize;
-                return r;
-            }
+        public IEnumerable<SelectListItem> Houses 
+            => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
+        public string HouseName(string? houseId = null) 
+            => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
+        public override object? GetValue(string name, CharacterView v) {
+            var r = base.GetValue(name, v);
+            if(name ==nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
+            return r;
         }
-        public string HouseName(string houseId) => Houses?.FirstOrDefault(x => x.Value == houseId)?.Text ?? "Unspecified";
     }
 }

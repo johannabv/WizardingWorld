@@ -17,17 +17,17 @@
     <form method="post"
         asp-route-id="@itemId"
         asp-page-handler="Delete"
-        asp-route-order="@Model.CurrentSort"
-        asp-route-index="@Model.PageIndex" 
-        asp-route-filter="@Model.CurrentFilter"
+        asp-route-order="@Model?.CurrentSort"
+        asp-route-index="@Model?.PageIndex" 
+        asp-route-filter="@Model?.CurrentFilter"
     >
         <input type="hidden" asp-for-id="@itemId" />
         <input type="submit" value="Delete" class="btn btn-danger" />
         <a asp-page="Index" 
            asp-page-handler = "Index" 
-           asp-route-order="@Model.CurrentSort"
-           asp-route-index="@Model.PageIndex" 
-           asp-route-filter="@Model.CurrentFilter"
+           asp-route-order="@Model?.CurrentSort"
+           asp-route-index="@Model?.PageIndex" 
+           asp-route-filter="@Model?.CurrentFilter"
         >Back to List</a>
     </form>
 </div>

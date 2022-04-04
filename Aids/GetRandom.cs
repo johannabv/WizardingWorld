@@ -4,10 +4,7 @@ using System.Reflection;
 namespace WizardingWorld.Aids {
     public class GetRandom {
         private static void PutMinFirst<T>(ref T min, ref T max) where T : IComparable<T> {
-            if (min.CompareTo(max) < 0) return;
-            var v = min;
-            min = max;
-            max = v;
+            if (min.CompareTo(max) >= 0) (max, min) = (min, max);
         }
         public static int Int32(int? min = null, int? max = null) {
             var minValue = min ?? -1000;
@@ -19,13 +16,13 @@ namespace WizardingWorld.Aids {
             var minValue = min ?? -1000L;
             var maxValue = max ?? 1000L;
             PutMinFirst(ref minValue, ref maxValue);
-            return Random.Shared.NextInt64(minValue,maxValue);
+            return Random.Shared.NextInt64(minValue, maxValue);
         }
         public static double Double(double? min = null, double? max = null) {
             var minValue = min ?? -1000.0;
             var maxValue = max ?? 1000.0;
             PutMinFirst(ref minValue, ref maxValue); 
-            return minValue + Random.Shared.NextDouble() * (maxValue - minValue);
+            return minValue + (Random.Shared.NextDouble() * (maxValue - minValue));
         }
         public static char Char(char min = char.MinValue, char max = char.MaxValue) => (char)Int32(min, max);
         public static bool Bool() => Int32() % 2 == 0;
@@ -71,6 +68,6 @@ namespace WizardingWorld.Aids {
             }
             return o;
         }
-        private static T? TryCreate<T>() => (T?) (typeof(T).GetConstructor(Array.Empty<Type>()))?.Invoke(null);
+        private static T? TryCreate<T>() => (T?)typeof(T).GetConstructor(Array.Empty<Type>())?.Invoke(null);
     }
 }

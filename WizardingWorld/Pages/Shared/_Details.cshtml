@@ -15,14 +15,17 @@
 
 </div>
 <div>
-    <a asp-page="./Edit" 
+    <a style="text-decoration:none;" asp-page="./Edit" 
        asp-page-handler="Edit" 
        asp-route-id="@itemId"
+       asp-route-order="@Model?.CurrentSort"
+       asp-route-index="@Model?.PageIndex" 
+       asp-route-filter="@Model?.CurrentFilter"
     >Edit</a>
-    <a asp-page="Index" 
+    <a style="text-decoration:none;" asp-page="Index" 
        asp-page-handler = "Index" 
-       asp-route-order="@Model.CurrentSort"
-       asp-route-index="@Model.PageIndex" 
-       asp-route-filter="@Model.CurrentFilter"
+       asp-route-order="@Model?.CurrentSort"
+       asp-route-index="@Model?.PageIndex" 
+       asp-route-filter="@Model?.CurrentFilter"
     >Back to List</a>
 </div>

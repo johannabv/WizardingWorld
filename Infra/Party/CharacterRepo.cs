@@ -7,15 +7,14 @@ namespace WizardingWorld.Infra.Party {
         protected override Character ToDomain(CharacterData d) => new(d);
         internal override IQueryable<CharacterData> AddFilter(IQueryable<CharacterData> q) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return q;
-            return q.Where(
-                x => x.ID.Contains(y)
-                || x.FirstName.Contains(y)
-                || x.LastName.Contains(y)
-                || x.Organisation.Contains(y)
-                || x.HogwartsHouse.Contains(y)
-                || x.Gender.ToString().Contains(y)
-                || x.DoB.ToString().Contains(y)
+            return string.IsNullOrWhiteSpace(y) ? q : q.Where(
+                x => DoesContain(x.ID, y)
+                || DoesContain(x.FirstName, y)
+                || DoesContain(x.LastName, y)
+                || DoesContain(x.Organisation, y)
+                || DoesContain(x.HogwartsHouse, y)
+                || DoesContain(x.Gender.ToString(), y)
+                || DoesContain(x.DoB.ToString(), y)
             );
         }
     }

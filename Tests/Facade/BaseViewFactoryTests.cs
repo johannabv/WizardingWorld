@@ -9,6 +9,6 @@ namespace Tests.Facade {
         private class TestClass : BaseViewFactory<CharacterView, Character, CharacterData> {
             protected override Character ToEntity(CharacterData d) => new(d);
         }
-        protected override object createObj() => new TestClass();
+        protected override object CreateObj() => new TestClass();
     }
 }
