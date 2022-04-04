@@ -28,9 +28,9 @@ namespace WizardingWorld.Pages.Extensions {
             foreach (var item in items ?? new List<TView>()) {
                 l.Add(new HtmlString("<tr>"));
                 foreach (var name in m.IndexColumns) {
-                    l.Add(new HtmlString("<th>"));
+                    l.Add(new HtmlString("<td>"));
                     l.Add(h.Raw(m.GetValue(name, item)));
-                    l.Add(new HtmlString("</th>"));
+                    l.Add(new HtmlString("</td>"));
                 }
                 l.Add(new HtmlString("<td>"));
                 l.Add(h.ItemButtons(item.ID));
