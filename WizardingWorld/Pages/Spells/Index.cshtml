@@ -11,21 +11,21 @@
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.TabHider(nameof(Model.Item.SpellName)) </th>   
-            <th> @Html.TabHider(nameof(Model.Item.Description)) </th> 
-            <th> @Html.TabHider(nameof(Model.Item.Type)) </th>
+            @foreach(var name in Model.IndexColumns){
+                <th> @Html.TabHider(name) </th>
+            }  
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Items) {
-        <tr>
-            <td> @Html.DisplayFor(modelItem => item.SpellName) </td>
-            <td> @Html.DisplayFor(modelItem => item.Description) </td>
-            <td> @Html.DisplayFor(modelItem => item.Type) </td>
-            <td> @Html.ItemButtons(item.ID) </td>
-        </tr>
-}
+        @foreach (var item in Model.Items) {
+            <tr>
+                @foreach(var name in Model.IndexColumns){
+                    <th> @Html.Raw(Model.GetValue(name,item)) </th>
+                }
+                <td>@Html.ItemButtons(item.ID)</td>
+            </tr>
+        }
     </tbody>
 </table>
 </body>
