@@ -7,7 +7,7 @@ namespace WizardingWorld.Pages.Party {
         public CharactersPage(ICharacterRepo r) : base(r) { }
         protected override Character ToObject(CharacterView? item) => new CharacterViewFactory().Create(item);
         protected override CharacterView ToView(Character? entity) => new CharacterViewFactory().Create(entity);
-        public string[] IndexColumns { get; } = new[] {
+        public override string[] IndexColumns { get; } = new[] {
             nameof(CharacterView.FirstName),
             nameof(CharacterView.LastName),
             nameof(CharacterView.Gender),
@@ -15,10 +15,5 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.HogwartsHouse),
             nameof(CharacterView.Organisation),
         };
-        public object? GetValue(string name, CharacterView v)
-            => Safe.Run(() => {
-                var propertyInfo = v?.GetType()?.GetProperty(name);
-                return propertyInfo == null ? null : propertyInfo.GetValue(v);
-            }, null);
     }
 }

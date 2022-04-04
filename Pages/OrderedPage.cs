@@ -11,6 +11,6 @@ namespace WizardingWorld.Pages {
             get => repo.CurrentSort;
             set => repo.CurrentSort = value;
         }
-        
+        public string? SortOrder(string propertyName) => repo.SortOrder(propertyName); 
     }
 }

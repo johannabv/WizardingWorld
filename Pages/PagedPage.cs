@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WizardingWorld.Aids;
 using WizardingWorld.Domain;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages {
-    public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>, IPageModel
+    public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>, IPageModel, IIndexModel<TView>
         where TView : BaseView
         where TEntity : BaseEntity
         where TRepo : IPagedRepo<TEntity> {
@@ -12,7 +13,6 @@ namespace WizardingWorld.Pages {
             get => repo.PageIndex;
             set => repo.PageIndex = value;
         }
-        public string? SortOrder(string propertyName) => repo.SortOrder(propertyName); 
         protected override void SetAttributes(int pageIndex, string? currentFilter, string? sortOrder) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
@@ -21,10 +21,16 @@ namespace WizardingWorld.Pages {
         public int TotalPages => repo.TotalPages;
         public bool HasNextPage  => repo.HasNextPage;
         public bool HasPreviousPage  => repo.HasPreviousPage; 
+        public virtual string[] IndexColumns => Array.Empty<string>();
         protected override IActionResult RedirectToIndex() => RedirectToPage("./Index", "Index", new {
             pageIndex = PageIndex,
             currentFilter = CurrentFilter,
             sortOrder = CurrentSort} 
-        );
+        ); 
+        public object? GetValue(string name, TView v) 
+            => Safe.Run(() => {
+                var propertyInfo = v?.GetType()?.GetProperty(name);
+                return propertyInfo == null ? null : propertyInfo.GetValue(v);
+            }, null);
     }
 }

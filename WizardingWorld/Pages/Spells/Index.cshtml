@@ -1,31 +1,9 @@
 ﻿@page
 @model WizardingWorld.Pages.Party.SpellsPage
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Mvc.Rendering
-@using WizardingWorld.Pages
 @using WizardingWorld.Pages.Extensions
 @{
     Layout="_Index";
 }
 <body>
-<table class="table">
-    <thead>
-        <tr>
-            @foreach(var name in Model.IndexColumns){
-                <th> @Html.TabHider(name) </th>
-            }  
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Items) {
-            <tr>
-                @foreach(var name in Model.IndexColumns){
-                    <th> @Html.Raw(Model.GetValue(name,item)) </th>
-                }
-                <td>@Html.ItemButtons(item.ID)</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    @Html.ShowTable(Model.Items);
 </body>
