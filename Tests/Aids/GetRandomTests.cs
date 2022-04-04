@@ -9,13 +9,13 @@ namespace Tests.Aids {
         private void Test<T>(T min, T max) where T : IComparable<T> {
             var x = GetRandom.Value(min, max);
             var y = GetRandom.Value(min, max);
-            isInstanceOfType(x, typeof(T));
-            isInstanceOfType(y, typeof(T));
-            isTrue(x >= (min.CompareTo(max) < 0 ? min : max));
-            isTrue(y >= (min.CompareTo(max) < 0 ? min : max));
-            isTrue(x <= (min.CompareTo(max) < 0 ? max : min));
-            isTrue(y <= (min.CompareTo(max) < 0 ? max : min));
-            areNotEqual(x, y);
+            IsInstanceOfType(x, typeof(T));
+            IsInstanceOfType(y, typeof(T));
+            IsTrue(x >= (min.CompareTo(max) < 0 ? min : max));
+            IsTrue(y >= (min.CompareTo(max) < 0 ? min : max));
+            IsTrue(x <= (min.CompareTo(max) < 0 ? max : min));
+            IsTrue(y <= (min.CompareTo(max) < 0 ? max : min));
+            AreNotEqual(x, y);
         }
 
         [DataRow(-1000, 1000)]
@@ -56,7 +56,7 @@ namespace Tests.Aids {
             while (x == y)
             {
                 y = GetRandom.Bool();
-                if (i == 5) areNotEqual(x, y);
+                if (i == 5) AreNotEqual(x, y);
                 i++;
             }
         }
@@ -72,18 +72,20 @@ namespace Tests.Aids {
         public void StringTest() {
             var x = GetRandom.Value<string>();
             var y = GetRandom.Value<string>();
-            isInstanceOfType(x, typeof(string));
-            isInstanceOfType(y, typeof(string));
-            areNotEqual(x, y);
+            IsInstanceOfType(x, typeof(string));
+            IsInstanceOfType(y, typeof(string));
+            AreNotEqual(x, y);
         }
 
         [TestMethod] public void ValueTest() {
             var x = GetRandom.Value<SpellData>() as SpellData;
             var y = GetRandom.Value<SpellData>() as SpellData;
-            areNotEqual(x.ID, y.ID);
-            areNotEqual(x.SpellName, y.SpellName);
-            areNotEqual(x.Description, y.Description);
-            areNotEqual(x.Type, y.Type);
+            IsNotNull(x);
+            IsNotNull(y);
+            AreNotEqual(x.ID, y.ID, nameof(x.ID));
+            AreNotEqual(x.SpellName, y.SpellName, nameof(x.SpellName));
+            AreNotEqual(x.Description, y.Description, nameof(x.Description));
+            AreNotEqual(x.Type, y.Type, nameof(x.Type));
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Tests.Facade {
             protected override Character ToEntity(CharacterData d) => new(d);
         }
         protected override object CreateObj() => new TestClass();
+        
     }
 }

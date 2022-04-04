@@ -92,7 +92,7 @@ namespace Tests {
             reportNotAllIsTested();
         }
 
-        private void reportNotAllIsTested() => isInconclusive($"Member \"{nameOfFirstNotTested()}\" is not tested");
+        private void reportNotAllIsTested() => IsInconclusive($"Member \"{nameOfFirstNotTested()}\" is not tested");
         private string nameOfFirstNotTested() => membersOfType?.GetFirst() ?? string.Empty;
         private bool allAreTested() => membersOfType.IsEmpty();
         private void removeTested() => membersOfType?.Remove(x => isItTested(x));

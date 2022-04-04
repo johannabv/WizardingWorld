@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using WizardingWorld.Aids;
 
@@ -12,19 +13,19 @@ namespace Tests {
         {
             var memberName = GetCallingMember(nameof(IsProperty)).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
-            isNotNull(propertyInfo);
+            IsNotNull(propertyInfo);
             if (IsNullOrDefault(value)) value = Random<T>();
             if (CanWrite(propertyInfo, isReadOnly)) propertyInfo.SetValue(obj, value);
-            areEqual(value, propertyInfo.GetValue(obj));
+            AreEqual(value, propertyInfo.GetValue(obj));
         }
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
         private static bool CanWrite(PropertyInfo i, bool isReadOnly)
         {
             var canWrite = i?.CanWrite ?? false;
-            areEqual(canWrite, !isReadOnly);
+            AreEqual(canWrite, !isReadOnly);
             return canWrite;
         }
-        private static T Random<T>() => GetRandom.Value<T>();
+        private static T? Random<T>() => GetRandom.Value<T>();
         private static string GetCallingMember(string memberName)
         {
             var s = new StackTrace();
@@ -38,6 +39,19 @@ namespace Tests {
             }
             return string.Empty;
         }
-
+        internal protected static void ArePropertiesEqual(object x, object y) {
+            var e = Array.Empty<PropertyInfo>();
+            var px = x?.GetType()?.GetProperties() ?? e;
+            var hasProperties = false;
+            foreach (var p in px) {
+                var a = p.GetValue(x, null);
+                var py = y?.GetType()?.GetProperty(p.Name);
+                if (py is null) continue;
+                var b = py?.GetValue(y, null);
+                AreEqual(a, b);
+                hasProperties = true;
+            }
+            IsTrue(hasProperties, $"No properties found for {x}");
+        }
     }
 }

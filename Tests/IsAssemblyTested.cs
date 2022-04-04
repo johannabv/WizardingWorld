@@ -34,7 +34,7 @@ namespace Tests {
         private static string? removeTestsTagFrom(string? s) => s?.Remove("Tests.");
         private static string? getNamespace(object o) => GetNamespace.OfType(o);
         private static List<Type>? getTypes(Assembly? a) => GetAssembly.Types(a);
-        private void reportNotAllIsTested() => isInconclusive($"Class \"{fullNameOfFirstNotTested()}\" is not tested");
+        private void reportNotAllIsTested() => IsInconclusive($"Class \"{fullNameOfFirstNotTested()}\" is not tested");
         private string fullNameOfFirstNotTested() => firstNotTestedType(typesToBeTested)?.FullName ?? string.Empty;
         private static Type? firstNotTestedType(List<Type>? l) => l.GetFirst();
         private bool allAreTested() => typesToBeTested.IsEmpty();

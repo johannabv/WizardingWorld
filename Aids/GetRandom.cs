@@ -68,6 +68,10 @@ namespace WizardingWorld.Aids {
             }
             return o;
         }
-        private static T? TryCreate<T>() => (T?)typeof(T).GetConstructor(Array.Empty<Type>())?.Invoke(null);
+        private static T? TryCreate<T>() =>
+            Safe.Run(() => {
+                var c = typeof(T).GetConstructor(Array.Empty<Type>());
+                return (c?.Invoke(null) is T t) ? t : default;
+            });
     }
 }
