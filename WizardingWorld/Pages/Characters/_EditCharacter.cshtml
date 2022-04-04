@@ -5,5 +5,13 @@
 @Html.Editor(m=>m.Item.LastName)
 @Html.Editor(m=>m.Item.Gender)
 @Html.Editor(m=>m.Item.DoB)
-@Html.Editor(m=>m.Item.HogwartsHouse)
+<div class=\"row\">
+	<dd class=\"col-sn-2\">
+		@Html.LabelFor(x => x.Item.HogwartsHouse, null, new { @class = "control-label" })
+	</dd>            
+	<dd class=\"col-sn-10\">
+		@Html.DropDownListFor(x => x.Item.HogwartsHouse, Model.Houses, new {  @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.Item.HogwartsHouse, null, new { @class = "text-danger" })
+	</dd>
+</div>
 @Html.Editor(m=>m.Item.Organisation)
