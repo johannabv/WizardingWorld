@@ -8,7 +8,7 @@ namespace WizardingWorld.Pages.Extensions {
             var s = HtmlStrings(h, e);
             return new HtmlContentBuilder(s);
         }
-        public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, TResult value) {
+        public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
             var s = HtmlStrings(h, e, value);
             return new HtmlContentBuilder(s);
         }
@@ -25,7 +25,7 @@ namespace WizardingWorld.Pages.Extensions {
             };
             return l;
         }
-        private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, TResult value) {
+        private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
             var l = new List<object> {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dt class=\"col-sm-2\">"),

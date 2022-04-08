@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using WizardingWorld.Aids;
+using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
@@ -22,8 +24,13 @@ namespace WizardingWorld.Pages.Party {
             => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
         public override object? GetValue(string name, CharacterView v) {
             var r = base.GetValue(name, v);
-            if(name ==nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
-            return r;
+            if (name == nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
+            else if (name == nameof(CharacterView.Gender)) return GenderDescription((IsoGender) r);
+            else return r;
         }
+        public static IEnumerable<SelectListItem> Genders
+            => Enum.GetValues<IsoGender>()?.Select(x => new SelectListItem(x.Description(), x.ToString())) ?? new List<SelectListItem>();
+        public string GenderDescription(IsoGender? x) => (x ?? IsoGender.NotApplicable).Description();
+           
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using WizardingWorld.Aids;
 using WizardingWorld.Domain;
 using WizardingWorld.Facade.Party;
@@ -32,5 +33,11 @@ namespace WizardingWorld.Pages {
                 var propertyInfo = v?.GetType()?.GetProperty(name);
                 return propertyInfo?.GetValue(v);
             }, null);
+        public string? DisplayName(string name) => Safe.Run(() => {
+            var p = typeof(TView).GetProperty(name);
+            var a = p?.CustomAttributes?
+                .FirstOrDefault(x => x.AttributeType == typeof(DisplayNameAttribute));
+            return a?.ConstructorArguments[0].Value?.ToString() ?? name;
+        }, name);
     }
 }

@@ -1,12 +1,12 @@
 ﻿using WizardingWorld.Data;
+using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Domain {
     public abstract class BaseEntity {
         public static string DefaultStr => "Undefined";
-        private const bool defaultBool = false;
         private static DateTime DefaultDate => DateTime.MinValue;
         protected static string GetValue(string? v) => v ?? DefaultStr;
-        protected static bool GetValue(bool? v) => v ?? defaultBool;
+        protected static IsoGender GetValue(IsoGender? v) => v ?? IsoGender.NotKnown;
         protected static DateTime GetValue(DateTime? v) => v ?? DefaultDate;
     } 
     public abstract class BaseEntity<TData> : BaseEntity where TData : BaseData, new() {

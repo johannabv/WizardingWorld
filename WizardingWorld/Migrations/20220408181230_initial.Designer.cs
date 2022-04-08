@@ -12,8 +12,8 @@ using WizardingWorld.Data;
 namespace WizardingWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220404165056_house")]
-    partial class house
+    [Migration("20220408181230_initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -237,8 +237,8 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("HogwartsHouse")
                         .HasColumnType("nvarchar(max)");
@@ -300,7 +300,6 @@ namespace WizardingWorld.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Color")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -313,7 +312,6 @@ namespace WizardingWorld.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HouseName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

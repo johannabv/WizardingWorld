@@ -19,7 +19,7 @@ namespace WizardingWorld.Pages.Extensions {
             };
             foreach (var name in m.IndexColumns) {
                 l.Add(new HtmlString("<th>"));
-                l.Add(h.TabHider(name));
+                l.Add(h.TabHider(m.DisplayName(name)));
                 l.Add(new HtmlString("</th>"));
             }
             l.Add(new HtmlString("<th></th>"));

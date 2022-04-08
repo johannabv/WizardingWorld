@@ -5,5 +5,6 @@ namespace WizardingWorld.Pages {
         public string[] IndexColumns { get; }
         public IList<TView>? Items { get; set; }
         public object? GetValue(string name, TView v);
+        string? DisplayName(string name);
     }
 }

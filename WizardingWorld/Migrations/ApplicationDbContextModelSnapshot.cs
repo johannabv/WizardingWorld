@@ -235,8 +235,8 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("HogwartsHouse")
                         .HasColumnType("nvarchar(max)");
@@ -298,7 +298,6 @@ namespace WizardingWorld.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Color")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -311,7 +310,6 @@ namespace WizardingWorld.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HouseName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
