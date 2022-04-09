@@ -4,11 +4,11 @@ using System.Linq.Expressions;
 
 namespace WizardingWorld.Pages.Extensions {
     public static class ViewerHtml {
-        public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
+        public static IHtmlContent Viewer<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
             var s = HtmlStrings(h, e);
             return new HtmlContentBuilder(s);
         }
-        public static IHtmlContent ViewerFor<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
+        public static IHtmlContent Viewer<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
             var s = HtmlStrings(h, e, value);
             return new HtmlContentBuilder(s);
         }

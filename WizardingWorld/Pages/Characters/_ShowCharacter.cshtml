@@ -1,9 +1,9 @@
 ﻿@model WizardingWorld.Pages.Party.CharactersPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.ViewerFor(m => m.Item.FirstName)
-@Html.ViewerFor(m => m.Item.LastName)
-@Html.ViewerFor(m => m.Item.Gender, Model?.GenderDescription(Model?.Item?.Gender))
-@Html.ViewerFor(m => m.Item.DoB)
-@Html.ViewerFor(m => m.Item.HogwartsHouse, Model?.HouseName(Model?.Item?.HogwartsHouse))
-@Html.ViewerFor(m => m.Item.Organisation)
+@Html.Viewer(m => m.Item.FirstName)
+@Html.Viewer(m => m.Item.LastName)
+@Html.Viewer(m => m.Item.Gender, Model?.GenderDescription(Model?.Item?.Gender))
+@Html.Viewer(m => m.Item.DoB)
+@Html.Viewer(m => m.Item.HogwartsHouse, Model?.HouseName(Model?.Item?.HogwartsHouse))
+@Html.Viewer(m => m.Item.Organisation)

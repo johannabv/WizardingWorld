@@ -1,6 +1,6 @@
 ﻿@model WizardingWorld.Pages.Party.CurrenciesPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.ViewerFor(m=>m.Item.Code)
-@Html.ViewerFor(m=>m.Item.EnglishName)
-@Html.ViewerFor(m=>m.Item.NativeName)
+@Html.Viewer(m=>m.Item.Code)
+@Html.Viewer(m=>m.Item.EnglishName)
+@Html.Viewer(m=>m.Item.NativeName)

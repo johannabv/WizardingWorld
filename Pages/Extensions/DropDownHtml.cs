@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace WizardingWorld.Pages.Extensions {
     public static class DropDownHtml {
-        public static IHtmlContent DropDownFor<TModel, TResult>
+        public static IHtmlContent DropDown<TModel, TResult>
             (this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, IEnumerable<SelectListItem> list) {
             return new HtmlContentBuilder(HtmlStrings(h, e, list));
         }

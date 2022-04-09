@@ -1,10 +1,10 @@
 ﻿@model WizardingWorld.Pages.Party.PlacesPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.EditorFor(x => x.Item.Street)
-@Html.EditorFor(x => x.Item.City)
-@Html.EditorFor(x => x.Item.Region)
-@Html.EditorFor(x => x.Item.ZipCode)
-@Html.DropDownFor(x => x.Item.CountryId, Model.Countries)
-@Html.EditorFor(x => x.Item.Description)
+@Html.Editor(x => x.Item.Street)
+@Html.Editor(x => x.Item.City)
+@Html.Editor(x => x.Item.Region)
+@Html.Editor(x => x.Item.ZipCode)
+@Html.DropDown(x => x.Item.CountryId, Model.Countries)
+@Html.Editor(x => x.Item.Description)
 
