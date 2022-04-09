@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WizardingWorld.Data;
+using WizardingWorld.Domain;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
@@ -36,6 +37,7 @@ else {
 }
 
 using(var scope = app.Services.CreateScope()) {
+    GetRepo.SetService(app.Services);
     var db = scope.ServiceProvider.GetService<WizardingWorldDb>();
     db?.Database?.EnsureCreated();
     WizardingWorldDbInitializer.Init(db);

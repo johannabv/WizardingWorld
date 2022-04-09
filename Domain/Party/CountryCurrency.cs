@@ -7,5 +7,7 @@ namespace WizardingWorld.Domain.Party {
         public CountryCurrency(CountryCurrencyData d) : base(d) { }
         public string CurrencyID => GetValue(Data?.CurrencyID);
         public string CountryID => GetValue(Data?.CountryID);
+        public Country? Country => GetRepo.Instance<ICountryRepo>().Get(CountryID);
+        public Currency? Currency => GetRepo.Instance<ICurrencyRepo>().Get(CurrencyID);
     }
 }

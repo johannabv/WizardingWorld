@@ -13,6 +13,5 @@ namespace WizardingWorld.Domain.Party {
         public string CountryID => GetValue(Data?.CountryID);
         public override string ToString() => $"{Street}, {City}, {CountryID} ({Description})";
 
-        public Country? Country { get; set; }
     }
 }
