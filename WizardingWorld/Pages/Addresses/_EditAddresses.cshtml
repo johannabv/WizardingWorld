@@ -1,0 +1,10 @@
+﻿@model WizardingWorld.Pages.Party.AddressesPage
+@using WizardingWorld.Pages.Extensions
+
+@Html.MyEditorFor(x => x.Item.Street)
+@Html.MyEditorFor(x => x.Item.City)
+@Html.MyEditorFor(x => x.Item.Region)
+@Html.MyEditorFor(x => x.Item.ZipCode)
+@Html.MyDropDownFor(x => x.Item.CountryID, Model.Countries)
+@Html.MyEditorFor(x => x.Item.Description)
+

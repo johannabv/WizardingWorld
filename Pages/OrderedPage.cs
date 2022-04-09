@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 using WizardingWorld.Domain;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace WizardingWorld.Pages {
     public abstract class OrderedPage<TView, TEntity, TRepo> : FilteredPage<TView, TEntity, TRepo>
@@ -9,9 +9,9 @@ namespace WizardingWorld.Pages {
         where TEntity : BaseEntity
         where TRepo : IOrderedRepo<TEntity> {
         protected OrderedPage(TRepo r) : base(r) { }
-        public string? CurrentSort {
-            get => FromCurrentOrder(repo.CurrentSort);
-            set => repo.CurrentSort = ToCurrentOrder(value);
+        public string? CurrentOrder {
+            get => FromCurrentOrder(repo.CurrentOrder);
+            set => repo.CurrentOrder = ToCurrentOrder(value);
         } 
         private string? FromCurrentOrder(string? value) {
             var isDesc = value?.Contains("_desc") ?? false;

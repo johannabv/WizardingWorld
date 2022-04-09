@@ -9,7 +9,7 @@ namespace WizardingWorld.Infra.Initializers {
             var obj = new CharacterAddressData {
                 ID = BaseData.NewId,
                 CharacterID = characterId,
-                PlaceID = placeId,
+                AddressID = placeId,
                 Code = code ?? BaseEntity.DefaultStr,
                 Description = description
             };

@@ -3,16 +3,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WizardingWorld.Pages.Extensions {
     public static class ItemButtonsHtml {
-        public static IHtmlContent ItemButtons<TModel>(this IHtmlHelper<TModel> h, string id) {
-            return new HtmlContentBuilder(HtmlStrings(h, id));
+        public static IHtmlContent ItemButtons<TModel>(
+            this IHtmlHelper<TModel> h, string id) {
+            var s = HtmlStrings(h, id);
+            return new HtmlContentBuilder(s);
         }
-        private static List<object> HtmlStrings<TModel>(IHtmlHelper<TModel> h,  string id) {
+        private static List<object> HtmlStrings<TModel>(IHtmlHelper<TModel> h, string id) {
             var l = new List<object> {
-                h.Button("Edit", id),
+                h.MyBtn("Edit", id),
                 new HtmlString("&nbsp;"),
-                h.Button("Details", id),
+                h.MyBtn("Details", id),
                 new HtmlString("&nbsp;"),
-                h.Button("Delete", id)
+                h.MyBtn("Delete", id)
             };
             return l;
         }

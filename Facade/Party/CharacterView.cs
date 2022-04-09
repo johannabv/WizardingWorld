@@ -17,8 +17,8 @@ namespace WizardingWorld.Facade.Party {
         [DisplayName("Last name"), Required] public string? LastName { get; set; }
         [DisplayName("Gender"), Required] public IsoGender? Gender { get; set; }
         [DisplayName("Date of Birth")] public DateTime? DoB { get; set; }
-        [DisplayName("Hogwartz House"), Required] public string? HogwartsHouse { get; set; }
-        [DisplayName("Organisation"), Required] public string? Organisation { get; set; }
+        [DisplayName("Hogwartz House")] public string? HogwartsHouse { get; set; }
+        [DisplayName("Organisation")] public string? Organisation { get; set; }
         [DisplayName("Full info")] public string? FullName { get; set; }
     }
 }

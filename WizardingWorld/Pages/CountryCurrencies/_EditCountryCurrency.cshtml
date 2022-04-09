@@ -1,8 +1,8 @@
-﻿@model WizardingWorld.Pages.Party.CountryCurrencyPage
+﻿@model WizardingWorld.Pages.Party.CountryCurrenciesPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.DropDown(m => m.Item.CountryID, Model.Countries)
-@Html.DropDown(m => m.Item.CurrencyID, Model.Currencies)
-@Html.Editor(m => m.Item.Code)
-@Html.Editor(m => m.Item.Name)
-@Html.Editor(m => m.Item.Description)
+@Html.MyDropDownFor(m => m.Item.CountryID, Model.Countries)
+@Html.MyDropDownFor(m => m.Item.CurrencyID, Model.Currencies)
+@Html.MyEditorFor(m => m.Item.Code)
+@Html.MyEditorFor(m => m.Item.Name)
+@Html.MyEditorFor(m => m.Item.Description)

@@ -2,8 +2,8 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class CurrencyRepo : Repo<Currency, CurrencyData>, ICurrencyRepo {
-        public CurrencyRepo(WizardingWorldDb? db) : base(db, db?.Currencies) { }
+    public class CurrenciesRepo : Repo<Currency, CurrencyData>, ICurrenciesRepo {
+        public CurrenciesRepo(WizardingWorldDb? db) : base(db, db?.Currencies) { }
         protected override Currency ToDomain(CurrencyData d) => new(d);
         internal override IQueryable<CurrencyData> AddFilter(IQueryable<CurrencyData> q) {
             var y = CurrentFilter;

@@ -1,7 +1,7 @@
 ﻿@model WizardingWorld.Pages.Party.SpellsPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.Editor(m=>m.Item.SpellName)
-@Html.Editor(m=>m.Item.Description)
-@Html.Editor(m=>m.Item.Type)
+@Html.MyEditorFor(m=>m.Item.SpellName)
+@Html.MyEditorFor(m=>m.Item.Description)
+@Html.MyEditorFor(m=>m.Item.Type)
 

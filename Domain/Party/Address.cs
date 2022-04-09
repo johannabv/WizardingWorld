@@ -1,10 +1,10 @@
 ﻿using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Domain.Party {
-    public interface IPlaceRepo : IRepo<Place> { }
-    public sealed class Place : BaseEntity<PlaceData> {
-        public Place() : this(new()) { }
-        public Place(PlaceData d) : base(d) { }
+    public interface IAddressRepo : IRepo<Address> { }
+    public sealed class Address : BaseEntity<AddressData> {
+        public Address() : this(new()) { }
+        public Address(AddressData d) : base(d) { }
         public string Street => GetValue(Data?.Street);
         public string City => GetValue(Data?.City);
         public string Region => GetValue(Data?.Region);
@@ -13,5 +13,6 @@ namespace WizardingWorld.Domain.Party {
         public string CountryID => GetValue(Data?.CountryID);
         public override string ToString() => $"{Street}, {City}, {CountryID} ({Description})";
 
+        public Country? Country { get; set; }
     }
 }

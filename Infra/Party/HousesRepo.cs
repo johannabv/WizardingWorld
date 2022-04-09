@@ -2,8 +2,8 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class HouseRepo : Repo<House, HouseData>, IHouseRepo {
-        public HouseRepo(WizardingWorldDb? db) : base(db, db?.Houses) { }
+    public class HousesRepo : Repo<House, HouseData>, IHousesRepo {
+        public HousesRepo(WizardingWorldDb? db) : base(db, db?.Houses) { }
         protected override House ToDomain(HouseData d) => new(d);
         internal override IQueryable<HouseData> AddFilter(IQueryable<HouseData> q) {
             var y = CurrentFilter;

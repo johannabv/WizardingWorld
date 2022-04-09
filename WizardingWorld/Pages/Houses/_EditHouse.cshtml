@@ -1,8 +1,8 @@
 ﻿@model WizardingWorld.Pages.Party.HousesPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.Editor(m=>m.Item.HouseName)
-@Html.Editor(m=>m.Item.FounderName)
-@Html.Editor(m=>m.Item.HeadOfHouseName)
-@Html.Editor(m=>m.Item.Color)
-@Html.Editor(m=>m.Item.Description)
+@Html.MyEditorFor(m=>m.Item.HouseName)
+@Html.MyEditorFor(m=>m.Item.FounderName)
+@Html.MyEditorFor(m=>m.Item.HeadOfHouseName)
+@Html.MyEditorFor(m=>m.Item.Color)
+@Html.MyEditorFor(m=>m.Item.Description)

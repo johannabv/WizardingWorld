@@ -13,6 +13,24 @@ namespace WizardingWorld.Migrations
                 name: "WizardingWorld");
 
             migrationBuilder.CreateTable(
+                name: "Addresses",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountryID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -58,7 +76,7 @@ namespace WizardingWorld.Migrations
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CharacterID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PlaceID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -148,24 +166,6 @@ namespace WizardingWorld.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Houses", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Places",
-                schema: "WizardingWorld",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CountryID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Places", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -332,6 +332,10 @@ namespace WizardingWorld.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Addresses",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -368,10 +372,6 @@ namespace WizardingWorld.Migrations
 
             migrationBuilder.DropTable(
                 name: "Houses",
-                schema: "WizardingWorld");
-
-            migrationBuilder.DropTable(
-                name: "Places",
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(

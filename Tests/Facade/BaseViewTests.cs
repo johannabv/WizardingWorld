@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace Tests.Facade.Party {
     [TestClass]

@@ -1,6 +1,6 @@
 ﻿@model WizardingWorld.Pages.Party.SpellsPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.Viewer(m=>m.Item.SpellName)
-@Html.Viewer(m=>m.Item.Description)
-@Html.Viewer(m=>m.Item.Type)
+@Html.MyViewerFor(m=>m.Item.SpellName)
+@Html.MyViewerFor(m=>m.Item.Description)
+@Html.MyViewerFor(m=>m.Item.Type)

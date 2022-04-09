@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using WizardingWorld.Aids;
 using WizardingWorld.Domain;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace WizardingWorld.Pages {
     public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>, IPageModel, IIndexModel<TView>
@@ -17,7 +17,7 @@ namespace WizardingWorld.Pages {
         protected override void SetAttributes(int pageIndex, string? currentFilter, string? sortOrder) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
+            CurrentOrder = sortOrder;
         }
         public int TotalPages => repo.TotalPages;
         public bool HasNextPage  => repo.HasNextPage;
@@ -26,13 +26,13 @@ namespace WizardingWorld.Pages {
         protected override IActionResult RedirectToIndex() => RedirectToPage("./Index", "Index", new {
             pageIndex = PageIndex,
             currentFilter = CurrentFilter,
-            sortOrder = CurrentSort} 
-        ); 
-        public virtual object? GetValue(string name, TView v) 
+            sortOrder = CurrentOrder} 
+        );
+        public virtual object? GetValue(string name, TView v)
             => Safe.Run(() => {
-                var propertyInfo = v?.GetType()?.GetProperty(name);
-                return propertyInfo?.GetValue(v);
-            }, null);
+                var pi = v?.GetType()?.GetProperty(name);
+                return pi?.GetValue(v);
+            }, null); 
         public string? DisplayName(string name) => Safe.Run(() => {
             var p = typeof(TView).GetProperty(name);
             var a = p?.CustomAttributes?

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WizardingWorld.Domain;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace WizardingWorld.Pages {
     public abstract class CrudPage<TView, TEntity, TRepo> : BasePage<TView, TEntity, TRepo>
@@ -9,7 +9,6 @@ namespace WizardingWorld.Pages {
         where TRepo : ICrudRepo<TEntity> {
         protected CrudPage(TRepo r) : base(r) { }
         protected override IActionResult GetCreate() => Page();
-        public string ItemId => Item?.ID ?? string.Empty;
         protected virtual async Task<IActionResult> GetItemPage(string id) {
             Item = await GetItem(id);
             return Item == null ? NotFound() : Page();
@@ -19,12 +18,12 @@ namespace WizardingWorld.Pages {
         protected override async Task<IActionResult> GetEditAsync(string id) => await GetItemPage(id);
         protected override async Task<IActionResult> PostCreateAsync() {
             if (!ModelState.IsValid) return Page();
-            await repo.AddAsync(ToObject(Item));
+            _ = await repo.AddAsync(ToObject(Item));
             return RedirectToIndex();
         }
         protected override async Task<IActionResult> PostDeleteAsync(string id) {
             if (id == null) return NotFound();
-            await repo.DeleteAsync(id);
+            _ = await repo.DeleteAsync(id);
             return RedirectToIndex();
         }
         protected override async Task<IActionResult> PostEditAsync() {
@@ -36,9 +35,13 @@ namespace WizardingWorld.Pages {
         protected override async Task<IActionResult> GetIndexAsync() {
             var list = await repo.GetAsync();
             Items = new List<TView>();
-            foreach (var obj in list) Items.Add(ToView(obj));
+            foreach (var obj in list) {
+                var v = ToView(obj);
+                Items.Add(v);
+            }
             return Page();
         }
-        private async Task<TView> GetItem(string id) => ToView(await repo.GetAsync(id));
+        private async Task<TView> GetItem(string id)
+            => ToView(await repo.GetAsync(id));
     }
 }

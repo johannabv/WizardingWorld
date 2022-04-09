@@ -2,7 +2,7 @@
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Domain.Party {
-    public interface ICharacterRepo : IRepo<Character> { }
+    public interface ICharactersRepo : IRepo<Character> { }
     public sealed class Character : BaseEntity<CharacterData> {
         public Character() : this(new ()) { }
         public Character(CharacterData d) : base(d) { } 
@@ -13,5 +13,6 @@ namespace WizardingWorld.Domain.Party {
         public IsoGender Gender => GetValue(Data?.Gender);
         public DateTime DoB => GetValue(Data?.DoB); 
         public override string ToString() => $"{FirstName} {LastName}, {Organisation} ({Gender.Description()}, {DoB}, {HogwartsHouse})";
+        public List<Address>? Addresses { get; set; }
     }
 }

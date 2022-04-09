@@ -3,8 +3,8 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    public class CurrenciesPage : PagedPage<CurrencyView, Currency, ICurrencyRepo> {
-        public CurrenciesPage(ICurrencyRepo r) : base(r) { }
+    public class CurrenciesPage : PagedPage<CurrencyView, Currency, ICurrenciesRepo> {
+        public CurrenciesPage(ICurrenciesRepo r) : base(r) { }
         protected override Currency ToObject(CurrencyView? item) => new CurrencyViewFactory().Create(item);
         protected override CurrencyView ToView(Currency? entity) => new CurrencyViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
@@ -12,5 +12,6 @@ namespace WizardingWorld.Pages.Party {
             nameof(CurrencyView.Name),
             nameof(CurrencyView.Description)
         };
+        public List<Country?> Countries => ToObject(Item).Countries;
     }
 }

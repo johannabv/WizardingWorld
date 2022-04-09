@@ -3,10 +3,10 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    public class CountryCurrencyPage : PagedPage<CountryCurrencyView, CountryCurrency, ICountryCurrencyRepo> {
-        private readonly ICountryRepo countries;
-        private readonly ICurrencyRepo currencies;
-        public CountryCurrencyPage(ICountryCurrencyRepo r, ICountryRepo country, ICurrencyRepo currency) : base(r) {
+    public class CountryCurrenciesPage : PagedPage<CountryCurrencyView, CountryCurrency, ICountryCurrenciesRepo> {
+        private readonly ICountriesRepo countries;
+        private readonly ICurrenciesRepo currencies;
+        public CountryCurrenciesPage(ICountryCurrenciesRepo r, ICountriesRepo country, ICurrenciesRepo currency) : base(r) {
             countries = country;
             currencies = currency;
         }

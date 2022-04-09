@@ -1,7 +1,7 @@
 ﻿using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Domain.Party {
-    public interface ISpellRepo : IRepo<Spell> { }
+    public interface ISpellsRepo : IRepo<Spell> { }
     public sealed class Spell : BaseEntity<SpellData>{
         public Spell() : this(new ()) { }
         public Spell(SpellData d) : base(d) { }

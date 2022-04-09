@@ -14,23 +14,23 @@
 
 <body>
     <partial name = "_ShowCountry" />
-<br>
-    <h4>Currencies</h4>
-<br>
+    <br>
+        <h4>Currencies</h4>
+    <br>
 
-    <table class="table">
-    <thead>
-    <tr>
-        @foreach (var name in columns) { <td> @Html.Raw(name) </td> }
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Currencies) {
-            <tr>
-                @foreach (var name in columns) { <td> @Html.Raw(GetValue(name, item)) </td> }
-            </tr>
-        }
-    </tbody>
-    </table>
+        <table class="table">
+        <thead>
+        <tr>
+            @foreach (var name in columns) { <td> @Html.Raw(name) </td> }
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Currencies) {
+                <tr>
+                    @foreach (var name in columns) { <td> @Html.Raw(GetValue(name, item)) </td> }
+                </tr>
+            }
+        </tbody>
+        </table>
 
 </Body>

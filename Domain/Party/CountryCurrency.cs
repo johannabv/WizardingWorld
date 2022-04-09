@@ -1,13 +1,13 @@
 ﻿using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Domain.Party {
-    public interface ICountryCurrencyRepo : IRepo<CountryCurrency> { }
+    public interface ICountryCurrenciesRepo : IRepo<CountryCurrency> { }
     public sealed class CountryCurrency : NamedEntity<CountryCurrencyData> {
         public CountryCurrency() : this(new ()) { }
         public CountryCurrency(CountryCurrencyData d) : base(d) { }
         public string CurrencyID => GetValue(Data?.CurrencyID);
         public string CountryID => GetValue(Data?.CountryID);
-        public Country? Country => GetRepo.Instance<ICountryRepo>().Get(CountryID);
-        public Currency? Currency => GetRepo.Instance<ICurrencyRepo>().Get(CurrencyID);
+        public Country? Country => GetRepo.Instance<ICountriesRepo>().Get(CountryID);
+        public Currency? Currency => GetRepo.Instance<ICurrenciesRepo>().Get(CurrencyID);
     }
 }

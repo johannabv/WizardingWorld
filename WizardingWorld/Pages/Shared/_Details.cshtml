@@ -2,7 +2,7 @@
     ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("Page", string.Empty)?? "Unspecified";
     ViewData["Title"] = "Details";
     Layout = "_Layout";
-    var itemId = Model?.ItemId?? string.Empty; 
+    var itemId = Model?.ItemID?? string.Empty; 
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -18,13 +18,13 @@
     <a style="text-decoration:none;" asp-page="./Edit" 
        asp-page-handler="Edit" 
        asp-route-id="@itemId"
-       asp-route-order="@Model?.CurrentSort"
+       asp-route-order="@Model?.CurrentOrder"
        asp-route-index="@Model?.PageIndex" 
        asp-route-filter="@Model?.CurrentFilter"
     >Edit</a>
     <a style="text-decoration:none;" asp-page="Index" 
        asp-page-handler = "Index" 
-       asp-route-order="@Model?.CurrentSort"
+       asp-route-order="@Model?.CurrentOrder"
        asp-route-index="@Model?.PageIndex" 
        asp-route-filter="@Model?.CurrentFilter"
     >Back to List</a>

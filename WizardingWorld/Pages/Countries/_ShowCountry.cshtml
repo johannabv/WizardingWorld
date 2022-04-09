@@ -1,6 +1,6 @@
 ﻿@model WizardingWorld.Pages.Party.CountriesPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.Viewer(m=>m.Item.Code) 
-@Html.Viewer(m=>m.Item.Name) 
-@Html.Viewer(m=>m.Item.Description)
+@Html.MyViewerFor(m=>m.Item.Code) 
+@Html.MyViewerFor(m=>m.Item.Name) 
+@Html.MyViewerFor(m=>m.Item.Description)

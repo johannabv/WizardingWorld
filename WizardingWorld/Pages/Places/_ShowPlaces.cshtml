@@ -1,9 +1,0 @@
-﻿@model WizardingWorld.Pages.Party.PlacesPage
-@using WizardingWorld.Pages.Extensions
-
-@Html.Viewer(x => x.Item.Street)
-@Html.Viewer(x => x.Item.City)
-@Html.Viewer(x => x.Item.Region)
-@Html.Viewer(x => x.Item.ZipCode)
-@Html.Viewer(x => x.Item.CountryId, Model.CountryName(Model.Item.CountryId))
-@Html.Viewer(x => x.Item.Description)

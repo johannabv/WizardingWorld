@@ -9,7 +9,7 @@ namespace WizardingWorld.Facade.Party {
     }
     public class CharacterAddressView : NamedView { 
         [Required] [DisplayName("Character")] public string CharacterID { get; set; } = string.Empty;
-        [Required] [DisplayName("Place")] public string PlaceID { get; set; } = string.Empty;
+        [Required] [DisplayName("Place")] public string AddressID { get; set; } = string.Empty;
         [Required] [DisplayName("Use for")] public new string Code { get; set; } = string.Empty;
     }
 }

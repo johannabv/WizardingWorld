@@ -1,11 +1,11 @@
 ﻿@page
-@model WizardingWorld.Pages.Party.CharacterAddressPage
+@model WizardingWorld.Pages.Party.CharacterAddressesPage
 @using WizardingWorld.Pages.Extensions
 
 @{
     Layout = "_Create";
 }
 <body>
-    @Html.Editor(m=>m.Item.ID)
+    @Html.MyEditorFor(m=>m.Item.ID)
     <partial name = "_EditCharacterAddress" />
 </body>

@@ -1,11 +1,11 @@
 ﻿@page
-@model WizardingWorld.Pages.Party.CountryCurrencyPage
+@model WizardingWorld.Pages.Party.CountryCurrenciesPage
 @using WizardingWorld.Pages.Extensions
 
 @{
     Layout = "_Create";
 }
 <body>
-    @Html.Editor(m=>m.Item.ID)
+    @Html.MyEditorFor(m=>m.Item.ID)
     <partial name = "_EditCountryCurrency" />
 </body>

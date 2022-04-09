@@ -12,8 +12,8 @@ namespace WizardingWorld.Infra.Initializers {
         public void Init() {
             if (set?.Any() ?? true) return;
             set.AddRange(GetEntities);
-            db?.SaveChanges();
-        } 
+            _ = (db?.SaveChanges());
+        }
         protected abstract IEnumerable<TData> GetEntities { get; }
         internal static bool IsCorrectIsoCode(string id) => !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
     } 

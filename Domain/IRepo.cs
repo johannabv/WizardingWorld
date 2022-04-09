@@ -8,7 +8,7 @@
         public int PageSize { get; set; } 
     }
     public interface IOrderedRepo<T> : IFilteredRepo<T> where T : BaseEntity { 
-        public string? CurrentSort { get; set; }
+        public string? CurrentOrder { get; set; }
         public string SortOrder(string propertyName);
     }
     public interface IFilteredRepo<T> : ICrudRepo<T> where T : BaseEntity { 

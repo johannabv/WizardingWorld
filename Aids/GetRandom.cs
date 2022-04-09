@@ -4,7 +4,8 @@ using System.Reflection;
 namespace WizardingWorld.Aids {
     public class GetRandom {
         private static void PutMinFirst<T>(ref T min, ref T max) where T : IComparable<T> {
-            if (min.CompareTo(max) >= 0) (max, min) = (min, max);
+            if (min.CompareTo(max) >= 0) return;
+            (max, min) = (min, max);
         }
         public static int Int32(int? min = null, int? max = null) {
             var minValue = min ?? -1000;

@@ -4,11 +4,15 @@ using System.Linq.Expressions;
 
 namespace WizardingWorld.Pages.Extensions {
     public static class ViewerHtml {
-        public static IHtmlContent Viewer<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-           return new HtmlContentBuilder(HtmlStrings(h, e));
+        public static IHtmlContent MyViewerFor<TModel, TResult>(
+            this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
+            var s = HtmlStrings(h, e);
+            return new HtmlContentBuilder(s);
         }
-        public static IHtmlContent Viewer<TModel, TResult>(this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
-            return new HtmlContentBuilder(HtmlStrings(h, e, value));
+        public static IHtmlContent MyViewerFor<TModel, TResult>(
+            this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
+            var s = HtmlStrings(h, e, value);
+            return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
             var l = new List<object> {
@@ -23,7 +27,8 @@ namespace WizardingWorld.Pages.Extensions {
             };
             return l;
         }
-        private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
+        private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h
+            , Expression<Func<TModel, TResult>> e, dynamic value) {
             var l = new List<object> {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dt class=\"col-sm-2\">"),
@@ -33,7 +38,7 @@ namespace WizardingWorld.Pages.Extensions {
                 h.Raw(value),
                 new HtmlString("</dd>"),
                 new HtmlString("</dl>")
-            }; 
+            };
             return l;
         }
     }

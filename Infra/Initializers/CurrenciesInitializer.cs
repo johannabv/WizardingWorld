@@ -21,7 +21,12 @@ namespace WizardingWorld.Infra.Initializers {
             }
         }
         internal static CurrencyData CreateCurrency(string code, string englishName, string nativeName)
-            => new() { ID = code ?? BaseData.NewId, Name = englishName, Description=nativeName, Code = code ?? BaseEntity.DefaultStr};
+            => new() { 
+                ID = code ?? BaseData.NewId, 
+                Name = englishName, 
+                Description=nativeName, 
+                Code = code ?? BaseEntity.DefaultStr
+            };
     }
 }
 

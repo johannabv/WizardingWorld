@@ -1,5 +1,5 @@
 ﻿using WizardingWorld.Domain;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace WizardingWorld.Pages {
     public abstract class FilteredPage<TView, TEntity, TRepo> : CrudPage<TView, TEntity, TRepo>

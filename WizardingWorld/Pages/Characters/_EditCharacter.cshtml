@@ -1,8 +1,10 @@
 ﻿@model WizardingWorld.Pages.Party.CharactersPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.Editor(m => m.Item.FirstName)
-@Html.Editor(m => m.Item.LastName)
-@Html.DropDown(m => m.Item.Gender, Party.CharactersPage.Genders)
-@Html.Editor(m => m.Item.DoB)
-@Html.DropDown(m => m.Item.HogwartsHouse, Model.Houses)
+@Html.MyEditorFor(m => m.Item.FirstName)
+@Html.MyEditorFor(m => m.Item.LastName)
+@Html.MyDropDownFor(m => m.Item.Gender, Model.Genders)
+@Html.MyEditorFor(m => m.Item.DoB)
+@Html.MyEditorFor(m => m.Item.HogwartsHouse)
+@*@Html.MyDropDownFor(m => m.Item.HogwartsHouse, Model.Houses)*@
+@Html.MyEditorFor(m => m.Item.Organisation)

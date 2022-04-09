@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WizardingWorld.Aids;
 using WizardingWorld.Domain;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace WizardingWorld.Pages {
     public abstract class BasePage<TView, TEntity, TRepo> : PageModel 
@@ -15,6 +15,7 @@ namespace WizardingWorld.Pages {
         protected abstract IActionResult RedirectToIndex();
         [BindProperty] public TView Item { get; set; } = new TView();
         public IList<TView> Items { get; set; } = new List<TView>();
+        public string ItemID => Item?.ID ?? string.Empty;
         public BasePage(TRepo r) => repo = r;
         protected abstract void SetAttributes(int index, string? filter, string? order);
         protected abstract IActionResult GetCreate();
@@ -31,7 +32,8 @@ namespace WizardingWorld.Pages {
             return await f();
         }
         internal virtual void RemoveKey(params string[] keys) {
-            foreach(var key in keys ?? Array.Empty<string>()) Safe.Run(() => ModelState.Remove(key));
+            foreach (var key in keys ?? Array.Empty<string>())
+                _ = Safe.Run(() => ModelState.Remove(key));
         }
         public IActionResult OnGetCreate(int index = 0, string? filter = null, string? order = null) {
             SetAttributes(index, filter, order);

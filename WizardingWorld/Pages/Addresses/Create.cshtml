@@ -1,0 +1,11 @@
+﻿@page
+@model WizardingWorld.Pages.Party.AddressesPage
+@using WizardingWorld.Pages.Extensions
+
+@{
+    Layout = "_Create";
+}
+<body>
+    @Html.MyEditorFor(x => x.Item.ID)
+    <partial name= "_EditAddresses"/>
+</body>

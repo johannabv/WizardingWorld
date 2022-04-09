@@ -2,8 +2,8 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class CharacterRepo : Repo<Character, CharacterData>, ICharacterRepo {
-        public CharacterRepo(WizardingWorldDb? db) : base(db, db?.Characters) { }
+    public class CharactersRepo : Repo<Character, CharacterData>, ICharactersRepo {
+        public CharactersRepo(WizardingWorldDb? db) : base(db, db?.Characters) { }
         protected override Character ToDomain(CharacterData d) => new(d);
         internal override IQueryable<CharacterData> AddFilter(IQueryable<CharacterData> q) {
             var y = CurrentFilter;

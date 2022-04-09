@@ -2,10 +2,10 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class PlaceRepo : Repo<Place, PlaceData>, IPlaceRepo {
-        public PlaceRepo(WizardingWorldDb? db) : base(db, db?.Places) { }
-        protected override Place ToDomain(PlaceData d) => new(d);
-        internal override IQueryable<PlaceData> AddFilter(IQueryable<PlaceData> q) {
+    public class AddressesRepo : Repo<Address, AddressData>, IAddressRepo {
+        public AddressesRepo(WizardingWorldDb? db) : base(db, db?.Addresses) { }
+        protected override Address ToDomain(AddressData d) => new(d);
+        internal override IQueryable<AddressData> AddFilter(IQueryable<AddressData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y)
                 ? q : q.Where(

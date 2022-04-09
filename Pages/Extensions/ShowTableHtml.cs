@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using WizardingWorld.Facade.Party;
+using WizardingWorld.Facade;
 
 namespace WizardingWorld.Pages.Extensions {
     public static class ShowTableHtml {
-        public static IHtmlContent ShowTable<TModel, TView>(this IHtmlHelper<TModel> h, IList<TView>? items)
+        public static IHtmlContent ShowTable<TModel, TView>(
+            this IHtmlHelper<TModel> h, IList<TView>? items)
                 where TModel : IIndexModel<TView> where TView : BaseView {
-            return new HtmlContentBuilder(HtmlStrings(h, items));
+            var s = HtmlStrings(h, items);
+            return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel, TView>(IHtmlHelper<TModel> h, IList<TView>? items)
             where TModel : IIndexModel<TView> where TView : BaseView {
@@ -17,9 +19,9 @@ namespace WizardingWorld.Pages.Extensions {
                 new HtmlString("<tr>")
             };
             foreach (var name in m.IndexColumns) {
-                l.Add(new HtmlString("<th>"));
-                l.Add(h.TabHider(m.DisplayName(name)));
-                l.Add(new HtmlString("</th>"));
+                l.Add(new HtmlString("<td>"));
+                l.Add(h.MyTabHdr(m.DisplayName(name)));
+                l.Add(new HtmlString("</td>"));
             }
             l.Add(new HtmlString("<th></th>"));
             l.Add(new HtmlString("</tr>"));

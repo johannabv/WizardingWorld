@@ -8,8 +8,8 @@ namespace WizardingWorld.Facade.Party {
         protected override CountryCurrency ToEntity(CountryCurrencyData d) => new(d);
     }
     public class CountryCurrencyView : NamedView {
-        [Required] [DisplayName("Country")] public string CountryID { get; set; } = string.Empty;
-        [Required] [DisplayName("Currency")] public string CurrencyID { get; set; } = string.Empty;
+        [DisplayName("Country"), Required] public string CountryID { get; set; } = string.Empty;
+        [DisplayName("Currency"), Required] public string CurrencyID { get; set; } = string.Empty;
         [DisplayName("Currency native name"), Required] public new string? Name { get; set; } 
         [DisplayName("Currency native code"), Required] public new string? Code { get; set; }
     }

@@ -2,8 +2,8 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class CountryRepo : Repo<Country, CountryData>, ICountryRepo {
-        public CountryRepo(WizardingWorldDb? db) : base(db, db?.Countries) { }
+    public class CountriesRepo : Repo<Country, CountryData>, ICountriesRepo {
+        public CountriesRepo(WizardingWorldDb? db) : base(db, db?.Countries) { }
         protected override Country ToDomain(CountryData d) => new(d); 
         internal override IQueryable<CountryData> AddFilter(IQueryable<CountryData> q) {
             var y = CurrentFilter;

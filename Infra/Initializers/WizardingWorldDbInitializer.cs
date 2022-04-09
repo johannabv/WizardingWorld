@@ -6,7 +6,7 @@
             new CountriesInitializer(db).Init();
             new CurrenciesInitializer(db).Init();
             new HousesInitializer(db).Init();
-            new PlaceInitializer(db).Init();
+            new AddressInitializer(db).Init();
             new CountryCurrenciesInitializer(db).Init();
             new CharacterAddressesInitializer(db).Init();
         }
