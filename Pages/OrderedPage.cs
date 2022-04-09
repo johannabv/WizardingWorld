@@ -31,6 +31,6 @@ namespace WizardingWorld.Pages {
             return value;
         }
         private static bool IsThisDisplayName(PropertyInfo pi, string? displayName) => GetDisplayName(pi) == displayName; 
-        public string? SortOrder(string propertyName) => repo.SortOrder(propertyName); 
+        public string? SortOrder(string displayName) => repo.SortOrder(ToCurrentOrder(displayName)); 
     }
 }
