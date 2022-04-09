@@ -52,6 +52,23 @@ namespace WizardingWorld.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CharacterAddresses",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CharacterID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlaceID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharacterAddresses", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Characters",
                 schema: "WizardingWorld",
                 columns: table => new
@@ -76,12 +93,29 @@ namespace WizardingWorld.Migrations
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EnglishName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NativeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CountryCurrencies",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CountryID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CurrencyID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CountryCurrencies", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,8 +125,8 @@ namespace WizardingWorld.Migrations
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EnglishName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NativeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,7 +160,7 @@ namespace WizardingWorld.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CountryId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountryID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -313,11 +347,19 @@ namespace WizardingWorld.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CharacterAddresses",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
                 name: "Characters",
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(
                 name: "Countries",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
+                name: "CountryCurrencies",
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(

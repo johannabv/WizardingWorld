@@ -21,6 +21,8 @@ builder.Services.AddTransient<IHouseRepo, HouseRepo>();
 builder.Services.AddTransient<ICountryRepo, CountryRepo>();
 builder.Services.AddTransient<ICurrencyRepo, CurrencyRepo>();
 builder.Services.AddTransient<IPlaceRepo, PlaceRepo>();
+builder.Services.AddTransient<ICountryCurrencyRepo, CountryCurrencyRepo>();
+builder.Services.AddTransient<ICharacterAddressRepo, CharacterAddressRepo>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

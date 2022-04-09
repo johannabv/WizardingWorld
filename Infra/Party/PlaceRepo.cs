@@ -10,12 +10,13 @@ namespace WizardingWorld.Infra.Party {
             return string.IsNullOrWhiteSpace(y)
                 ? q : q.Where(
                 x => x.Street.Contains(y)
-                || x.CountryId.Contains(y)
-                || x.ID.Contains(y)
-                || x.City.Contains(y)
-                || x.Region.Contains(y)
-                || x.Description.Contains(y)
-                || x.ZipCode.Contains(y));
+                  || x.CountryID.Contains(y)
+                  || x.ID.Contains(y)
+                  || x.City.Contains(y)
+                  || x.Region.Contains(y)
+                  || x.ZipCode.Contains(y)
+                  || x.Description.Contains(y)
+            );
         }
     }
 }

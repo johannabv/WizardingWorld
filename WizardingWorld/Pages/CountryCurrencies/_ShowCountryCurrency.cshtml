@@ -1,0 +1,8 @@
+﻿@model WizardingWorld.Pages.Party.CountryCurrencyPage
+@using WizardingWorld.Pages.Extensions
+
+@Html.Viewer(m => m.Item.CountryID, Model.CountryName(Model.Item.CountryID))
+@Html.Viewer(m => m.Item.CurrencyID, Model.CurrencyName(Model.Item.CurrencyID))
+@Html.Viewer(m => m.Item.Code)
+@Html.Viewer(m => m.Item.Name)
+@Html.Viewer(m => m.Item.Description)

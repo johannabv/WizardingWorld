@@ -1,0 +1,8 @@
+﻿@model WizardingWorld.Pages.Party.CharacterAddressPage
+@using WizardingWorld.Pages.Extensions
+
+@Html.Viewer(m => m.Item.CharacterID, Model.CharacterName(Model.Item.CharacterID))
+@Html.Viewer(m => m.Item.PlaceID, Model.PlaceName(Model.Item.PlaceID))
+@Html.Viewer(m => m.Item.Code)
+@Html.Viewer(m => m.Item.Name)
+@Html.Viewer(m => m.Item.Description)

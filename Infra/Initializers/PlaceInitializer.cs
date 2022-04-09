@@ -17,7 +17,7 @@ namespace WizardingWorld.Infra.Initializers {
                 City = city,
                 Region = region,
                 ZipCode = zipCode,
-                CountryId = country,
+                CountryID = country,
                 Description = description
             };
             return address;

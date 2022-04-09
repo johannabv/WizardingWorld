@@ -17,14 +17,4 @@ namespace WizardingWorld.Infra.Initializers {
         protected abstract IEnumerable<TData> GetEntities { get; }
         internal static bool IsCorrectIsoCode(string id) => !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
     } 
-    public static class WizardingWorldDbInitializer {
-        public static void Init(WizardingWorldDb? db) {
-            new CharacterInitializer(db).Init();
-            new SpellInitializer(db).Init();
-            new CountriesInitializer(db).Init();
-            new CurrenciesInitializer(db).Init();
-            new HousesInitializer(db).Init();
-            new PlaceInitializer(db).Init();
-        }
-    }
 }

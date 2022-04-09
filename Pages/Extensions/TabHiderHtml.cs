@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace WizardingWorld.Pages.Extensions {
     public static class TabHiderHtml {
         public static IHtmlContent TabHider<TModel>(this IHtmlHelper<TModel> h, string name) {
-            var s = HtmlStrings(name, h.ViewData.Model as IPageModel);
-            return new HtmlContentBuilder(s);
+            return new HtmlContentBuilder(HtmlStrings(name, h.ViewData.Model as IPageModel));
         }
         private static List<object> HtmlStrings(string? name, IPageModel? m) {
             name ??= "Unspecified";

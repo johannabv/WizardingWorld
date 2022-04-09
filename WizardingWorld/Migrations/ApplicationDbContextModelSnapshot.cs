@@ -224,6 +224,34 @@ namespace WizardingWorld.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("WizardingWorld.Data.Party.CharacterAddressData", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CharacterID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CharacterAddresses", "WizardingWorld");
+                });
+
             modelBuilder.Entity("WizardingWorld.Data.Party.CharacterData", b =>
                 {
                     b.Property<string>("ID")
@@ -252,6 +280,34 @@ namespace WizardingWorld.Migrations
                     b.ToTable("Characters", "WizardingWorld");
                 });
 
+            modelBuilder.Entity("WizardingWorld.Data.Party.CountryCurrencyData", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrencyID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CountryCurrencies", "WizardingWorld");
+                });
+
             modelBuilder.Entity("WizardingWorld.Data.Party.CountryData", b =>
                 {
                     b.Property<string>("ID")
@@ -261,10 +317,10 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EnglishName")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NativeName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -281,10 +337,10 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EnglishName")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NativeName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -325,7 +381,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CountryId")
+                    b.Property<string>("CountryID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")

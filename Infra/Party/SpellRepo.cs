@@ -8,10 +8,10 @@ namespace WizardingWorld.Infra.Party {
         internal override IQueryable<SpellData> AddFilter(IQueryable<SpellData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
-                x => DoesContain(x.ID, y)
-                || DoesContain(x.SpellName, y)
-                || DoesContain(x.Type, y)
-                || DoesContain(x.Description, y)
+                x => x.ID.Contains(y)
+                  || x.SpellName.Contains(y)
+                  || x.Type.Contains(y)
+                  || x.Description.Contains(y)
             );
         }
     }

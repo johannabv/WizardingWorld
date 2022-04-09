@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace WizardingWorld.Pages.Extensions {
     public static class ItemButtonsHtml {
         public static IHtmlContent ItemButtons<TModel>(this IHtmlHelper<TModel> h, string id) {
-            var s = HtmlStrings(h, id);
-            return new HtmlContentBuilder(s);
+            return new HtmlContentBuilder(HtmlStrings(h, id));
         }
         private static List<object> HtmlStrings<TModel>(IHtmlHelper<TModel> h,  string id) {
             var l = new List<object> {

@@ -18,8 +18,8 @@ namespace WizardingWorld.Pages.Party {
             nameof(PlaceView.Description),
         };
         public IEnumerable<SelectListItem> Countries
-            => countries?.GetAll(x => x.EnglishName)?
-            .Select(x => new SelectListItem(x.EnglishName, x.ID))
+            => countries?.GetAll(x => x.Name)?
+            .Select(x => new SelectListItem(x.Name, x.ID))
             ?? new List<SelectListItem>();
 
         public string CountryName(string? countryId = null)
@@ -29,6 +29,5 @@ namespace WizardingWorld.Pages.Party {
             var r = base.GetValue(name, v);
             return name == nameof(PlaceView.CountryId) ? CountryName(r as string) : r;
         }
-
     }
 }

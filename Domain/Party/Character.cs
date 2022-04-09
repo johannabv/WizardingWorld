@@ -4,7 +4,7 @@ using WizardingWorld.Data.Party;
 namespace WizardingWorld.Domain.Party {
     public interface ICharacterRepo : IRepo<Character> { }
     public sealed class Character : BaseEntity<CharacterData> {
-        public Character() : this(new CharacterData()) { }
+        public Character() : this(new ()) { }
         public Character(CharacterData d) : base(d) { } 
         public string FirstName =>GetValue(Data?.FirstName);
         public string LastName => GetValue(Data?.LastName);

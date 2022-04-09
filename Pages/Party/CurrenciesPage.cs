@@ -9,8 +9,8 @@ namespace WizardingWorld.Pages.Party {
         protected override CurrencyView ToView(Currency? entity) => new CurrencyViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(CurrencyView.Code),
-            nameof(CurrencyView.EnglishName),
-            nameof(CurrencyView.NativeName)
+            nameof(CurrencyView.Name),
+            nameof(CurrencyView.Description)
         };
     }
 }

@@ -9,8 +9,8 @@ namespace WizardingWorld.Pages.Party {
         protected override CountryView ToView(Country? entity) => new CountryViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(CountryView.Code),
-            nameof(CountryView.EnglishName),
-            nameof(CountryView.NativeName)
+            nameof(CountryView.Name),
+            nameof(CountryView.Description)
         };
     }
 }

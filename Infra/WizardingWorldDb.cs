@@ -10,6 +10,8 @@ namespace WizardingWorld.Infra {
         public DbSet<CurrencyData>? Currencies { get; set; }
         public DbSet<HouseData>? Houses { get; set; }
         public DbSet<PlaceData>? Places { get; set; }
+        public DbSet<CountryCurrencyData>? CountryCurrencies { get; set; }
+        public DbSet<CharacterAddressData>? CharacterAddresses { get; set; }
         protected override void OnModelCreating(ModelBuilder b) {
             base.OnModelCreating(b);
             InitializeTables(b);
@@ -22,6 +24,8 @@ namespace WizardingWorld.Infra {
             _ = (b?.Entity<CurrencyData>()?.ToTable(nameof(Currencies), s));
             _ = (b?.Entity<HouseData>()?.ToTable(nameof(Houses), s));
             _ = (b?.Entity<PlaceData>()?.ToTable(nameof(Places), s));
+            _ = (b?.Entity<CharacterAddressData>()?.ToTable(nameof(CharacterAddresses), s));
+            _ = (b?.Entity<CountryCurrencyData>()?.ToTable(nameof(CountryCurrencies), s));
         }
     }
 }

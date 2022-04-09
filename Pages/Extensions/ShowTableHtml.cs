@@ -6,8 +6,7 @@ namespace WizardingWorld.Pages.Extensions {
     public static class ShowTableHtml {
         public static IHtmlContent ShowTable<TModel, TView>(this IHtmlHelper<TModel> h, IList<TView>? items)
                 where TModel : IIndexModel<TView> where TView : BaseView {
-            var s = HtmlStrings(h, items);
-            return new HtmlContentBuilder(s);
+            return new HtmlContentBuilder(HtmlStrings(h, items));
         }
         private static List<object> HtmlStrings<TModel, TView>(IHtmlHelper<TModel> h, IList<TView>? items)
             where TModel : IIndexModel<TView> where TView : BaseView {

@@ -10,8 +10,8 @@ namespace WizardingWorld.Domain.Party {
         public string Region => GetValue(Data?.Region);
         public string ZipCode => GetValue(Data?.ZipCode);
         public string Description => GetValue(Data?.Description);
-        public string CountryId => GetValue(Data?.CountryId);
-        public override string ToString() => $"{Street} {City} {CountryId} ({Description})";
+        public string CountryID => GetValue(Data?.CountryID);
+        public override string ToString() => $"{Street}, {City}, {CountryID} ({Description})";
 
         public Country? Country { get; set; }
     }

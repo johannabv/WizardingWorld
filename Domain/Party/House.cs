@@ -3,7 +3,7 @@
 namespace WizardingWorld.Domain.Party {
     public interface IHouseRepo : IRepo<House> { }
     public sealed class House : BaseEntity<HouseData> {
-        public House() : this(new HouseData()) { }
+        public House() : this(new ()) { }
         public House(HouseData d) : base(d) { }
         public string HouseName => GetValue(Data?.HouseName);
         public string FounderName => GetValue(Data?.FounderName);

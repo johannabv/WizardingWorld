@@ -1,0 +1,8 @@
+﻿@model WizardingWorld.Pages.Party.CharacterAddressPage
+@using WizardingWorld.Pages.Extensions
+
+@Html.DropDown(m => m.Item.CharacterID, Model.Characters)
+@Html.DropDown(m => m.Item.PlaceID, Model.Places)
+@Html.Editor(m => m.Item.Code)
+@Html.Editor(m => m.Item.Name)
+@Html.Editor(m => m.Item.Description)
