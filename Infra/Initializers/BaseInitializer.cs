@@ -24,6 +24,7 @@ namespace WizardingWorld.Infra.Initializers {
             new CountriesInitializer(db).Init();
             new CurrenciesInitializer(db).Init();
             new HousesInitializer(db).Init();
+            new PlaceInitializer(db).Init();
         }
     }
 }

@@ -16,9 +16,9 @@ namespace WizardingWorld.Infra.Initializers {
         }
         protected override IEnumerable<HouseData> GetEntities => new[] {
             CreateHouse("Slytherin", "Severus Snape", "Salazar Slytherin", "green and silver", "cunning, ambition, resourcefulness, determination, pride, self-preservation"),
-            CreateHouse("Ravenclaw", "Rowena Ravenclaw", "Helena Ravenclaw", "blue and bronze", "wit, learning, wisdom, acceptance, intelligence, creativity"),
+            CreateHouse("Ravenclaw", "Filius Flitwick", "Rowena Ravenclaw", "blue and bronze", "wit, learning, wisdom, acceptance, intelligence, creativity"),
             CreateHouse("Gryffindor", "Minerva Mcgonogall", "Godric Gryffindor", "scarlet and gold", "bravery, courage, determination, daring, nerve, chivalry"),
-            CreateHouse("Huffelpuff", "Helga Hufflepuff", "Helga Huffelpuff", "yellow and black", "loyalty, hard-working, patience, fairness, just, modesty")
+            CreateHouse("Huffelpuff", "Pomona Sprout", "Helga Huffelpuff", "yellow and black", "loyalty, hard-working, patience, fairness, just, modesty")
         };
     }
 }

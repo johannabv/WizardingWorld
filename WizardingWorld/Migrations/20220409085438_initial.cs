@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WizardingWorld.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,6 +114,24 @@ namespace WizardingWorld.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Houses", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Places",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountryId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Places", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -308,6 +326,10 @@ namespace WizardingWorld.Migrations
 
             migrationBuilder.DropTable(
                 name: "Houses",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
+                name: "Places",
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(
