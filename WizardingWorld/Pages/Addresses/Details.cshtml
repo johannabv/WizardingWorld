@@ -1,10 +1,34 @@
 ﻿@page
+@using WizardingWorld.Facade.Party
 @model WizardingWorld.Pages.Party.AddressesPage
 
 @{
     Layout = "_Details";
+    var columns = new[] { 
+        nameof(CharacterView.FullName)
+    };
+    object? GetValue<T>(string propertyname, T item) => typeof(T).GetProperty(propertyname)?.GetValue(item);
 }
 
-<Body>
-    <partial name= "_ShowAddresses"/>
+<body>
+    <partial name = "_ShowAddresses" />
+    <br>
+        <h4>Characters</h4>
+    <br>
+
+        <table class="table">
+        <thead>
+        <tr>
+            @foreach (var name in columns) { <td> @Html.Raw(name) </td> }
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Characters) {
+                <tr>
+                    @foreach (var name in columns) { <td> @Html.Raw(GetValue(name, item)) </td> }
+                </tr>
+            }
+        </tbody>
+        </table>
+
 </Body>

@@ -29,5 +29,6 @@ namespace WizardingWorld.Pages.Party {
             var r = base.GetValue(name, v);
             return name == nameof(AddressView.CountryID) ? CountryName(r as string) : r;
         }
+        public List<Character?> Characters => ToObject(Item).Characters;
     }
 }

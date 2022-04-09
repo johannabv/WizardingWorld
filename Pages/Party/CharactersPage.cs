@@ -18,13 +18,13 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.HogwartsHouse),
             nameof(CharacterView.Organisation),
         };
-        //public IEnumerable<SelectListItem> Houses 
-        //    => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
-        //public string HouseName(string? houseId = null) 
-        //    => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
+        public IEnumerable<SelectListItem> Houses
+            => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
+        public string HouseName(string? houseId = null)
+            => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
         public override object? GetValue(string name, CharacterView v) {
             var r = base.GetValue(name, v);
-            //if (name == nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
+            if (name == nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
             if (name == nameof(CharacterView.Gender)) return GenderDescription((IsoGender) r);
             return r;
         }
@@ -34,5 +34,6 @@ namespace WizardingWorld.Pages.Party {
             ?? new List<SelectListItem>();
         public string GenderDescription(IsoGender? x)
             => (x ?? IsoGender.NotApplicable).Description();
+        public List<Address?> Addresses => ToObject(Item).Addresses;
     }
 }
