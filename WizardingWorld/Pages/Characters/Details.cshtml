@@ -5,7 +5,11 @@
 @{
     Layout = "_Details";
     var columns = new[] { 
-        nameof(AddressView.FullName)
+        nameof(AddressView.Street),
+        nameof(AddressView.City),
+        nameof(AddressView.Region),
+        nameof(AddressView.CountryID),
+        nameof(AddressView.Description)
     };
     object? GetValue<T>(string propertyname, T item) => typeof(T).GetProperty(propertyname)?.GetValue(item);
 }
@@ -32,3 +36,4 @@
         </table>
 
 </Body>
+

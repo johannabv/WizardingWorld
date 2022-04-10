@@ -5,7 +5,12 @@
 @{
     Layout = "_Details";
     var columns = new[] { 
-        nameof(CharacterView.FullName)
+        nameof(CharacterView.FirstName),
+        nameof(CharacterView.LastName),
+        nameof(CharacterView.Gender),
+        nameof(CharacterView.DoB),
+        nameof(CharacterView.HogwartsHouse),
+        nameof(CharacterView.Organisation),
     };
     object? GetValue<T>(string propertyname, T item) => typeof(T).GetProperty(propertyname)?.GetValue(item);
 }
