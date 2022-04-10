@@ -14,11 +14,8 @@ namespace WizardingWorld.Pages.Party {
         protected override CharacterAddress ToObject(CharacterAddressView? item) => new CharacterAddressViewFactory().Create(item);
         protected override CharacterAddressView ToView(CharacterAddress? entity) => new CharacterAddressViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
-            nameof(CharacterAddressView.Name),
-            nameof(CharacterAddressView.Code),
             nameof(CharacterAddressView.CharacterID),
             nameof(CharacterAddressView.AddressID),
-            nameof(CharacterAddressView.Description),
         };
         public IEnumerable<SelectListItem> Characters
             => characters?.GetAll(x => x.ToString())?

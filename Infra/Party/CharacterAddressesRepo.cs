@@ -9,11 +9,10 @@ namespace WizardingWorld.Infra.Party {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y)
                 ? q : q.Where(
-                x => x.Code.Contains(y)
-                  || x.CharacterID.Contains(y)
+                x => x.CharacterID.Contains(y)
                   || x.AddressID.Contains(y)
                   || x.ID.Contains(y)
-                  || x.Name.Contains(y));
+            );
         }
     }
 }

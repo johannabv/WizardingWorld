@@ -2,7 +2,7 @@
 
 namespace WizardingWorld.Domain.Party {
     public interface ICharacterAddressesRepo : IRepo<CharacterAddress> { }
-    public sealed class CharacterAddress : NamedEntity<CharacterAddressData> {
+    public sealed class CharacterAddress : BaseEntity<CharacterAddressData> {
         public CharacterAddress() : this(new ()) { }
         public CharacterAddress(CharacterAddressData d) : base(d) { }
         public string CharacterID => GetValue(Data?.CharacterID);

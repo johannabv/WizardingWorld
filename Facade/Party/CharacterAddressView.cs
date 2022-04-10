@@ -7,9 +7,9 @@ namespace WizardingWorld.Facade.Party {
     public sealed class CharacterAddressViewFactory : BaseViewFactory<CharacterAddressView, CharacterAddress, CharacterAddressData> {
         protected override CharacterAddress ToEntity(CharacterAddressData d) => new(d);
     }
-    public class CharacterAddressView : NamedView { 
+    public class CharacterAddressView : BaseView { 
         [Required] [DisplayName("Character")] public string CharacterID { get; set; } = string.Empty;
         [Required] [DisplayName("Place")] public string AddressID { get; set; } = string.Empty;
-        [Required] [DisplayName("Use for")] public new string Code { get; set; } = string.Empty;
+        
     }
 }
