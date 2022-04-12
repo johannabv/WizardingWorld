@@ -21,6 +21,11 @@ namespace WizardingWorld.Infra.Initializers {
             }
         } 
         internal static CountryData CreateCountry(string code, string name, string description) 
-            => new() { ID = code ?? BaseData.NewId, Name = name, Code = code ?? BaseEntity.DefaultStr, Description = description};
+            => new() { 
+                ID = code ?? BaseData.NewId, 
+                Name = name, 
+                Code = code ?? BaseEntity.DefaultStr, 
+                Description = description
+            };
     }
 }

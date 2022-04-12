@@ -182,6 +182,21 @@ namespace WizardingWorld.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Wands",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Core = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wood = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Info = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wands", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -374,6 +389,10 @@ namespace WizardingWorld.Migrations
 
             migrationBuilder.DropTable(
                 name: "Spells",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
+                name: "Wands",
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(
