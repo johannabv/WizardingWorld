@@ -9,5 +9,6 @@ namespace WizardingWorld.Domain.Party {
         public string AddressID => GetValue(Data?.AddressID);
         public Character? Character => GetRepo.Instance<ICharactersRepo>().Get(CharacterID);
         public Address? Address => GetRepo.Instance<IAddressRepo>().Get(AddressID);
+        public AddressUse UseFor => GetValue(Data?.UseFor);
     }
 }

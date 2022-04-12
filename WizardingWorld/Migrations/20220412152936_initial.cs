@@ -76,7 +76,8 @@ namespace WizardingWorld.Migrations
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CharacterID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressID = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AddressID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UseFor = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

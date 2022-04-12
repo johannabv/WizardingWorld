@@ -265,6 +265,9 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UseFor")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.ToTable("CharacterAddresses", "WizardingWorld");

@@ -22,7 +22,5 @@ namespace WizardingWorld.Infra {
         public abstract Task<TDomain> GetAsync(string id);
         public abstract bool Update(TDomain obj);
         public abstract Task<bool> UpdateAsync(TDomain obj);
-
-        
     }
 }

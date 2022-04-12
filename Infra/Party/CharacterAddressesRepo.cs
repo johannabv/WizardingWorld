@@ -12,6 +12,7 @@ namespace WizardingWorld.Infra.Party {
                 x => x.CharacterID.Contains(y)
                   || x.AddressID.Contains(y)
                   || x.ID.Contains(y)
+                  || x.UseFor.ToString().Contains(y)
             );
         }
     }

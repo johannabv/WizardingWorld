@@ -7,6 +7,7 @@ namespace WizardingWorld.Domain {
         private static DateTime DefaultDate => DateTime.MinValue;
         protected static string GetValue(string? v) => v ?? DefaultStr;
         protected static IsoGender GetValue(IsoGender? v) => v ?? IsoGender.NotApplicable;
+        protected static AddressUse GetValue(AddressUse? v) => v ?? AddressUse.NotKnown;
         protected static DateTime GetValue(DateTime? v) => v ?? DefaultDate;
     } 
     public abstract class BaseEntity<TData> : BaseEntity where TData : BaseData, new() {

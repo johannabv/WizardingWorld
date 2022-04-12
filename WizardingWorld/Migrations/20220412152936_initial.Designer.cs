@@ -12,7 +12,7 @@ using WizardingWorld.Data;
 namespace WizardingWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220410190127_initial")]
+    [Migration("20220412152936_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -266,6 +266,9 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("CharacterID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UseFor")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

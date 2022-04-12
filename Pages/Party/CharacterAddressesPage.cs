@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using WizardingWorld.Aids;
+using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
@@ -14,6 +16,7 @@ namespace WizardingWorld.Pages.Party {
         protected override CharacterAddress ToObject(CharacterAddressView? item) => new CharacterAddressViewFactory().Create(item);
         protected override CharacterAddressView ToView(CharacterAddress? entity) => new CharacterAddressViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
+            nameof(CharacterAddressView.UseFor),
             nameof(CharacterAddressView.CharacterID),
             nameof(CharacterAddressView.AddressID),
         };
@@ -25,6 +28,12 @@ namespace WizardingWorld.Pages.Party {
             => addresses?.GetAll(x => x.ToString())?
             .Select(x => new SelectListItem(x.ToString(), x.ID))
             ?? new List<SelectListItem>();
+        public IEnumerable<SelectListItem> UseFors
+         => Enum.GetValues<AddressUse>()?
+            .Select(x => new SelectListItem(x.Description(), x.ToString()))
+            ?? new List<SelectListItem>();
+        public string UseForDescription(AddressUse? x)
+            => (x ?? AddressUse.NotKnown).Description();
         public string CharacterName(string? characterId = null)
             => Characters?.FirstOrDefault(x => x.Value == (characterId ?? string.Empty))?.Text ?? "Unspecified";
         public string AddressName(string? addressId = null)
@@ -33,6 +42,7 @@ namespace WizardingWorld.Pages.Party {
             var r = base.GetValue(name, v);
             return name == nameof(CharacterAddressView.CharacterID) ? CharacterName(r as string)
                 : name == nameof(CharacterAddressView.AddressID) ? AddressName(r as string)
+                : name == nameof(CharacterAddressView.UseFor) ? UseForDescription((AddressUse) r)
                 : r;
         }
     }
