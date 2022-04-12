@@ -14,6 +14,8 @@ namespace WizardingWorld.Infra {
         public DbSet<CountryCurrencyData>? CountryCurrencies { get; set; }
         public DbSet<CharacterAddressData>? CharacterAddresses { get; set; }
         public DbSet<WandData>? Wands { get; set; }
+        public DbSet<WoodData>? Woods { get; set; }
+        public DbSet<CoreData>? Cores { get; set; }
         protected override void OnModelCreating(ModelBuilder b) {
             base.OnModelCreating(b);
             InitializeTables(b);
@@ -29,6 +31,8 @@ namespace WizardingWorld.Infra {
             _ = (b?.Entity<CharacterAddressData>()?.ToTable(nameof(CharacterAddresses), s));
             _ = (b?.Entity<CountryCurrencyData>()?.ToTable(nameof(CountryCurrencies), s));
             _ = (b?.Entity<WandData>()?.ToTable(nameof(Wands), s));
+            _ = (b?.Entity<WoodData>()?.ToTable(nameof(Woods), s));
+            _ = (b?.Entity<CoreData>()?.ToTable(nameof(Cores), s));
         }
     }
 }

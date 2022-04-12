@@ -25,6 +25,8 @@ builder.Services.AddTransient<IAddressRepo, AddressesRepo>();
 builder.Services.AddTransient<ICountryCurrenciesRepo, CountryCurrenciesRepo>();
 builder.Services.AddTransient<ICharacterAddressesRepo, CharacterAddressesRepo>();
 builder.Services.AddTransient<IWandsRepo, WandsRepo>();
+builder.Services.AddTransient<IWoodsRepo, WoodsRepo>();
+builder.Services.AddTransient<ICoresRepo, CoresRepo>();
 
 var app = builder.Build();
 

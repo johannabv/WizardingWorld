@@ -413,6 +413,26 @@ namespace WizardingWorld.Migrations
                     b.ToTable("Spells", "WizardingWorld");
                 });
 
+            modelBuilder.Entity("WizardingWorld.Data.Party.CoreData", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Cores", "WizardingWorld");
+                });
+
             modelBuilder.Entity("WizardingWorld.Data.Party.WandData", b =>
                 {
                     b.Property<string>("ID")
@@ -430,6 +450,26 @@ namespace WizardingWorld.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Wands", "WizardingWorld");
+                });
+
+            modelBuilder.Entity("WizardingWorld.Data.Party.WoodData", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Woods", "WizardingWorld");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -103,6 +103,21 @@ namespace WizardingWorld.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cores",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cores", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Countries",
                 schema: "WizardingWorld",
                 columns: table => new
@@ -194,6 +209,21 @@ namespace WizardingWorld.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Wands", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Woods",
+                schema: "WizardingWorld",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Woods", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -372,6 +402,10 @@ namespace WizardingWorld.Migrations
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(
+                name: "Cores",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
                 name: "Countries",
                 schema: "WizardingWorld");
 
@@ -393,6 +427,10 @@ namespace WizardingWorld.Migrations
 
             migrationBuilder.DropTable(
                 name: "Wands",
+                schema: "WizardingWorld");
+
+            migrationBuilder.DropTable(
+                name: "Woods",
                 schema: "WizardingWorld");
 
             migrationBuilder.DropTable(
