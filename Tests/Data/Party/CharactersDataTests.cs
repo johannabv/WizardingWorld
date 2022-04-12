@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WizardingWorld.Data.Party;
+using WizardingWorld.Data.Enums;
 
 namespace Tests.Data.Party {
     [TestClass] public class CharactersDataTests : SealedClassTests<CharacterData> {

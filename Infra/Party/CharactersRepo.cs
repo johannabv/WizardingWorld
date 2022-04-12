@@ -1,4 +1,4 @@
-﻿using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Enums;
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
@@ -11,7 +11,7 @@ namespace WizardingWorld.Infra.Party {
                 x => x.ID.Contains(y)
                   || x.FirstName.Contains(y)
                   || x.LastName.Contains(y)
-                  || x.Organisation.Contains(y)
+                  || x.Organisation.ToString().Contains(y)
                   || x.HogwartsHouse.Contains(y)
                   || x.Gender.ToString().Contains(y)
                   || x.DoB.ToString().Contains(y)

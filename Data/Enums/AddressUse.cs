@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace WizardingWorld.Data.Party {
+namespace WizardingWorld.Data.Enums {
     public enum AddressUse {
         [Description("Not known")] NotKnown = 0,
         [Description("School")] School = 1,

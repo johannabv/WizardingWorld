@@ -1,4 +1,4 @@
-﻿using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Enums;
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {

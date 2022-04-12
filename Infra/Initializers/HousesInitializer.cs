@@ -1,4 +1,4 @@
-﻿using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Infra.Initializers {
     public sealed class HousesInitializer : BaseInitializer<HouseData> {

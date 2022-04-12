@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WizardingWorld.Data.Party;
+using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Infra {
     public sealed class WizardingWorldDb : DbContext {

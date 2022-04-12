@@ -1,4 +1,4 @@
-﻿using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Domain.Party {
     public interface ICountriesRepo : IRepo<Country> { }

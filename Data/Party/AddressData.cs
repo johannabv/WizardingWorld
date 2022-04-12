@@ -1,4 +1,4 @@
-﻿namespace WizardingWorld.Data.Party {
+﻿namespace WizardingWorld.Data.Enums {
     public sealed class AddressData : BaseData {
         public string? Street { get; set; }
         public string? City { get; set; }

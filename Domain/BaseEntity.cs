@@ -1,5 +1,6 @@
 ﻿using WizardingWorld.Data;
-using WizardingWorld.Data.Party;
+using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Domain {
     public abstract class BaseEntity {
@@ -8,6 +9,7 @@ namespace WizardingWorld.Domain {
         protected static string GetValue(string? v) => v ?? DefaultStr;
         protected static IsoGender GetValue(IsoGender? v) => v ?? IsoGender.NotApplicable;
         protected static AddressUse GetValue(AddressUse? v) => v ?? AddressUse.NotKnown;
+        protected static Side GetValue(Side? v) => v ?? Side.NotKnown;
         protected static DateTime GetValue(DateTime? v) => v ?? DefaultDate;
     } 
     public abstract class BaseEntity<TData> : BaseEntity where TData : BaseData, new() {

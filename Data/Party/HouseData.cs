@@ -1,4 +1,4 @@
-﻿namespace WizardingWorld.Data.Party {
+﻿namespace WizardingWorld.Data.Enums {
     public class HouseData : BaseData {
         public string? HouseName { get; set; } 
         public string? FounderName { get; set; }

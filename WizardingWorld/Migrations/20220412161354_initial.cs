@@ -95,7 +95,7 @@ namespace WizardingWorld.Migrations
                     Gender = table.Column<int>(type: "int", nullable: true),
                     DoB = table.Column<DateTime>(type: "datetime2", nullable: true),
                     HogwartsHouse = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Organisation = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Organisation = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

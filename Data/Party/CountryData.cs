@@ -1,3 +1,3 @@
-﻿namespace WizardingWorld.Data.Party {
+﻿namespace WizardingWorld.Data.Enums {
     public class CountryData : NamedData { }
 }

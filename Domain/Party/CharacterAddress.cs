@@ -1,4 +1,5 @@
-﻿using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Domain.Party {
     public interface ICharacterAddressesRepo : IRepo<CharacterAddress> { }

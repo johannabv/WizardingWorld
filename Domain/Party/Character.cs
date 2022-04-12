@@ -1,5 +1,5 @@
 ﻿using WizardingWorld.Aids;
-using WizardingWorld.Data.Party;
+using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Domain.Party {
     public interface ICharactersRepo : IRepo<Character> { }
@@ -8,7 +8,7 @@ namespace WizardingWorld.Domain.Party {
         public Character(CharacterData d) : base(d) { } 
         public string FirstName =>GetValue(Data?.FirstName);
         public string LastName => GetValue(Data?.LastName);
-        public string Organisation => GetValue(Data?.Organisation);
+        public Side Organisation => GetValue(Data?.Organisation);
         public string HogwartsHouse => GetValue(Data?.HogwartsHouse);
         public IsoGender Gender => GetValue(Data?.Gender);
         public DateTime DoB => GetValue(Data?.DoB); 
