@@ -15,11 +15,11 @@ namespace Tests {
         private string? namespaceOfType;
 
         [TestMethod] public void IsAllTested() => isAllTested();
-        protected virtual void isAllTested()
-        {
+        protected virtual void isAllTested() {
             testingAssembly = getAssembly(this);
             testingTypes = getTypes(testingAssembly);
             namespaceOfTest = getNamespace(this);
+            RemoveNotInNamespace();
             namespaceOfType = removeTestsTagFrom(namespaceOfTest);
             assemblyToBeTested = getAssembly(namespaceOfType);
             typesToBeTested = getTypes(assemblyToBeTested);
@@ -29,6 +29,7 @@ namespace Tests {
             reportNotAllIsTested();
         }
 
+        private void RemoveNotInNamespace() => testingTypes.Remove(x => !Types.NameStarts(x, namespaceOfTest));
         private static Assembly? getAssembly(object o) => GetAssembly.OfType(o);
         private static Assembly? getAssembly(string? name) => GetAssembly.ByName(name);
         private static string? removeTestsTagFrom(string? s) => s?.Remove("Tests.");

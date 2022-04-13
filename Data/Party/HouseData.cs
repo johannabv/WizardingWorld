@@ -1,5 +1,5 @@
 ﻿namespace WizardingWorld.Data.Enums {
-    public class HouseData : BaseData {
+    public sealed class HouseData : BaseData {
         public string? HouseName { get; set; } 
         public string? FounderName { get; set; }
         public string? HeadOfHouseName { get; set; }

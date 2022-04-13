@@ -1,0 +1,11 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
+using WizardingWorld.Data.Enums;
+
+namespace WizardingWorld.Tests.Data.Party {
+    [TestClass] public class CharacterAddressDataTests : SealedClassTests<CharacterAddressData> {
+        [TestMethod] public void CharacterIDTest() => IsProperty<string>();
+        [TestMethod] public void AddressIDTest() => IsProperty<string?>();
+        [TestMethod] public void UseForTest() => IsProperty<AddressUse?>();
+    }
+}

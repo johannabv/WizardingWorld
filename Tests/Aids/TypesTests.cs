@@ -53,7 +53,7 @@ namespace WizardingWorld.Tests.Aids {
         [TestMethod] public void DeclaredMembersTest() {
             AreEqual(1, type?.DeclaredMembers()?.Count);
             var l = typeof(NamedData)?.DeclaredMembers();
-            AreEqual(3, l?.Count);
+            AreEqual(9, l?.Count);
         }
         [TestMethod] public void IsInheritedTest() {
             Type? nullType = null;

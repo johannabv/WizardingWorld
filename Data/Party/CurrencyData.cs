@@ -1,3 +1,3 @@
 ﻿namespace WizardingWorld.Data.Enums {
-    public class CurrencyData : NamedData { }
+    public sealed class CurrencyData : NamedData { }
 }

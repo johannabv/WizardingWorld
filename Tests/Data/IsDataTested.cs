@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Data {
-    [TestClass] public class IsDataTested : IsAssemblyTested {
-
-    }
+namespace WizardingWorld.Tests.Data {
+    [TestClass] public class IsDataTested : IsAssemblyTested { }
 }

@@ -1,3 +1,3 @@
 ﻿namespace WizardingWorld.Data.Enums {
-    public class CountryData : NamedData { }
+    public sealed class CountryData : NamedData { }
 }
