@@ -9,7 +9,15 @@ namespace WizardingWorld.Facade.Party {
         public override CharacterView Create(Character? e) {
             var v = base.Create(e);
             v.FullName=e?.ToString();
+            v.Gender=e?.Gender;
+            v.Organisation=e?.Organisation;
             return v;
+        }
+        public override Character Create(CharacterView? v) {
+            v ??= new CharacterView();
+            v.Gender ??= IsoGender.NotApplicable;
+            v.Organisation ??= Side.NotKnown;
+            return base.Create(v);
         }
     }
     public sealed class CharacterView : BaseView{

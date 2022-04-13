@@ -1,6 +1,5 @@
 ﻿using WizardingWorld.Data;
 using WizardingWorld.Data.Enums;
-using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Domain {
     public abstract class BaseEntity {

@@ -1,14 +1,21 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 
-namespace Tests.Aids {
+namespace WizardingWorld.Tests.Aids {
     [TestClass] public class GetRandomTests : IsTypeTested {
         private void Test<T>(T min, T max) where T : IComparable<T> {
             var x = GetRandom.Value(min, max);
             var y = GetRandom.Value(min, max);
+            var i = 0;
+            while (x == y) {
+                y = GetRandom.Value(min, max);
+                if (i == 2) AreNotEqual(x, y);
+                i++;
+            }
             IsInstanceOfType(x, typeof(T));
             IsInstanceOfType(y, typeof(T));
             IsTrue(x >= (min.CompareTo(max) < 0 ? min : max));
@@ -48,13 +55,11 @@ namespace Tests.Aids {
         [DataRow('A', 'z')]
         [TestMethod] public void CharTest(char min, char max) => Test(min, max);
 
-        [TestMethod]
-        public void BoolTest() {
+        [TestMethod] public void BoolTest() {
             var x = GetRandom.Bool();
             var y = GetRandom.Bool();
             var i = 0;
-            while (x == y)
-            {
+            while (x == y) {
                 y = GetRandom.Bool();
                 if (i == 5) AreNotEqual(x, y);
                 i++;
@@ -68,15 +73,13 @@ namespace Tests.Aids {
                  new object[]{ DateTime.MaxValue.AddYears(-100), DateTime.MaxValue },
                  new object[]{ DateTime.MinValue, DateTime.MinValue.AddYears(100) }
         };
-        [TestMethod]
-        public void StringTest() {
+        [TestMethod]  public void StringTest() {
             var x = GetRandom.Value<string>();
             var y = GetRandom.Value<string>();
             IsInstanceOfType(x, typeof(string));
             IsInstanceOfType(y, typeof(string));
             AreNotEqual(x, y);
-        }
-
+        } 
         [TestMethod] public void ValueTest() {
             var x = GetRandom.Value<SpellData>() as SpellData;
             var y = GetRandom.Value<SpellData>() as SpellData;

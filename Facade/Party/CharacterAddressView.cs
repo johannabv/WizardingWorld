@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using WizardingWorld.Data.Enums;
-using WizardingWorld.Data.Enums;
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Facade.Party {

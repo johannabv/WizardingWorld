@@ -5,6 +5,12 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>$(SolutionName.Replace(" ", "_")).$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
+
+    <RootNamespace>$(SolutionName.Replace(" ", "_")).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
