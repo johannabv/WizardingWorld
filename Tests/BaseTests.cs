@@ -9,8 +9,7 @@ namespace Tests {
         protected object obj;
         protected BaseTests() => obj = CreateObj();
         protected abstract object CreateObj();
-        protected void IsProperty<T>(T? value = default, bool isReadOnly = false)
-        {
+        protected void IsProperty<T>(T? value = default, bool isReadOnly = false) {
             var memberName = GetCallingMember(nameof(IsProperty)).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
             IsNotNull(propertyInfo);
@@ -19,15 +18,13 @@ namespace Tests {
             AreEqual(value, propertyInfo.GetValue(obj));
         }
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
-        private static bool CanWrite(PropertyInfo i, bool isReadOnly)
-        {
+        private static bool CanWrite(PropertyInfo i, bool isReadOnly) {
             var canWrite = i?.CanWrite ?? false;
             AreEqual(canWrite, !isReadOnly);
             return canWrite;
         }
         private static T? Random<T>() => GetRandom.Value<T>();
-        private static string GetCallingMember(string memberName)
-        {
+        private static string GetCallingMember(string memberName) {
             var s = new StackTrace();
             var isNext = false;
             for (int i = 0; i < s.FrameCount - 1; i++)
