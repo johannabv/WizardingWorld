@@ -8,7 +8,7 @@
             new HousesInitializer(db).Init();
             new AddressInitializer(db).Init();
             new CountryCurrenciesInitializer(db).Init();
-            new WoodsInitializer(db).Init();
+            //new WoodsInitializer(db).Init();
         }
     }
 }

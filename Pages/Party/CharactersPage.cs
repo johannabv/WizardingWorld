@@ -18,6 +18,13 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.HogwartsHouse),
             nameof(CharacterView.Organisation),
         };
+        public override string[] IndexColumnsRelatedTable { get; } = new[] {
+            nameof(AddressView.Street),
+            nameof(AddressView.City),
+            nameof(AddressView.Region),
+            nameof(AddressView.CountryID),
+            nameof(AddressView.Description)
+        };
         public IEnumerable<SelectListItem> Houses
             => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Genders
@@ -36,7 +43,7 @@ namespace WizardingWorld.Pages.Party {
             if (name == nameof(CharacterView.Gender)) return GenderDescription((IsoGender)r);
             if (name == nameof(CharacterView.Organisation)) return OrganisationDescription((Side)r);
             return r;
-        } 
+        }
         public List<Address?> Addresses => ToObject(Item).Addresses;
     }
 }

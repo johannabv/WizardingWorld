@@ -23,6 +23,7 @@ namespace WizardingWorld.Pages {
         public bool HasNextPage  => repo.HasNextPage;
         public bool HasPreviousPage  => repo.HasPreviousPage; 
         public virtual string[] IndexColumns => Array.Empty<string>();
+        public virtual string[] IndexColumnsRelatedTable => Array.Empty<string>();
         protected override IActionResult RedirectToIndex() => RedirectToPage("./Index", "Index", new {
             pageIndex = PageIndex,
             currentFilter = CurrentFilter,
