@@ -2,6 +2,7 @@
 using System;
 using Tests;
 using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Data.Party {
     [TestClass] public class CharacterDataTests : SealedClassTests<CharacterData> {

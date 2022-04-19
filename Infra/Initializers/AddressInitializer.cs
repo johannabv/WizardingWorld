@@ -1,4 +1,4 @@
-﻿using WizardingWorld.Data.Enums;
+﻿using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Infra.Initializers {
     public sealed class AddressInitializer : BaseInitializer<AddressData> {

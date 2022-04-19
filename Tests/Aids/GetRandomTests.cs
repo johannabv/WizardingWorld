@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Tests;
 using WizardingWorld.Aids;
-using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
     [TestClass] public class GetRandomTests : IsTypeTested {

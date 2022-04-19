@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WizardingWorld.Aids;
-using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 

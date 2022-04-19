@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests;
 using WizardingWorld.Aids;
-using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
     [TestClass] public class GetNamespaceTests : IsTypeTested {

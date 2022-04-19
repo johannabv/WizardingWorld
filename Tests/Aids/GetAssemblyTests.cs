@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Tests;
 using WizardingWorld.Aids;
-using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
     [TestClass] public class GetAssemblyTests : IsTypeTested {

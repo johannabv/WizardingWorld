@@ -1,4 +1,5 @@
 ﻿using WizardingWorld.Data.Enums;
+using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Infra.Initializers {
     public sealed class CharacterInitializer : BaseInitializer<CharacterData> {

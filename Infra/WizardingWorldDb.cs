@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WizardingWorld.Data.Enums;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Infra {

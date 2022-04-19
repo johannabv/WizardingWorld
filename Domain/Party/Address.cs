@@ -1,4 +1,4 @@
-﻿using WizardingWorld.Data.Enums;
+﻿using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Domain.Party {
     public interface IAddressRepo : IRepo<Address> { }
