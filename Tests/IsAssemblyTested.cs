@@ -16,43 +16,42 @@ namespace Tests {
 
         [TestMethod] public void IsAllTested() => isAllTested();
         protected virtual void isAllTested() {
-            testingAssembly = getAssembly(this);
-            testingTypes = getTypes(testingAssembly);
-            namespaceOfTest = getNamespace(this);
+            testingAssembly = GetTheAssembly(this);
+            testingTypes = GetTypes(testingAssembly);
+            namespaceOfTest = GetTheNamespace(this);
             RemoveNotInNamespace();
-            namespaceOfType = removeTestsTagFrom(namespaceOfTest);
-            assemblyToBeTested = getAssembly(namespaceOfType);
-            typesToBeTested = getTypes(assemblyToBeTested);
-            removeNotNeedTesting();
-            removeTested();
-            if (allAreTested()) return;
-            reportNotAllIsTested();
+            namespaceOfType = RemoveTestsTagFrom(namespaceOfTest);
+            assemblyToBeTested = GetTheAssembly(namespaceOfType);
+            typesToBeTested = GetTypes(assemblyToBeTested);
+            RemoveNotNeedTesting();
+            RemoveTested();
+            if (AllAreTested()) return;
+            ReportNotAllIsTested();
         }
 
         private void RemoveNotInNamespace() => testingTypes.Remove(x => !Types.NameStarts(x, namespaceOfTest));
-        private static Assembly? getAssembly(object o) => GetAssembly.OfType(o);
-        private static Assembly? getAssembly(string? name) => GetAssembly.ByName(name);
-        private static string? removeTestsTagFrom(string? s) => s?.Remove("Tests.");
-        private static string? getNamespace(object o) => GetNamespace.OfType(o);
-        private static List<Type>? getTypes(Assembly? a) => GetAssembly.Types(a);
-        private void reportNotAllIsTested() => IsInconclusive($"Class \"{fullNameOfFirstNotTested()}\" is not tested");
-        private string fullNameOfFirstNotTested() => firstNotTestedType(typesToBeTested)?.FullName ?? string.Empty;
-        private static Type? firstNotTestedType(List<Type>? l) => l.GetFirst();
-        private bool allAreTested() => typesToBeTested.IsEmpty();
-        private void removeTested() => typesToBeTested?.Remove(x => isItTested(x));
-        private bool isItTested(Type x) => testingTypes?.ContainsItem(y => isTestFor(y, x) && isCorrectTest(y)) ?? false;
-        private bool isCorrectTest(Type x) => isCorrectlyInherited(x) && isTestClass(x);
-        private static bool isTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
-        private static bool isCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
-        private static bool isTestFor(Type testingType, Type typeToBeTested)
-        {
+        private static Assembly? GetTheAssembly(object o) => GetAssembly.OfType(o);
+        private static Assembly? GetTheAssembly(string? name) => GetAssembly.ByName(name);
+        private static string? RemoveTestsTagFrom(string? s) => s?.Remove("Tests.");
+        private static string? GetTheNamespace(object o) => GetNamespace.OfType(o);
+        private static List<Type>? GetTypes(Assembly? a) => GetAssembly.Types(a);
+        private void ReportNotAllIsTested() => IsInconclusive($"Class \"{FullNameOfFirstNotTested()}\" is not tested");
+        private string FullNameOfFirstNotTested() => FirstNotTestedType(typesToBeTested)?.FullName ?? string.Empty;
+        private static Type? FirstNotTestedType(List<Type>? l) => l.GetFirst();
+        private bool AllAreTested() => typesToBeTested.IsEmpty();
+        private void RemoveTested() => typesToBeTested?.Remove(x => IsItTested(x));
+        private bool IsItTested(Type x) => testingTypes?.ContainsItem(y => IsTestFor(y, x) && IsCorrectTest(y)) ?? false;
+        private bool IsCorrectTest(Type x) => IsCorrectlyInherited(x) && IsTestClass(x);
+        private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
+        private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
+        private static bool IsTestFor(Type testingType, Type typeToBeTested) {
             var testName = typeToBeTested.Name;
             var length = testName.IndexOf('`');
             if (length >= 0) testName = testName[..length];
             testName += "Tests";
-            return testingType.NameEnds(testName);
+            return testingType.NameEnds($".{testName}");
         }
-        private void removeNotNeedTesting() => typesToBeTested?.Remove(x => !isTypeToBeTested(x));
-        private bool isTypeToBeTested(Type x) => x?.BelongsTo(namespaceOfType) ?? false;
+        private void RemoveNotNeedTesting() => typesToBeTested?.Remove(x => !IsTypeToBeTested(x));
+        private bool IsTypeToBeTested(Type x) => x?.BelongsTo(namespaceOfType) ?? false;
     }
 }
