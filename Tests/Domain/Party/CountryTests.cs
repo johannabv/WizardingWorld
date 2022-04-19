@@ -4,6 +4,7 @@ using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class CountryTests : SealedClassTests<CountryData> {
-
+        [TestMethod] public void CountryCurrenciesTest() => IsInconclusive();
+        [TestMethod] public void CurrenciesTest() => IsInconclusive();
     }
 }
