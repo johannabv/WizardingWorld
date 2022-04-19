@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Tests;
+using WizardingWorld.Data;
 using WizardingWorld.Data.Enums;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Data.Party {
-    [TestClass] public class CharacterDataTests : SealedClassTests<CharacterData> {
+    [TestClass] public class CharacterDataTests : SealedClassTests<CharacterData, BaseData> {
         [TestMethod] public void IDTest() => IsProperty<string?>();
         [TestMethod] public void FirstNameTest() => IsProperty<string?>();
         [TestMethod] public void LastNameTest() => IsProperty<string?>();

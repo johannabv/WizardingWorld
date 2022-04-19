@@ -5,9 +5,9 @@ using WizardingWorld.Domain;
 
 namespace WizardingWorld.Tests.Domain {
     [TestClass]
-    public class NamedEntityTests : AbstractClassTests {
+    public class NamedEntityTests : AbstractClassTests<NamedEntity<CountryData>, BaseEntity<CountryData>> {
         private class TestClass : NamedEntity<CountryData> { }
-        protected override object CreateObj() => new TestClass();
+        protected override NamedEntity<CountryData> CreateObj() => new TestClass();
         [TestMethod] public void NameTest() => IsInconclusive();
         [TestMethod] public void CodeTest() => IsInconclusive();
         [TestMethod] public void DescriptionTest() => IsInconclusive();

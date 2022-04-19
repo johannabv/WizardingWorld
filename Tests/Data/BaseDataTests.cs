@@ -3,9 +3,9 @@ using Tests;
 using WizardingWorld.Data;
 
 namespace WizardingWorld.Tests.Data {
-    [TestClass] public class BaseDataTests : AbstractClassTests {
+    [TestClass] public class BaseDataTests : AbstractClassTests<BaseData, object> {
         private class TestClass : BaseData { }
-        protected override object CreateObj() => new TestClass();
+        protected override BaseData CreateObj() => new TestClass();
         [TestMethod] public void IDTest() => IsProperty<string>();
         [TestMethod] public void NewIdTest() {
             IsNotNull(BaseData.NewId);

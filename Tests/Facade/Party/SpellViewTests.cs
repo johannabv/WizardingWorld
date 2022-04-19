@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
 namespace Tests.Facade.Party {
-    [TestClass] public class SpellViewTests : SealedClassTests<SpellView>{
+    [TestClass] public class SpellViewTests : SealedClassTests<SpellView, BaseView>{
         [TestMethod] public void IDTest() => IsProperty<string>();
         [TestMethod] public void SpellNameTest() => IsProperty<string?>();
         [TestMethod] public void DescriptionTest() => IsProperty<string?>();

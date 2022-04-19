@@ -1,22 +1,24 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using WizardingWorld.Aids;
 
 namespace Tests {
-    public abstract class BaseTests : IsTypeTested
-    {
-        protected object obj;
+    public abstract class BaseTests<TClass, TBaseClass> : IsTypeTested where TClass : class where TBaseClass : class {
+        protected TClass obj;
         protected BaseTests() => obj = CreateObj();
-        protected abstract object CreateObj();
-        protected void IsProperty<T>(T? value = default, bool isReadOnly = false) {
-            var memberName = GetCallingMember(nameof(IsProperty)).Replace("Test", string.Empty);
+        protected abstract TClass CreateObj();
+        protected void IsProperty<T>(T? value = default, bool isReadOnly = false, string? callingMethod = null) {
+            callingMethod ??= nameof(IsProperty);
+            var memberName = GetCallingMember(callingMethod).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
             IsNotNull(propertyInfo);
             if (IsNullOrDefault(value)) value = Random<T>();
             if (CanWrite(propertyInfo, isReadOnly)) propertyInfo.SetValue(obj, value);
             AreEqual(value, propertyInfo.GetValue(obj));
         }
+        protected void IsReadOnly<T>(T? value) => IsProperty<T>(value, true, nameof(IsReadOnly));
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
         private static bool CanWrite(PropertyInfo i, bool isReadOnly) {
             var canWrite = i?.CanWrite ?? false;
@@ -50,5 +52,6 @@ namespace Tests {
             }
             IsTrue(hasProperties, $"No properties found for {x}");
         }
+        [TestMethod] public void BaseClassTest() => AreEqual(typeof(TClass).BaseType, typeof(TBaseClass));
     }
 }

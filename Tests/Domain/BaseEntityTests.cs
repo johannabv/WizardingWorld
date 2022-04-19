@@ -5,11 +5,11 @@ using WizardingWorld.Domain;
 
 namespace WizardingWorld.Tests.Domain {
     [TestClass]
-    public class BaseEntityTests : AbstractClassTests {
+    public class BaseEntityTests : AbstractClassTests<BaseEntity<CountryData>, BaseEntity> {
         private class TestClass : BaseEntity<CountryData> { }
-        protected override object CreateObj() => new TestClass();
+        protected override BaseEntity<CountryData> CreateObj() => new TestClass();
+        [TestMethod] public void IdTest() => IsInconclusive();
         [TestMethod] public void DefaultStrTest() => IsInconclusive();
         [TestMethod] public void DefaultDateTest() => IsInconclusive();
-        [TestMethod] public void GetValueTest() => IsInconclusive();
     }
 }

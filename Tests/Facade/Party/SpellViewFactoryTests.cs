@@ -2,10 +2,11 @@
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
+using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
 namespace Tests.Facade.Party {
-    [TestClass] public class SpellViewFactoryTests : SealedClassTests<SpellViewFactory>{
+    [TestClass] public class SpellViewFactoryTests : SealedClassTests<SpellViewFactory, BaseViewFactory<SpellView, Spell, SpellData>> {
         [TestMethod] public void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
             var d = GetRandom.Value<SpellData>();

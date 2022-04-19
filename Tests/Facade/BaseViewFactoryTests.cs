@@ -5,11 +5,11 @@ using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
 namespace Tests.Facade {
-    [TestClass] public class BaseViewFactoryTests : AbstractClassTests {
+    [TestClass] public class BaseViewFactoryTests : AbstractClassTests<BaseViewFactory<CharacterView, Character, CharacterData>, object> {
         private class TestClass : BaseViewFactory<CharacterView, Character, CharacterData> {
             protected override Character ToEntity(CharacterData d) => new(d);
         }
-        protected override object CreateObj() => new TestClass();
+        protected override BaseViewFactory<CharacterView, Character, CharacterData> CreateObj() => new TestClass();
         
     }
 }
