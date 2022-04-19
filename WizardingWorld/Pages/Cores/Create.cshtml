@@ -1,0 +1,11 @@
+﻿@page
+@model WizardingWorld.Pages.Party.CoresPage
+@using WizardingWorld.Pages.Extensions
+
+@{
+    Layout = "_Create";
+}
+<body>
+    @Html.MyEditorFor(m=>m.Item.ID)
+    <partial name = "_EditCore" />
+</body>
