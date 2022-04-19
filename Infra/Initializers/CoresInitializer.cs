@@ -11,12 +11,11 @@ namespace WizardingWorld.Infra.Initializers {
                 var l = new List<CoreData>();
                 var filePath = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_core.txt";
                 var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                using (StreamReader reader = new StreamReader(stream, Encoding.UTF8)) {
-                    string line = string.Empty;
+                using (StreamReader reader = new(stream, Encoding.UTF8)) {
+                    string? line = string.Empty;
                     while ((line = reader.ReadLine()) != null) l.Add(CreateCore(line.Split(':')[0], line.Split(':')[1]));
                     reader.Close();
                 }
-
                 return l;
             }
         }

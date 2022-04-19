@@ -12,12 +12,11 @@ namespace WizardingWorld.Infra.Initializers {
                 var l = new List<WoodData>();
                 var filePath = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
                 var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                using (StreamReader reader = new StreamReader(stream, Encoding.UTF8)) {
-                    string line = string.Empty;
+                using (StreamReader reader = new(stream, Encoding.UTF8)) {
+                    string? line = string.Empty;
                     while ((line = reader.ReadLine()) != null) l.Add(CreateWood(line.Split(':')[0], line.Split(':')[1]));
                     reader.Close();
                 }
-                
                 return l;
             }
         }
