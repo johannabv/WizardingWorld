@@ -203,7 +203,9 @@ namespace WizardingWorld.Migrations
                 {
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Core = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CoreInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Wood = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WoodInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Info = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

@@ -441,10 +441,16 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Core")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CoreInfo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Info")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wood")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WoodInfo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

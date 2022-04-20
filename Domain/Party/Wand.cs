@@ -8,6 +8,8 @@ namespace WizardingWorld.Domain.Party {
         public string Core => GetValue(Data?.Core);
         public string Wood => GetValue(Data?.Wood);
         public string Info => GetValue(Data?.Info);
+        public string CoreInfo => GetValue(Data?.CoreInfo);
+        public string WoodInfo => GetValue(Data?.WoodInfo);
         public override string ToString() => $"{Info},{Core}, {Wood}";
 
     }
