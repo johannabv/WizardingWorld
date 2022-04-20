@@ -1,7 +1,6 @@
 ﻿using WizardingWorld.Data;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
-using System.IO;
 using System.Text;
 
 namespace WizardingWorld.Infra.Initializers {

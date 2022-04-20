@@ -5,5 +5,6 @@ namespace WizardingWorld.Domain.Party {
     public sealed class Core : NamedEntity<CoreData> {
         public Core() : this(new()) { }
         public Core(CoreData d) : base(d) { }
+        public override string ToString() => $"{Name}: {Description}";
     }
 }
