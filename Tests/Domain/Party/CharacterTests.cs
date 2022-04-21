@@ -10,9 +10,9 @@ namespace WizardingWorld.Tests.Domain.Party {
         protected override Character CreateObj() => new(GetRandom.Value<CharacterData>());
         [TestMethod] public void FirstNameTest() => IsReadOnly(obj.Data.FirstName);
         [TestMethod] public void LastNameTest() => IsReadOnly(obj.Data.LastName);
-        [TestMethod] public void OrganisationTest() => IsInconclusive();
+        [TestMethod] public void OrganisationTest() => IsReadOnly(obj.Data.Organisation);
         [TestMethod] public void HogwartsHouseTest() => IsReadOnly(obj.Data.HogwartsHouse);
-        [TestMethod] public void GenderTest() => IsInconclusive();
+        [TestMethod] public void GenderTest() => IsReadOnly(obj.Data.Gender);
         [TestMethod] public void DoBTest() => IsReadOnly(obj.Data.DoB);
         [TestMethod] public void ToStringTest() => IsInconclusive();
         [TestMethod] public void CharacterAddressesTest() => IsInconclusive();

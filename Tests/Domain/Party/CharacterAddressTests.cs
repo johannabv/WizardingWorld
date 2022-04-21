@@ -12,6 +12,6 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void AddressIDTest() => IsReadOnly(obj.Data.AddressID);
         [TestMethod] public void CharacterTest() => IsInconclusive();
         [TestMethod] public void AddressTest() => IsInconclusive();
-        [TestMethod] public void UseForTest() => IsInconclusive();
+        [TestMethod] public void UseForTest() => IsReadOnly(obj.Data.UseFor);
     }
 }
