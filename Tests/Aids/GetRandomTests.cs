@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using Tests;
 using WizardingWorld.Aids;
+using WizardingWorld.Data.Enums;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class GetRandomTests : IsTypeTested {
+    [TestClass] public class GetRandomTests : TypeTests {
         private void Test<T>(T min, T max) where T : IComparable<T> {
             var x = GetRandom.Value(min, max);
             var y = GetRandom.Value(min, max);
@@ -23,6 +24,16 @@ namespace WizardingWorld.Tests.Aids {
             IsTrue(x <= (min.CompareTo(max) < 0 ? max : min));
             IsTrue(y <= (min.CompareTo(max) < 0 ? max : min));
             AreNotEqual(x, y);
+        }
+        private void Test<T>(Func<T> f, int count = 5) {
+            var x = f();
+            var y = f();
+            var i = 0;
+            while (x.Equals(y)) {
+                y = f();
+                if (i == count) AreNotEqual(x, y);
+                i++;
+            }
         }
 
         [DataRow(-1000, 1000)]
@@ -55,16 +66,8 @@ namespace WizardingWorld.Tests.Aids {
         [DataRow('A', 'z')]
         [TestMethod] public void CharTest(char min, char max) => Test(min, max);
 
-        [TestMethod] public void BoolTest() {
-            var x = GetRandom.Bool();
-            var y = GetRandom.Bool();
-            var i = 0;
-            while (x == y) {
-                y = GetRandom.Bool();
-                if (i == 5) AreNotEqual(x, y);
-                i++;
-            }
-        }
+        [TestMethod] public void BoolTest() => Test(() => GetRandom.Bool());
+
         [DynamicData(nameof(DateTimeValues), DynamicDataSourceType.Property)]
         [TestMethod] public void DateTimeTest(DateTime min, DateTime max) => Test(min, max);
         private static IEnumerable<object[]> DateTimeValues => new List<object[]>() {
@@ -90,5 +93,23 @@ namespace WizardingWorld.Tests.Aids {
             AreNotEqual(x.Description, y.Description, nameof(x.Description));
             AreNotEqual(x.Type, y.Type, nameof(x.Type));
         }
+        [TestMethod] public void EnumOfGenericTest() => Test(() => GetRandom.EnumOf<IsoGender>());
+        
+        [DataRow(typeof(IsoGender))]
+        [TestMethod] public void EnumOfTest(Type t) => Test(() => GetRandom.EnumOf(t));
+        
+        [DataRow(typeof(bool?), false)]
+        [DataRow(typeof(int), false)]
+        [DataRow(typeof(Side?), false)]
+        [DataRow(typeof(DateTime?), false)]
+        [DataRow(typeof(IsoGender), true)]
+        [TestMethod] public void IsEnumTest(Type t, bool expected) => AreEqual(expected, GetRandom.IsEnum(t));
+
+        [DataRow(typeof(bool?), typeof(bool))]
+        [DataRow(typeof(int?), typeof(int))]
+        [DataRow(typeof(double?), typeof(double))]
+        [DataRow(typeof(DateTime?), typeof(DateTime))]
+        [DataRow(typeof(IsoGender?), typeof(IsoGender))]
+        [TestMethod] public void GetUnderlyingTypeTest(Type nullable, Type expected) => AreEqual(expected, GetRandom.GetUnderlyingType(nullable));
     }
 }

@@ -4,7 +4,7 @@ using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Tests.Data.Enums {
-    [TestClass] public class AddressUseTests : IsTypeTested {
+    [TestClass] public class AddressUseTests : TypeTests {
         [TestMethod] public void SchoolTest() => DoTest(AddressUse.School, 1, "School");
         [TestMethod] public void JobTest() => DoTest(AddressUse.Job, 2, "Job");
         [TestMethod] public void NotKnownTest() => DoTest(AddressUse.NotKnown, 0, "Not known");

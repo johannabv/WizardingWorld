@@ -5,7 +5,7 @@ using System.Reflection;
 using WizardingWorld.Aids;
 
 namespace Tests {
-    public abstract class BaseTests<TClass, TBaseClass> : IsTypeTested where TClass : class where TBaseClass : class {
+    public abstract class BaseTests<TClass, TBaseClass> : TypeTests where TClass : class where TBaseClass : class {
         protected TClass obj;
         protected BaseTests() => obj = CreateObj();
         protected abstract TClass CreateObj();

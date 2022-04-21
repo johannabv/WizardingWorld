@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
  
 namespace Tests {
-    public class TestAsserts {
+    public class AssertTests {
         protected static void IsTrue(bool? b, string? message = null) => Assert.IsTrue(b ?? false, message ?? String.Empty);
         protected static void IsFalse(bool? b, string? message = null) => Assert.IsFalse(b ?? true, message ?? String.Empty);
         protected static void IsInconclusive(string? s = null) => Assert.Inconclusive(s ?? string.Empty);

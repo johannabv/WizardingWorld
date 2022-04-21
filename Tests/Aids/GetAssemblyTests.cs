@@ -7,7 +7,7 @@ using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class GetAssemblyTests : IsTypeTested {
+    [TestClass] public class GetAssemblyTests : TypeTests {
         private string? assemblyName;
         private Assembly? assembly;
         private string[] typeNames = Array.Empty<string>();

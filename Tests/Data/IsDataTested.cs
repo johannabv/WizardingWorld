@@ -2,5 +2,5 @@
 using Tests;
 
 namespace WizardingWorld.Tests.Data {
-    [TestClass] public class IsDataTested : IsAssemblyTested { }
+    [TestClass] public class IsDataTested : AssemblyTests { }
 }

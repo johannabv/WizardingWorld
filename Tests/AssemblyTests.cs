@@ -5,7 +5,7 @@ using System.Reflection;
 using WizardingWorld.Aids;
 
 namespace Tests {
-    public abstract class IsAssemblyTested : TestAsserts  {
+    public abstract class AssemblyTests : AssertTests  {
         private Assembly? testingAssembly;
         private Assembly? assemblyToBeTested;
         private List<Type>? testingTypes;
@@ -75,7 +75,7 @@ namespace Tests {
         }
         private static bool IsCorrectTest(Type x) => IsCorrectlyInherited(x) && IsTestClass(x);
         private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
-        private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
+        private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(TypeTests));
         private static bool IsTestFor(Type testingType, Type typeToBeTested) {
             var testName = typeToBeTested.FullName ?? string.Empty;
             testName = testName.RemoveHead();

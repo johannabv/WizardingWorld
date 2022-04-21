@@ -4,7 +4,7 @@ using WizardingWorld.Data.Enums;
 namespace WizardingWorld.Domain {
     public abstract class BaseEntity {
         public static string DefaultStr => "Undefined";
-        private static DateTime DefaultDate => DateTime.MinValue;
+        public static DateTime DefaultDate => DateTime.MinValue;
         protected static string GetValue(string? v) => v ?? DefaultStr;
         protected static IsoGender GetValue(IsoGender? v) => v ?? IsoGender.NotApplicable;
         protected static AddressUse GetValue(AddressUse? v) => v ?? AddressUse.NotKnown;
