@@ -17,7 +17,7 @@ namespace WizardingWorld.Tests.Domain {
             d = GetRandom.Value<CountryData>();
             return new TestClass(d);
         }
-        [TestMethod] public void IdTest() => IsReadOnly(obj.Data.ID);
+        [TestMethod] public void IDTest() => IsReadOnly(obj.Data.ID);
         [TestMethod] public void DataTest() => IsReadOnly(d);
         [TestMethod] public void DefaultStrTest() => AreEqual("Undefined", BaseEntity.DefaultStr);
         [TestMethod] public void DefaultDateTest() => AreEqual(DateTime.MinValue, BaseEntity.DefaultDate);

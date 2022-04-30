@@ -11,13 +11,13 @@ namespace WizardingWorld.Domain.Party {
         public string ZipCode => GetValue(Data?.ZipCode);
         public string Description => GetValue(Data?.Description);
         public string CountryID => GetValue(Data?.CountryID);
-        public override string ToString() => $"{Street}, {City}, {CountryID} ({Description})";
+        public override string ToString() => $"{Street}, {City}, {Country.Name} ({Description})";
         public List<CharacterAddress> CharacterAddresses
             => GetRepo.Instance<ICharacterAddressesRepo>()?
             .GetAll(x => x.AddressID)?
             .Where(x => x.AddressID == ID)?
             .ToList() ?? new List<CharacterAddress>();
-
+        public Country? Country => GetRepo.Instance<ICountriesRepo>().Get(CountryID);
         public List<Character?> Characters
             => CharacterAddresses
             .Select(x => x.Character)
