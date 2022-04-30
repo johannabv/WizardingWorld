@@ -16,6 +16,11 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void CountryIDTest() => IsReadOnly(obj.Data.CountryID);
         [TestMethod] public void ToStringTest() => IsInconclusive();
         [TestMethod] public void CharacterAddressesTest() => IsInconclusive();
+        [TestMethod] public void CountryTest() {
+            var c = IsReadOnly<Country>();
+            IsNotNull(c);
+            IsInstanceOfType(c, typeof(Country));
+        }
         [TestMethod] public void CharactersTest() => IsInconclusive();
     }
 }

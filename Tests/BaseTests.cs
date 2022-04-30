@@ -11,12 +11,20 @@ namespace Tests {
         protected abstract TClass CreateObj();
         protected void IsProperty<T>(T? value = default, bool isReadOnly = false, string? callingMethod = null) {
             callingMethod ??= nameof(IsProperty);
+            var actual = GetProperty(ref value, isReadOnly, callingMethod);
+            AreEqual(value, actual);
+        }
+        protected object? GetProperty<T>(ref T? value, bool isReadOnly, string callingMethod) {
             var memberName = GetCallingMember(callingMethod).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
             IsNotNull(propertyInfo);
             if (IsNullOrDefault(value)) value = Random<T>();
             if (CanWrite(propertyInfo, isReadOnly)) propertyInfo.SetValue(obj, value);
-            AreEqual(value, propertyInfo.GetValue(obj));
+            return propertyInfo.GetValue(obj);
+        }
+        protected object? IsReadOnly<T>() {
+            var v = default(T);
+            return GetProperty(ref v, true, nameof(IsReadOnly));
         }
         protected void IsReadOnly<T>(T? value) => IsProperty<T>(value, true, nameof(IsReadOnly));
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;

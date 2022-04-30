@@ -10,7 +10,15 @@ namespace WizardingWorld.Tests.Domain.Party {
         protected override CountryCurrency CreateObj() => new(GetRandom.Value<CountryCurrencyData>());
         [TestMethod] public void CurrencyIDTest() => IsReadOnly(obj.Data.CurrencyID);
         [TestMethod] public void CountryIDTest() => IsReadOnly(obj.Data.CountryID);
-        [TestMethod] public void CountryTest() => IsInconclusive();
-        [TestMethod] public void CurrencyTest() => IsInconclusive();
+        [TestMethod] public void CountryTest() {
+            var c = IsReadOnly<Country>();
+            IsNotNull(c);
+            IsInstanceOfType(c, typeof(Country));
+        }
+        [TestMethod] public void CurrencyTest() {
+            var c = IsReadOnly<Currency>();
+            IsNotNull(c);
+            IsInstanceOfType(c, typeof(Currency));
+        }
     }
 }
