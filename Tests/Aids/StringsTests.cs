@@ -3,7 +3,7 @@ using Tests;
 using WizardingWorld.Aids;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class StringsTests : TypeTests {
+    [TestClass] public abstract class StringsTests : TypeTests {
         private string? testStr;
         [TestInitialize] public void Init() => testStr = "a1b1c1.d1e1f1.g1h1i1";
         [TestMethod] public void RemoveTest() => AreEqual("abc.def.ghi", Strings.Remove(testStr, "1"));

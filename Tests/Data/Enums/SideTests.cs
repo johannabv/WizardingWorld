@@ -4,7 +4,7 @@ using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 
 namespace WizardingWorld.Tests.Data.Enums {
-    [TestClass] public class SideTests : TypeTests {
+    [TestClass] public abstract class SideTests : TypeTests {
         [TestMethod] public void OoPTest() => DoTest(Side.OoP, 1, "Order of the Phoenix");
         [TestMethod] public void DeathEatersTest() => DoTest(Side.DeathEaters, 2, "Deatheaters");
         [TestMethod] public void NotKnownTest() => DoTest(Side.NotKnown, 0, "Not known");

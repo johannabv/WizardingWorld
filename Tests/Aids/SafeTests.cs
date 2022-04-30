@@ -4,7 +4,7 @@ using Tests;
 using WizardingWorld.Aids;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class SafeTests : TypeTests {
+    [TestClass] public abstract class SafeTests : TypeTests {
         private int expected;
         private int def;
         [TestInitialize] public void Init() {

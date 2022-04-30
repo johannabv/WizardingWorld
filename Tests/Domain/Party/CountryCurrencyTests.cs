@@ -16,8 +16,8 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void CurrencyIDTest() => IsReadOnly(obj.Data.CurrencyID);
         [TestMethod] public void CountryIDTest() => IsReadOnly(obj.Data.CountryID);
         [TestMethod] public void CountryTest()
-            => testItem<ICountriesRepo, Country, CountryData>(obj.CountryID, d => new Country(d), () => obj.Country);
+            => TestItem<ICountriesRepo, Country, CountryData>(obj.CountryID, d => new Country(d), () => obj.Country);
         [TestMethod] public void CurrencyTest()
-            => testItem<ICurrenciesRepo, Currency, CurrencyData>(obj.CurrencyID, d => new Currency(d), () => obj.Currency);
+            => TestItem<ICurrenciesRepo, Currency, CurrencyData>(obj.CurrencyID, d => new Currency(d), () => obj.Currency);
     }
 }

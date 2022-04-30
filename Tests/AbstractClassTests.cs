@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WizardingWorld.Tests;
 
 namespace Tests {
     public abstract class AbstractClassTests<TClass, TBaseClass> 

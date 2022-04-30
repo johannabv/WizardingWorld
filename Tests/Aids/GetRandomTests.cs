@@ -7,7 +7,7 @@ using WizardingWorld.Data.Enums;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class GetRandomTests : TypeTests {
+    [TestClass] public abstract class GetRandomTests : TypeTests {
         private void Test<T>(T min, T max) where T : IComparable<T> {
             var x = GetRandom.Value(min, max);
             var y = GetRandom.Value(min, max);

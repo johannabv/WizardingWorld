@@ -4,7 +4,7 @@ using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class GetNamespaceTests : TypeTests {
+    [TestClass] public abstract class GetNamespaceTests : TypeTests {
         [TestMethod] public void OfTypeTest() {
             var obj = new CountryData();
             var name = obj.GetType().Namespace;

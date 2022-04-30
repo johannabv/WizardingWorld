@@ -7,7 +7,7 @@ using WizardingWorld.Data;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class TypesTests : TypeTests {
+    [TestClass] public abstract class TypesTests : TypeTests {
         private Type type = typeof(object);
         private string? nameSpace;
         private string? fullName;

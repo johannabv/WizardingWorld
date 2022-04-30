@@ -5,7 +5,7 @@ using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class ListsTests : TypeTests {
+    [TestClass] public abstract class ListsTests : TypeTests {
         private List<int> list = new();
         [TestInitialize] public void Init() => list = new List<int>() { 1, 2, 3, 4, 5, 6 };
         [TestMethod] public void GetFirstTest() => AreEqual(1, list.GetFirst());

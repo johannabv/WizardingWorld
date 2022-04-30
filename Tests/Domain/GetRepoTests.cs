@@ -6,7 +6,7 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain {
-    [TestClass] public class GetRepoTests : global::Tests.TypeTests {
+    [TestClass] public abstract class GetRepoTests : global::Tests.TypeTests {
         private class testClass : IServiceProvider {
             public object? GetService(Type serviceType) {
                 throw new NotImplementedException();

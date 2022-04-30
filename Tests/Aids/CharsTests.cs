@@ -3,7 +3,7 @@ using Tests;
 using WizardingWorld.Aids;
 
 namespace WizardingWorld.Tests.Aids {
-    [TestClass] public class CharsTests : TypeTests {
+    [TestClass] public abstract class CharsTests : TypeTests {
         private char letter;
         private char digit;
 

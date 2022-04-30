@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Tests {
-    public class AssertTests {
+    public abstract class AssertTests {
         protected static void IsTrue(bool? b, string? message = null) => Assert.IsTrue(b ?? false, message ?? String.Empty);
         protected static void IsFalse(bool? b, string? message = null) => Assert.IsFalse(b ?? true, message ?? String.Empty);
         protected static void IsInconclusive(string? s = null) => Assert.Inconclusive(s ?? string.Empty);
