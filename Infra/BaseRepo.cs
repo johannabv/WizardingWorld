@@ -10,7 +10,11 @@ namespace WizardingWorld.Infra {
         protected BaseRepo(DbContext? c, DbSet<TData>? s) {
             db = c;
             set = s;
-        } 
+        }
+        internal void Clear() {
+            set?.RemoveRange(set);
+            db?.SaveChanges();
+        }
         public abstract bool Add(TDomain obj);
         public abstract Task<bool> AddAsync(TDomain obj);
         public abstract bool Delete(string id);
