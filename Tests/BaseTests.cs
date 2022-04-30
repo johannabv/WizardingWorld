@@ -47,7 +47,7 @@ namespace WizardingWorld.Tests {
             }
             return string.Empty;
         }
-        internal protected static void ArePropertiesEqual(object x, object y) {
+        internal protected static new void ArePropertiesEqual(object x, object y) {
             var e = Array.Empty<PropertyInfo>();
             var px = x?.GetType()?.GetProperties() ?? e;
             var hasProperties = false;

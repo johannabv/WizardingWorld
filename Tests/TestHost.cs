@@ -23,10 +23,9 @@ namespace Tests {
         }
         private static void EnsureCreated(IServiceCollection s, params Type[] types) {
             var sp = s.BuildServiceProvider();
-            using (var scope = sp.CreateScope()) {
-                var scopedServices = scope.ServiceProvider;
-                foreach (var type in types) EnsureCreated(scopedServices, type);
-            }
+            using var scope = sp.CreateScope();
+            var scopedServices = scope.ServiceProvider;
+            foreach (var type in types) EnsureCreated(scopedServices, type);
         }
         private static void EnsureCreated(IServiceProvider s, Type t) {
             if (s?.GetRequiredService(t) is not DbContext c)

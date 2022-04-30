@@ -18,7 +18,7 @@ namespace Tests {
             (GetRepo.Instance<IAddressRepo>() as AddressesRepo)?.Clear();
             (GetRepo.Instance<ICurrenciesRepo>() as CurrenciesRepo)?.Clear();
             (GetRepo.Instance<ICountryCurrenciesRepo>() as CountryCurrenciesRepo)?.Clear();
-            (GetRepo.Instance<ICharacterAddressesRepo>() as CharacterAddressesRepo)?.Clear(); 
+            (GetRepo.Instance<ICharacterAddressesRepo>() as CharacterAddressesRepo)?.Clear();
         }
         static HostTests() {
             host = new TestHost<Program>();

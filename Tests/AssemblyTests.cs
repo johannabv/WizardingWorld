@@ -43,7 +43,7 @@ namespace Tests {
             _ = typesToBeTested?.Remove(t);
             return t is not null;
         }
-        private bool IsDuplicated(Type x, Type y) {
+        private static bool IsDuplicated(Type x, Type y) {
             if (x == y) return false;
             var nameX = x.Name;
             var nameY = y.Name;

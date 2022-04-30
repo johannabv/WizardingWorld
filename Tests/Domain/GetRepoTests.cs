@@ -7,7 +7,7 @@ using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain {
     [TestClass] public abstract class GetRepoTests : global::Tests.TypeTests {
-        private class testClass : IServiceProvider {
+        private class TestClass : IServiceProvider {
             public object? GetService(Type serviceType) {
                 throw new NotImplementedException();
             }
@@ -15,7 +15,7 @@ namespace WizardingWorld.Tests.Domain {
         [TestMethod] public void InstanceTest() => Assert.IsInstanceOfType(GetRepo.Instance<ICountriesRepo>(), typeof(CountriesRepo));
         [TestMethod] public void SetServiceTest() {
             var s = GetRepo.service;
-            var x = new testClass();
+            var x = new TestClass();
             GetRepo.SetService(x);
             AreEqual(x,GetRepo.service);
             GetRepo.service = s;
