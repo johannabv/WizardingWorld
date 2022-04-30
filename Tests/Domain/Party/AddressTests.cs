@@ -9,7 +9,7 @@ using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class AddressTests : SealedClassTests<Address, BaseEntity<AddressData>> {
-        [TestInitialize] public void TestInitialize() => ((CountriesRepo)GetRepo.Instance<ICountriesRepo>())?.Clear();
+        [TestInitialize] public void TestInitialize() => (GetRepo.Instance<ICountriesRepo>() as CountriesRepo)?.Clear();
         protected override Address CreateObj() => new (GetRandom.Value<AddressData>());
         [TestMethod] public void StreetTest() => IsReadOnly(obj.Data.Street);
         [TestMethod] public void CityTest() => IsReadOnly(obj.Data.City);

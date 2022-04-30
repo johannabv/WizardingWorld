@@ -46,7 +46,7 @@ namespace Tests {
             }
             r.PageSize = 30;
             AreEqual(count, r.Get().Count);
-            ArePropertiesEqual(d, getObj);
+            ArePropertiesEqual(d, getObj());
         }
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
         private static bool CanWrite(PropertyInfo i, bool isReadOnly) {
