@@ -8,10 +8,6 @@ using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class CountryCurrencyTests : SealedClassTests<CountryCurrency, NamedEntity<CountryCurrencyData>> {
-        [TestInitialize] public void TestInitialize() {
-            (GetRepo.Instance<ICountriesRepo>() as CountriesRepo)?.Clear();
-            (GetRepo.Instance<ICurrenciesRepo>() as CurrenciesRepo)?.Clear();
-        }
         protected override CountryCurrency CreateObj() => new(GetRandom.Value<CountryCurrencyData>());
         [TestMethod] public void CurrencyIDTest() => IsReadOnly(obj.Data.CurrencyID);
         [TestMethod] public void CountryIDTest() => IsReadOnly(obj.Data.CountryID);

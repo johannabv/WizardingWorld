@@ -8,9 +8,6 @@ using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class CharacterTests : SealedClassTests<Character, BaseEntity<CharacterData>> {
-        [TestInitialize] public void TestInitialize() {
-            (GetRepo.Instance<ICharacterAddressesRepo>() as CharacterAddressesRepo)?.Clear();
-        }
         protected override Character CreateObj() => new(GetRandom.Value<CharacterData>());
         [TestMethod] public void FirstNameTest() => IsReadOnly(obj.Data.FirstName);
         [TestMethod] public void LastNameTest() => IsReadOnly(obj.Data.LastName);

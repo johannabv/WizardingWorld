@@ -1,14 +1,25 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
 using WizardingWorld.Domain;
+using WizardingWorld.Domain.Party;
+using WizardingWorld.Infra.Party;
 
 namespace Tests {
     public abstract class HostTests : AssertTests {
         internal static readonly TestHost<Program> host;
         internal static readonly HttpClient client;
+        [TestInitialize] public void TestInitialize() {
+            (GetRepo.Instance<ICountriesRepo>() as CountriesRepo)?.Clear();
+            (GetRepo.Instance<ICharactersRepo>() as CharactersRepo)?.Clear();
+            (GetRepo.Instance<IAddressRepo>() as AddressesRepo)?.Clear();
+            (GetRepo.Instance<ICurrenciesRepo>() as CurrenciesRepo)?.Clear();
+            (GetRepo.Instance<ICountryCurrenciesRepo>() as CountryCurrenciesRepo)?.Clear();
+            (GetRepo.Instance<ICharacterAddressesRepo>() as CharacterAddressesRepo)?.Clear(); 
+        }
         static HostTests() {
             host = new TestHost<Program>();
             client = host.CreateClient();
