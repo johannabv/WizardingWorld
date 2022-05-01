@@ -13,7 +13,10 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void HeadOfHouseNameTest() => IsReadOnly(obj.Data.HeadOfHouseName);
         [TestMethod] public void ColorTest() => IsReadOnly(obj.Data.Color);
         [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
-        [TestMethod] public void ToStringTest() => IsInconclusive();
+        [TestMethod] public void ToStringTest() {
+            var expected = $"{obj.HouseName} ({obj.Color}), {obj.Description}";
+            AreEqual(expected, obj.ToString());
+        }
         [TestMethod] public void CharactersTest() => IsInconclusive();
     }
 }

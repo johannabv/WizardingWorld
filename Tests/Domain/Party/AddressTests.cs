@@ -18,12 +18,14 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void ZipCodeTest() => IsReadOnly(obj.Data.ZipCode);
         [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
         [TestMethod] public void CountryIDTest() => IsReadOnly(obj.Data.CountryID);
-        [TestMethod] public void ToStringTest() => IsInconclusive();
+        [TestMethod] public void ToStringTest() {
+            var expected = $"{obj.Street}, {obj.City}, {obj.Country?.Name} ({obj.Description})";
+            AreEqual(expected, obj.ToString());
+        }
         [TestMethod] public void CharactersTest() => IsInconclusive();
         [TestMethod] public void CharacterAddressesTest() 
             => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(
                 d => d.AddressID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses);
-        
         [TestMethod] public void CountryTest() 
             => TestItem<ICountriesRepo, Country, CountryData>(obj.CountryID, d => new Country(d), () => obj.Country);
         

@@ -15,7 +15,10 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void HogwartsHouseTest() => IsReadOnly(obj.Data.HogwartsHouse);
         [TestMethod] public void GenderTest() => IsReadOnly(obj.Data.Gender);
         [TestMethod] public void DoBTest() => IsReadOnly(obj.Data.DoB);
-        [TestMethod] public void ToStringTest() => IsInconclusive();
+        [TestMethod] public void ToStringTest() {
+            var expected = $"{obj.FirstName} {obj.LastName}, {obj.Organisation} ({obj.Gender.Description()}, {obj.DoB}, {obj.HogwartsHouse})";
+            AreEqual(expected, obj.ToString());
+        }
         [TestMethod] public void CharacterAddressesTest() => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(
                 d => d.CharacterID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses);
         [TestMethod] public void AddressesTest() => IsInconclusive();

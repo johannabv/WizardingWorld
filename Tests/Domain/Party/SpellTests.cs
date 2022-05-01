@@ -11,6 +11,9 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void SpellNameTest() => IsReadOnly(obj.Data.SpellName);
         [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
         [TestMethod] public void TypeTest() => IsReadOnly(obj.Data.Type);
-        [TestMethod] public void ToStringTest() => IsInconclusive();
+        [TestMethod] public void ToStringTest() {
+            var expected = $"{obj.SpellName} ({obj.Type}), {obj.Description}";
+            AreEqual(expected, obj.ToString());
+        }
     }
 }
