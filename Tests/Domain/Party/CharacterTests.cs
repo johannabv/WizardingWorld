@@ -4,7 +4,6 @@ using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
 using WizardingWorld.Domain.Party;
-using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class CharacterTests : SealedClassTests<Character, BaseEntity<CharacterData>> {
@@ -21,7 +20,9 @@ namespace WizardingWorld.Tests.Domain.Party {
         }
         [TestMethod] public void CharacterAddressesTest() => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(
                 d => d.CharacterID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses);
-        [TestMethod] public void AddressesTest() => IsInconclusive();
+        [TestMethod] public void AddressesTest() => TestRelatedLists<IAddressRepo, CharacterAddress, Address, AddressData>
+            (CharacterAddressesTest, () => obj.CharacterAddresses, () => obj.Addresses,
+                x => x.AddressID, d => new Address(d), c => c?.Data, x => x?.Address?.Data);
 
     }
 }

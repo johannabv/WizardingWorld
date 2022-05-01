@@ -17,6 +17,7 @@ namespace WizardingWorld.Tests.Domain.Party {
             var expected = $"{obj.HouseName} ({obj.Color}), {obj.Description}";
             AreEqual(expected, obj.ToString());
         }
-        [TestMethod] public void CharactersTest() => IsInconclusive();
+        [TestMethod] public void CharactersTest() => TestList<ICharactersRepo, Character, CharacterData>(
+                d => d.HogwartsHouse = obj.HouseName, d => new Character(d), () => obj.Characters);
     }
 }

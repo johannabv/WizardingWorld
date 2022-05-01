@@ -10,11 +10,12 @@ namespace WizardingWorld.Domain {
         protected static AddressUse GetValue(AddressUse? v) => v ?? AddressUse.NotKnown;
         protected static Side GetValue(Side? v) => v ?? Side.NotKnown;
         protected static DateTime GetValue(DateTime? v) => v ?? DefaultDate;
+        public abstract string ID { get; }
     } 
     public abstract class BaseEntity<TData> : BaseEntity where TData : BaseData, new() {
         public TData Data { get; }
         public BaseEntity() : this(new TData()) { }
         public BaseEntity(TData d) => Data = d; 
-        public string ID => GetValue(Data?.ID);
+        public override string ID => GetValue(Data?.ID);
     }
 }

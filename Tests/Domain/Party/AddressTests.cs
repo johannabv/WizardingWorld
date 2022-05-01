@@ -3,11 +3,9 @@ using System;
 using System.Collections.Generic;
 using Tests;
 using WizardingWorld.Aids;
-using WizardingWorld.Data;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
 using WizardingWorld.Domain.Party;
-using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class AddressTests : SealedClassTests<Address, BaseEntity<AddressData>> {
@@ -22,7 +20,10 @@ namespace WizardingWorld.Tests.Domain.Party {
             var expected = $"{obj.Street}, {obj.City}, {obj.Country?.Name} ({obj.Description})";
             AreEqual(expected, obj.ToString());
         }
-        [TestMethod] public void CharactersTest() => IsInconclusive();
+        [TestMethod] public void CharactersTest() 
+            => TestRelatedLists<ICharactersRepo, CharacterAddress, Character, CharacterData>
+            (CharacterAddressesTest, () => obj.CharacterAddresses, () => obj.Characters, 
+                x => x.CharacterID, d => new Character(d), c => c?.Data, x => x?.Character?.Data);
         [TestMethod] public void CharacterAddressesTest() 
             => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(
                 d => d.AddressID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses);
