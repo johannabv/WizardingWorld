@@ -1,33 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WizardingWorld.Aids;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting; 
 using WizardingWorld.Data.Party;
-using WizardingWorld.Domain.Party;
-using WizardingWorld.Facade;
+using WizardingWorld.Domain.Party; 
 using WizardingWorld.Facade.Party;
+using WizardingWorld.Tests.Facade.Party;
 
 namespace Tests.Facade.Party {
-    [TestClass] public class SpellViewFactoryTests : SealedClassTests<SpellViewFactory, BaseViewFactory<SpellView, Spell, SpellData>> {
-        [TestMethod] public void CreateTest() { }
-        [TestMethod] public void CreateViewTest() {
-            var d = GetRandom.Value<SpellData>();
-            var e = new Spell(d);
-            var v = new SpellViewFactory().Create(e);
-            IsNotNull(v);
-            AreEqual(v.ID, e.ID);
-            AreEqual(v.SpellName, e.SpellName);
-            AreEqual(v.Description, e.Description);
-            AreEqual(v.Type, e.Type);
-            AreEqual(v.FullName, e.ToString());
-        }
-        [TestMethod] public void CreateEntityTest() {
-            var v = GetRandom.Value<SpellView>();
-            var e = new SpellViewFactory().Create(v);
-            IsNotNull(e);
-            AreEqual(e.ID, v?.ID);
-            AreEqual(e.SpellName, v?.SpellName);
-            AreEqual(e.Description, v?.Description);
-            AreEqual(e.Type, v?.Type);
-            AreNotEqual(e.ToString(), v?.FullName);
-        }
+    [TestClass] public class SpellViewFactoryTests
+        : ViewFactoryTests<SpellViewFactory, SpellView, Spell, SpellData> {
+        protected override Spell ToObject(SpellData d) => new(d);
     }
 }

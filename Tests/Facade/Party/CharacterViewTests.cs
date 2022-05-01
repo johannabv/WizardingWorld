@@ -6,12 +6,12 @@ using WizardingWorld.Facade.Party;
 
 namespace Tests.Facade.Party {
     [TestClass] public class CharacterViewTests : SealedClassTests<CharacterView, BaseView> {
-        [TestMethod] public void IDTest() => IsProperty<string>();
-        [TestMethod] public void FirstNameTest() => IsProperty<string?>();
-        [TestMethod] public void LastNameTest() => IsProperty<string?>();
-        [TestMethod] public void GenderTest() => IsProperty<IsoGender>();
-        [TestMethod] public void DoBTest() => IsProperty<DateTime?>();
-        [TestMethod] public void HogwartsHouseTest() => IsProperty<string?>();
-        [TestMethod] public void OrganisationTest() => IsProperty<Side?>();
+        [TestMethod] public void FirstNameTest() => IsDisplayNamed<string?>("First name");
+        [TestMethod] public void LastNameTest() => IsRequired<string?>("Last name");
+        [TestMethod] public void GenderTest() => IsRequired<IsoGender>("Gender");
+        [TestMethod] public void DoBTest() => IsDisplayNamed<DateTime?>("Date of Birth");
+        [TestMethod] public void HogwartsHouseTest() => IsDisplayNamed<string?>("Hogwartz House");
+        [TestMethod] public void OrganisationTest() => IsDisplayNamed<Side?>("Organisation");
+        [TestMethod] public void FullNameTest() => IsDisplayNamed<string?>("Full info");
     }
 }
