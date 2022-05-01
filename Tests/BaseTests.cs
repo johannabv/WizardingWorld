@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Reflection;
 using Tests;
@@ -15,9 +17,26 @@ namespace WizardingWorld.Tests {
             var actual = GetProperty(ref value, isReadOnly, callingMethod);
             AreEqual(value, actual);
         }
-        protected object? GetProperty<T>(ref T? value, bool isReadOnly, string callingMethod) {
+        protected PropertyInfo? IsDisplayNamed<T>(string? displayName = null, T? value = default, bool isReadOnly = false, string? callingMethod = null) {
+            callingMethod ??= nameof(IsDisplayNamed);
+            var propertyInfo = GetPropertyInfo(callingMethod);
+            IsProperty(value, isReadOnly, callingMethod);
+            if (propertyInfo is null) return propertyInfo;
+            var a = propertyInfo.GetAttribute<DisplayNameAttribute>();
+            AreEqual(displayName, a?.DisplayName, nameof(DisplayNameAttribute));
+            return propertyInfo;
+        }
+        protected void IsRequired<T>(string? displayName = null, T? value = default, bool isReadOnly = false) {
+            var propertyInfo = IsDisplayNamed(displayName, value, isReadOnly, nameof(IsRequired));
+            IsTrue(propertyInfo?.HasAttribute<RequiredAttribute>(), nameof(RequiredAttribute));
+        }
+        protected PropertyInfo? GetPropertyInfo(string callingMethod) {
             var memberName = GetCallingMember(callingMethod).Replace("Test", string.Empty);
-            var propertyInfo = obj.GetType().GetProperty(memberName);
+            return obj.GetType().GetProperty(memberName);
+            
+        }
+        protected object? GetProperty<T>(ref T? value, bool isReadOnly, string callingMethod) {
+            var propertyInfo = GetPropertyInfo(callingMethod);
             IsNotNull(propertyInfo);
             if (!isReadOnly && IsNullOrDefault(value)) value = Random<T>();
             if (CanWrite(propertyInfo, isReadOnly)) propertyInfo.SetValue(obj, value);
@@ -28,7 +47,6 @@ namespace WizardingWorld.Tests {
             return GetProperty(ref v, true, callingMethod ?? nameof(IsReadOnly));
         }
         protected void IsReadOnly<T>(T? value) => IsProperty(value, true, nameof(IsReadOnly));
-
         private static bool IsNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
         private static bool CanWrite(PropertyInfo i, bool isReadOnly) {
             var canWrite = i?.CanWrite ?? false;

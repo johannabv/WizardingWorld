@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade;
@@ -10,6 +11,16 @@ namespace Tests.Facade {
             protected override Character ToEntity(CharacterData d) => new(d);
         }
         protected override BaseViewFactory<CharacterView, Character, CharacterData> CreateObj() => new TestClass();
-        
+        [TestMethod] public void CreateTest() { }
+        [TestMethod] public void CreateViewTest() {
+            var v = GetRandom.Value<CharacterView>();
+            var o = obj.Create(v);
+            ArePropertiesEqual(v, o.Data);
+        }
+        [TestMethod] public void CreateObjectTest() {
+            var d = GetRandom.Value<CharacterData>();
+            var v = obj.Create(new Character(d));
+            ArePropertiesEqual(d, v);
+        }
     }
 }

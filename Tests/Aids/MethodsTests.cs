@@ -9,5 +9,10 @@ namespace WizardingWorld.Tests.Aids {
             IsTrue(m.HasAttribute<TestMethodAttribute>());
             IsFalse(m.HasAttribute<TestInitializeAttribute>());
         }
+        [TestMethod] public void GetAttributeTest() {
+            var m = GetType().GetMethod(nameof(GetAttributeTest));
+            IsNotNull(Methods.GetAttribute<TestMethodAttribute>(m));
+            IsNull(Methods.GetAttribute<TestInitializeAttribute>(m));
+        }
     }
 }
