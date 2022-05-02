@@ -12,7 +12,7 @@ using WizardingWorld.Data;
 namespace WizardingWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220420185325_initial")]
+    [Migration("20220502000309_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -440,19 +440,13 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Core")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CoreInfo")
+                    b.Property<string>("CoreID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Info")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Wood")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WoodInfo")
+                    b.Property<string>("WoodID")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -465,14 +459,13 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Traits")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

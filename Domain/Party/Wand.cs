@@ -5,12 +5,11 @@ namespace WizardingWorld.Domain.Party {
     public sealed class Wand : BaseEntity<WandData> {
         public Wand() : this(new()) { }
         public Wand(WandData d) : base(d) { }
-        public string Core => GetValue(Data?.Core);
-        public string Wood => GetValue(Data?.Wood);
+        public string CoreID => GetValue(Data?.CoreID);
+        public string WoodID => GetValue(Data?.WoodID);
         public string Info => GetValue(Data?.Info);
-        public string CoreInfo => GetValue(Data?.CoreInfo);
-        public string WoodInfo => GetValue(Data?.WoodInfo);
-        public override string ToString() => $"{Info},{Core}, {Wood}";
-
+        public Wood? WoodItem => GetRepo.Instance<IWoodsRepo>().Get(WoodID);
+        public Core? CoreItem => GetRepo.Instance<ICoresRepo>().Get(CoreID);
+        public override string ToString() => $"{Info},{CoreItem}, {WoodItem}";
     }
 }

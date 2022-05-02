@@ -2,8 +2,7 @@
 @using WizardingWorld.Pages.Extensions
 
 @Html.MyViewerFor(m=>m.Item.Info)
-@Html.MyViewerFor(m => m.Item.Core, Model?.CoreName(Model?.Item?.Core))
-@Html.MyViewerFor(m => m.Item.CoreInfo, Model?.CorrectCoreInfo(Model?.Item?.Core))
-@Html.MyViewerFor(m => m.Item.Wood, Model?.WoodName(Model?.Item?.Wood))
-@Html.MyViewerFor(m => m.Item.WoodInfo, Model?.CorrectWoodInfo(Model?.Item?.Wood))
+@Html.MyViewerFor(m => m.Item.CoreID, Model?.CoreDescription(Model?.Item?.CoreID))
+@Html.MyViewerFor(m => m.Item.WoodID, Model?.WoodDescription(Model?.Item?.WoodID))
+
 

@@ -8,6 +8,7 @@ namespace WizardingWorld.Pages.Party {
         protected override WoodView ToView(Wood? entity) => new WoodViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(WoodView.Name),
+            nameof(WoodView.Traits),
             nameof(WoodView.Description)
         };
     }
