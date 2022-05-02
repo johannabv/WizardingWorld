@@ -6,8 +6,11 @@
 
 @{
     Layout = "_Details";
+    var columns = new[] { nameof(WoodView.Description) };
+    object? GetValue<T>(string propertyname, T item) => typeof(T).GetProperty(propertyname)?.GetValue(item);
 }
 
 <body>
     <partial name = "_ShowWand" />
+    <tr> <td> @Html.MyViewerFor(m => m.WoodInfos, GetValue(columns[0], Model.Woods.First())) </td> </tr>
 </Body>

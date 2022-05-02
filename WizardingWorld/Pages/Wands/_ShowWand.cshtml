@@ -1,8 +1,8 @@
 ﻿@model WizardingWorld.Pages.Party.WandsPage
+@using WizardingWorld.Facade.Party
 @using WizardingWorld.Pages.Extensions
 
 @Html.MyViewerFor(m=>m.Item.Info)
 @Html.MyViewerFor(m => m.Item.CoreID, Model?.CoreDescription(Model?.Item?.CoreID))
 @Html.MyViewerFor(m => m.Item.WoodID, Model?.WoodDescription(Model?.Item?.WoodID))
-
 

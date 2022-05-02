@@ -11,5 +11,10 @@ namespace WizardingWorld.Domain.Party {
         public Wood? WoodItem => GetRepo.Instance<IWoodsRepo>().Get(WoodID);
         public Core? CoreItem => GetRepo.Instance<ICoresRepo>().Get(CoreID);
         public override string ToString() => $"{Info},{CoreItem}, {WoodItem}";
+        public List<Wood> Woods
+            => GetRepo.Instance<IWoodsRepo>()?
+            .GetAll(x => x.Name)?
+            .Where(x => x.Name == WoodID)?
+            .ToList() ?? new List<Wood>();
     }
 }
