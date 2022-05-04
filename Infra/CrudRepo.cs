@@ -58,9 +58,11 @@ namespace WizardingWorld.Infra {
         }
         public override async Task<bool> UpdateAsync(TDomain obj) {
             try {
+                if(db == null) return false;
+                db.ChangeTracker.Clear();
                 var d = obj.Data;
-                if (db is not null) db.Attach(d).State = EntityState.Modified;
-                _ = (db is null) ? 0 : await db.SaveChangesAsync();
+                db.Attach(d).State = EntityState.Modified;
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch { return false; }

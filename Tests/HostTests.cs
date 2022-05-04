@@ -12,7 +12,7 @@ namespace Tests {
     public abstract class HostTests : AssertTests {
         internal static readonly TestHost<Program> host;
         internal static readonly HttpClient client;
-        [TestInitialize] public void TestInitialize() {
+        [TestInitialize] public virtual void TestInitialize() {
             (GetRepo.Instance<ICountriesRepo>() as CountriesRepo)?.Clear();
             (GetRepo.Instance<ICharactersRepo>() as CharactersRepo)?.Clear();
             (GetRepo.Instance<IAddressRepo>() as AddressesRepo)?.Clear();
