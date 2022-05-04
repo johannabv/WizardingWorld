@@ -8,7 +8,7 @@ namespace Tests {
     }
     public abstract class SealedBaseTests<TClass, TBaseClass>
         : BaseTests<TClass, TBaseClass> where TClass : class where TBaseClass : class {
-        [TestMethod] public void IsSealedTest() => isSealedTest(); 
+        [TestMethod] public void IsSealedTest() => isSealedTest();
         protected virtual void isSealedTest() => IsTrue(obj?.GetType()?.IsSealed ?? false);
     }
 }

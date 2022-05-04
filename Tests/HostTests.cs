@@ -27,7 +27,7 @@ namespace Tests {
             host = new TestHost<Program>();
             client = host.CreateClient();
         }
-        protected abstract object? IsReadOnly<T>(string? callingMethod = null);
+        protected virtual object? IsReadOnly<T>(string? callingMethod = null) => null;
 
         protected void TestList<TRepo, TObj, TData>(Action<TData> setId, Func<TData, TObj> toObj, Func<List<TObj>> getList)
             where TRepo : class, IRepo<TObj> where TObj : BaseEntity<TData> where TData : BaseData, new() {
