@@ -9,8 +9,12 @@ namespace Tests.Infra {
     [TestClass] public class RepoTests : AbstractClassTests<Repo<Character, CharacterData>, PagedRepo<Character, CharacterData>> {
         private class TestClass : Repo<Character, CharacterData> {
             public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { } 
-            protected override Character ToDomain(CharacterData d)=> new(d);
+            protected internal override Character ToDomain(CharacterData d)=> new(d);
         }
         protected override Repo<Character, CharacterData> CreateObj() => new TestClass(null,null);
-    }  
+    }
+    [TestClass] public class WizardingWorldDbTests : SealedBaseTests<WizardingWorldDb, DbContext> {
+        protected override WizardingWorldDb CreateObj() => null;
+        protected override void isSealedTest() => IsInconclusive();
+    }
 }

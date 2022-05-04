@@ -2,9 +2,9 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class WandsRepo : Repo<Wand, WandData>, IWandsRepo {
+    public sealed class WandsRepo : Repo<Wand, WandData>, IWandsRepo {
         public WandsRepo(WizardingWorldDb? db) : base(db, db?.Wands) { }
-        protected override Wand ToDomain(WandData d) => new(d);
+        protected internal override Wand ToDomain(WandData d) => new(d);
         internal override IQueryable<WandData> AddFilter(IQueryable<WandData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(

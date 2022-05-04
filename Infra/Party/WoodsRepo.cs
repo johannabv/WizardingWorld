@@ -2,9 +2,9 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class WoodsRepo : Repo<Wood, WoodData>, IWoodsRepo {
+    public sealed class WoodsRepo : Repo<Wood, WoodData>, IWoodsRepo {
         public WoodsRepo(WizardingWorldDb? db) : base(db, db?.Woods) { }
-        protected override Wood ToDomain(WoodData d) => new(d);
+        protected internal override Wood ToDomain(WoodData d) => new(d);
         internal override IQueryable<WoodData> AddFilter(IQueryable<WoodData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(

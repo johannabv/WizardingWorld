@@ -2,9 +2,9 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class CharactersRepo : Repo<Character, CharacterData>, ICharactersRepo {
+    public sealed class CharactersRepo : Repo<Character, CharacterData>, ICharactersRepo {
         public CharactersRepo(WizardingWorldDb? db) : base(db, db?.Characters) { }
-        protected override Character ToDomain(CharacterData d) => new(d);
+        protected internal override Character ToDomain(CharacterData d) => new(d);
         internal override IQueryable<CharacterData> AddFilter(IQueryable<CharacterData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(

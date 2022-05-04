@@ -2,9 +2,9 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public class CoresRepo : Repo<Core, CoreData>, ICoresRepo {
+    public sealed class CoresRepo : Repo<Core, CoreData>, ICoresRepo {
         public CoresRepo(WizardingWorldDb? db) : base(db, db?.Cores) { }
-        protected override Core ToDomain(CoreData d) => new(d);
+        protected internal override Core ToDomain(CoreData d) => new(d);
         internal override IQueryable<CoreData> AddFilter(IQueryable<CoreData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(

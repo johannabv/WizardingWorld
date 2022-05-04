@@ -9,7 +9,7 @@ namespace WizardingWorld.Infra {
         public override bool Add(TDomain obj) => AddAsync(obj).GetAwaiter().GetResult();
         public override bool Delete(string id) => DeleteAsync(id).GetAwaiter().GetResult();
         public override List<TDomain> Get() => GetAsync().GetAwaiter().GetResult();
-        public override List<TDomain> GetAll<TKey>(Func<TDomain, TKey>? orderBy = null) {
+        public override List<TDomain> GetAll(Func<TDomain, dynamic>? orderBy = null) {
             var r = new List<TDomain>();
             if (set is null) return r;
             foreach (var d in set) r.Add(ToDomain(d));
@@ -65,7 +65,7 @@ namespace WizardingWorld.Infra {
             }
             catch { return false; }
         }
-        protected abstract TDomain ToDomain(TData d);
+        protected internal abstract TDomain ToDomain(TData d);
     }
 }
 

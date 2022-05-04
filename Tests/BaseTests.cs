@@ -80,5 +80,9 @@ namespace WizardingWorld.Tests {
             IsTrue(hasProperties, $"No properties found for {x}");
         }
         [TestMethod] public void BaseClassTest() => AreEqual(typeof(TClass).BaseType, typeof(TBaseClass));
+        protected void IsAbstractMethod(string name, params Type[] args) {
+            var mi = typeof(TClass).GetMethod(name, args);
+            AreEqual(true, mi?.IsAbstract, name);
+        }
     }
 }
