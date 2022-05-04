@@ -58,6 +58,7 @@ namespace WizardingWorld.Tests.Infra {
             AreEqual(count + 1, await set.CountAsync());
         }
         [TestMethod] public async Task DeleteTest() {
+            IsNotNull(d);
             await GetTest();
             _ = obj.Delete(d.ID);
             var x = obj.Get(d.ID);
@@ -65,6 +66,7 @@ namespace WizardingWorld.Tests.Infra {
             AreNotEqual(d.ID, x.ID);
         }
         [TestMethod] public async Task DeleteAsyncTest() {
+            IsNotNull(d);
             await GetTest();
             _ = obj.DeleteAsync(d.ID);
             var x = obj.Get(d.ID);

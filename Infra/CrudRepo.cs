@@ -11,8 +11,8 @@ namespace WizardingWorld.Infra {
         public override List<TDomain> Get() => GetAsync().GetAwaiter().GetResult();
         public override List<TDomain> GetAll(Func<TDomain, dynamic>? orderBy = null) {
             var r = new List<TDomain>();
-            if (set is null) return r;
-            foreach (var d in set) r.Add(ToDomain(d));
+            if (Set is null) return r;
+            foreach (var d in Set) r.Add(ToDomain(d));
             return (orderBy is null) ? r : r.OrderBy(orderBy).ToList();
         }
         public override TDomain Get(string id) => GetAsync(id).GetAwaiter().GetResult();
@@ -20,18 +20,18 @@ namespace WizardingWorld.Infra {
         public override async Task<bool> AddAsync(TDomain obj) {
             var d = obj.Data;
             try {
-                _ = (set is null) ? null : await set.AddAsync(d);
-                _ = (db is null) ? 0 : await db.SaveChangesAsync();
+                _ = (Set is null) ? null : await Set.AddAsync(d);
+                _ = (Db is null) ? 0 : await Db.SaveChangesAsync();
                 return true;
             }
             catch { return false; }
         }
         public override async Task<bool> DeleteAsync(string id) {
             try {
-                var d = (set is null) ? null : await set.FindAsync(id);
+                var d = (Set is null) ? null : await Set.FindAsync(id);
                 if (d == null) return false;
-                _ = set?.Remove(d);
-                _ = (db is null) ? 0 : await db.SaveChangesAsync();
+                _ = Set?.Remove(d);
+                _ = (Db is null) ? 0 : await Db.SaveChangesAsync();
                 return true;
             }
             catch { return false; }
@@ -47,22 +47,22 @@ namespace WizardingWorld.Infra {
             catch { return new List<TDomain>(); }
         }
         internal static async Task<List<TData>> RunSQL(IQueryable<TData> query) => await query.AsNoTracking().ToListAsync();
-        internal protected virtual IQueryable<TData> CreateSQL() => from s in set select s;
+        internal protected virtual IQueryable<TData> CreateSQL() => from s in Set select s;
         public override async Task<TDomain> GetAsync(string id) {
             try {
                 if (id == null) return new TDomain();
-                var d = (set is null) ? null : await set.FirstOrDefaultAsync(x => x.ID == id);
+                var d = (Set is null) ? null : await Set.FirstOrDefaultAsync(x => x.ID == id);
                 return d == null ? new TDomain() : ToDomain(d);
             }
             catch { return new TDomain(); }
         }
         public override async Task<bool> UpdateAsync(TDomain obj) {
             try {
-                if(db == null) return false;
-                db.ChangeTracker.Clear();
+                if(Db == null) return false;
+                Db.ChangeTracker.Clear();
                 var d = obj.Data;
-                db.Attach(d).State = EntityState.Modified;
-                _ = await db.SaveChangesAsync();
+                Db.Attach(d).State = EntityState.Modified;
+                _ = await Db.SaveChangesAsync();
                 return true;
             }
             catch { return false; }

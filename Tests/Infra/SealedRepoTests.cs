@@ -18,7 +18,7 @@ namespace WizardingWorld.Tests.Infra {
         private static Type setType => typeof(DbSet<TData>);
         private WizardingWorldDb wizardingWorldDb {
             get {
-                var o = obj.db;
+                var o = obj.Db;
                 IsNotNull(o);
                 var db = o as WizardingWorldDb;
                 IsNotNull(db);
@@ -34,8 +34,8 @@ namespace WizardingWorld.Tests.Infra {
             InstanceTest(expected, t);
             AreEqual(expected, o);
         }
-        [TestMethod] public void DbContextTest() => InstanceTest(obj.db, WizardingWorldType);
-        [TestMethod] public void DbSetTest() => InstanceTest(obj.set, setType, GetSet(wizardingWorldDb));
+        [TestMethod] public void DbContextTest() => InstanceTest(obj.Db, WizardingWorldType);
+        [TestMethod] public void DbSetTest() => InstanceTest(obj.Set, setType, GetSet(wizardingWorldDb));
         [TestMethod] public void ToDomainTest() {
             var d = GetRandom.Value<TData>();
             var o = obj.ToDomain(d);

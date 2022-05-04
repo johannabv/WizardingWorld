@@ -5,15 +5,15 @@ using WizardingWorld.Domain;
 namespace WizardingWorld.Infra {
     public abstract class BaseRepo<TDomain, TData> : IBaseRepo<TDomain>
         where TDomain : BaseEntity<TData>, new() where TData : BaseData, new() {
-        protected internal DbContext? db { get; }
-        protected internal DbSet<TData>? set { get; }
+        protected internal DbContext? Db { get; }
+        protected internal DbSet<TData>? Set { get; }
         protected BaseRepo(DbContext? c, DbSet<TData>? s) {
-            db = c;
-            set = s;
+            Db = c;
+            Set = s;
         }
         internal void Clear() {
-            set?.RemoveRange(set);
-            db?.SaveChanges();
+            Set?.RemoveRange(Set);
+            Db?.SaveChanges();
         }
         public abstract bool Add(TDomain obj);
         public abstract Task<bool> AddAsync(TDomain obj);

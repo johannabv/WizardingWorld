@@ -29,22 +29,22 @@ namespace WizardingWorld.Tests.Infra {
             public override Task<bool> UpdateAsync(Character obj) => throw new NotImplementedException();
         }
         protected override BaseRepo<Character, CharacterData> CreateObj() => new TestClass(null, null);
-        [TestMethod] public void dbTest() => IsReadOnly<DbContext?>();
-        [TestMethod] public void setTest() => IsReadOnly<DbSet<CharacterData>?>();
+        [TestMethod] public void DbTest() => IsReadOnly<DbContext?>();
+        [TestMethod] public void SetTest() => IsReadOnly<DbSet<CharacterData>?>();
         [TestMethod] public void BaseRepoTest() {
             var db = GetRepo.Instance<WizardingWorldDb>();
             var set = db?.Characters;
             IsNotNull(set);
             obj = new TestClass(db, set);
-            AreEqual(db, obj.db);
-            AreEqual(set, obj.set);
+            AreEqual(db, obj.Db);
+            AreEqual(set, obj.Set);
         }
         [TestMethod] public async Task ClearTest() {
             BaseRepoTest();
             var cnt = GetRandom.Int32(5, 30);
-            var db = obj.db;
+            var db = obj.Db;
             IsNotNull(db);
-            var set = obj.set;
+            var set = obj.Set;
             IsNotNull(set);
             for (var i = 0; i < cnt; i++) set.Add(GetRandom.Value<CharacterData>());
             AreEqual(0, await set.CountAsync());
