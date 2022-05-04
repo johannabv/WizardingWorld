@@ -29,8 +29,8 @@ namespace WizardingWorld.Tests.Infra {
             public override Task<bool> UpdateAsync(Character obj) => throw new NotImplementedException();
         }
         protected override BaseRepo<Character, CharacterData> CreateObj() => new TestClass(null, null);
-        [TestMethod] public void DbTest() => IsReadOnly<DbContext?>();
-        [TestMethod] public void SetTest() => IsReadOnly<DbSet<CharacterData>?>();
+        [TestMethod] public void dbTest() => IsReadOnly<DbContext?>();
+        [TestMethod] public void setTest() => IsReadOnly<DbSet<CharacterData>?>();
         [TestMethod] public void BaseRepoTest() {
             var db = GetRepo.Instance<WizardingWorldDb>();
             var set = db?.Characters;

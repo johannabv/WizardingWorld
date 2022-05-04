@@ -10,6 +10,10 @@ using WizardingWorld.Aids;
 namespace WizardingWorld.Tests {
     public abstract class BaseTests<TClass, TBaseClass> : TypeTests where TClass : class where TBaseClass : class {
         protected TClass obj;
+        private readonly BindingFlags AllFlags = BindingFlags.Public
+            | BindingFlags.NonPublic
+            | BindingFlags.Instance
+            | BindingFlags.Static;
         protected BaseTests() => obj = CreateObj();
         protected abstract TClass CreateObj();
         protected void IsProperty<T>(T? value = default, bool isReadOnly = false, string? callingMethod = null) {
@@ -32,7 +36,7 @@ namespace WizardingWorld.Tests {
         }
         protected PropertyInfo? GetPropertyInfo(string callingMethod) {
             var memberName = GetCallingMember(callingMethod).Replace("Test", string.Empty);
-            return obj.GetType().GetProperty(memberName);
+            return obj.GetType().GetProperty(memberName, AllFlags);
             
         }
         protected object? GetProperty<T>(ref T? value, bool isReadOnly, string callingMethod) {
