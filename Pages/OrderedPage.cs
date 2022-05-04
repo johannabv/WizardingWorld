@@ -10,18 +10,18 @@ namespace WizardingWorld.Pages {
         where TRepo : IOrderedRepo<TEntity> {
         protected OrderedPage(TRepo r) : base(r) { }
         public string? CurrentOrder {
-            get => FromCurrentOrder(repo.CurrentOrder);
-            set => repo.CurrentOrder = ToCurrentOrder(value);
+            get => OrderedPage<TView, TEntity, TRepo>.FromCurrentOrder(repo.CurrentOrder);
+            set => repo.CurrentOrder = OrderedPage<TView, TEntity, TRepo>.ToCurrentOrder(value);
         } 
-        private string? FromCurrentOrder(string? value) {
-            var isDesc = value?.Contains("_desc") ?? false;
-            var propertyName = value?.Replace("_desc", string.Empty);
-            var pi = typeof(TView).GetProperty(propertyName);
-            var displayName = OrderedPage<TView, TEntity, TRepo>.GetDisplayName(pi);
+        private static string? FromCurrentOrder(string? value) {
+            bool isDesc = value?.Contains("_desc") ?? false;
+            string? propertyName = value?.Replace("_desc", string.Empty);
+            PropertyInfo? pi = typeof(TView).GetProperty(propertyName);
+            string? displayName = OrderedPage<TView, TEntity, TRepo>.GetDisplayName(pi);
             return isDesc ? displayName + "_desc" : displayName;
         }
         private static string? GetDisplayName(PropertyInfo? pi) => pi?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
-        private string? ToCurrentOrder(string? value) {
+        private static string? ToCurrentOrder(string? value) {
             var isDesc = value?.Contains("_desc") ?? false;
             var displayName = value?.Replace("_desc", string.Empty);
             foreach (var pi in typeof(TView).GetProperties()) {
@@ -31,6 +31,6 @@ namespace WizardingWorld.Pages {
             return value;
         }
         private static bool IsThisDisplayName(PropertyInfo pi, string? displayName) => GetDisplayName(pi) == displayName; 
-        public string? SortOrder(string displayName) => repo.SortOrder(ToCurrentOrder(displayName)); 
+        public string? SortOrder(string displayName) => repo.SortOrder(OrderedPage<TView, TEntity, TRepo>.ToCurrentOrder(displayName)); 
     }
 }
