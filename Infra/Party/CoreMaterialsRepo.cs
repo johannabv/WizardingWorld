@@ -2,10 +2,10 @@
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Infra.Party {
-    public sealed class CoresRepo : Repo<Core, CoreData>, ICoresRepo {
-        public CoresRepo(WizardingWorldDb? db) : base(db, db?.Cores) { }
-        protected internal override Core ToDomain(CoreData d) => new(d);
-        internal override IQueryable<CoreData> AddFilter(IQueryable<CoreData> q) {
+    public sealed class CoreMaterialsRepo : Repo<CoreMaterial, CoreMaterialData>, ICoreMaterialsRepo {
+        public CoreMaterialsRepo(WizardingWorldDb? db) : base(db, db?.Cores) { }
+        protected internal override CoreMaterial ToDomain(CoreMaterialData d) => new(d);
+        internal override IQueryable<CoreMaterialData> AddFilter(IQueryable<CoreMaterialData> q) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.ID.Contains(y)

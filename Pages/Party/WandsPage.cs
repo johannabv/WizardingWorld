@@ -9,8 +9,8 @@ namespace WizardingWorld.Pages.Party {
     //[Authorize]
     public class WandsPage : PagedPage<WandView, Wand, IWandsRepo> {
         private readonly IWoodsRepo woods;
-        private readonly ICoresRepo cores;
-        public WandsPage(IWandsRepo r, ICoresRepo c, IWoodsRepo w) : base(r) {
+        private readonly ICoreMaterialsRepo cores;
+        public WandsPage(IWandsRepo r, ICoreMaterialsRepo c, IWoodsRepo w) : base(r) {
             woods = w;
             cores = c;
         }

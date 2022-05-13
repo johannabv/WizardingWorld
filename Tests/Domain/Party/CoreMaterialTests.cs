@@ -6,8 +6,8 @@ using WizardingWorld.Domain;
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Tests.Domain.Party {
-    [TestClass] public class CoreTests : SealedClassTests<Core, NamedEntity<CoreData>> {
-        protected override Core CreateObj() => new(GetRandom.Value<CoreData>());
+    [TestClass] public class CoreMaterialTests : SealedClassTests<CoreMaterial, NamedEntity<CoreMaterialData>> {
+        protected override CoreMaterial CreateObj() => new(GetRandom.Value<CoreMaterialData>());
         [TestMethod] public void ToStringTest() {
             var expected = $"{obj.Name}: {obj.Description}";
             AreEqual(expected, obj.ToString());

@@ -21,7 +21,7 @@ namespace Tests {
             (GetRepo.Instance<ICharacterAddressesRepo>() as CharacterAddressesRepo)?.Clear();
             (GetRepo.Instance<IWandsRepo>() as WandsRepo)?.Clear();
             (GetRepo.Instance<IWoodsRepo>() as WoodsRepo)?.Clear();
-            (GetRepo.Instance<ICoresRepo>() as CoresRepo)?.Clear();
+            (GetRepo.Instance<ICoreMaterialsRepo>() as CoreMaterialsRepo)?.Clear();
         }
         static HostTests() {
             host = new TestHost<Program>();

@@ -9,7 +9,7 @@ namespace WizardingWorld.Domain.Party {
         public string WoodID => GetValue(Data?.WoodID);
         public string Info => GetValue(Data?.Info);
         public Wood? WoodItem => GetRepo.Instance<IWoodsRepo>().Get(WoodID);
-        public Core? CoreItem => GetRepo.Instance<ICoresRepo>().Get(CoreID);
+        public CoreMaterial? CoreItem => GetRepo.Instance<ICoreMaterialsRepo>().Get(CoreID);
         public override string ToString() => $"{Info},{CoreItem}, {WoodItem}";
         public List<Wood> Woods
             => GetRepo.Instance<IWoodsRepo>()?

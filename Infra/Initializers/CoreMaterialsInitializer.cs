@@ -4,11 +4,11 @@ using WizardingWorld.Domain;
 using System.Text;
 
 namespace WizardingWorld.Infra.Initializers {
-    public sealed class CoresInitializer : BaseInitializer<CoreData> {
-        public CoresInitializer(WizardingWorldDb? db) : base(db, db?.Cores) { }
-        protected override IEnumerable<CoreData> GetEntities {
+    public sealed class CoreMaterialsInitializer : BaseInitializer<CoreMaterialData> {
+        public CoreMaterialsInitializer(WizardingWorldDb? db) : base(db, db?.Cores) { }
+        protected override IEnumerable<CoreMaterialData> GetEntities {
             get {
-                var l = new List<CoreData>();
+                var l = new List<CoreMaterialData>();
                 var filePath = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_core.txt";
                 var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
                 using (StreamReader reader = new(stream, Encoding.UTF8)) {
@@ -19,7 +19,7 @@ namespace WizardingWorld.Infra.Initializers {
                 return l;
             }
         }
-        internal static CoreData CreateCore(string name, string description)
+        internal static CoreMaterialData CreateCore(string name, string description)
             => new() {
                 ID = name,
                 Name = name,

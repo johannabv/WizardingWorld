@@ -7,10 +7,10 @@ using WizardingWorld.Infra.Initializers;
 
 namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class CoreInitializerTests
-        : SealedBaseTests<CoresInitializer, BaseInitializer<CoreData>> {
-        protected override CoresInitializer CreateObj() {
+        : SealedBaseTests<CoreMaterialsInitializer, BaseInitializer<CoreMaterialData>> {
+        protected override CoreMaterialsInitializer CreateObj() {
             var db = GetRepo.Instance<WizardingWorldDb>();
-            return new CoresInitializer(db);
+            return new CoreMaterialsInitializer(db);
         }
     }
 }
