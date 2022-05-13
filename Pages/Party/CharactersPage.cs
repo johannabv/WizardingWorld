@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
+    //[Authorize]
     public class CharactersPage : PagedPage<CharacterView, Character, ICharactersRepo> {
         private readonly IHousesRepo houses;
         public CharactersPage(ICharactersRepo r, IHousesRepo c) : base(r) => houses = c;

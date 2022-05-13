@@ -1,7 +1,9 @@
-﻿using WizardingWorld.Domain.Party;
+﻿using Microsoft.AspNetCore.Authorization;
+using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
+    //[Authorize]
     public class SpellsPage : PagedPage<SpellView, Spell, ISpellsRepo> {
         public SpellsPage(ISpellsRepo r) : base(r) { }
         protected override Spell ToObject(SpellView? item) => new SpellViewFactory().Create(item);

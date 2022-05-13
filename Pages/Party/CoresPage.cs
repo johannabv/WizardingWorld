@@ -1,7 +1,9 @@
-﻿using WizardingWorld.Domain.Party;
+﻿using Microsoft.AspNetCore.Authorization;
+using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
+    //[Authorize]
     public class CoresPage : PagedPage<CoreView, Core, ICoresRepo> {
         public CoresPage(ICoresRepo r) : base(r) { }
         protected override Core ToObject(CoreView? item) => new CoreViewFactory().Create(item);

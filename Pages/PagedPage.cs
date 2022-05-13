@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
+using System.Text.Json;
 using WizardingWorld.Aids;
 using WizardingWorld.Domain;
 using WizardingWorld.Facade;
@@ -29,6 +30,31 @@ namespace WizardingWorld.Pages {
             currentFilter = CurrentFilter,
             sortOrder = CurrentOrder} 
         );
+        protected internal override IActionResult RedirectToEdit(TView v) {
+            TempData["Item"] = JsonSerializer.Serialize(v);
+            return RedirectToPage("./Edit", "Edit",
+            new {
+                id = v.ID,
+                pageIndex = PageIndex,
+                currentFilter = CurrentFilter,
+                sortOrder = CurrentOrder
+            });
+        }
+        protected internal override IActionResult RedirectToDelete(string id) {
+            TempData["Error"] = "The record you attempted to delete "
+                  + "was modified by another user after you selected delete. "
+                  + "The delete operation was canceled and the current values in the "
+                  + "database have been displayed. If you still want to delete this "
+                  + "record, click the Delete button again.";
+
+            return RedirectToPage("./Delete", "Delete",
+            new {
+                id = id,
+                pageIndex = PageIndex,
+                currentFilter = CurrentFilter,
+                sortOrder = CurrentOrder
+            });
+        }
         public virtual object? GetValue(string name, TView v)
             => Safe.Run(() => {
                 var pi = v?.GetType()?.GetProperty(name);

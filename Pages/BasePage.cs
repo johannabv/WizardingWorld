@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WizardingWorld.Aids;
+using WizardingWorld.Core;
 using WizardingWorld.Domain;
 using WizardingWorld.Facade;
 
@@ -13,9 +14,13 @@ namespace WizardingWorld.Pages {
         protected abstract TEntity ToObject(TView? item);
         protected abstract TView ToView(TEntity? entity);
         protected abstract IActionResult RedirectToIndex();
+        protected internal abstract IActionResult RedirectToDelete(string id);
+        protected internal abstract IActionResult RedirectToEdit(TView v);
         [BindProperty] public TView Item { get; set; } = new TView();
         public IList<TView> Items { get; set; } = new List<TView>();
         public string ItemID => Item?.ID ?? string.Empty;
+        public string Token => ConcurrencyToken.ToStr(Item?.Token);
+        public string ErrorMessage { get; set; }
         public BasePage(TRepo r) => repo = r;
         protected abstract void SetAttributes(int index, string? filter, string? order);
         protected abstract IActionResult GetCreate();
@@ -23,7 +28,7 @@ namespace WizardingWorld.Pages {
         protected abstract Task<IActionResult> PostCreateAsync();
         protected abstract Task<IActionResult> GetDetailsAsync(string id);
         protected abstract Task<IActionResult> GetDeleteAsync(string id);
-        protected abstract Task<IActionResult> PostDeleteAsync(string id);
+        protected abstract Task<IActionResult> PostDeleteAsync(string id, string? token = null);
         protected abstract Task<IActionResult> GetEditAsync(string id);
         protected abstract Task<IActionResult> PostEditAsync();
         protected async virtual Task<IActionResult> Perform(Func<Task<IActionResult>>f, int index, string? filter, string? order, bool removeKeys = false) {
@@ -45,8 +50,8 @@ namespace WizardingWorld.Pages {
             => await Perform(() => GetDetailsAsync(id), index, filter, order);
         public async Task<IActionResult> OnGetDeleteAsync(string id, int index = 0, string? filter = null, string? order = null)
             => await Perform(() => GetDeleteAsync(id), index, filter, order);
-        public async Task<IActionResult> OnPostDeleteAsync(string id, int index = 0, string? filter = null, string? order = null)
-            => await Perform(() => PostDeleteAsync(id), index, filter, order);
+        public async Task<IActionResult> OnPostDeleteAsync(string id, int index = 0, string? filter = null, string? order = null, string? token = null)
+            => await Perform(() => PostDeleteAsync(id, token), index, filter, order);
         public async Task<IActionResult> OnGetEditAsync(string id, int index = 0, string? filter = null, string? order = null)
             => await Perform(() => GetEditAsync(id), index, filter, order);
         public async Task<IActionResult> OnPostEditAsync(int index = 0, string? filter = null, string? order = null)

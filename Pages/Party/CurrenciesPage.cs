@@ -1,8 +1,10 @@
-﻿using WizardingWorld.Aids;
+﻿using Microsoft.AspNetCore.Authorization;
+using WizardingWorld.Aids;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
+    //[Authorize]
     public class CurrenciesPage : PagedPage<CurrencyView, Currency, ICurrenciesRepo> {
         public CurrenciesPage(ICurrenciesRepo r) : base(r) { }
         protected override Currency ToObject(CurrencyView? item) => new CurrencyViewFactory().Create(item);

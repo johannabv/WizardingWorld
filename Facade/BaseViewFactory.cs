@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using WizardingWorld.Core;
 using WizardingWorld.Data;
 using WizardingWorld.Domain;
 
@@ -8,24 +8,16 @@ namespace WizardingWorld.Facade {
     where TData : BaseData, new()
     where TEntity : BaseEntity<TData> {
         protected abstract TEntity ToEntity(TData d);
-        protected virtual void Copy(object? from, object? to) {
-            var tFrom = from?.GetType();
-            var tTo = to?.GetType();
-            foreach (var piFrom in tFrom?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
-                var v = piFrom.GetValue(from, null);
-                var piTo = tTo?.GetProperty(piFrom.Name);
-                piTo?.SetValue(to, v, null);
-            }
-        }
+        protected virtual void Copying(object? from, object? to) => Copy.Properties(from, to);
         public virtual TEntity Create(TView? v) {
             var d = new TData();
-            Copy(v, d);
+            Copying(v, d);
             return ToEntity(d);
         }
         public virtual TView Create(TEntity? e) {
             var d = e?.Data;
             var v = new TView();
-            Copy(d, v);
+            Copying(d, v);
             return v;
         }
     }

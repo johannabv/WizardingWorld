@@ -1,7 +1,9 @@
-﻿using WizardingWorld.Domain.Party;
+﻿using Microsoft.AspNetCore.Authorization;
+using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
+    //[Authorize]
     public class CountriesPage : PagedPage<CountryView, Country, ICountriesRepo> {
         public CountriesPage(ICountriesRepo r) : base(r) { }
         protected override Country ToObject(CountryView? item) => new CountryViewFactory().Create(item);

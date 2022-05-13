@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 using WizardingWorld.Domain.Party;
@@ -6,6 +7,7 @@ using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
+    //[Authorize]
     public class CharacterAddressesPage : PagedPage<CharacterAddressView, CharacterAddress, ICharacterAddressesRepo> {
         private readonly ICharactersRepo characters;
         private readonly IAddressRepo addresses;
