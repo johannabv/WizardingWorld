@@ -54,7 +54,7 @@ namespace Tests {
             foreach (var d in list) {
                 var y = l.Find(z => z.ID == d.ID);
                 IsNotNull(y);
-                ArePropertiesEqual(d, y);
+                ArePropertiesEqual(d, y, nameof(BaseData.Token));
             }
         }
         protected void TestItem<TRepo, TObj, TData>(string id, Func<TData, TObj> toObj, Func<TObj?> getObj)
@@ -75,7 +75,7 @@ namespace Tests {
             }
             r.PageSize = 30;
             AreEqual(count, r.Get().Count);
-            ArePropertiesEqual(d, getObj());
+            ArePropertiesEqual(d, getObj(), nameof(BaseData.Token));
         }
         protected void TestRelatedLists<TRepo, TRelatedItem, TItem, TData>
             (Action relatedTest,
@@ -101,7 +101,7 @@ namespace Tests {
             AreEqual(list.Count, characters.Count);
             foreach (var e in list) {
                 var a = characters.Find(x => x?.ID == detailID(e));
-                ArePropertiesEqual(toData(a), relatedToData(e));
+                ArePropertiesEqual(toData(a), relatedToData(e), nameof(BaseData.Token));
             }
         }
     }

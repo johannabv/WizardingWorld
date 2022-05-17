@@ -1,6 +1,4 @@
-﻿using WizardingWorld.Aids;
-
-namespace WizardingWorld.Core {
+﻿namespace WizardingWorld.Aids {
     public static class ConcurrencyToken {
         public static string ToStr(byte[]? token = null) {
             var s = string.Empty;

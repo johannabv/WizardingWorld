@@ -43,6 +43,7 @@ namespace WizardingWorld.Aids {
         public static dynamic? Value<T>(T? min = default, T? max = default) {
             var t = GetUnderlyingType(typeof(T));
             if (IsEnum(t)) return EnumOf<T>();
+            else if (t == typeof(byte[])) return ConcurrencyToken.ToByteArray(String(1, 8));
             else if (t == typeof(bool)) return Bool();
             else if (t == typeof(DateTime)) return DateTime(Convert.ToDateTime(min), Convert.ToDateTime(max));
             else if (t == typeof(double)) return Double(Convert.ToDouble(min), Convert.ToDouble(max));
@@ -64,6 +65,7 @@ namespace WizardingWorld.Aids {
         public static dynamic? Value(Type t) {
             t = GetUnderlyingType(t);
             if (IsEnum(t)) return EnumOf(t);
+            else if (t == typeof(byte[])) return ConcurrencyToken.ToByteArray(String(1, 8));
             else if (t == typeof(bool)) return Bool();
             else if (t == typeof(DateTime)) return DateTime();
             else if (t == typeof(double)) return Double();
