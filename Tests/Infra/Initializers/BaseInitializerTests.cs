@@ -7,7 +7,7 @@ using WizardingWorld.Domain;
 using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
 
-namespace WizardingWorld.Tests.Infra.Initializers {
+namespace WizardingWorld.Tests.Infra.Initializer {
     [TestClass] public class BaseInitializerTests
         : AbstractClassTests<BaseInitializer<AddressData>, object> {
         private class testClass : BaseInitializer<AddressData> {
@@ -18,6 +18,15 @@ namespace WizardingWorld.Tests.Infra.Initializers {
             WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             DbSet<AddressData>? set = db?.Addresses;
             return new testClass(db, set);
+        }
+        [TestMethod] public void InitTest() => IsInconclusive();
+
+        [DataRow(null, false)]
+        [DataRow("hello", true)]
+        [DataRow("555", false)]
+        [TestMethod] public void isCorrectIsoCodeTest(string id, bool expected) {
+            var actual = !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
+            AreEqual(actual, expected);
         }
     }
 }

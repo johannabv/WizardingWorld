@@ -25,7 +25,7 @@ namespace WizardingWorld.Pages {
         public bool HasNextPage  => repo.HasNextPage;
         public bool HasPreviousPage  => repo.HasPreviousPage; 
         public virtual string[] IndexColumns => Array.Empty<string>();
-        public virtual string[] IndexColumnsRelatedTable => Array.Empty<string>();
+        public virtual string[] RelatedIndexColumns => Array.Empty<string>();
         protected override IActionResult RedirectToIndex() => RedirectToPage("./Index", "Index", new {
             pageIndex = PageIndex,
             currentFilter = CurrentFilter,
@@ -60,12 +60,26 @@ namespace WizardingWorld.Pages {
             => Safe.Run(() => {
                 PropertyInfo? pi = v?.GetType()?.GetProperty(name);
                 return pi?.GetValue(v);
-            }, null); 
+            }, null);
+
+        public object? GetValue<T>(string name, T item) 
+            => Safe.Run(() => {
+                PropertyInfo? pi = typeof(T).GetProperty(name);
+                return pi?.GetValue(item);
+        }, name);
+
         public string? DisplayName(string name) => Safe.Run(() => {
             PropertyInfo? p = typeof(TView).GetProperty(name);
             CustomAttributeData? a = p?.CustomAttributes?
                 .FirstOrDefault(x => x.AttributeType == typeof(DisplayNameAttribute));
             return a?.ConstructorArguments[0].Value?.ToString() ?? name;
         }, name);
+
+        public string? GetDisplayName<T>(string propertyName) 
+            => Safe.Run(() => {
+                return typeof(T).GetProperty(propertyName)?
+                .GetCustomAttributes(typeof(DisplayNameAttribute), true)
+                .Cast<DisplayNameAttribute>().Single().DisplayName;
+        }, propertyName);
     }
 }

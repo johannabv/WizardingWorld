@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 
-namespace WizardingWorld.Tests.Soft {
+namespace WizardingWorld.Soft {
     [TestClass] public class IndexPagesTests : PagesTests {
         [TestMethod] public async Task GetAddressesIndexPageTest()
             => await GetPageTestAsync<IAddressRepo, Address, AddressData>(x => new Address(x));

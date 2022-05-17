@@ -13,8 +13,4 @@ namespace Tests.Infra {
         }
         protected override Repo<Character, CharacterData> CreateObj() => new TestClass(null,null);
     }
-    [TestClass] public class WizardingWorldDbTests : SealedBaseTests<WizardingWorldDb, DbContext> {
-        protected override WizardingWorldDb CreateObj() => null;
-        protected override void isSealedTest() => IsInconclusive();
-    }
 }

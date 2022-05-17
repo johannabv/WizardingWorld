@@ -5,7 +5,7 @@ using WizardingWorld.Domain;
 using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
 
-namespace WizardingWorld.Tests.Infra.Initializers {
+namespace WizardingWorld.Tests.Infra.Initializer {
     [TestClass] public class SpellInitializerTests
         : SealedBaseTests<SpellInitializer, BaseInitializer<SpellData>> {
         protected override SpellInitializer CreateObj() {

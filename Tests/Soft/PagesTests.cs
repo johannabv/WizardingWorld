@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Tests;
 using WizardingWorld.Domain;
 
-namespace WizardingWorld.Tests.Soft {
+namespace WizardingWorld.Soft {
     public abstract class PagesTests : HostTests {
         public async Task GetPageTestAsync<TRepo, TObj, TData>(Func<TData, TObj> toObj)
             where TRepo : class, IRepo<TObj>
