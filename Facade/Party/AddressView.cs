@@ -7,7 +7,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class AddressViewFactory : BaseViewFactory<AddressView, Address, AddressData> {
         protected override Address ToEntity(AddressData d) => new(d);
         public override AddressView Create(Address? e) {
-            var v = base.Create(e);
+            AddressView v = base.Create(e);
             v.FullName = e?.ToString();
             return v;
         }

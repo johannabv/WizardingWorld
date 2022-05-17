@@ -14,10 +14,10 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void ColorTest() => IsReadOnly(obj.Data.Color);
         [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
         [TestMethod] public void ToStringTest() {
-            var expected = $"{obj.HouseName} ({obj.Color}), {obj.Description}";
+            string expected = $"{obj.HouseName} ({obj.Color}), {obj.Description}";
             AreEqual(expected, obj.ToString());
         }
         [TestMethod] public void CharactersTest() => TestList<ICharactersRepo, Character, CharacterData>(
-                d => d.HogwartsHouse = obj.HouseName, d => new Character(d), () => obj.Characters);
+                d => d.HogwartsHouse = obj.HouseName, d => new Character(d), () => obj.Characters.Value);
     }
 }

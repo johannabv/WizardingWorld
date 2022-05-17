@@ -6,11 +6,11 @@ namespace WizardingWorld.Pages.Extensions {
     public static class EditorHtml {
         public static IHtmlContent MyEditorFor<TModel, TResult>(
             this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            var s = HtmlStrings(h, e);
+            List<object> s = HtmlStrings(h, e);
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            var l = new List<object> {
+            List<object> l = new List<object> {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dd class=\"col-sm-2\">"),
                 h.LabelFor(e, null, new { @class = "control-label" }),

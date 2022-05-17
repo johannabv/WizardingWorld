@@ -7,7 +7,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class WandViewFactory : BaseViewFactory<WandView, Wand, WandData> {
         protected override Wand ToEntity(WandData d) => new(d);
         public override WandView Create(Wand? e) {
-            var v = base.Create(e);
+            WandView v = base.Create(e);
             v.FullName = e?.ToString();
             return v;
         }

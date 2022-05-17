@@ -32,7 +32,7 @@
     </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Countries) {
+        @foreach (var item in Model.Countries.Value) {
             <tr>
                 @foreach (var name in columns) { <td> @Html.Raw(GetValue(name, item)) </td> }
             </tr>

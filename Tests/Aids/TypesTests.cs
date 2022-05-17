@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
@@ -39,9 +41,9 @@ namespace WizardingWorld.Tests.Aids {
         [TestMethod] public void IsRealTypeTest() {
             IsTrue(type.IsRealType());
             IsTrue(typeof(NamedData).IsRealType());
-            var a = GetAssembly.OfType(this);
-            var allTypes = (a?.GetTypes() ?? Array.Empty<Type>()).ToList();
-            var realTypes = allTypes?.FindAll(t => t.IsRealType());
+            Assembly? a = GetAssembly.OfType(this);
+            List<Type>? allTypes = (a?.GetTypes() ?? Array.Empty<Type>()).ToList();
+            List<Type>? realTypes = allTypes?.FindAll(t => t.IsRealType());
             IsNotNull(realTypes);
             IsTrue(realTypes.Count < (allTypes?.Count ?? 0));
             IsTrue(realTypes.Count > 0);
@@ -52,7 +54,7 @@ namespace WizardingWorld.Tests.Aids {
         }
         [TestMethod] public void DeclaredMembersTest() {
             AreEqual(1, type?.DeclaredMembers()?.Count);
-            var l = typeof(NamedData)?.DeclaredMembers();
+            List<string>? l = typeof(NamedData)?.DeclaredMembers();
             AreEqual(9, l?.Count);
         }
         [TestMethod] public void IsInheritedTest() {
@@ -69,8 +71,8 @@ namespace WizardingWorld.Tests.Aids {
             IsFalse(GetType().HasAttribute<TestMethodAttribute>());
         }
         [TestMethod] public void MethodTest() {
-            var n = nameof(MethodTest);
-            var m = GetType().Method(n);
+            string n = nameof(MethodTest);
+            MethodInfo? m = GetType().Method(n);
             AreEqual(n, m?.Name);
         }
     }

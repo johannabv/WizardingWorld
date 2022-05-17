@@ -22,10 +22,10 @@ namespace Tests {
             });
         }
         private static void EnsureCreated(IServiceCollection s, params Type[] types) {
-            var sp = s.BuildServiceProvider();
-            using var scope = sp.CreateScope();
-            var scopedServices = scope.ServiceProvider;
-            foreach (var type in types) EnsureCreated(scopedServices, type);
+            ServiceProvider? sp = s.BuildServiceProvider();
+            using IServiceScope scope = sp.CreateScope();
+            IServiceProvider scopedServices = scope.ServiceProvider;
+            foreach (Type type in types) EnsureCreated(scopedServices, type);
         }
         private static void EnsureCreated(IServiceProvider s, Type t) {
             if (s?.GetRequiredService(t) is not DbContext c)
@@ -37,7 +37,7 @@ namespace Tests {
         private static void AddDb<T>(IServiceCollection s) where T : DbContext
             => s?.AddDbContext<T>(o => { o.UseInMemoryDatabase("Tests"); });
         private static void RemoveDb<T>(IServiceCollection s) where T : DbContext {
-            var descriptor = s?.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<T>));
+            ServiceDescriptor? descriptor = s?.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<T>));
             if (descriptor is not null) { s?.Remove(descriptor); }
         }
     }

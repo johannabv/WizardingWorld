@@ -11,10 +11,15 @@ namespace WizardingWorld.Domain.Party {
         public string Color => GetValue(Data?.Color);
         public string Description => GetValue(Data?.Description);
         public override string ToString() => $"{HouseName} ({Color}), {Description}";
-        public List<Character> Characters
-            => GetRepo.Instance<ICharactersRepo>()?
-            .GetAll(x => x.HogwartsHouse)?
-            .Where(x => x.HogwartsHouse == HouseName)?
-            .ToList() ?? new List<Character>();
+        
+        public Lazy<List<Character>> Characters {
+            get {
+                List<Character> l = GetRepo.Instance<ICharactersRepo>()?
+                      .GetAll(x => x.HogwartsHouse)?
+                      .Where(x => x.HogwartsHouse == HouseName)?
+                      .ToList() ?? new List<Character>();
+                return new Lazy<List<Character>>(l);
+            }
+        }
     }
 }

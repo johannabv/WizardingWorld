@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
@@ -32,27 +33,35 @@ namespace Tests {
         protected void TestList<TRepo, TObj, TData>(Action<TData> setId, Func<TData, TObj> toObj, Func<List<TObj>> getList)
             where TRepo : class, IRepo<TObj> where TObj : BaseEntity<TData> where TData : BaseData, new() {
 
-            var o = IsReadOnly<List<TObj>>(nameof(TestList));
+            object? o = IsReadOnly<List<TObj>>(nameof(TestList));
+
             IsNotNull(o);
-            IsInstanceOfType(o, typeof(List<TObj>));
-            var r = GetRepo.Instance<TRepo>();
+            if (o.GetType().Name.Contains("Lazy")) IsInstanceOfType(o, typeof(Lazy<List<TObj>>));
+            else IsInstanceOfType(o, typeof(List<TObj>));
+
+            TRepo? r = GetRepo.Instance<TRepo>();
             IsNotNull(r);
-            var list = new List<TData>();
-            var count = GetRandom.Int32(5, 30);
-            for (var i = 0; i < count; i++) {
-                var x = GetRandom.Value<TData>();
+
+            List<TData> list = new List<TData>();
+            int count = GetRandom.Int32(5, 30);
+
+            for (int i = 0; i < count; i++) {
+                dynamic? x = GetRandom.Value<TData>();
                 if (GetRandom.Bool()) {
                     setId(x);
                     list.Add(x);
                 }
                 r.Add(toObj(x));
             }
+
             r.PageSize = 30;
             AreEqual(count, r.Get().Count);
-            var l = getList();
+
+            List<TObj> l = getList();
             AreEqual(list.Count, l.Count);
-            foreach (var d in list) {
-                var y = l.Find(z => z.ID == d.ID);
+
+            foreach (TData d in list) {
+                TObj? y = l.Find(z => z.ID == d.ID);
                 IsNotNull(y);
                 ArePropertiesEqual(d, y, nameof(BaseData.Token));
             }
@@ -60,22 +69,17 @@ namespace Tests {
         protected void TestItem<TRepo, TObj, TData>(string id, Func<TData, TObj> toObj, Func<TObj?> getObj)
             where TRepo : class, IRepo<TObj> where TObj : BaseEntity {
 
-            var c = IsReadOnly<TObj>(nameof(TestItem));
-            IsNotNull(c);
-            IsInstanceOfType(c, typeof(TObj));
-            var r = GetRepo.Instance<TRepo>();
-            var d = GetRandom.Value<TData>();
-            d.ID = id;
-            var count = GetRandom.Int32(5, 30);
-            var index = GetRandom.Int32(0, count);
-            for (int i = 0; i < count; i++) {
-                var x = (i == index) ? d : GetRandom.Value<TData>();
-                IsNotNull(x);
-                r?.Add(toObj(x));
-            }
-            r.PageSize = 30;
-            AreEqual(count, r.Get().Count);
-            ArePropertiesEqual(d, getObj(), nameof(BaseData.Token));
+            object? obj = IsReadOnly<TObj>(nameof(TestItem));
+            IsNotNull(obj);
+            IsInstanceOfType(obj, typeof(TObj));
+
+            TRepo? repo = GetRepo.Instance<TRepo>();
+            int count;
+            TData? items = AddRandomItems(out count, toObj, id, repo);
+            
+            repo.PageSize = 30;
+            AreEqual(count, repo.Get().Count);
+            ArePropertiesEqual(items, getObj(), nameof(BaseData.Token));
         }
         protected void TestRelatedLists<TRepo, TRelatedItem, TItem, TData>
             (Action relatedTest,
@@ -90,19 +94,45 @@ namespace Tests {
             where TRelatedItem : BaseEntity {
 
             relatedTest();
-            var list = relatedItems();
-            var r = GetRepo.Instance<TRepo>();
-            foreach (var e in list) {
-                var y = GetRandom.Value<TData>();
+            List<TRelatedItem> list = relatedItems();
+            TRepo? repo = GetRepo.Instance<TRepo>();
+            foreach (TRelatedItem e in list) {
+                dynamic? y = GetRandom.Value<TData>();
                 if (y is not null) y.ID = detailID(e);
-                r?.Add(toObj(y));
+                repo?.Add(toObj(y));
             }
-            var characters = items();
+            List<TItem?> characters = items();
             AreEqual(list.Count, characters.Count);
-            foreach (var e in list) {
-                var a = characters.Find(x => x?.ID == detailID(e));
+            foreach (TRelatedItem e in list) {
+                TItem? a = characters.Find(x => x?.ID == detailID(e));
                 ArePropertiesEqual(toData(a), relatedToData(e), nameof(BaseData.Token));
             }
+        }
+        internal static TData? AddRandomItems<TRepo, TObj, TData>(out int cnt, Func<TData, TObj> toObj, string? id = null, TRepo? r = null)
+            where TRepo : class, IRepo<TObj>
+            where TObj : BaseEntity {
+            r ??= GetRepo.Instance<TRepo>();
+            dynamic? d = GetRandom.Value<TData>();
+            if (id is not null && d is not null) d.ID = id;
+            cnt = GetRandom.Int32(5, 30);
+            int idx = GetRandom.Int32(0, cnt);
+            for (int i = 0; i < cnt; i++) {
+                dynamic? x = (i == idx) ? d : GetRandom.Value<TData>();
+                IsNotNull(x);
+                r?.Add(toObj(x));
+            }
+            return d;
+        }
+        protected static string GetCallingMember(string memberName) {
+            StackTrace s = new();
+            bool isNext = false;
+            for (int i = 0; i < s.FrameCount - 1; i++) {
+                string n = s.GetFrame(i)?.GetMethod()?.Name ?? string.Empty;
+                if (n is "MoveNext" or "Start") continue;
+                if (isNext) return n;
+                if (n == memberName) isNext = true;
+            }
+            return string.Empty;
         }
     }
 }

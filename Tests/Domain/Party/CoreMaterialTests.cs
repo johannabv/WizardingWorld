@@ -9,7 +9,7 @@ namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class CoreMaterialTests : SealedClassTests<CoreMaterial, NamedEntity<CoreMaterialData>> {
         protected override CoreMaterial CreateObj() => new(GetRandom.Value<CoreMaterialData>());
         [TestMethod] public void ToStringTest() {
-            var expected = $"{obj.Name}: {obj.Description}";
+            string expected = $"{obj.Name}: {obj.Description}";
             AreEqual(expected, obj.ToString());
         }
     }

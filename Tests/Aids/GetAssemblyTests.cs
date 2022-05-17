@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Tests;
@@ -27,14 +28,14 @@ namespace WizardingWorld.Tests.Aids {
             assembly = GetAssembly.OfType(new CountryData());
         }
         [TestMethod] public void TypesTest() {
-            var l = GetAssembly.Types(assembly);
+            List<Type>? l = GetAssembly.Types(assembly);
             IsTrue(typeNames.Length < (l?.Count ?? -2));
-            foreach (var name in typeNames) AreEqual(l?.FirstOrDefault(x => x.Name == name)?.Name, name);
+            foreach (string name in typeNames) AreEqual(l?.FirstOrDefault(x => x.Name == name)?.Name, name);
             IsNull(l?.FirstOrDefault(x => x.Name == GetRandom.String()));
         }
         [TestMethod] public void TypeTest() {
-            var n = RandomTypeName;
-            var obj = assembly.Type(n);
+            string n = RandomTypeName;
+            Type? obj = assembly.Type(n);
             IsNotNull(obj);
             AreEqual(n, obj.Name);
         }

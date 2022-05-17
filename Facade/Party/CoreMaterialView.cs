@@ -10,7 +10,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class CoreViewFactory : BaseViewFactory<CoreMaterialView, CoreMaterial, CoreMaterialData> {
         protected override CoreMaterial ToEntity(CoreMaterialData d) => new(d);
         public override CoreMaterialView Create(CoreMaterial? e) {
-            var v = base.Create(e);
+            CoreMaterialView v = base.Create(e);
             v.FullName = e?.ToString();
             return v;
         }

@@ -9,7 +9,7 @@ namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class CoreInitializerTests
         : SealedBaseTests<CoreMaterialsInitializer, BaseInitializer<CoreMaterialData>> {
         protected override CoreMaterialsInitializer CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             return new CoreMaterialsInitializer(db);
         }
     }

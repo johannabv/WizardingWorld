@@ -10,7 +10,7 @@ namespace WizardingWorld.Tests.Aids {
         [TestInitialize] public void Init() => list = new List<int>() { 1, 2, 3, 4, 5, 6 };
         [TestMethod] public void GetFirstTest() => AreEqual(1, list.GetFirst());
         [TestMethod] public void RemoveTest() {
-            var cnt = list.Remove(x => x < 4);
+            int? cnt = list.Remove(x => x < 4);
             AreEqual(3, cnt);
             AreEqual(4, list.GetFirst());
         }

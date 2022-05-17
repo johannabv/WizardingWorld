@@ -15,8 +15,8 @@ namespace WizardingWorld.Tests.Infra.Initializers {
             protected override IEnumerable<AddressData> GetEntities => throw new System.NotImplementedException();
         }
         protected override BaseInitializer<AddressData> CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
-            var set = db?.Addresses;
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
+            DbSet<AddressData>? set = db?.Addresses;
             return new testClass(db, set);
         }
     }

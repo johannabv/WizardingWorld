@@ -9,9 +9,9 @@ using WizardingWorld.Data.Party;
 namespace WizardingWorld.Tests.Aids {
     [TestClass] public abstract class GetRandomTests : TypeTests {
         private void Test<T>(T min, T max) where T : IComparable<T> {
-            var x = GetRandom.Value(min, max);
-            var y = GetRandom.Value(min, max);
-            var i = 0;
+            dynamic? x = GetRandom.Value(min, max);
+            dynamic? y = GetRandom.Value(min, max);
+            int i = 0;
             while (x == y) {
                 y = GetRandom.Value(min, max);
                 if (i == 2) AreNotEqual(x, y);
@@ -26,9 +26,9 @@ namespace WizardingWorld.Tests.Aids {
             AreNotEqual(x, y);
         }
         private void Test<T>(Func<T> f, int count = 5) {
-            var x = f();
-            var y = f();
-            var i = 0;
+            T x = f();
+            T y = f();
+            int i = 0;
             while (x.Equals(y)) {
                 y = f();
                 if (i == count) AreNotEqual(x, y);
@@ -77,15 +77,15 @@ namespace WizardingWorld.Tests.Aids {
                  new object[]{ DateTime.MinValue, DateTime.MinValue.AddYears(100) }
         };
         [TestMethod]  public void StringTest() {
-            var x = GetRandom.Value<string>();
-            var y = GetRandom.Value<string>();
+            dynamic? x = GetRandom.Value<string>();
+            dynamic? y = GetRandom.Value<string>();
             IsInstanceOfType(x, typeof(string));
             IsInstanceOfType(y, typeof(string));
             AreNotEqual(x, y);
         } 
         [TestMethod] public void ValueTest() {
-            var x = GetRandom.Value<SpellData>() as SpellData;
-            var y = GetRandom.Value<SpellData>() as SpellData;
+            SpellData? x = GetRandom.Value<SpellData>() as SpellData;
+            SpellData? y = GetRandom.Value<SpellData>() as SpellData;
             IsNotNull(x);
             IsNotNull(y);
             AreNotEqual(x.ID, y.ID, nameof(x.ID));

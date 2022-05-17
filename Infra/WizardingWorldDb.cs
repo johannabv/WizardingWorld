@@ -20,7 +20,7 @@ namespace WizardingWorld.Infra {
             InitializeTables(b);
         }
         public static void InitializeTables(ModelBuilder b) {
-            var s = nameof(WizardingWorldDb)[0..^2];
+            string s = nameof(WizardingWorldDb)[0..^2];
             _ = (b?.Entity<CharacterData>()?.ToTable(nameof(Characters), s));
             _ = (b?.Entity<SpellData>()?.ToTable(nameof(Spells), s));
             _ = (b?.Entity<CountryData>()?.ToTable(nameof(Countries), s));

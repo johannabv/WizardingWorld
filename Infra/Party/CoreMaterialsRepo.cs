@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public CoreMaterialsRepo(WizardingWorldDb? db) : base(db, db?.Cores) { }
         protected internal override CoreMaterial ToDomain(CoreMaterialData d) => new(d);
         internal override IQueryable<CoreMaterialData> AddFilter(IQueryable<CoreMaterialData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.ID.Contains(y)
                   || x.Name.Contains(y)

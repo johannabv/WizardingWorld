@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public WandsRepo(WizardingWorldDb? db) : base(db, db?.Wands) { }
         protected internal override Wand ToDomain(WandData d) => new(d);
         internal override IQueryable<WandData> AddFilter(IQueryable<WandData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.ID.Contains(y)
                   || x.CoreID.Contains(y)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using WizardingWorld.Aids;
 using WizardingWorld.Domain;
@@ -22,7 +23,7 @@ namespace WizardingWorld.Pages {
             return await GetItemPage(id);
         }
         protected override async Task<IActionResult> GetEditAsync(string id) {
-            var s = TempData["Item"] as string;
+            string? s = TempData["Item"] as string;
             TView? v = null;
             if (s is not null) v = JsonSerializer.Deserialize<TView>(s);
             if (v is null) return await GetItemPage(id);
@@ -35,10 +36,10 @@ namespace WizardingWorld.Pages {
                 + "edit operation was canceled and the current values in the database "
                 + "have been displayed. If you still want to edit this record, click "
                 + "the Save button again.");
-            foreach (var p in Item.GetType().GetProperties()) {
-                var n = p.Name;
-                var currentValue = p.GetValue(Item)?.ToString();
-                var clientValue = v?.GetType()?.GetProperty(n)?.GetValue(v)?.ToString();
+            foreach (PropertyInfo p in Item.GetType().GetProperties()) {
+                string n = p.Name;
+                string? currentValue = p.GetValue(Item)?.ToString();
+                string? clientValue = v?.GetType()?.GetProperty(n)?.GetValue(v)?.ToString();
                 if (currentValue != clientValue)
                     ModelState.AddModelError(
                         $"{nameof(Item)}.{n}",
@@ -53,34 +54,34 @@ namespace WizardingWorld.Pages {
         }
         protected override async Task<IActionResult> PostDeleteAsync(string id, string? token = null) {
             if (id == null) return RedirectToIndex();
-            var o = await GetItem(id);
+            TView o = await GetItem(id);
             if (ConcurrencyToken.ToStr(o.Token) == ConcurrencyToken.ToStr()) return RedirectToIndex();
-            var oToken = ConcurrencyToken.ToStr(o.Token);
+            string oToken = ConcurrencyToken.ToStr(o.Token);
             if (oToken != token) return RedirectToDelete(id);
 
             _ = await repo.DeleteAsync(id);
             return RedirectToIndex();
         }
         protected override async Task<IActionResult> PostEditAsync() {
-            var o = repo.Get(Item.ID);
+            TEntity o = repo.Get(Item.ID);
             if (ConcurrencyToken.ToStr(o.Token) == ConcurrencyToken.ToStr()) {
                 ModelState.AddModelError(string.Empty, "Unable to save. The item was deleted by another user.");
                 return Page();
             }
-            var oToken = ConcurrencyToken.ToStr(o.Token);
-            var itemToken = ConcurrencyToken.ToStr(Item.Token);
+            string oToken = ConcurrencyToken.ToStr(o.Token);
+            string itemToken = ConcurrencyToken.ToStr(Item.Token);
             if (oToken != itemToken) return RedirectToEdit(Item);
 
             if (!ModelState.IsValid) return Page();
-            var obj = ToObject(Item);
-            var updated = await repo.UpdateAsync(obj);
+            TEntity obj = ToObject(Item);
+            bool updated = await repo.UpdateAsync(obj);
             return !updated ? NotFound() : RedirectToIndex();
         }
         protected override async Task<IActionResult> GetIndexAsync() {
-            var list = await repo.GetAsync();
+            List<TEntity> list = await repo.GetAsync();
             Items = new List<TView>();
-            foreach (var obj in list) {
-                var v = ToView(obj);
+            foreach (TEntity obj in list) {
+                TView v = ToView(obj);
                 Items.Add(v);
             }
             return Page();

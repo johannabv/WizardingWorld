@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
+using System.Reflection;
 using System.Text.Json;
 using WizardingWorld.Aids;
 using WizardingWorld.Domain;
@@ -57,12 +58,12 @@ namespace WizardingWorld.Pages {
         }
         public virtual object? GetValue(string name, TView v)
             => Safe.Run(() => {
-                var pi = v?.GetType()?.GetProperty(name);
+                PropertyInfo? pi = v?.GetType()?.GetProperty(name);
                 return pi?.GetValue(v);
             }, null); 
         public string? DisplayName(string name) => Safe.Run(() => {
-            var p = typeof(TView).GetProperty(name);
-            var a = p?.CustomAttributes?
+            PropertyInfo? p = typeof(TView).GetProperty(name);
+            CustomAttributeData? a = p?.CustomAttributes?
                 .FirstOrDefault(x => x.AttributeType == typeof(DisplayNameAttribute));
             return a?.ConstructorArguments[0].Value?.ToString() ?? name;
         }, name);

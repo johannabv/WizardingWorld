@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public SpellsRepo(WizardingWorldDb? db) : base(db, db?.Spells) { }
         protected internal override Spell ToDomain(SpellData d) => new(d);
         internal override IQueryable<SpellData> AddFilter(IQueryable<SpellData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.ID.Contains(y)
                   || x.SpellName.Contains(y)

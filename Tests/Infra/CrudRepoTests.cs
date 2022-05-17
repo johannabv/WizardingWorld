@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tests;
 using WizardingWorld.Aids;
@@ -36,7 +37,7 @@ namespace WizardingWorld.Tests.Infra {
             d = GetRandom.Value<CharacterData>();
             IsNotNull(d);
             a = new Character(d);
-            var x = obj.Get(d.ID);
+            Character x = obj.Get(d.ID);
             IsNotNull(x);
             AreNotEqual(d.ID, x.ID);
         } 
@@ -61,7 +62,7 @@ namespace WizardingWorld.Tests.Infra {
             IsNotNull(d);
             await GetTest();
             _ = obj.Delete(d.ID);
-            var x = obj.Get(d.ID);
+            Character x = obj.Get(d.ID);
             IsNotNull(x);
             AreNotEqual(d.ID, x.ID);
         }
@@ -69,14 +70,14 @@ namespace WizardingWorld.Tests.Infra {
             IsNotNull(d);
             await GetTest();
             _ = obj.DeleteAsync(d.ID);
-            var x = obj.Get(d.ID);
+            Character x = obj.Get(d.ID);
             IsNotNull(x);
             AreNotEqual(d.ID, x.ID);
         }
         [TestMethod] public async Task GetTest() {
             IsNotNull(d);
             await AddTest();
-            var x = obj.Get(d.ID);
+            Character x = obj.Get(d.ID);
             ArePropertiesEqual(d, x.Data);
         }
         
@@ -99,54 +100,54 @@ namespace WizardingWorld.Tests.Infra {
             else if (s is nameof(Character.Gender)) orderBy = x => x.Gender;
             else if (s is nameof(Character.HogwartsHouse)) orderBy = x => x.HogwartsHouse;
             else if (s is nameof(Character.ToString)) orderBy = x => x.ToString();
-            var l = obj.GetAll(orderBy);
+            List<Character> l = obj.GetAll(orderBy);
             AreEqual(count, l.Count);
             if (orderBy is null) return;
-            for (var i = 0; i < l.Count - 1; i++) {
-                var a = l[i];
-                var b = l[i + 1];
-                var aX = orderBy(a) as IComparable;
-                var bX = orderBy(b) as IComparable;
+            for (int i = 0; i < l.Count - 1; i++) {
+                Character a = l[i];
+                Character b = l[i + 1];
+                IComparable? aX = orderBy(a) as IComparable;
+                IComparable? bX = orderBy(b) as IComparable;
                 IsNotNull(aX);
                 IsNotNull(bX);
-                var r = aX.CompareTo(bX);
+                int r = aX.CompareTo(bX);
                 IsTrue(r <= 0);
             }
         }
         [TestMethod] public void GetListTest() {
-            var l = obj.Get();
+            List<Character> l = obj.Get();
             AreEqual(count, l.Count);
         }
         [TestMethod] public async Task GetAsyncTest() {
             IsNotNull(d);
             await AddAsyncTest();
-            var x = await obj.GetAsync(d.ID);
+            Character x = await obj.GetAsync(d.ID);
             ArePropertiesEqual(d, x.Data);
         }
         [TestMethod] public async Task GetListAsyncTest() {
-            var l = await obj.GetAsync();
+            List<Character> l = await obj.GetAsync();
             AreEqual(count, l.Count);
         }
         [TestMethod] public async Task UpdateTest() {
             await GetTest();
-            var dX = GetRandom.Value<CharacterData>() as CharacterData;
+            CharacterData? dX = GetRandom.Value<CharacterData>() as CharacterData;
             IsNotNull(d);
             IsNotNull(dX);
             dX.ID = d.ID;
-            var aX = new Character(dX);
+            Character aX = new Character(dX);
             _ = obj.Update(aX);
-            var x = obj.Get(d.ID);
+            Character x = obj.Get(d.ID);
             ArePropertiesEqual(dX, x.Data);
         }
         [TestMethod] public async Task UpdateAsyncTest() {
             await GetTest();
-            var dX = GetRandom.Value<CharacterData>() as CharacterData;
+            CharacterData? dX = GetRandom.Value<CharacterData>() as CharacterData;
             IsNotNull(d);
             IsNotNull(dX);
             dX.ID = d.ID;
-            var aX = new Character(dX);
+            Character aX = new Character(dX);
             _ = await obj.UpdateAsync(aX);
-            var x = obj.Get(d.ID);
+            Character x = obj.Get(d.ID);
             ArePropertiesEqual(dX, x.Data);
         }
     }

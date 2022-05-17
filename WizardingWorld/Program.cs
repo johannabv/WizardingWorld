@@ -7,10 +7,10 @@ using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
 using WizardingWorld.Infra.Party;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("WizardingWorldContext");
+string connectionString = builder.Configuration.GetConnectionString("WizardingWorldContext");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDbContext<WizardingWorldDb>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -28,7 +28,7 @@ builder.Services.AddTransient<IWandsRepo, WandsRepo>();
 builder.Services.AddTransient<IWoodsRepo, WoodsRepo>();
 builder.Services.AddTransient<ICoreMaterialsRepo, CoreMaterialsRepo>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
@@ -40,9 +40,9 @@ else {
     _ = app.UseHsts();
 }
 
-using (var scope = app.Services.CreateScope()) {
+using (IServiceScope scope = app.Services.CreateScope()) {
     GetRepo.SetService(app.Services);
-    var db = scope.ServiceProvider.GetService<WizardingWorldDb>();
+    WizardingWorldDb? db = scope.ServiceProvider.GetService<WizardingWorldDb>();
     _ = (db?.Database?.EnsureCreated());
     WizardingWorldDbInitializer.Init(db);
 }

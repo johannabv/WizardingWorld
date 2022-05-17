@@ -10,15 +10,15 @@ namespace WizardingWorld.Infra {
         public override bool Delete(string id) => DeleteAsync(id).GetAwaiter().GetResult();
         public override List<TDomain> Get() => GetAsync().GetAwaiter().GetResult();
         public override List<TDomain> GetAll(Func<TDomain, dynamic>? orderBy = null) {
-            var r = new List<TDomain>();
+            List<TDomain> r = new List<TDomain>();
             if (Set is null) return r;
-            foreach (var d in Set) r.Add(ToDomain(d));
+            foreach (TData d in Set) r.Add(ToDomain(d));
             return (orderBy is null) ? r : r.OrderBy(orderBy).ToList();
         }
         public override TDomain Get(string id) => GetAsync(id).GetAwaiter().GetResult();
         public override bool Update(TDomain obj) => UpdateAsync(obj).GetAwaiter().GetResult();
         public override async Task<bool> AddAsync(TDomain obj) {
-            var d = obj.Data;
+            TData d = obj.Data;
             try {
                 _ = (Set is null) ? null : await Set.AddAsync(d);
                 _ = (Db is null) ? 0 : await Db.SaveChangesAsync();
@@ -28,7 +28,7 @@ namespace WizardingWorld.Infra {
         }
         public override async Task<bool> DeleteAsync(string id) {
             try {
-                var d = (Set is null) ? null : await Set.FindAsync(id);
+                TData? d = (Set is null) ? null : await Set.FindAsync(id);
                 if (d == null) return false;
                 _ = Set?.Remove(d);
                 _ = (Db is null) ? 0 : await Db.SaveChangesAsync();
@@ -38,10 +38,10 @@ namespace WizardingWorld.Infra {
         }
         public override async Task<List<TDomain>> GetAsync() {
             try {
-                var query = CreateSQL();
-                var list = await CrudRepo<TDomain, TData>.RunSQL(query);
-                var items = new List<TDomain>();
-                foreach (var d in list) items.Add(ToDomain(d));
+                IQueryable<TData> query = CreateSQL();
+                List<TData> list = await CrudRepo<TDomain, TData>.RunSQL(query);
+                List<TDomain> items = new List<TDomain>();
+                foreach (TData d in list) items.Add(ToDomain(d));
                 return items;
             }
             catch { return new List<TDomain>(); }
@@ -51,7 +51,7 @@ namespace WizardingWorld.Infra {
         public override async Task<TDomain> GetAsync(string id) {
             try {
                 if (id == null) return new TDomain();
-                var d = (Set is null) ? null : await Set.FirstOrDefaultAsync(x => x.ID == id);
+                TData? d = (Set is null) ? null : await Set.FirstOrDefaultAsync(x => x.ID == id);
                 return d == null ? new TDomain() : ToDomain(d);
             }
             catch { return new TDomain(); }
@@ -60,7 +60,7 @@ namespace WizardingWorld.Infra {
             try {
                 if(Db == null) return false;
                 Db.ChangeTracker.Clear();
-                var d = obj.Data;
+                TData d = obj.Data;
                 Db.Attach(d).State = EntityState.Modified;
                 _ = await Db.SaveChangesAsync();
                 return true;

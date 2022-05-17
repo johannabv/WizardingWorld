@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public CharactersRepo(WizardingWorldDb? db) : base(db, db?.Characters) { }
         protected internal override Character ToDomain(CharacterData d) => new(d);
         internal override IQueryable<CharacterData> AddFilter(IQueryable<CharacterData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.ID.Contains(y)
                   || x.FirstName.Contains(y)

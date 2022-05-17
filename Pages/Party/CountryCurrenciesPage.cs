@@ -34,7 +34,7 @@ namespace WizardingWorld.Pages.Party {
         public string CurrencyName(string? currencyId = null)
             => Currencies?.FirstOrDefault(x => x.Value == (currencyId ?? string.Empty))?.Text ?? "Unspecified";
         public override object? GetValue(string name, CountryCurrencyView v) {
-            var r = base.GetValue(name, v);
+            object? r = base.GetValue(name, v);
             return name == nameof(CountryCurrencyView.CountryID) ? CountryName(r as string)
                 : name == nameof(CountryCurrencyView.CurrencyID) ? CurrencyName(r as string)
                 : r;

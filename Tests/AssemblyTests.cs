@@ -38,17 +38,17 @@ namespace Tests {
         private void RemoveDuplications() => typesToBeTested?.Find(x => IsItDuplicated(x));
 
         private bool IsItDuplicated(Type x) {
-            var t = typesToBeTested?.Find(y => IsDuplicated(y, x));
+            Type? t = typesToBeTested?.Find(y => IsDuplicated(y, x));
             if (t == null) return false;
             _ = typesToBeTested?.Remove(t);
             return t is not null;
         }
         private static bool IsDuplicated(Type x, Type y) {
             if (x == y) return false;
-            var nameX = x.Name;
-            var nameY = y.Name;
-            var lengthX = nameX.IndexOf('`');
-            var lengthY = nameY.IndexOf('`');
+            string nameX = x.Name;
+            string nameY = y.Name;
+            int lengthX = nameX.IndexOf('`');
+            int lengthY = nameY.IndexOf('`');
             if (lengthX >= 0) nameX = nameX[..lengthX];
             if (lengthY >= 0) nameY = nameY[..lengthY];
             return nameX == nameY;
@@ -68,7 +68,7 @@ namespace Tests {
         private bool AllAreTested() => typesToBeTested.IsEmpty();
         private void RemoveTested() => typesToBeTested?.RemoveAll(x => IsItTested(x));
         private bool IsItTested(Type x) {
-            var t = testingTypes?.Find(y => IsTestFor(y, x));
+            Type? t = testingTypes?.Find(y => IsTestFor(y, x));
             if(t is null) return false;
             _ = testingTypes?.Remove(t);
             return t is not null;
@@ -77,9 +77,9 @@ namespace Tests {
         private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
         private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(TypeTests));
         private static bool IsTestFor(Type testingType, Type typeToBeTested) {
-            var testName = typeToBeTested.FullName ?? string.Empty;
+            string testName = typeToBeTested.FullName ?? string.Empty;
             testName = testName.RemoveHead();
-            var length = testName.IndexOf('`');
+            int length = testName.IndexOf('`');
             if (length >= 0) testName = testName[..length];
             testName += TestsStr;
             return testingType.NameEnds($".{testName}");

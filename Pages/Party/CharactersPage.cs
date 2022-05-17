@@ -40,12 +40,12 @@ namespace WizardingWorld.Pages.Party {
         public string HouseName(string? houseId = null)
             => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
         public override object? GetValue(string name, CharacterView v) {
-            var r = base.GetValue(name, v);
+            object? r = base.GetValue(name, v);
             if (name == nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
             if (name == nameof(CharacterView.Gender)) return GenderDescription((IsoGender)r);
             if (name == nameof(CharacterView.Organisation)) return OrganisationDescription((Side)r);
             return r;
         }
-        public List<Address?> Addresses => ToObject(Item).Addresses;
+        public Lazy<List<Address?>> Addresses => ToObject(Item).Addresses;
     }
 }

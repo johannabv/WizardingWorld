@@ -17,16 +17,16 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
         [TestMethod] public void CountryIDTest() => IsReadOnly(obj.Data.CountryID);
         [TestMethod] public void ToStringTest() {
-            var expected = $"{obj.Street}, {obj.City}, {obj.Country?.Name} ({obj.Description})";
+            string expected = $"{obj.Street}, {obj.City}, {obj.Country?.Name} ({obj.Description})";
             AreEqual(expected, obj.ToString());
         }
         [TestMethod] public void CharactersTest() 
             => TestRelatedLists<ICharactersRepo, CharacterAddress, Character, CharacterData>
-            (CharacterAddressesTest, () => obj.CharacterAddresses, () => obj.Characters, 
+            (CharacterAddressesTest, () => obj.CharacterAddresses.Value, () => obj.Characters.Value, 
                 x => x.CharacterID, d => new Character(d), c => c?.Data, x => x?.Character?.Data);
         [TestMethod] public void CharacterAddressesTest() 
             => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(
-                d => d.AddressID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses);
+                d => d.AddressID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses.Value);
         [TestMethod] public void CountryTest() 
             => TestItem<ICountriesRepo, Country, CountryData>(obj.CountryID, d => new Country(d), () => obj.Country);
         

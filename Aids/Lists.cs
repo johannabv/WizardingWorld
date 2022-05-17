@@ -5,9 +5,9 @@
         public static bool IsEmpty<T>(this List<T>? list) => Safe.Run(() => (list?.Count ?? 0) == 0, true);
         public static bool ContainsItem<T>(this List<T>? list, Func<T, bool> match) 
             => Safe.Run( () => {
-                    var a = list is not null;
-                    var x = list.Single(match);
-                    var b = x is not null;
+                    bool a = list is not null;
+                    T x = list.Single(match);
+                    bool b = x is not null;
                     return a && b;
                 },
                 false);

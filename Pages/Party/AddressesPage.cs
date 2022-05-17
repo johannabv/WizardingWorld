@@ -27,9 +27,9 @@ namespace WizardingWorld.Pages.Party {
             => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
 
         public override object? GetValue(string name, AddressView v) {
-            var r = base.GetValue(name, v);
+            object? r = base.GetValue(name, v);
             return name == nameof(AddressView.CountryID) ? CountryName(r as string) : r;
         }
-        public List<Character?> Characters => ToObject(Item).Characters;
+        public Lazy<List<Character?>> Characters => ToObject(Item).Characters;
     }
 }

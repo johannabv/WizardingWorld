@@ -8,18 +8,18 @@ namespace WizardingWorld.Infra.Initializers {
         public WoodsInitializer(WizardingWorldDb? db) : base(db, db?.Woods) { }
         protected override IEnumerable<WoodData> GetEntities {
             get {
-                var l = new List<WoodData>();
-                var filePathA = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
-                var filePathInProject = @"source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
-                var projectDirectory = System.IO.Path.GetFullPath(@"../../../../");
-                var filePathB = Path.Combine(projectDirectory, filePathInProject);
-                var stream = new FileStream(filePathA, FileMode.Open, FileAccess.Read);
+                List<WoodData> l = new List<WoodData>();
+                string filePathA = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
+                string filePathInProject = @"source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
+                string projectDirectory = System.IO.Path.GetFullPath(@"../../../../");
+                string filePathB = Path.Combine(projectDirectory, filePathInProject);
+                FileStream stream = new FileStream(filePathA, FileMode.Open, FileAccess.Read);
                 using (StreamReader reader = new(stream, Encoding.UTF8)) {
                     string? line = string.Empty;
                     while ((line = reader.ReadLine()) != null) {
-                        var one = line.Split(':')[0] ?? "undefined";
-                        var two = line.Split(':')[1] ?? "undefined";
-                        var three = line.Split(':')[2] ?? "undefined";
+                        string one = line.Split(':')[0] ?? "undefined";
+                        string two = line.Split(':')[1] ?? "undefined";
+                        string three = line.Split(':')[2] ?? "undefined";
                         l.Add(CreateWood(one,two,three));
                     }
                     reader.Close();

@@ -9,7 +9,7 @@ namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class AddressInitializerTests
         : SealedBaseTests<AddressInitializer, BaseInitializer<AddressData>> {
         protected override AddressInitializer CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             return new AddressInitializer(db);
         }
     }

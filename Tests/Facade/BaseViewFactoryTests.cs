@@ -13,13 +13,13 @@ namespace Tests.Facade {
         protected override BaseViewFactory<CharacterView, Character, CharacterData> CreateObj() => new TestClass();
         [TestMethod] public void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
-            var v = GetRandom.Value<CharacterView>();
-            var o = obj.Create(v);
+            dynamic? v = GetRandom.Value<CharacterView>();
+            dynamic? o = obj.Create(v);
             ArePropertiesEqual(v, o.Data);
         }
         [TestMethod] public void CreateObjectTest() {
-            var d = GetRandom.Value<CharacterData>();
-            var v = obj.Create(new Character(d));
+            dynamic? d = GetRandom.Value<CharacterData>();
+            CharacterView v = obj.Create(new Character(d));
             ArePropertiesEqual(d, v);
         }
     }

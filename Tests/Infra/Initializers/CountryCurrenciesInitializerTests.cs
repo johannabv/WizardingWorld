@@ -9,7 +9,7 @@ namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class CountryCurrenciesInitializerTests
         : SealedBaseTests<CountryCurrenciesInitializer, BaseInitializer<CountryCurrencyData>> {
         protected override CountryCurrenciesInitializer CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             return new CountryCurrenciesInitializer(db);
         }
     }

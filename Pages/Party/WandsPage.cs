@@ -35,11 +35,11 @@ namespace WizardingWorld.Pages.Party {
             => CoreInfos?.FirstOrDefault(x => x.Value == (coreId ?? string.Empty))?.Text ?? "Unspecified";
         
         public override object? GetValue(string name, WandView v) {
-            var r = base.GetValue(name, v);
+            object? r = base.GetValue(name, v);
             return name == nameof(WandView.CoreID) ? CoreDescription(r as string)
                 : name == nameof(WandView.WoodID) ? WoodDescription(r as string)
                 : r;
         }
-        public List<Wood?> Woods => ToObject(Item).Woods;
+        public Lazy<List<Wood?>> Woods => ToObject(Item).Woods;
     }
 }

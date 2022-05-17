@@ -6,12 +6,12 @@ namespace WizardingWorld.Pages.Extensions {
     public static class DropDownHtml {
         public static IHtmlContent MyDropDownFor<TModel, TResult>(
             this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, IEnumerable<SelectListItem> list) {
-            var s = HtmlStrings(h, e, list);
+            List<object> s = HtmlStrings(h, e, list);
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel, TResult>(
             IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, IEnumerable<SelectListItem> list) {
-            var l = new List<object> {
+            List<object> l = new List<object> {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dd class=\"col-sm-2\">"),
                 h.LabelFor(e, null, new { @class = "control-label" }),

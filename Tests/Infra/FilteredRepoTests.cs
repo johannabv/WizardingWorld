@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests;
 using WizardingWorld.Aids;
@@ -15,8 +16,8 @@ namespace WizardingWorld.Tests.Infra {
             protected internal override Character ToDomain(CharacterData d) => new(d);
         }
         protected override FilteredRepo<Character, CharacterData> CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
-            var set = db?.Characters;
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
+            DbSet<CharacterData>? set = db?.Characters;
             return new TestClass(db, set);
         }
         [TestMethod] public void CurrentFilterTest() => IsProperty<string>();
@@ -25,10 +26,10 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(false)]
         [TestMethod] public void CreateSQLTest(bool hasCurrentFilter) {
             obj.CurrentFilter = hasCurrentFilter ? GetRandom.String() : null;
-            var q1 = obj.CreateSQL();
-            var q2 = obj.AddFilter(q1);
+            IQueryable<CharacterData> q1 = obj.CreateSQL();
+            IQueryable<CharacterData> q2 = obj.AddFilter(q1);
             AreEqual(q1, q2);
-            var s = q1.Expression.ToString();
+            string s = q1.Expression.ToString();
             IsTrue(s.EndsWith(".Select(s => s)"));
         }
     }

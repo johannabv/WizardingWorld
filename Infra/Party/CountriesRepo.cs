@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public CountriesRepo(WizardingWorldDb? db) : base(db, db?.Countries) { }
         protected internal override Country ToDomain(CountryData d) => new(d); 
         internal override IQueryable<CountryData> AddFilter(IQueryable<CountryData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.Code.Contains(y)
                   || x.Description.Contains(y)

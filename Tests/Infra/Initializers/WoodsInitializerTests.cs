@@ -9,7 +9,7 @@ namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class WoodsInitializerTests
         : SealedBaseTests<WoodsInitializer, BaseInitializer<WoodData>> {
         protected override WoodsInitializer CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             return new WoodsInitializer(db);
         }
     }

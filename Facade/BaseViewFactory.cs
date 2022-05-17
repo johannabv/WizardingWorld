@@ -10,13 +10,13 @@ namespace WizardingWorld.Facade {
         protected abstract TEntity ToEntity(TData d);
         protected virtual void Copying(object? from, object? to) => Copy.Properties(from, to);
         public virtual TEntity Create(TView? v) {
-            var d = new TData();
+            TData d = new TData();
             Copying(v, d);
             return ToEntity(d);
         }
         public virtual TView Create(TEntity? e) {
-            var d = e?.Data;
-            var v = new TView();
+            TData? d = e?.Data;
+            TView v = new TView();
             Copying(d, v);
             return v;
         }

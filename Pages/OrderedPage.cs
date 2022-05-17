@@ -22,9 +22,9 @@ namespace WizardingWorld.Pages {
         }
         private static string? GetDisplayName(PropertyInfo? pi) => pi?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
         private static string? ToCurrentOrder(string? value) {
-            var isDesc = value?.Contains("_desc") ?? false;
-            var displayName = value?.Replace("_desc", string.Empty);
-            foreach (var pi in typeof(TView).GetProperties()) {
+            bool isDesc = value?.Contains("_desc") ?? false;
+            string? displayName = value?.Replace("_desc", string.Empty);
+            foreach (PropertyInfo pi in typeof(TView).GetProperties()) {
                 if (!OrderedPage<TView, TEntity, TRepo>.IsThisDisplayName(pi, displayName)) continue;
                 return isDesc ? pi.Name + "_desc" : pi.Name;
             }

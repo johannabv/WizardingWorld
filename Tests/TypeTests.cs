@@ -51,13 +51,13 @@ namespace Tests {
         // private static Type? getType(Assembly? a, string? name) => a?.Type(name);
         private static Type? GetType(Assembly? a, string? name) {
             if (string.IsNullOrWhiteSpace(name)) return null;
-            foreach (var t in a?.DefinedTypes ?? Array.Empty<TypeInfo>())
+            foreach (TypeInfo t in a?.DefinedTypes ?? Array.Empty<TypeInfo>())
                 if (t.Name.StartsWith(name)) return t.AsType();
             return null;
         }
         private static Assembly? GetTheAssembly(string? name) {
             while (!string.IsNullOrWhiteSpace(name)) {
-                var a = GetAssembly.ByName(name);
+                Assembly? a = GetAssembly.ByName(name);
                 if (a is not null) return a;
                 name = name.RemoveTail();
             }

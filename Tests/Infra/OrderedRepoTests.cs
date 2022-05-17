@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests;
 using WizardingWorld.Aids;
@@ -15,8 +16,8 @@ namespace WizardingWorld.Tests.Infra {
             protected internal override Character ToDomain(CharacterData d) => new(d);
         }
         protected override OrderedRepo<Character, CharacterData> CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
-            var set = db?.Characters;
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
+            DbSet<CharacterData>? set = db?.Characters;
             return new TestClass(db, set);
         }
         [TestMethod] public void CurrentOrderTest() => IsProperty<string>();
@@ -40,7 +41,7 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(nameof(Character.HogwartsHouse), false)]
         [TestMethod] public void CreateSQLTest(string str, bool isDescending) {
             obj.CurrentOrder = (str is null) ? str : isDescending ? str + TestClass.DescendingString : str;
-            var q = obj.CreateSQL();
+            IQueryable<CharacterData> q = obj.CreateSQL();
             string? actual = q.Expression.ToString();
             if (str is null) IsTrue(actual.EndsWith(".Select(s => s)"));
             else if (isDescending) IsTrue(actual.EndsWith(
@@ -54,12 +55,12 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(true, false)]
         [DataRow(false,false)]
         [TestMethod] public void SortOrderTest(bool isDescending, bool isSame) { 
-            var s = GetRandom.String();
-            var c = isSame ? s : GetRandom.String();
+            string s = GetRandom.String();
+            string c = isSame ? s : GetRandom.String();
             obj.CurrentOrder = isDescending ? c + TestClass.DescendingString : c;
-            var actual = obj.SortOrder(s);
-            var sDes = s + TestClass.DescendingString;
-            var expected = isSame ? (isDescending ? s : sDes) : sDes;
+            string actual = obj.SortOrder(s);
+            string sDes = s + TestClass.DescendingString;
+            string expected = isSame ? (isDescending ? s : sDes) : sDes;
             AreEqual(expected, actual);
         }
     }

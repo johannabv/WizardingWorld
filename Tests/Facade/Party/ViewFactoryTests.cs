@@ -14,13 +14,13 @@ namespace WizardingWorld.Tests.Facade.Party {
         where TObj : BaseEntity<TData> {
         [TestMethod] public void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
-            var v = GetRandom.Value<TView>();
-            var o = obj.Create(v);
+            dynamic? v = GetRandom.Value<TView>();
+            dynamic? o = obj.Create(v);
             ArePropertiesEqual(v, o.Data);
         }
         [TestMethod] public void CreateObjectTest() {
-            var d = GetRandom.Value<TData>();
-            var v = obj.Create(ToObject(d));
+            dynamic? d = GetRandom.Value<TData>();
+            dynamic? v = obj.Create(ToObject(d));
             ArePropertiesEqual(d, v);
         }
         protected abstract TObj ToObject(TData d);

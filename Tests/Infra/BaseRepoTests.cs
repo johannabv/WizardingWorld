@@ -32,8 +32,8 @@ namespace WizardingWorld.Tests.Infra {
         [TestMethod] public void DbTest() => IsReadOnly<DbContext?>();
         [TestMethod] public void SetTest() => IsReadOnly<DbSet<CharacterData>?>();
         [TestMethod] public void BaseRepoTest() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
-            var set = db?.Characters;
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
+            DbSet<CharacterData>? set = db?.Characters;
             IsNotNull(set);
             obj = new TestClass(db, set);
             AreEqual(db, obj.Db);
@@ -41,12 +41,12 @@ namespace WizardingWorld.Tests.Infra {
         }
         [TestMethod] public async Task ClearTest() {
             BaseRepoTest();
-            var cnt = GetRandom.Int32(5, 30);
-            var db = obj.Db;
+            int cnt = GetRandom.Int32(5, 30);
+            DbContext? db = obj.Db;
             IsNotNull(db);
-            var set = obj.Set;
+            DbSet<CharacterData>? set = obj.Set;
             IsNotNull(set);
-            for (var i = 0; i < cnt; i++) set.Add(GetRandom.Value<CharacterData>());
+            for (int i = 0; i < cnt; i++) set.Add(GetRandom.Value<CharacterData>());
             AreEqual(0, await set.CountAsync());
             db.SaveChanges();
             AreEqual(cnt, await set.CountAsync());

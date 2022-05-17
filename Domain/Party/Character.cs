@@ -14,15 +14,24 @@ namespace WizardingWorld.Domain.Party {
         public IsoGender Gender => GetValue(Data?.Gender);
         public DateTime DoB => GetValue(Data?.DoB); 
         public override string ToString() => $"{FirstName} {LastName}, {Organisation} ({Gender.Description()}, {DoB}, {HogwartsHouse})";
-        public List<CharacterAddress> CharacterAddresses
-            => GetRepo.Instance<ICharacterAddressesRepo>()?
-            .GetAll(x => x.CharacterID)?
-            .Where(x => x.CharacterID == ID)?
-            .ToList() ?? new List<CharacterAddress>();
 
-        public List<Address?> Addresses
-            => CharacterAddresses
-            .Select(x => x.Address)
-            .ToList() ?? new List<Address?>();
+        public Lazy<List<CharacterAddress>> CharacterAddresses {
+            get {
+                List<CharacterAddress> l = GetRepo.Instance<ICharacterAddressesRepo>()?
+                      .GetAll(x => x.CharacterID)?
+                      .Where(x => x.CharacterID == ID)?
+                      .ToList() ?? new List<CharacterAddress>();
+                return new Lazy<List<CharacterAddress>>(l);
+            }
+        }
+        public Lazy<List<Address?>> Addresses {
+            get {
+                List<Address?> l = CharacterAddresses
+                    .Value
+                    .Select(x => x.Address)
+                    .ToList() ?? new List<Address?>();
+                return new Lazy<List<Address?>>(l);
+            }
+        }
     }
 }

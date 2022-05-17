@@ -13,7 +13,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class WoodViewFactory : BaseViewFactory<WoodView, Wood, WoodData> {
         protected override Wood ToEntity(WoodData d) => new(d);
         public override WoodView Create(Wood? e) {
-            var v = base.Create(e);
+            WoodView v = base.Create(e);
             v.FullName = e?.ToString();
             return v;
         }

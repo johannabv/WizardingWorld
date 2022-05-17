@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public AddressesRepo(WizardingWorldDb? db) : base(db, db?.Addresses) { }
         protected internal override Address ToDomain(AddressData d) => new(d);
         internal override IQueryable<AddressData> AddFilter(IQueryable<AddressData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y)
                 ? q : q.Where(
                 x => x.Street.Contains(y)

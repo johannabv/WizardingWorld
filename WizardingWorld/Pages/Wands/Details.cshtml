@@ -12,5 +12,5 @@
 
 <body>
     <partial name = "_ShowWand" />
-    <tr> <td> @Html.MyViewerFor(m => m.WoodInfos, GetValue(columns[0], Model.Woods.First())) </td> </tr>
+    <tr> <td> @Html.MyViewerFor(m => m.WoodInfos, GetValue(columns[0], Model.Woods.Value.First())) </td> </tr>
 </Body>

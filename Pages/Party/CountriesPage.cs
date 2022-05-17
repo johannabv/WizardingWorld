@@ -14,6 +14,6 @@ namespace WizardingWorld.Pages.Party {
             nameof(CountryView.Description)
         };
 
-        public List<Currency?> Currencies => ToObject(Item).Currencies;
+        public Lazy<List<Currency?>> Currencies => ToObject(Item).Currencies;
     }
 }

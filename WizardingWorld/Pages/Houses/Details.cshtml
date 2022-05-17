@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Characters) {
+            @foreach (var item in Model.Characters.Value) {
                 <tr>
                     @foreach (var name in columns) { <td> @Html.Raw(GetValue(name, item)) </td> }
                 </tr>

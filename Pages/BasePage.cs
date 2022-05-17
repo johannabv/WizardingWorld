@@ -36,7 +36,7 @@ namespace WizardingWorld.Pages {
             return await f();
         }
         internal virtual void RemoveKey(params string[] keys) {
-            foreach (var key in keys ?? Array.Empty<string>())
+            foreach (string key in keys ?? Array.Empty<string>())
                 _ = Safe.Run(() => ModelState.Remove(key));
         }
         public IActionResult OnGetCreate(int index = 0, string? filter = null, string? order = null) {

@@ -16,9 +16,9 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void CoreItemTest()
             => TestItem<ICoreMaterialsRepo, CoreMaterial, CoreMaterialData>(obj.CoreID, d => new CoreMaterial(d), () => obj.CoreItem);
         [TestMethod] public void WoodsTest() => TestList<IWoodsRepo, Wood, WoodData>(
-                d => d.Name = obj.WoodID, d => new Wood(d), () => obj.Woods); 
+                d => d.Name = obj.WoodID, d => new Wood(d), () => obj.Woods.Value); 
         [TestMethod] public void ToStringTest() {
-            var expected = $"{obj.Info},{obj.CoreItem}, {obj.WoodItem}";
+            string expected = $"{obj.Info},{obj.CoreItem}, {obj.WoodItem}";
             AreEqual(expected, obj.ToString());
         }
     }

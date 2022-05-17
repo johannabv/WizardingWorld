@@ -8,7 +8,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class CharacterViewFactory : BaseViewFactory<CharacterView, Character, CharacterData> {
         protected override Character ToEntity(CharacterData d) => new(d);
         public override CharacterView Create(Character? e) {
-            var v = base.Create(e);
+            CharacterView v = base.Create(e);
             v.FullName=e?.ToString();
             v.Gender=e?.Gender;
             v.Organisation=e?.Organisation;

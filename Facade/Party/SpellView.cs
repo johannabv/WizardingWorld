@@ -7,7 +7,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class SpellViewFactory : BaseViewFactory<SpellView, Spell, SpellData> {
         protected override Spell ToEntity(SpellData d) => new(d);
         public override SpellView Create(Spell? e) {
-            var v = base.Create(e);
+            SpellView v = base.Create(e);
             v.FullName = e?.ToString();
             return v;
         }

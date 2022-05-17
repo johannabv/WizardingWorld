@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests;
 using WizardingWorld.Data;
 
@@ -10,7 +11,7 @@ namespace WizardingWorld.Tests.Data {
         [TestMethod] public void NewIdTest() {
             IsNotNull(BaseData.NewId);
             AreNotEqual(BaseData.NewId,BaseData.NewId);
-            var pi = typeof(BaseData).GetProperty(nameof(BaseData.NewId));
+            PropertyInfo? pi = typeof(BaseData).GetProperty(nameof(BaseData.NewId));
             IsFalse(pi?.CanWrite);
         }
     }

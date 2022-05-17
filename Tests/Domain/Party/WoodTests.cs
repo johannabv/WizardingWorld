@@ -12,7 +12,7 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void TraitsTest() => IsReadOnly(obj.Data.Traits);
         [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
         [TestMethod] public void ToStringTest() {
-            var expected = $"{obj.Name}: {obj.Traits}";
+            string expected = $"{obj.Name}: {obj.Traits}";
             AreEqual(expected, obj.ToString());
         }
     }

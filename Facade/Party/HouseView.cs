@@ -7,7 +7,7 @@ namespace WizardingWorld.Facade.Party {
     public sealed class HouseViewFactory : BaseViewFactory<HouseView, House, HouseData> {
         protected override House ToEntity(HouseData d) => new(d);
         public override HouseView Create(House? e) {
-            var v = base.Create(e);
+            HouseView v = base.Create(e);
             v.FullName = e?.ToString();
             return v;
         }

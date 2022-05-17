@@ -15,6 +15,6 @@ namespace WizardingWorld.Pages.Party {
             nameof(HouseView.Color),
             nameof(HouseView.Description)
         };
-        public List<Character?> Characters => ToObject(Item).Characters;
+        public Lazy<List<Character?>> Characters => ToObject(Item).Characters;
     }
 }

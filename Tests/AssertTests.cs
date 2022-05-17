@@ -17,13 +17,13 @@ namespace Tests {
         protected static void ArePropertiesEqual(object? a, object? b, params string[] exclude) {
             IsNotNull(a);
             IsNotNull(b);
-            var typeA = a.GetType();
-            var typeB = b.GetType();
-            foreach (var piA in typeA?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
+            Type? typeA = a.GetType();
+            Type? typeB = b.GetType();
+            foreach (PropertyInfo piA in typeA?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
                 if(exclude?.Contains(piA.Name) ?? false) continue;
-                var valueA = piA.GetValue(a, null);
-                var piB = typeB?.GetProperty(piA.Name);
-                var valueB = piB?.GetValue(b, null);
+                object? valueA = piA.GetValue(a, null);
+                PropertyInfo? piB = typeB?.GetProperty(piA.Name);
+                object? valueB = piB?.GetValue(b, null);
                 AreEqual(valueA, valueB, $"for property {piA.Name}.");
             }
         }

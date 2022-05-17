@@ -6,7 +6,7 @@ namespace WizardingWorld.Infra.Party {
         public WoodsRepo(WizardingWorldDb? db) : base(db, db?.Woods) { }
         protected internal override Wood ToDomain(WoodData d) => new(d);
         internal override IQueryable<WoodData> AddFilter(IQueryable<WoodData> q) {
-            var y = CurrentFilter;
+            string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.ID.Contains(y)
                   || x.Name.Contains(y)

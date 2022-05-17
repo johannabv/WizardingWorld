@@ -8,13 +8,13 @@ namespace WizardingWorld.Infra.Initializers {
         public CurrenciesInitializer(WizardingWorldDb? db) : base(db, db?.Currencies) { }
         protected override IEnumerable<CurrencyData> GetEntities {
             get {
-                var l = new List<CurrencyData>();
+                List<CurrencyData> l = new List<CurrencyData>();
                 foreach (CultureInfo cul in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
-                    var c = new RegionInfo(new CultureInfo(cul.Name, false).LCID);
-                    var id = c.ISOCurrencySymbol;
+                    RegionInfo c = new RegionInfo(new CultureInfo(cul.Name, false).LCID);
+                    string id = c.ISOCurrencySymbol;
                     if (!IsCorrectIsoCode(id)) continue;
                     if (l.FirstOrDefault(x => x.ID == id) is not null) continue; 
-                    var d = CreateCurrency(id, c.CurrencyEnglishName, c.CurrencyNativeName);
+                    CurrencyData d = CreateCurrency(id, c.CurrencyEnglishName, c.CurrencyNativeName);
                     l.Add(d);
                 }
                 return l;

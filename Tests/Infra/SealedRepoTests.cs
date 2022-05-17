@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
+using System.Reflection;
 using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
@@ -18,9 +20,9 @@ namespace WizardingWorld.Tests.Infra {
         private static Type setType => typeof(DbSet<TData>);
         private WizardingWorldDb wizardingWorldDb {
             get {
-                var o = obj.Db;
+                DbContext? o = obj.Db;
                 IsNotNull(o);
-                var db = o as WizardingWorldDb;
+                WizardingWorldDb? db = o as WizardingWorldDb;
                 IsNotNull(db);
                 return db;
             }
@@ -37,8 +39,8 @@ namespace WizardingWorld.Tests.Infra {
         [TestMethod] public void DbContextTest() => InstanceTest(obj.Db, WizardingWorldType);
         [TestMethod] public void DbSetTest() => InstanceTest(obj.Set, setType, GetSet(wizardingWorldDb));
         [TestMethod] public void ToDomainTest() {
-            var d = GetRandom.Value<TData>();
-            var o = obj.ToDomain(d);
+            dynamic? d = GetRandom.Value<TData>();
+            dynamic? o = obj.ToDomain(d);
             IsNotNull(o);
             IsInstanceOfType(o, typeof(TDomain));
             ArePropertiesEqual(d, o.Data);
@@ -47,9 +49,9 @@ namespace WizardingWorld.Tests.Infra {
             string contains(string s) => $"x.{s}.Contains";
             string toStrContains(string s) => $"x.{s}.ToString().Contains";
             obj.CurrentFilter = "abc";
-            var q = obj.CreateSQL();
-            var s = q.Expression.ToString();
-            foreach (var p in typeof(TData).GetProperties()) {
+            IQueryable<TData> q = obj.CreateSQL();
+            string s = q.Expression.ToString();
+            foreach (PropertyInfo p in typeof(TData).GetProperties()) {
                 if (p.Name == nameof(BaseData.Token)) continue;
                 if (p.PropertyType == typeof(string))
                     IsTrue(s.Contains(contains(p.Name)), $"No Where part found for the property {p.Name}");

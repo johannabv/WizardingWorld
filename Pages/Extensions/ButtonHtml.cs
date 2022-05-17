@@ -5,11 +5,11 @@ namespace WizardingWorld.Pages.Extensions {
     public static class ButtonHtml {
         public static IHtmlContent MyBtn<TModel>(
             this IHtmlHelper<TModel> h, string handler, string id) {
-            var s = HtmlStrings(handler, id, h.ViewData.Model as IPageModel);
+            List<object> s = HtmlStrings(handler, id, h.ViewData.Model as IPageModel);
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings(string handler, string id, IPageModel? m) {
-            var l = new List<object> {
+            List<object> l = new List<object> {
                 new HtmlString($"<a style=\"text-decoration:none;\" href=\"/{PageName(m)}/{handler}?"),
                 new HtmlString($"handler={handler}&amp;"),
                 new HtmlString($"id={id}&amp;"),
