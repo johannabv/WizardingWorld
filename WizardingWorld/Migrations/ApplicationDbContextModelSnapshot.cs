@@ -244,6 +244,12 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -264,6 +270,12 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("CharacterID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<int?>("UseFor")
                         .HasColumnType("int");
@@ -296,12 +308,18 @@ namespace WizardingWorld.Migrations
                     b.Property<int?>("Organisation")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.HasKey("ID");
 
                     b.ToTable("Characters", "WizardingWorld");
                 });
 
-            modelBuilder.Entity("WizardingWorld.Data.Party.CoreData", b =>
+            modelBuilder.Entity("WizardingWorld.Data.Party.CoreMaterialData", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
@@ -315,6 +333,12 @@ namespace WizardingWorld.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("ID");
 
@@ -344,6 +368,12 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.HasKey("ID");
 
                     b.ToTable("CountryCurrencies", "WizardingWorld");
@@ -364,6 +394,12 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.HasKey("ID");
 
                     b.ToTable("Countries", "WizardingWorld");
@@ -383,6 +419,12 @@ namespace WizardingWorld.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("ID");
 
@@ -409,6 +451,12 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("HouseName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.HasKey("ID");
 
                     b.ToTable("Houses", "WizardingWorld");
@@ -424,6 +472,12 @@ namespace WizardingWorld.Migrations
 
                     b.Property<string>("SpellName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
@@ -444,6 +498,12 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Info")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<string>("WoodID")
                         .HasColumnType("nvarchar(max)");
 
@@ -462,6 +522,12 @@ namespace WizardingWorld.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Token")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Traits")
                         .HasColumnType("nvarchar(max)");

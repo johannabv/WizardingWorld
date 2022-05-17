@@ -14,6 +14,11 @@ namespace WizardingWorld.Pages.Party {
             nameof(CurrencyView.Name),
             nameof(CurrencyView.Description)
         };
+        public override string[] RelatedIndexColumns { get; } = new[] {
+            nameof(CountryView.Code),
+            nameof(CountryView.Name),
+            nameof(CountryView.Description)
+        };
         public Lazy<List<Country?>> Countries => ToObject(Item).Countries;
     }
 }

@@ -1,36 +1,15 @@
 ﻿@page
 @using WizardingWorld.Facade.Party
+@using WizardingWorld.Pages.Extensions
 @model WizardingWorld.Pages.Party.CountriesPage
 
 @{
     Layout = "_Details";
-    var columns = new[] { 
-        nameof(CurrencyView.Code)
-        , nameof(CurrencyView.Name)
-        , nameof(CurrencyView.Description)
-    };
-    object? GetValue<T>(string propertyname, T item) => typeof(T).GetProperty(propertyname)?.GetValue(item);
+    CountryView forModel = new();
+    CurrencyView forDisplayName = new();
 }
 
 <body>
     <partial name = "_ShowCountry" />
-    <br>
-        <h4>Currencies</h4>
-    <br>
-
-        <table class="table">
-        <thead>
-        <tr>
-            @foreach (var name in columns) { <td> @Html.Raw(name) </td> }
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Currencies.Value) {
-                <tr>
-                    @foreach (var name in columns) { <td> @Html.Raw(GetValue(name, item)) </td> }
-                </tr>
-            }
-        </tbody>
-        </table>
-
+    @Html.ShowRelatedTable(Model.Currencies.Value, forModel, forDisplayName)
 </Body>

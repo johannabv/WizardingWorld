@@ -20,7 +20,7 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.HogwartsHouse),
             nameof(CharacterView.Organisation),
         };
-        public override string[] IndexColumnsRelatedTable { get; } = new[] {
+        public override string[] RelatedIndexColumns { get; } = new[] {
             nameof(AddressView.Street),
             nameof(AddressView.City),
             nameof(AddressView.Region),

@@ -15,6 +15,14 @@ namespace WizardingWorld.Pages.Party {
             nameof(HouseView.Color),
             nameof(HouseView.Description)
         };
+        public override string[] RelatedIndexColumns { get; } = new[] {
+            nameof(CharacterView.FirstName),
+            nameof(CharacterView.LastName),
+            nameof(CharacterView.Gender),
+            nameof(CharacterView.DoB),
+            nameof(CharacterView.HogwartsHouse),
+            nameof(CharacterView.Organisation),
+        };
         public Lazy<List<Character?>> Characters => ToObject(Item).Characters;
     }
 }

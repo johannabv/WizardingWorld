@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WizardingWorld.Facade;
-using WizardingWorld.Pages;
 
-namespace SoftFitness.Pages.Extensions {
+namespace WizardingWorld.Pages.Extensions {
     public static class ShowRelatedTableHtml {
         public static IHtmlContent ShowRelatedTable<TModel, TView, TEntity, T>(this IHtmlHelper<TModel> h, IList<TEntity>? items, TView x, T y)
                 where TModel : IIndexModel<TView> where TView : BaseView {
