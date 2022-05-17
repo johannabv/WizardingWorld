@@ -21,5 +21,6 @@ namespace WizardingWorld.Tests.Domain {
         [TestMethod] public void DataTest() => IsReadOnly(d);
         [TestMethod] public void DefaultStrTest() => AreEqual("Undefined", BaseEntity.DefaultStr);
         [TestMethod] public void DefaultDateTest() => AreEqual(DateTime.MinValue, BaseEntity.DefaultDate);
+        [TestMethod] public void TokenTest() => IsReadOnly(obj.Data.Token);
     }
 }

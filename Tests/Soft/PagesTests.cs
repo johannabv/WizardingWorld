@@ -13,9 +13,8 @@ namespace WizardingWorld.Tests.Soft {
 
             string name = GetName(new TObj());
             string handler = GetHandler(name);
-            int cnt;
 
-            _ = AddRandomItems<TRepo, TObj, TData>(out cnt, toObj);
+            _ = AddRandomItems<TRepo, TObj, TData>(out int cnt, toObj);
 
             HttpResponseMessage page = await client.GetAsync($"/{name}?handler={handler}");
             AreEqual(HttpStatusCode.OK, page.StatusCode);
@@ -26,7 +25,9 @@ namespace WizardingWorld.Tests.Soft {
         }
         public static string GetName<TObj>(TObj obj) {
             string typeName = obj.GetType().Name;
-            return !typeName.EndsWith('y') ? typeName + "s" : typeName[..^1] + "ies";
+            if (typeName.EndsWith('y')) return typeName[..^1] + "ies";
+            if (typeName.EndsWith('s')) return typeName + "es";
+            return typeName + "s";
         }
         public static string GetHandler(string name)
             => GetCallingMember(nameof(GetPageTestAsync))

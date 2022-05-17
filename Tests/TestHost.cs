@@ -13,12 +13,12 @@ namespace Tests {
         protected override void ConfigureWebHost(IWebHostBuilder b) {
             base.ConfigureWebHost(b);
             b.ConfigureTestServices(s => {
-                RemoveDb<ApplicationDbContext>(s);
-                RemoveDb<WizardingWorldDb>(s);
-                s.AddEntityFrameworkInMemoryDatabase();
-                AddDb<ApplicationDbContext>(s);
-                AddDb<WizardingWorldDb>(s);
-                EnsureCreated(s, typeof(ApplicationDbContext), typeof(WizardingWorldDb));
+                                             RemoveDb<ApplicationDbContext>(s);
+                                             RemoveDb<WizardingWorldDb>(s);
+                                             s.AddEntityFrameworkInMemoryDatabase();
+                                             AddDb<ApplicationDbContext>(s);
+                                             AddDb<WizardingWorldDb>(s);
+                                             EnsureCreated(s, typeof(ApplicationDbContext), typeof(WizardingWorldDb));
             });
         }
         private static void EnsureCreated(IServiceCollection s, params Type[] types) {

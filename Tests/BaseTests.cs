@@ -11,9 +11,9 @@ namespace WizardingWorld.Tests {
     public abstract class BaseTests<TClass, TBaseClass> : TypeTests where TClass : class where TBaseClass : class {
         protected TClass obj;
         private readonly BindingFlags AllFlags = BindingFlags.Public
-            | BindingFlags.NonPublic
-            | BindingFlags.Instance
-            | BindingFlags.Static;
+                                                 | BindingFlags.NonPublic
+                                                 | BindingFlags.Instance
+                                                 | BindingFlags.Static;
         protected BaseTests() => obj = CreateObj();
         protected abstract TClass CreateObj();
         protected void IsProperty<T>(T? value = default, bool isReadOnly = false, string? callingMethod = null) {

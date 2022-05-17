@@ -8,6 +8,7 @@ namespace WizardingWorld.Tests.Data {
         private class TestClass : BaseData { }
         protected override BaseData CreateObj() => new TestClass();
         [TestMethod] public void IDTest() => IsProperty<string>();
+        [TestMethod] public void TokenTest() => IsProperty<byte[]>();
         [TestMethod] public void NewIdTest() {
             IsNotNull(BaseData.NewId);
             AreNotEqual(BaseData.NewId,BaseData.NewId);

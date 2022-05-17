@@ -83,12 +83,12 @@ namespace Tests {
         }
         protected void TestRelatedLists<TRepo, TRelatedItem, TItem, TData>
             (Action relatedTest,
-            Func<List<TRelatedItem>> relatedItems,
-            Func<List<TItem?>> items,
-            Func<TRelatedItem, string> detailID,
-            Func<TData, TItem> toObj,
-            Func<TItem?, TData?> toData,
-            Func<TRelatedItem?, TData?> relatedToData)
+                Func<List<TRelatedItem>> relatedItems,
+                Func<List<TItem?>> items,
+                Func<TRelatedItem, string> detailID,
+                Func<TData, TItem> toObj,
+                Func<TItem?, TData?> toData,
+                Func<TRelatedItem?, TData?> relatedToData)
             where TRepo : class, IRepo<TItem>
             where TItem : BaseEntity
             where TRelatedItem : BaseEntity {

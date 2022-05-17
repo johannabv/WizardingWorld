@@ -38,7 +38,7 @@ namespace Tests {
         private void RemoveTested() => membersOfType?.Remove(x => IsItTested(x));
         private bool IsItTested(string x) => membersOfTest?.ContainsItem(y => IsTestFor(y, x)) ?? false;
         private static bool IsTestFor(string testingMember, string memberToBeTested)
-             => testingMember.Equals(memberToBeTested + "Test");
+            => testingMember.Equals(memberToBeTested + "Test");
         private void RemoveNotNeedTesting() => membersOfType?.Remove(x => !IsTypeToBeTested(x));
         private static bool IsTypeToBeTested(string x) => x?.IsTypeName() ?? false;
         private void RemoveNotTests(Type t) => membersOfTest?.Remove(x => !IsCorrectTestMethod(x, t));
