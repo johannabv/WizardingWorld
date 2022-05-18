@@ -39,7 +39,7 @@ namespace WizardingWorld.Pages.Party {
             => Characters?.FirstOrDefault(x => x.Value == (characterId ?? string.Empty))?.Text ?? "Unspecified";
         public string AddressName(string? addressId = null)
             => Addresses?.FirstOrDefault(x => x.Value == (addressId ?? string.Empty))?.Text ?? "Unspecified";
-        public override object? GetValue(string name, CharacterAddressView v) {
+        public override object? GetValue<T>(string name, T v) {
             object? r = base.GetValue(name, v);
             return name == nameof(CharacterAddressView.CharacterID) ? CharacterName(r as string)
                 : name == nameof(CharacterAddressView.AddressID) ? AddressName(r as string)

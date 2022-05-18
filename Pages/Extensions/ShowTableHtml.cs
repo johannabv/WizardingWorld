@@ -20,7 +20,7 @@ namespace WizardingWorld.Pages.Extensions {
             };
             foreach (string name in m.IndexColumns) {
                 l.Add(new HtmlString("<td>"));
-                l.Add(h.MyTabHdr(m.DisplayName(name)));
+                l.Add(h.MyTabHdr(m.GetDisplayName<TView>(name)));
                 l.Add(new HtmlString("</td>"));
             }
             l.Add(new HtmlString("<th></th>"));

@@ -39,7 +39,7 @@ namespace WizardingWorld.Pages.Party {
             => (x ?? IsoGender.NotApplicable).Description();
         public string HouseName(string? houseId = null)
             => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
-        public override object? GetValue(string name, CharacterView v) {
+        public override object? GetValue<T>(string name, T v) {
             object? r = base.GetValue(name, v);
             if (name == nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
             if (name == nameof(CharacterView.Gender)) return GenderDescription((IsoGender)r);

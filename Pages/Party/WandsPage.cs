@@ -34,7 +34,7 @@ namespace WizardingWorld.Pages.Party {
         public string CoreDescription(string? coreId = null)
             => CoreInfos?.FirstOrDefault(x => x.Value == (coreId ?? string.Empty))?.Text ?? "Unspecified";
         
-        public override object? GetValue(string name, WandView v) {
+        public override object? GetValue<T>(string name, T v) {
             object? r = base.GetValue(name, v);
             return name == nameof(WandView.CoreID) ? CoreDescription(r as string)
                 : name == nameof(WandView.WoodID) ? WoodDescription(r as string)

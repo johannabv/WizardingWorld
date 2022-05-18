@@ -15,8 +15,8 @@ namespace WizardingWorld.Tests.Infra {
             protected internal override Character ToDomain(CharacterData d) => new(d);
         }
         protected override PagedRepo<Character, CharacterData> CreateObj() {
-            var db = GetRepo.Instance<WizardingWorldDb>();
-            var set = db?.Characters;
+            WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
+            DbSet<CharacterData>? set = db?.Characters;
             IsNotNull(set);
             return new TestClass(db, set);
         }

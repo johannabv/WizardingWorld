@@ -28,7 +28,7 @@ namespace WizardingWorld.Pages.Extensions {
                 l.Add(new HtmlString("<tr>"));
                 foreach (string name in m.RelatedIndexColumns) {
                     l.Add(new HtmlString("<td>"));
-                    l.Add(h.Raw(m.GetValue(name, item)));
+                    l.Add(h.Raw(m.GetValue<TEntity>(name, item)));
                     l.Add(new HtmlString("</td>"));
                 }
                 l.Add(new HtmlString("</tr>"));

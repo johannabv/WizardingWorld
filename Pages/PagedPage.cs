@@ -50,36 +50,24 @@ namespace WizardingWorld.Pages {
 
             return RedirectToPage("./Delete", "Delete",
             new {
-                id = id,
+                id,
                 pageIndex = PageIndex,
                 currentFilter = CurrentFilter,
                 sortOrder = CurrentOrder
             });
         }
-        public virtual object? GetValue(string name, TView v)
+
+        public virtual object? GetValue<T>(string name, T v)
             => Safe.Run(() => {
                 PropertyInfo? pi = v?.GetType()?.GetProperty(name);
                 return pi?.GetValue(v);
             }, null);
 
-        public object? GetValue<T>(string name, T item) 
-            => Safe.Run(() => {
-                PropertyInfo? pi = typeof(T).GetProperty(name);
-                return pi?.GetValue(item);
-        }, name);
-
-        public string? DisplayName(string name) => Safe.Run(() => {
-            PropertyInfo? p = typeof(TView).GetProperty(name);
-            CustomAttributeData? a = p?.CustomAttributes?
-                .FirstOrDefault(x => x.AttributeType == typeof(DisplayNameAttribute));
-            return a?.ConstructorArguments[0].Value?.ToString() ?? name;
-        }, name);
-
         public string? GetDisplayName<T>(string propertyName) 
             => Safe.Run(() => {
-                return typeof(T).GetProperty(propertyName)?
-                .GetCustomAttributes(typeof(DisplayNameAttribute), true)
-                .Cast<DisplayNameAttribute>().Single().DisplayName;
-        }, propertyName);
+                PropertyInfo? pInfo = typeof(T).GetProperty(propertyName);
+                object[]? obj = pInfo ? .GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                return obj?.Cast<DisplayNameAttribute>().Single().DisplayName;
+            }, propertyName);
     }
 }

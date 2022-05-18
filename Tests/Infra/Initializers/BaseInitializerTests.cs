@@ -19,13 +19,14 @@ namespace WizardingWorld.Tests.Infra.Initializer {
             DbSet<AddressData>? set = db?.Addresses;
             return new testClass(db, set);
         }
+
         [TestMethod] public void InitTest() => IsInconclusive();
 
         [DataRow(null, false)]
         [DataRow("hello", true)]
         [DataRow("555", false)]
         [TestMethod] public void isCorrectIsoCodeTest(string id, bool expected) {
-            var actual = !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
+            bool actual = !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
             AreEqual(actual, expected);
         }
     }
