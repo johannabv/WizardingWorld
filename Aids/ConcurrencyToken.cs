@@ -6,7 +6,7 @@
             return s;
         }
         public static byte[] ToByteArray(string? token = null) {
-            List<byte> l = new List<byte>();
+            List<byte> l = new();
             foreach (char c in token ?? GetRandom.String(8, 8)) l.Add(Convert.ToByte(c));
             return l.ToArray();
         }

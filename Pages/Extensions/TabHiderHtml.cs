@@ -10,7 +10,7 @@ namespace WizardingWorld.Pages.Extensions {
         }
         private static List<object> HtmlStrings(string? name, IPageModel? m) {
             name ??= "Unspecified";
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 new HtmlString($"<a style=\"text-decoration:none;\" href=\"/{PageName(m)}?"),
                 new HtmlString($"handler=Index&amp;"),
                 new HtmlString($"order={m?.SortOrder(name)}&amp;"),

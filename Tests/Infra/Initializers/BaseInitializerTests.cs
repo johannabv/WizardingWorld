@@ -10,14 +10,14 @@ using WizardingWorld.Infra.Initializers;
 namespace WizardingWorld.Tests.Infra.Initializer {
     [TestClass] public class BaseInitializerTests
         : AbstractClassTests<BaseInitializer<AddressData>, object> {
-        private class testClass : BaseInitializer<AddressData> {
-            public testClass(DbContext? c, DbSet<AddressData>? s) : base(c, s) { }
+        private class TestClass : BaseInitializer<AddressData> {
+            public TestClass(DbContext? c, DbSet<AddressData>? s) : base(c, s) { }
             protected override IEnumerable<AddressData> GetEntities => throw new System.NotImplementedException();
         }
         protected override BaseInitializer<AddressData> CreateObj() {
             WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             DbSet<AddressData>? set = db?.Addresses;
-            return new testClass(db, set);
+            return new TestClass(db, set);
         }
 
         [TestMethod] public void InitTest() => IsInconclusive();

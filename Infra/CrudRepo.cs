@@ -10,7 +10,7 @@ namespace WizardingWorld.Infra {
         public override bool Delete(string id) => DeleteAsync(id).GetAwaiter().GetResult();
         public override List<TDomain> Get() => GetAsync().GetAwaiter().GetResult();
         public override List<TDomain> GetAll(Func<TDomain, dynamic>? orderBy = null) {
-            List<TDomain> r = new List<TDomain>();
+            List<TDomain> r = new();
             if (Set is null) return r;
             foreach (TData d in Set) r.Add(ToDomain(d));
             return (orderBy is null) ? r : r.OrderBy(orderBy).ToList();
@@ -40,7 +40,7 @@ namespace WizardingWorld.Infra {
             try {
                 IQueryable<TData> query = CreateSQL();
                 List<TData> list = await CrudRepo<TDomain, TData>.RunSQL(query);
-                List<TDomain> items = new List<TDomain>();
+                List<TDomain> items = new();
                 foreach (TData d in list) items.Add(ToDomain(d));
                 return items;
             }

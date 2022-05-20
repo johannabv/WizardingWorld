@@ -12,7 +12,7 @@ namespace WizardingWorld.Domain.Party {
         public string Description => GetValue(Data?.Description);
         public string CountryID => GetValue(Data?.CountryID);
         public override string ToString() => $"{Street}, {City}, {Country?.Name} ({Description})";
-        public Country? Country => GetRepo.Instance<ICountriesRepo>().Get(CountryID);
+        public Country? Country => GetRepo.Instance<ICountriesRepo>()?.Get(CountryID);
 
         public Lazy<List<CharacterAddress>> CharacterAddresses { 
             get {

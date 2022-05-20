@@ -40,6 +40,6 @@ namespace WizardingWorld.Pages.Party {
                 : name == nameof(WandView.WoodID) ? WoodDescription(r as string)
                 : r;
         }
-        public Lazy<List<Wood?>> Woods => ToObject(Item).Woods;
+        public Lazy<List<Wood>> Woods => ToObject(Item).Woods;
     }
 }

@@ -11,7 +11,7 @@ namespace WizardingWorld.Pages.Extensions {
         }
         private static List<object> HtmlStrings<TModel, TResult>(
             IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, IEnumerable<SelectListItem> list) {
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dd class=\"col-sm-2\">"),
                 h.LabelFor(e, null, new { @class = "control-label" }),

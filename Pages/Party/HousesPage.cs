@@ -23,6 +23,6 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.HogwartsHouse),
             nameof(CharacterView.Organisation),
         };
-        public Lazy<List<Character?>> Characters => ToObject(Item).Characters;
+        public Lazy<List<Character>> Characters => ToObject(Item).Characters;
     }
 }

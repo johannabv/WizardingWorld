@@ -11,7 +11,7 @@ namespace WizardingWorld.Infra.Initializers {
             CreateAddress("School of Witchcraft and Wizardry", "Hogwarts", "Hogsmeade", "HO29 9XX", "GBR", "Hogwarts school"),
         };
         internal static AddressData CreateAddress(string street, string city, string region, string zipCode, string country, string description) {
-            AddressData address = new AddressData {
+            AddressData address = new() {
                 ID = street,
                 Street = street,
                 City = city,

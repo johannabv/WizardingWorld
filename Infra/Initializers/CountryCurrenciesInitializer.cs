@@ -8,9 +8,9 @@ namespace WizardingWorld.Infra.Initializers {
         public CountryCurrenciesInitializer(WizardingWorldDb? db) : base(db, db?.CountryCurrencies) { }
         protected override IEnumerable<CountryCurrencyData> GetEntities {
             get {
-                List<CountryCurrencyData> l = new List<CountryCurrencyData>();
+                List<CountryCurrencyData> l = new();
                 foreach (CultureInfo cul in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
-                    RegionInfo c = new RegionInfo(new CultureInfo(cul.Name, false).LCID);
+                    RegionInfo c = new(new CultureInfo(cul.Name, false).LCID);
                     string countryId = c.ThreeLetterISORegionName;
                     string currencyId = c.ISOCurrencySymbol;
                     string nativeName = c.CurrencyNativeName;

@@ -8,8 +8,8 @@ namespace WizardingWorld.Domain.Party {
         public CharacterAddress(CharacterAddressData d) : base(d) { }
         public string CharacterID => GetValue(Data?.CharacterID);
         public string AddressID => GetValue(Data?.AddressID);
-        public Character? Character => GetRepo.Instance<ICharactersRepo>().Get(CharacterID);
-        public Address? Address => GetRepo.Instance<IAddressRepo>().Get(AddressID);
+        public Character? Character => GetRepo.Instance<ICharactersRepo>()?.Get(CharacterID);
+        public Address? Address => GetRepo.Instance<IAddressRepo>()?.Get(AddressID);
         public AddressUse UseFor => GetValue(Data?.UseFor);
     }
 }

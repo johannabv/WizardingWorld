@@ -25,7 +25,7 @@ namespace WizardingWorld.Tests.Aids {
             IsTrue(y <= (min.CompareTo(max) < 0 ? max : min));
             AreNotEqual(x, y);
         }
-        private void Test<T>(Func<T> f, int count = 5) {
+        private static void Test<T>(Func<T> f, int count = 5) {
             T x = f();
             T y = f();
             int i = 0;

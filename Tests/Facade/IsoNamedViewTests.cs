@@ -2,8 +2,7 @@
 using WizardingWorld.Facade;
 
 namespace Tests.Facade.Party {
-    [TestClass]
-    public class IsoNamedViewTests : AbstractClassTests<IsoNamedView, NamedView> {
+    [TestClass] public class IsoNamedViewTests : AbstractClassTests<IsoNamedView, NamedView> {
         private class TestClass : IsoNamedView { }
         protected override IsoNamedView CreateObj() => new TestClass();
         [TestMethod] public void CodeTest() => IsRequired<string>("ISO three-letter code");

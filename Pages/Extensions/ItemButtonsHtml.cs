@@ -9,7 +9,7 @@ namespace WizardingWorld.Pages.Extensions {
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel>(IHtmlHelper<TModel> h, string id) {
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 h.MyBtn("Edit", id),
                 new HtmlString("&nbsp;"),
                 h.MyBtn("Details", id),

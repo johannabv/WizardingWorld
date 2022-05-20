@@ -42,7 +42,7 @@ namespace Tests {
             TRepo? r = GetRepo.Instance<TRepo>();
             IsNotNull(r);
 
-            List<TData> list = new List<TData>();
+            List<TData> list = new();
             int count = GetRandom.Int32(5, 30);
 
             for (int i = 0; i < count; i++) {
@@ -74,14 +74,13 @@ namespace Tests {
             IsInstanceOfType(obj, typeof(TObj));
 
             TRepo? repo = GetRepo.Instance<TRepo>();
-            int count;
-            TData? items = AddRandomItems(out count, toObj, id, repo);
+            TData? items = AddRandomItems(out int count, toObj, id, repo);
             
             repo.PageSize = 30;
             AreEqual(count, repo.Get().Count);
             ArePropertiesEqual(items, getObj(), nameof(BaseData.Token));
         }
-        protected void TestRelatedLists<TRepo, TRelatedItem, TItem, TData>
+        protected static void TestRelatedLists<TRepo, TRelatedItem, TItem, TData>
             (Action relatedTest,
                 Func<List<TRelatedItem>> relatedItems,
                 Func<List<TItem?>> items,

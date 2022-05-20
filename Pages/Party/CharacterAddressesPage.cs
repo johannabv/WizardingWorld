@@ -29,11 +29,11 @@ namespace WizardingWorld.Pages.Party {
             => addresses?.GetAll(x => x.ToString())?
             .Select(x => new SelectListItem(x.ToString(), x.ID))
             ?? new List<SelectListItem>();
-        public IEnumerable<SelectListItem> UseFors
+        public static IEnumerable<SelectListItem> UseFors
          => Enum.GetValues<AddressUse>()?
             .Select(x => new SelectListItem(x.Description(), x.ToString()))
             ?? new List<SelectListItem>();
-        public string UseForDescription(AddressUse? x)
+        public static string UseForDescription(AddressUse? x)
             => (x ?? AddressUse.NotKnown).Description();
         public string CharacterName(string? characterId = null)
             => Characters?.FirstOrDefault(x => x.Value == (characterId ?? string.Empty))?.Text ?? "Unspecified";

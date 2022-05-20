@@ -55,14 +55,12 @@ namespace WizardingWorld.Pages {
                 currentFilter = CurrentFilter,
                 sortOrder = CurrentOrder
             });
-        }
-
+        } 
         public virtual object? GetValue<T>(string name, T v)
             => Safe.Run(() => {
                 PropertyInfo? pi = v?.GetType()?.GetProperty(name);
                 return pi?.GetValue(v);
-            }, null);
-
+            }, null); 
         public string? GetDisplayName<T>(string propertyName) 
             => Safe.Run(() => {
                 PropertyInfo? pInfo = typeof(T).GetProperty(propertyName);

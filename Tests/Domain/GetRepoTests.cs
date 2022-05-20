@@ -15,7 +15,7 @@ namespace WizardingWorld.Tests.Domain {
         [TestMethod] public void InstanceTest() => Assert.IsInstanceOfType(GetRepo.Instance<ICountriesRepo>(), typeof(CountriesRepo));
         [TestMethod] public void SetServiceTest() {
             IServiceProvider? s = GetRepo.service;
-            TestClass x = new TestClass();
+            TestClass x = new();
             GetRepo.SetService(x);
             AreEqual(x,GetRepo.service);
             GetRepo.service = s;

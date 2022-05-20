@@ -8,12 +8,9 @@ namespace WizardingWorld.Infra.Initializers {
         public WoodsInitializer(WizardingWorldDb? db) : base(db, db?.Woods) { }
         protected override IEnumerable<WoodData> GetEntities {
             get {
-                List<WoodData> l = new List<WoodData>();
-                string filePathA = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
-                string filePathInProject = @"source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
-                string projectDirectory = System.IO.Path.GetFullPath(@"../../../../");
-                string filePathB = Path.Combine(projectDirectory, filePathInProject);
-                FileStream stream = new FileStream(filePathA, FileMode.Open, FileAccess.Read);
+                List<WoodData> l = new();
+                string filePath = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_wood.txt";
+                FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
                 using (StreamReader reader = new(stream, Encoding.UTF8)) {
                     string? line = string.Empty;
                     while ((line = reader.ReadLine()) != null) {

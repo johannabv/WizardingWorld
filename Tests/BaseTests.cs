@@ -47,7 +47,7 @@ namespace WizardingWorld.Tests {
             return propertyInfo.GetValue(obj);
         }
         protected override object? IsReadOnly<T>(string? callingMethod = null) {
-            T? v = default(T);
+            T? v = default;
             return GetProperty(ref v, true, callingMethod ?? nameof(IsReadOnly));
         }
         protected void IsReadOnly<T>(T? value) => IsProperty(value, true, nameof(IsReadOnly));
@@ -59,7 +59,7 @@ namespace WizardingWorld.Tests {
         }
         private static T? Random<T>() => GetRandom.Value<T>();
         
-        internal protected static new void ArePropertiesEqual(object? x, object? y) {
+        internal protected static void ArePropertiesEqual(object? x, object? y) {
             PropertyInfo[] e = Array.Empty<PropertyInfo>();
             PropertyInfo[] px = x?.GetType()?.GetProperties() ?? e;
             bool hasProperties = false;

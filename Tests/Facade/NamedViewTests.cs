@@ -2,8 +2,7 @@
 using WizardingWorld.Facade;
 
 namespace Tests.Facade.Party {
-    [TestClass]
-    public class NamedViewTests : AbstractClassTests<NamedView, BaseView> {
+    [TestClass] public class NamedViewTests : AbstractClassTests<NamedView, BaseView> {
         private class TestClass : NamedView { }
         protected override NamedView CreateObj() => new TestClass();
         [TestMethod] public void CodeTest() => IsDisplayNamed<string>("Code");

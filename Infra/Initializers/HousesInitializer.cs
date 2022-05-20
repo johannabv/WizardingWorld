@@ -4,7 +4,7 @@ namespace WizardingWorld.Infra.Initializers {
     public sealed class HousesInitializer : BaseInitializer<HouseData> {
         public HousesInitializer(WizardingWorldDb? db) : base(db, db?.Houses) { }
         internal static HouseData CreateHouse(string houseName, string headName, string founder, string color, string description) {
-            HouseData spell = new HouseData {
+            HouseData spell = new() {
                 ID = houseName+headName,
                 HouseName = houseName,
                 FounderName = founder,

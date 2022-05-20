@@ -9,7 +9,7 @@ namespace WizardingWorld.Pages.Extensions {
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings(string handler, string id, IPageModel? m) {
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 new HtmlString($"<a style=\"text-decoration:none;\" href=\"/{PageName(m)}/{handler}?"),
                 new HtmlString($"handler={handler}&amp;"),
                 new HtmlString($"id={id}&amp;"),

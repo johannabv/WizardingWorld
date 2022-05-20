@@ -13,7 +13,7 @@ namespace WizardingWorld.Pages.Extensions {
         private static List<object> HtmlStrings<TModel, TView>(IHtmlHelper<TModel> h, IList<TView>? items)
             where TModel : IIndexModel<TView> where TView : BaseView {
             TModel? m = h.ViewData.Model;
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 new HtmlString("<table class=\"table\">"),
                 new HtmlString("<thead>"),
                 new HtmlString("<tr>")

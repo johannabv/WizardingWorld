@@ -11,5 +11,5 @@
 
 <body>
     <partial name = "_ShowWand" />
-    <tr> <td> @Html.MyViewerFor(m => m.WoodInfos, GetValue(nameof(WoodView.Description), Model.Woods.Value.First())) </td> </tr>
-</Body>
+    @Html.MyViewerFor(m => m.WoodInfos, GetValue(nameof(WoodView.Description), Model.Woods.Value.First()))
+</Body> 

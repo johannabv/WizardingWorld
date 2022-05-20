@@ -8,9 +8,9 @@ namespace WizardingWorld.Infra.Initializers {
         public CoreMaterialsInitializer(WizardingWorldDb? db) : base(db, db?.Cores) { }
         protected override IEnumerable<CoreMaterialData> GetEntities {
             get {
-                List<CoreMaterialData> l = new List<CoreMaterialData>();
+                List<CoreMaterialData> l = new();
                 string filePath = "C:/Users/johan/source/repos/WizardingWorld/WizardingWorld/wand_core.txt";
-                FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                FileStream stream = new(filePath, FileMode.Open, FileAccess.Read);
                 using (StreamReader reader = new(stream, Encoding.UTF8)) {
                     string? line = string.Empty;
                     while ((line = reader.ReadLine()) != null) l.Add(CreateCore(line.Split(':')[0], line.Split(':')[1]));

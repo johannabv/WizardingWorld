@@ -7,7 +7,7 @@ using WizardingWorld.Domain;
 
 namespace WizardingWorld.Soft {
     public abstract class PagesTests : HostTests {
-        public async Task GetPageTestAsync<TRepo, TObj, TData>(Func<TData, TObj> toObj)
+        public static async Task GetPageTestAsync<TRepo, TObj, TData>(Func<TData, TObj> toObj)
             where TRepo : class, IRepo<TObj>
             where TObj : BaseEntity, new() {
 
@@ -23,7 +23,7 @@ namespace WizardingWorld.Soft {
             IsTrue(html.Contains($"<h1>Index</h1>"));
             IsTrue(html.Contains($"<h4>{name}</h4>"));
         }
-        public static string GetName<TObj>(TObj obj) {
+        public static string GetName<TObj>(TObj? obj) {
             string typeName = obj.GetType().Name;
             if (typeName.EndsWith('y')) return typeName[..^1] + "ies";
             if (typeName.EndsWith('s')) return typeName + "es";

@@ -8,13 +8,13 @@ namespace WizardingWorld.Tests.Aids {
         [TestInitialize] public void Init() => testStr = "a1b1c1.d1e1f1.g1h1i1";
         [TestMethod] public void RemoveTest() => AreEqual("abc.def.ghi", Strings.Remove(testStr, "1"));
         [TestMethod] public void IsTypeNameTest() {
-            IsFalse(Strings.IsTypeName(testStr));
-            string? s = Strings.Remove(testStr, "1");
-            IsFalse(Strings.IsTypeName(s));
-            s = Strings.RemoveTail(s);
-            IsFalse(Strings.IsTypeName(s));
-            s = Strings.RemoveTail(s);
-            IsTrue(Strings.IsTypeName(s));
+            IsFalse(testStr.IsTypeName());
+            string? s = testStr.Remove("1");
+            IsFalse(s.IsTypeName());
+            s = s.RemoveTail();
+            IsFalse(s.IsTypeName());
+            s = s.RemoveTail();
+            IsTrue(s.IsTypeName());
         }
         [TestMethod] public void IsTypeFullNameTest() {
             IsTrue(Strings.IsTypeFullName(testStr));

@@ -4,7 +4,7 @@ namespace WizardingWorld.Data {
     public abstract class BaseData {
         public static string NewId => Guid.NewGuid().ToString();
         public string ID { get; set; } = NewId;
-        protected static byte[] empty => Array.Empty<byte>();
-        [Timestamp] public byte[] Token { get; set; } = empty;
+        protected static byte[] Empty => Array.Empty<byte>();
+        [Timestamp] public byte[] Token { get; set; } = Empty;
     }
 }

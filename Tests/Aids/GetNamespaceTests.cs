@@ -6,7 +6,7 @@ using WizardingWorld.Data.Party;
 namespace WizardingWorld.Tests.Aids {
     [TestClass] public abstract class GetNamespaceTests : TypeTests {
         [TestMethod] public void OfTypeTest() {
-            CountryData obj = new CountryData();
+            CountryData obj = new();
             string? name = obj.GetType().Namespace;
             string? n = GetNamespace.OfType(obj);
             AreEqual(name, n);

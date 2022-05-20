@@ -10,12 +10,12 @@ namespace WizardingWorld.Pages.Extensions {
             return new HtmlContentBuilder(s);
         }
         public static IHtmlContent MyViewerFor<TModel, TResult>(
-            this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic value) {
+            this IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e, dynamic? value) {
             dynamic? s = HtmlStrings(h, e, value);
             return new HtmlContentBuilder(s);
         }
         private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h, Expression<Func<TModel, TResult>> e) {
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dt class=\"col-sm-2\">"),
                 h.DisplayNameFor(e),
@@ -29,7 +29,7 @@ namespace WizardingWorld.Pages.Extensions {
         }
         private static List<object> HtmlStrings<TModel, TResult>(IHtmlHelper<TModel> h
             , Expression<Func<TModel, TResult>> e, dynamic value) {
-            List<object> l = new List<object> {
+            List<object> l = new() {
                 new HtmlString("<dl class=\"row\">"),
                 new HtmlString("<dt class=\"col-sm-2\">"),
                 h.DisplayNameFor(e),
