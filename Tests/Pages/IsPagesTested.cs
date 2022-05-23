@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Pages {
+namespace WizardingWorld.Tests.Pages {
     [TestClass] public class IsPagesTested : AssemblyTests { }
 }

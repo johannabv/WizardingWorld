@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
-namespace Tests.Facade {
+namespace WizardingWorld.Tests.Facade {
     [TestClass] public class BaseViewFactoryTests : AbstractClassTests<BaseViewFactory<CharacterView, Character, CharacterData>, object> {
         private class TestClass : BaseViewFactory<CharacterView, Character, CharacterData> {
             protected override Character ToEntity(CharacterData d) => new(d);

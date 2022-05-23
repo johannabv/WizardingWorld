@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Infra {
+namespace WizardingWorld.Tests.Infra {
     [TestClass] public class IsInfraTested : AssemblyTests { }
 }

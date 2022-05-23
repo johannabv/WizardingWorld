@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
-namespace Tests.Facade.Party {
+namespace WizardingWorld.Tests.Facade.Party {
     [TestClass] public class WandViewTests : SealedClassTests<WandView, BaseView> {
         [TestMethod] public void CoreIDTest() => IsRequired<string?>("Core");
         [TestMethod] public void WoodIDTest() => IsRequired<string?>("Wood");

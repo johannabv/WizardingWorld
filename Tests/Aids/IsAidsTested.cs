@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Aids {
+namespace WizardingWorld.Tests.Aids {
     [TestClass] public class IsAidsTested : AssemblyTests { }
 }

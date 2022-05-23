@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Domain {
+namespace WizardingWorld.Tests.Domain {
     [TestClass] public class IsDomainTested: AssemblyTests { }
 }

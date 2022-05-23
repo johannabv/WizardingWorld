@@ -5,8 +5,7 @@ using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
 
 namespace WizardingWorld.Tests.Domain {
-    [TestClass]
-    public class NamedEntityTests : AbstractClassTests<NamedEntity<CountryData>, BaseEntity<CountryData>> {
+    [TestClass] public class NamedEntityTests : AbstractClassTests<NamedEntity<CountryData>, BaseEntity<CountryData>> {
         private class TestClass : NamedEntity<CountryData> {
             public TestClass() : this(new CountryData()) { }
             public TestClass(CountryData d) : base(d) { }

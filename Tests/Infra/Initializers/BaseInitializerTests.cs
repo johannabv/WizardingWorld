@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using Tests;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
 using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
 
-namespace WizardingWorld.Tests.Infra.Initializer {
+namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class BaseInitializerTests
         : AbstractClassTests<BaseInitializer<AddressData>, object> {
         private class TestClass : BaseInitializer<AddressData> {

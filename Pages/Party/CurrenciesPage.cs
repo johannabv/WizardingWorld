@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using WizardingWorld.Aids;
-using WizardingWorld.Domain.Party;
+﻿using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {

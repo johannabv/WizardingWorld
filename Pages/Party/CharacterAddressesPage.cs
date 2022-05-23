@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 using WizardingWorld.Domain.Party;

@@ -5,7 +5,7 @@ using WizardingWorld.Domain;
 using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
 
-namespace WizardingWorld.Tests.Infra.Initializer {
+namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class CountryCurrenciesInitializerTests
         : SealedBaseTests<CountryCurrenciesInitializer, BaseInitializer<CountryCurrencyData>> {
         protected override CountryCurrenciesInitializer CreateObj() {

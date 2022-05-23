@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Core {
+namespace WizardingWorld.Tests.Core {
     [TestClass] public class IsCoreTested : AssemblyTests { }
 }

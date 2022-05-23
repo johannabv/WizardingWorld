@@ -12,7 +12,7 @@ namespace WizardingWorld.Tests.Facade.Party {
         where TView : class, new()
         where TData : BaseData, new()
         where TObj : BaseEntity<TData> {
-        [TestMethod] public void CreateTest() { }
+        [TestMethod] public virtual void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
             dynamic? v = GetRandom.Value<TView>();
             dynamic? o = obj.Create(v);

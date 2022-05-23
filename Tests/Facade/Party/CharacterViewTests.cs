@@ -1,10 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 using WizardingWorld.Data.Enums;
 using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
-namespace Tests.Facade.Party {
+namespace WizardingWorld.Tests.Facade.Party {
     [TestClass] public class CharacterViewTests : SealedClassTests<CharacterView, BaseView> {
         [TestMethod] public void FirstNameTest() => IsDisplayNamed<string?>("First name");
         [TestMethod] public void LastNameTest() => IsRequired<string?>("Last name");

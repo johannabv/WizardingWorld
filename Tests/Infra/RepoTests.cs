@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Infra;
-using WizardingWorld.Infra.Party;
 
-namespace Tests.Infra {
+namespace WizardingWorld.Tests.Infra {
     [TestClass] public class RepoTests : AbstractClassTests<Repo<Character, CharacterData>, PagedRepo<Character, CharacterData>> {
         private class TestClass : Repo<Character, CharacterData> {
             public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { } 

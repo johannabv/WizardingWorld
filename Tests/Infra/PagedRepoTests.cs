@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Tests;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;

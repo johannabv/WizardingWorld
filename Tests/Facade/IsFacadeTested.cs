@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 
-namespace Tests.Facade {
+namespace WizardingWorld.Tests.Facade {
     [TestClass] public class IsFacadeTested : AssemblyTests { }
 }

@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests;
 using WizardingWorld.Facade;
 
-namespace Tests.Facade.Party {
+namespace WizardingWorld.Tests.Facade {
     [TestClass] public class NamedViewTests : AbstractClassTests<NamedView, BaseView> {
         private class TestClass : NamedView { }
         protected override NamedView CreateObj() => new TestClass();

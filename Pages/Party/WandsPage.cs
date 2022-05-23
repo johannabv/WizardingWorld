@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using WizardingWorld.Domain;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 

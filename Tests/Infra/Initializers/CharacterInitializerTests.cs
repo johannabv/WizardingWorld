@@ -5,7 +5,7 @@ using WizardingWorld.Domain;
 using WizardingWorld.Infra;
 using WizardingWorld.Infra.Initializers;
 
-namespace WizardingWorld.Tests.Infra.Initializer {
+namespace WizardingWorld.Tests.Infra.Initializers {
     [TestClass] public class CharacterInitializerTests
         : SealedBaseTests<CharacterInitializer, BaseInitializer<CharacterData>> {
         protected override CharacterInitializer CreateObj() {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Tests;
 using WizardingWorld.Domain;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Infra.Party;
