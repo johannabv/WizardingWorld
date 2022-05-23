@@ -1,6 +1,6 @@
 ﻿@model WizardingWorld.Pages.Party.CharacterAddressesPage
 @using WizardingWorld.Pages.Extensions
 
-@Html.MyViewerFor(m => m.Item.UseFor, Model?.UseForDescription(Model?.Item?.UseFor))
+@Html.MyViewerFor(m => m.Item.UseFor, Model.UseForDescription(Model?.Item?.UseFor))
 @Html.MyViewerFor(m => m.Item.CharacterID, Model.CharacterName(Model.Item.CharacterID))
 @Html.MyViewerFor(m => m.Item.AddressID, Model.AddressName(Model.Item.AddressID))

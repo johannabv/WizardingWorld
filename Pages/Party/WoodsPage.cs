@@ -3,7 +3,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class WoodsPage : PagedPage<WoodView, Wood, IWoodsRepo> {
         public WoodsPage(IWoodsRepo r) : base(r) { }
         protected override Wood ToObject(WoodView? item) => new WoodViewFactory().Create(item);

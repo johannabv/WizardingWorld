@@ -4,7 +4,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class CountryCurrenciesPage : PagedPage<CountryCurrencyView, CountryCurrency, ICountryCurrenciesRepo> {
         private readonly ICountriesRepo countries;
         private readonly ICurrenciesRepo currencies;

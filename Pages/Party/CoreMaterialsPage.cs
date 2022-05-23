@@ -3,7 +3,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class CoreMaterialsPage : PagedPage<CoreMaterialView, CoreMaterial, ICoreMaterialsRepo> {
         public CoreMaterialsPage(ICoreMaterialsRepo r) : base(r) { }
         protected override CoreMaterial ToObject(CoreMaterialView? item) => new CoreViewFactory().Create(item);

@@ -6,7 +6,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class CharactersPage : PagedPage<CharacterView, Character, ICharactersRepo> {
         private readonly IHousesRepo houses;
         public CharactersPage(ICharactersRepo r, IHousesRepo c) : base(r) => houses = c;
@@ -29,13 +28,13 @@ namespace WizardingWorld.Pages.Party {
         };
         public IEnumerable<SelectListItem> Houses
             => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
-        public static IEnumerable<SelectListItem> Genders
+        public IEnumerable<SelectListItem> Genders
          => Enum.GetValues<IsoGender>()?.Select(x => new SelectListItem(x.Description(), x.ToString())) ?? new List<SelectListItem>();
-        public static IEnumerable<SelectListItem> Organisations
+        public IEnumerable<SelectListItem> Organisations
          => Enum.GetValues<Side>()?.Select(x => new SelectListItem(x.Description(), x.ToString())) ?? new List<SelectListItem>();
-        public static string OrganisationDescription(Side? x)
+        public string OrganisationDescription(Side? x)
             => (x ?? Side.NotKnown).Description(); 
-        public static string GenderDescription(IsoGender? x)
+        public string GenderDescription(IsoGender? x)
             => (x ?? IsoGender.NotApplicable).Description();
         public string HouseName(string? houseId = null)
             => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";

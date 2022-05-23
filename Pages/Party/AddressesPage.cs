@@ -4,7 +4,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class AddressesPage : PagedPage<AddressView, Address, IAddressRepo> {
         private readonly ICountriesRepo countries;
         public AddressesPage(IAddressRepo r, ICountriesRepo c) : base(r) => countries = c;

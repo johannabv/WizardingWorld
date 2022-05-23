@@ -6,7 +6,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class WandsPage : PagedPage<WandView, Wand, IWandsRepo> {
         private readonly IWoodsRepo woods;
         private readonly ICoreMaterialsRepo cores;

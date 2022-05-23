@@ -6,7 +6,6 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Pages.Party {
-    //[Authorize]
     public class CharacterAddressesPage : PagedPage<CharacterAddressView, CharacterAddress, ICharacterAddressesRepo> {
         private readonly ICharactersRepo characters;
         private readonly IAddressRepo addresses;
@@ -29,11 +28,11 @@ namespace WizardingWorld.Pages.Party {
             => addresses?.GetAll(x => x.ToString())?
             .Select(x => new SelectListItem(x.ToString(), x.ID))
             ?? new List<SelectListItem>();
-        public static IEnumerable<SelectListItem> UseFors
+        public IEnumerable<SelectListItem> UseFors
          => Enum.GetValues<AddressUse>()?
             .Select(x => new SelectListItem(x.Description(), x.ToString()))
             ?? new List<SelectListItem>();
-        public static string UseForDescription(AddressUse? x)
+        public string UseForDescription(AddressUse? x)
             => (x ?? AddressUse.NotKnown).Description();
         public string CharacterName(string? characterId = null)
             => Characters?.FirstOrDefault(x => x.Value == (characterId ?? string.Empty))?.Text ?? "Unspecified";
