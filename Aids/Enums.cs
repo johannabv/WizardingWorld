@@ -3,10 +3,10 @@ using System.Reflection;
 
 namespace WizardingWorld.Aids {
     public static class Enums {
-        public static string Description(this Enum v) {
-            FieldInfo? i = v.GetType().GetField(v.ToString());
-            DescriptionAttribute? a = i?.GetCustomAttribute(typeof(DescriptionAttribute)) as DescriptionAttribute;
-            return a?.Description ?? v.ToString();
+        public static string GetDescription(this Enum input) {
+            FieldInfo? info = input.GetType().GetField(input.ToString());
+            DescriptionAttribute? attribute = info?.GetCustomAttribute(typeof(DescriptionAttribute)) as DescriptionAttribute;
+            return attribute?.Description ?? input.ToString();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace WizardingWorld.Tests.Facade.Party {
         [TestMethod] public void FullNameTest() => IsDisplayNamed<string?>("Full info");
         [TestMethod] public void NameTest() => IsRequired<string?>("Name of wood");
         [TestMethod] public void TraitsTest() => IsDisplayNamed<string?>("Traits");
-        [TestMethod] public void DescriptionTest() => IsRequired<string?>("Description");
+        [TestMethod] public void DescriptionTest() => IsRequired<string?>("GetDescription");
     } 
 }

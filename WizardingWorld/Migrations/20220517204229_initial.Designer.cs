@@ -237,7 +237,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("CountryID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Region")
@@ -330,7 +330,7 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -364,7 +364,7 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -390,7 +390,7 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -416,7 +416,7 @@ namespace WizardingWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -441,7 +441,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FounderName")
@@ -469,7 +469,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SpellName")
@@ -481,7 +481,7 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("GetType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -519,7 +519,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("GetDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

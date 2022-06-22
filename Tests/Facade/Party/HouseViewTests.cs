@@ -9,7 +9,7 @@ namespace WizardingWorld.Tests.Facade.Party {
         [TestMethod] public void FounderNameTest() => IsDisplayNamed<string?>("Founder name");
         [TestMethod] public void HeadOfHouseNameTest() => IsDisplayNamed<string?>("Head of House name");
         [TestMethod] public void ColorTest() => IsRequired<string?>("Color");
-        [TestMethod] public void DescriptionTest() => IsDisplayNamed<string?>("Description");
+        [TestMethod] public void DescriptionTest() => IsDisplayNamed<string?>("GetDescription");
         [TestMethod] public void FullNameTest() => IsDisplayNamed<string?>("Full info");
     }
 }

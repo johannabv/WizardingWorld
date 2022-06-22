@@ -13,7 +13,7 @@ namespace WizardingWorld.Tests.Data.Enums {
         [TestMethod] public void OtherTest() => DoTest(AddressUse.Other, 5, "Other");
         private static void DoTest(AddressUse addressUse, int value, string description) {
             AreEqual(value, (int)addressUse);
-            AreEqual(description, addressUse.Description());
+            AreEqual(description, addressUse.GetDescription());
         }
     }
 }

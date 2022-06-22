@@ -28,13 +28,13 @@ namespace WizardingWorld.Pages.Party {
         public IEnumerable<SelectListItem> Houses
             => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Genders
-         => Enum.GetValues<IsoGender>()?.Select(x => new SelectListItem(x.Description(), x.ToString())) ?? new List<SelectListItem>();
+         => Enum.GetValues<IsoGender>()?.Select(x => new SelectListItem(x.GetDescription(), x.ToString())) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Organisations
-         => Enum.GetValues<Side>()?.Select(x => new SelectListItem(x.Description(), x.ToString())) ?? new List<SelectListItem>();
+         => Enum.GetValues<Side>()?.Select(x => new SelectListItem(x.GetDescription(), x.ToString())) ?? new List<SelectListItem>();
         public string OrganisationDescription(Side? x)
-            => (x ?? Side.NotKnown).Description(); 
+            => (x ?? Side.NotKnown).GetDescription(); 
         public string GenderDescription(IsoGender? x)
-            => (x ?? IsoGender.NotApplicable).Description();
+            => (x ?? IsoGender.NotApplicable).GetDescription();
         public string HouseName(string? houseId = null)
             => Houses?.FirstOrDefault(x => x.Value == (houseId ?? string.Empty))?.Text ?? "Unspecified";
         public override object? GetValue<T>(string name, T v) {

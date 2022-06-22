@@ -44,11 +44,11 @@ namespace Tests {
         private void RemoveNotTests(Type t) => membersOfTest?.Remove(x => !IsCorrectTestMethod(x, t));
         private static bool IsCorrectTestMethod(string x, Type t) => IsCorrectlyInherited(t) && IsTestClass(t) && IsTestMethod(x, t);
         private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
-        private static bool IsTestMethod(string methodName, Type t) => t?.Method(methodName).HasAttribute<TestMethodAttribute>() ?? false;
+        private static bool IsTestMethod(string methodName, Type t) => t?.GetMethod(methodName).HasAttribute<TestMethodAttribute>() ?? false;
         private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(TypeTests));
 
-        private static List<string>? GetMembers(Type? t) => t?.DeclaredMembers();
-        // private static Type? getType(Assembly? a, string? name) => a?.Type(name);
+        private static List<string>? GetMembers(Type? t) => t?.GetDeclaredMembers();
+        // private static GetType? getType(Assembly? a, string? name) => a?.GetType(name);
         private static Type? GetType(Assembly? a, string? name) {
             if (string.IsNullOrWhiteSpace(name)) return null;
             foreach (TypeInfo t in a?.DefinedTypes ?? Array.Empty<TypeInfo>())
@@ -57,7 +57,7 @@ namespace Tests {
         }
         private static Assembly? GetTheAssembly(string? name) {
             while (!string.IsNullOrWhiteSpace(name)) {
-                Assembly? a = GetAssembly.ByName(name);
+                Assembly? a = GetAssembly.GetAssemblyByName(name);
                 if (a is not null) return a;
                 name = name.RemoveTail();
             }

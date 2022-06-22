@@ -6,7 +6,7 @@ using WizardingWorld.Domain.Party;
 namespace WizardingWorld.Facade.Party {
     public sealed class WoodView : BaseView {
         [DisplayName("Name of wood"), Required] public string? Name { get; set; }
-        [DisplayName("Description"), Required] public string? Description { get; set; }
+        [DisplayName("GetDescription"), Required] public string? Description { get; set; }
         [DisplayName("Traits")] public string? Traits { get; set; }
         [DisplayName("Full info")] public string? FullName { get; set; }
     }

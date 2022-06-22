@@ -10,7 +10,7 @@ namespace WizardingWorld.Tests.Facade.Party {
         [TestMethod] public void RegionTest() => IsDisplayNamed<string?>("Region");
         [TestMethod] public void ZipCodeTest() => IsDisplayNamed<string?>("Zip code");
         [TestMethod] public void CountryIDTest() => IsDisplayNamed<string?>("Country");
-        [TestMethod] public void DescriptionTest() => IsRequired<string?>("Description");
+        [TestMethod] public void DescriptionTest() => IsRequired<string?>("GetDescription");
         [TestMethod] public void FullNameTest() => IsDisplayNamed<string?>("Full info");
     }
 

@@ -15,7 +15,7 @@ namespace WizardingWorld.Tests.Domain.Party {
         [TestMethod] public void GenderTest() => IsReadOnly(obj.Data.Gender);
         [TestMethod] public void DoBTest() => IsReadOnly(obj.Data.DoB);
         [TestMethod] public void ToStringTest() {
-            string expected = $"{obj.FirstName} {obj.LastName}, {obj.Organisation} ({obj.Gender.Description()}, {obj.DoB}, {obj.HogwartsHouse})";
+            string expected = $"{obj.FirstName} {obj.LastName}, {obj.Organisation} ({obj.Gender.GetDescription()}, {obj.DoB}, {obj.HogwartsHouse})";
             AreEqual(expected, obj.ToString());
         }
         [TestMethod] public void CharacterAddressesTest() => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(

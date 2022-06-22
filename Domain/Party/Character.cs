@@ -13,7 +13,7 @@ namespace WizardingWorld.Domain.Party {
         public string HogwartsHouse => GetValue(Data?.HogwartsHouse);
         public IsoGender Gender => GetValue(Data?.Gender);
         public DateTime DoB => GetValue(Data?.DoB); 
-        public override string ToString() => $"{FirstName} {LastName}, {Organisation} ({Gender.Description()}, {DoB}, {HogwartsHouse})";
+        public override string ToString() => $"{FirstName} {LastName}, {Organisation} ({Gender.GetDescription()}, {DoB}, {HogwartsHouse})";
 
         public Lazy<List<CharacterAddress>> CharacterAddresses {
             get {

@@ -53,8 +53,8 @@ namespace WizardingWorld.Tests.Aids {
             AreNotEqual(randomStr, type.GetName());
         }
         [TestMethod] public void DeclaredMembersTest() {
-            AreEqual(1, type?.DeclaredMembers()?.Count);
-            List<string>? l = typeof(NamedData)?.DeclaredMembers();
+            AreEqual(1, type?.GetDeclaredMembers()?.Count);
+            List<string>? l = typeof(NamedData)?.GetDeclaredMembers();
             AreEqual(9, l?.Count);
         }
         [TestMethod] public void IsInheritedTest() {
@@ -72,7 +72,7 @@ namespace WizardingWorld.Tests.Aids {
         }
         [TestMethod] public void MethodTest() {
             string n = nameof(MethodTest);
-            MethodInfo? m = GetType().Method(n);
+            MethodInfo? m = Types.GetMethod(GetType(), n);
             AreEqual(n, m?.Name);
         }
     }

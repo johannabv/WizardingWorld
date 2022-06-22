@@ -11,7 +11,7 @@ namespace WizardingWorld.Tests.Data.Enums {
         [TestMethod] public void DATest() => DoTest(Side.DA, 3, "Dumbledore's Army");
         private static void DoTest(Side side, int value, string description) {
             AreEqual(value, (int)side);
-            AreEqual(description, side.Description());
+            AreEqual(description, side.GetDescription());
         }
     }
 }

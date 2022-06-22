@@ -11,7 +11,7 @@ namespace WizardingWorld.Tests.Data.Enums {
         [TestMethod] public void NotApplicableTest() => DoTest(IsoGender.NotApplicable, 9, "Not applicable");
         private static void DoTest(IsoGender isoGender, int value, string description) {
             AreEqual(value, (int)isoGender);
-            AreEqual(description, isoGender.Description());
+            AreEqual(description, isoGender.GetDescription());
         }
     }
 }

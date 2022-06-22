@@ -58,10 +58,10 @@ namespace Tests {
         private void RemoveNotCorrectTests() => testingTypes.Remove(x => !IsCorrectTest(x));
         private static void RemoveNotInNamespace(List<Type>? t, string? nameSpace) => t?.Remove(x => !Types.NameStarts(x, nameSpace));
         private static Assembly? GetTheAssembly(object o) => GetAssembly.OfType(o);
-        private static Assembly? GetTheAssembly(string? name) => GetAssembly.ByName(name);
+        private static Assembly? GetTheAssembly(string? name) => GetAssembly.GetAssemblyByName(name);
         private static string? RemoveTestsTagFrom(string? s) => s?.Remove(TestsProjectStr);
         private static string? GetTheNamespace(object o) => GetNamespace.OfType(o);
-        private static List<Type>? GetTypes(Assembly? a) => GetAssembly.Types(a);
+        private static List<Type>? GetTypes(Assembly? a) => GetAssembly.GetTypes(a);
         private void ReportNotAllIsTested() => IsInconclusive(NotTestedMsg);
         private string FullNameOfFirstNotTested() => FirstNotTestedType(typesToBeTested)?.FullName ?? string.Empty;
         private static Type? FirstNotTestedType(List<Type>? l) => l.GetFirst();
