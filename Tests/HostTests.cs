@@ -93,9 +93,9 @@ namespace WizardingWorld.Tests {
             relatedTest();
             List<TRelatedItem> list = relatedItems();
             TRepo? repo = GetRepo.Instance<TRepo>();
-            foreach (TRelatedItem e in list) {
+            foreach (TRelatedItem relatedItem in list) {
                 dynamic? data = GetRandom.Value<TData>();
-                if (data is not null) data.ID = detailId(e);
+                if (data is not null) data.Id = detailId(relatedItem);
                 repo?.Add(toObj(data));
             }
             List<TItem?> characters = items();
@@ -110,7 +110,7 @@ namespace WizardingWorld.Tests {
             where TObj : BaseEntity {
             repo ??= GetRepo.Instance<TRepo>();
             dynamic? data = GetRandom.Value<TData>();
-            if (id is not null && data is not null) data.ID = id;
+            if (id is not null && data is not null) data.Id = id;
             cnt = GetRandom.Int32(5, 30);
             int idx = GetRandom.Int32(0, cnt);
             for (int i = 0; i < cnt; i++) {

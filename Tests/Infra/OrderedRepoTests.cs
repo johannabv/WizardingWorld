@@ -38,15 +38,15 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(nameof(Character.Organization), false)]
         [DataRow(nameof(Character.HogwartsHouse), true)]
         [DataRow(nameof(Character.HogwartsHouse), false)]
-        [TestMethod] public void CreateSqlTest(string str, bool isDescending) {
+        [TestMethod] public void CreateSqlTest(string? str, bool isDescending) {
             Obj.CurrentOrder = (str is null) ? str : isDescending ? str + TestClass.DescendingString : str;
             IQueryable<CharacterData> q = Obj.CreateSql();
             string? actual = q.Expression.ToString();
-            if (str is null) IsTrue(actual.EndsWith(".Select(set => set)"));
+            if (str is null) IsTrue(actual.EndsWith(".Select(s => s)"));
             else if (isDescending) IsTrue(actual.EndsWith(
-                $".Select(set => set).OrderByDescending(x => Convert(x.{str}, Object))"));
+                $".Select(s => s).OrderByDescending(x => Convert(x.{str}, Object))"));
             else IsTrue(actual.EndsWith(
-                $".Select(set => set).OrderBy(x => Convert(x.{str}, Object))"));
+                $".Select(s => s).OrderBy(x => Convert(x.{str}, Object))"));
         }
         
         [DataRow(true, true)]

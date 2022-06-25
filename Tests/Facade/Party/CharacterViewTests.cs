@@ -13,7 +13,7 @@ namespace WizardingWorld.Tests.Facade.Party {
         [TestMethod] public void GenderTest() => IsRequired<IsoGender>("Gender");
         [TestMethod] public void DoBTest() => IsDisplayNamed<DateTime?>("Date of Birth");
         [TestMethod] public void HogwartsHouseTest() => IsDisplayNamed<string?>("Hogwartz House");
-        [TestMethod] public void OrganisationTest() => IsDisplayNamed<Side?>("Organization");
+        [TestMethod] public void OrganizationTest() => IsDisplayNamed<Side?>("Organization");
         [TestMethod] public void FullNameTest() => IsDisplayNamed<string?>("Full info");
     }
     [TestClass] public class CharacterViewFactoryTests

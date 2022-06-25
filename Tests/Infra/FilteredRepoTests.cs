@@ -29,7 +29,7 @@ namespace WizardingWorld.Tests.Infra {
             IQueryable<CharacterData> q2 = Obj.AddFilter(q1);
             AreEqual(q1, q2);
             string s = q1.Expression.ToString();
-            IsTrue(s.EndsWith(".Select(set => set)"));
+            IsTrue(s.EndsWith(".Select(s => s)"));
         }
     }
 }

@@ -47,7 +47,7 @@ namespace WizardingWorld.Infra {
             catch { return new List<TDomain>(); }
         }
         internal static async Task<List<TData>> RunSql(IQueryable<TData> query) => await query.AsNoTracking().ToListAsync();
-        internal protected virtual IQueryable<TData> CreateSql() => from s in Set select s;
+        protected internal virtual IQueryable<TData> CreateSql() => from s in Set select s;
         public override async Task<TDomain> GetAsync(string id) {
             try {
                 if (id == null) return new TDomain();
