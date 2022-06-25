@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -11,8 +10,8 @@ namespace WizardingWorld.Tests.Domain {
             public TestClass(CountryData d) : base(d) { }
         }
         protected override NamedEntity<CountryData> CreateObj() => new TestClass(GetRandom.Value<CountryData>());
-        [TestMethod] public void NameTest() => IsReadOnly(obj.Data.Name);
-        [TestMethod] public void CodeTest() => IsReadOnly(obj.Data.Code);
-        [TestMethod] public void DescriptionTest() => IsReadOnly(obj.Data.Description);
+        [TestMethod] public void NameTest() => IsReadOnly(Obj.Data.Name);
+        [TestMethod] public void CodeTest() => IsReadOnly(Obj.Data.Code);
+        [TestMethod] public void DescriptionTest() => IsReadOnly(Obj.Data.Description);
     }
 }

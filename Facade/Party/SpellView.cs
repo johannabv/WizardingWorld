@@ -14,8 +14,8 @@ namespace WizardingWorld.Facade.Party {
     }
     public sealed class SpellView : BaseView{
         [DisplayName("Name of spell"), Required] public string? SpellName { get; set; }
-        [DisplayName("GetDescription"), Required] public string? Description { get; set; }
-        [DisplayName("GetType")] public string? Type { get; set; }
+        [DisplayName("Description"), Required] public string? Description { get; set; }
+        [DisplayName("Type")] public string? Type { get; set; }
         [DisplayName("Full info")] public string? FullName { get; set; }
     }
 }

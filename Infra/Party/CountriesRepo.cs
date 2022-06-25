@@ -10,7 +10,7 @@ namespace WizardingWorld.Infra.Party {
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
                 x => x.Code.Contains(y)
                   || x.Description.Contains(y)
-                  || x.ID.Contains(y)
+                  || x.Id.Contains(y)
                   || x.Name.Contains(y)
             );
         }

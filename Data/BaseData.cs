@@ -3,7 +3,7 @@
 namespace WizardingWorld.Data {
     public abstract class BaseData {
         public static string NewId => Guid.NewGuid().ToString();
-        public string ID { get; set; } = NewId;
+        public string Id { get; set; } = NewId;
         protected static byte[] Empty => Array.Empty<byte>();
         [Timestamp] public byte[] Token { get; set; } = Empty;
     }

@@ -12,7 +12,7 @@ using WizardingWorld.Data;
 namespace WizardingWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220517204229_initial")]
+    [Migration("20220625131156_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,16 +228,16 @@ namespace WizardingWorld.Migrations
 
             modelBuilder.Entity("WizardingWorld.Data.Party.AddressData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CountryID")
+                    b.Property<string>("CountryId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GetDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Region")
@@ -255,21 +255,21 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Addresses", "WizardingWorld");
                 });
 
             modelBuilder.Entity("WizardingWorld.Data.Party.CharacterAddressData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AddressID")
+                    b.Property<string>("AddressId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CharacterID")
+                    b.Property<string>("CharacterId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -282,14 +282,14 @@ namespace WizardingWorld.Migrations
                     b.Property<int?>("UseFor")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("CharacterAddresses", "WizardingWorld");
                 });
 
             modelBuilder.Entity("WizardingWorld.Data.Party.CharacterData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DoB")
@@ -307,7 +307,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Organisation")
+                    b.Property<int?>("Organization")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Token")
@@ -316,21 +316,21 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Characters", "WizardingWorld");
                 });
 
             modelBuilder.Entity("WizardingWorld.Data.Party.CoreMaterialData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GetDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -342,55 +342,21 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Cores", "WizardingWorld");
                 });
 
-            modelBuilder.Entity("WizardingWorld.Data.Party.CountryCurrencyData", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CountryID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CurrencyID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GetDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Token")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("CountryCurrencies", "WizardingWorld");
-                });
-
             modelBuilder.Entity("WizardingWorld.Data.Party.CountryData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GetDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -402,46 +368,20 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Countries", "WizardingWorld");
                 });
 
-            modelBuilder.Entity("WizardingWorld.Data.Party.CurrencyData", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GetDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Token")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Currencies", "WizardingWorld");
-                });
-
             modelBuilder.Entity("WizardingWorld.Data.Party.HouseData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GetDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FounderName")
@@ -459,17 +399,17 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Houses", "WizardingWorld");
                 });
 
             modelBuilder.Entity("WizardingWorld.Data.Party.SpellData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("GetDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SpellName")
@@ -481,20 +421,20 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<string>("GetType")
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Spells", "WizardingWorld");
                 });
 
             modelBuilder.Entity("WizardingWorld.Data.Party.WandData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CoreID")
+                    b.Property<string>("CoreId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Info")
@@ -506,20 +446,20 @@ namespace WizardingWorld.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<string>("WoodID")
+                    b.Property<string>("WoodId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Wands", "WizardingWorld");
                 });
 
             modelBuilder.Entity("WizardingWorld.Data.Party.WoodData", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("GetDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -534,7 +474,7 @@ namespace WizardingWorld.Migrations
                     b.Property<string>("Traits")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Woods", "WizardingWorld");
                 });

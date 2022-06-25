@@ -17,7 +17,7 @@ namespace WizardingWorld.Facade.Party {
         [DisplayName("Founder name")] public string? FounderName { get; set; }
         [DisplayName("Head of House name")] public string? HeadOfHouseName { get; set; }
         [DisplayName("Color"), Required] public string? Color { get; set; }
-        [DisplayName("GetDescription")] public string? Description { get; set; }
+        [DisplayName("Description")] public string? Description { get; set; }
         [DisplayName("Full info")] public string? FullName { get; set; }
     }
 }

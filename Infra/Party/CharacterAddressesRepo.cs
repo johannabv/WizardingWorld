@@ -9,9 +9,9 @@ namespace WizardingWorld.Infra.Party {
             string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y)
                 ? q : q.Where(
-                x => x.CharacterID.Contains(y)
-                  || x.AddressID.Contains(y)
-                  || x.ID.Contains(y)
+                x => x.CharacterId.Contains(y)
+                  || x.AddressId.Contains(y)
+                  || x.Id.Contains(y)
                   || x.UseFor.ToString().Contains(y)
             );
         }

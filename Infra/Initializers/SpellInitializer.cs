@@ -5,7 +5,7 @@ namespace WizardingWorld.Infra.Initializers {
         public SpellInitializer(WizardingWorldDb? db) : base(db, db?.Spells) { }
         internal static SpellData CreateSpell(string spellName, string description, string type) {
             SpellData spell = new() {
-                ID = spellName + type,
+                Id = spellName + type,
                 SpellName = spellName,
                 Description = description,
                 Type = type

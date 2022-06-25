@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 using WizardingWorld.Data;
 using WizardingWorld.Data.Party;
 

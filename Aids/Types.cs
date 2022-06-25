@@ -2,7 +2,7 @@
 
 namespace WizardingWorld.Aids {
     public static class Types {
-        private static readonly BindingFlags allDeclaredOnly =
+        private static readonly BindingFlags AllDeclaredOnly =
             BindingFlags.DeclaredOnly
             | BindingFlags.Public
             | BindingFlags.Instance
@@ -19,7 +19,7 @@ namespace WizardingWorld.Aids {
             => Safe.Run(() => type?.FullName?.IsTypeFullName() ?? false);
         public static string? GetName(this Type? type) => type?.Name ?? string.Empty;
         public static List<string>? GetDeclaredMembers(this Type? type)
-            => type?.GetMembers(allDeclaredOnly)?.ToList()?.Select(x => x.Name)?.ToList() ?? new();
+            => type?.GetMembers(AllDeclaredOnly)?.ToList()?.Select(x => x.Name)?.ToList() ?? new();
         public static bool IsInherited(this Type? type, Type subclass)
             => Safe.Run(() => type?.IsSubclassOf(subclass) ?? false, false);
         public static bool HasAttribute<TAttribute>(this Type? type) where TAttribute : Attribute

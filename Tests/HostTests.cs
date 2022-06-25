@@ -1,69 +1,67 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
 using WizardingWorld.Domain;
 using WizardingWorld.Domain.Party;
 using WizardingWorld.Infra.Party;
 
-namespace Tests {
+namespace WizardingWorld.Tests {
     public abstract class HostTests : AssertTests {
-        internal static readonly TestHost<Program> host;
-        internal static readonly HttpClient client;
+        internal static readonly TestHost<Program> Host;
+        internal static readonly HttpClient Client;
         [TestInitialize] public virtual void TestInitialize() {
             (GetRepo.Instance<ICountriesRepo>() as CountriesRepo)?.Clear();
             (GetRepo.Instance<ICharactersRepo>() as CharactersRepo)?.Clear();
             (GetRepo.Instance<IAddressRepo>() as AddressesRepo)?.Clear();
-            (GetRepo.Instance<ICurrenciesRepo>() as CurrenciesRepo)?.Clear();
-            (GetRepo.Instance<ICountryCurrenciesRepo>() as CountryCurrenciesRepo)?.Clear();
             (GetRepo.Instance<ICharacterAddressesRepo>() as CharacterAddressesRepo)?.Clear();
             (GetRepo.Instance<IWandsRepo>() as WandsRepo)?.Clear();
             (GetRepo.Instance<IWoodsRepo>() as WoodsRepo)?.Clear();
             (GetRepo.Instance<ICoreMaterialsRepo>() as CoreMaterialsRepo)?.Clear();
         }
         static HostTests() {
-            host = new TestHost<Program>();
-            client = host.CreateClient();
+            Host = new TestHost<Program>();
+            Client = Host.CreateClient();
         }
         protected virtual object? IsReadOnly<T>(string? callingMethod = null) => null;
 
         protected void TestList<TRepo, TObj, TData>(Action<TData> setId, Func<TData, TObj> toObj, Func<List<TObj>> getList)
             where TRepo : class, IRepo<TObj> where TObj : BaseEntity<TData> where TData : BaseData, new() {
 
-            object? o = IsReadOnly<List<TObj>>(nameof(TestList));
+            object? obj = IsReadOnly<List<TObj>>(nameof(TestList));
 
-            IsNotNull(o);
-            if (o.GetType().Name.Contains("Lazy")) IsInstanceOfType(o, typeof(Lazy<List<TObj>>));
-            else IsInstanceOfType(o, typeof(List<TObj>));
+            IsNotNull(obj);
+            if (obj.GetType().Name.Contains("Lazy")) IsInstanceOfType(obj, typeof(Lazy<List<TObj>>));
+            else IsInstanceOfType(obj, typeof(List<TObj>));
 
-            TRepo? r = GetRepo.Instance<TRepo>();
-            IsNotNull(r);
+            TRepo? repo = GetRepo.Instance<TRepo>();
+            IsNotNull(repo);
 
-            List<TData> list = new();
+            List<TData> dataList = new();
             int count = GetRandom.Int32(5, 30);
 
             for (int i = 0; i < count; i++) {
-                dynamic? x = GetRandom.Value<TData>();
+                dynamic? data = GetRandom.Value<TData>();
                 if (GetRandom.Bool()) {
-                    setId(x);
-                    list.Add(x);
+                    setId(data);
+                    dataList.Add(data);
                 }
-                r.Add(toObj(x));
+                repo.Add(toObj(data));
             }
 
-            r.PageSize = 30;
-            AreEqual(count, r.Get().Count);
+            repo.PageSize = 30;
+            AreEqual(count, repo.Get().Count);
 
-            List<TObj> l = getList();
-            AreEqual(list.Count, l.Count);
+            List<TObj> objList = getList();
+            AreEqual(dataList.Count, objList.Count);
 
-            foreach (TData d in list) {
-                TObj? y = l.Find(z => z.ID == d.ID);
-                IsNotNull(y);
-                ArePropertiesEqual(d, y, nameof(BaseData.Token));
+            foreach (TData data in dataList) {
+                TObj? entity = objList.Find(z => z.Id == data.Id);
+                IsNotNull(entity);
+                ArePropertiesEqual(data, entity, nameof(BaseData.Token));
             }
         }
         protected void TestItem<TRepo, TObj, TData>(string id, Func<TData, TObj> toObj, Func<TObj?> getObj)
@@ -84,7 +82,7 @@ namespace Tests {
             (Action relatedTest,
                 Func<List<TRelatedItem>> relatedItems,
                 Func<List<TItem?>> items,
-                Func<TRelatedItem, string> detailID,
+                Func<TRelatedItem, string> detailId,
                 Func<TData, TItem> toObj,
                 Func<TItem?, TData?> toData,
                 Func<TRelatedItem?, TData?> relatedToData)
@@ -96,40 +94,40 @@ namespace Tests {
             List<TRelatedItem> list = relatedItems();
             TRepo? repo = GetRepo.Instance<TRepo>();
             foreach (TRelatedItem e in list) {
-                dynamic? y = GetRandom.Value<TData>();
-                if (y is not null) y.ID = detailID(e);
-                repo?.Add(toObj(y));
+                dynamic? data = GetRandom.Value<TData>();
+                if (data is not null) data.ID = detailId(e);
+                repo?.Add(toObj(data));
             }
             List<TItem?> characters = items();
             AreEqual(list.Count, characters.Count);
-            foreach (TRelatedItem e in list) {
-                TItem? a = characters.Find(x => x?.ID == detailID(e));
-                ArePropertiesEqual(toData(a), relatedToData(e), nameof(BaseData.Token));
+            foreach (TRelatedItem relatedItem in list) {
+                TItem? item = characters.Find(x => x?.Id == detailId(relatedItem));
+                ArePropertiesEqual(toData(item), relatedToData(relatedItem), nameof(BaseData.Token));
             }
         }
-        internal static TData? AddRandomItems<TRepo, TObj, TData>(out int cnt, Func<TData, TObj> toObj, string? id = null, TRepo? r = null)
+        internal static TData? AddRandomItems<TRepo, TObj, TData>(out int cnt, Func<TData, TObj> toObj, string? id = null, TRepo? repo = null)
             where TRepo : class, IRepo<TObj>
             where TObj : BaseEntity {
-            r ??= GetRepo.Instance<TRepo>();
-            dynamic? d = GetRandom.Value<TData>();
-            if (id is not null && d is not null) d.ID = id;
+            repo ??= GetRepo.Instance<TRepo>();
+            dynamic? data = GetRandom.Value<TData>();
+            if (id is not null && data is not null) data.ID = id;
             cnt = GetRandom.Int32(5, 30);
             int idx = GetRandom.Int32(0, cnt);
             for (int i = 0; i < cnt; i++) {
-                dynamic? x = (i == idx) ? d : GetRandom.Value<TData>();
+                dynamic? x = (i == idx) ? data : GetRandom.Value<TData>();
                 IsNotNull(x);
-                r?.Add(toObj(x));
+                repo?.Add(toObj(x));
             }
-            return d;
+            return data;
         }
         protected static string GetCallingMember(string memberName) {
-            StackTrace s = new();
+            StackTrace stackTrace = new();
             bool isNext = false;
-            for (int i = 0; i < s.FrameCount - 1; i++) {
-                string n = s.GetFrame(i)?.GetMethod()?.Name ?? string.Empty;
-                if (n is "MoveNext" or "Start") continue;
-                if (isNext) return n;
-                if (n == memberName) isNext = true;
+            for (int i = 0; i < stackTrace.FrameCount - 1; i++) {
+                string name = stackTrace.GetFrame(i)?.GetMethod()?.Name ?? string.Empty;
+                if (name is "MoveNext" or "Start") continue;
+                if (isNext) return name;
+                if (name == memberName) isNext = true;
             }
             return string.Empty;
         }

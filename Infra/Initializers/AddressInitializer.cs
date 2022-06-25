@@ -12,12 +12,12 @@ namespace WizardingWorld.Infra.Initializers {
         };
         internal static AddressData CreateAddress(string street, string city, string region, string zipCode, string country, string description) {
             AddressData address = new() {
-                ID = street,
+                Id = street,
                 Street = street,
                 City = city,
                 Region = region,
                 ZipCode = zipCode,
-                CountryID = country,
+                CountryId = country,
                 Description = description
             };
             return address;

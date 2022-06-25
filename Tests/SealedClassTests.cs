@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WizardingWorld.Tests;
 
-namespace Tests {
+namespace WizardingWorld.Tests {
     public abstract class SealedClassTests<TClass, TBaseClass>
         : SealedBaseTests<TClass, TBaseClass> where TClass : class, new() where TBaseClass : class {
         protected override TClass CreateObj() => new();
@@ -9,6 +8,6 @@ namespace Tests {
     public abstract class SealedBaseTests<TClass, TBaseClass>
         : BaseTests<TClass, TBaseClass> where TClass : class where TBaseClass : class {
         [TestMethod] public void IsSealedTest() => isSealedTest();
-        protected virtual void isSealedTest() => IsTrue(obj?.GetType()?.IsSealed ?? false);
+        protected virtual void isSealedTest() => IsTrue(Obj?.GetType()?.IsSealed ?? false);
     }
 }

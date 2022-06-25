@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -12,7 +11,7 @@ namespace WizardingWorld.Tests.Infra {
     [TestClass] public class OrderedRepoTests
         : AbstractClassTests<OrderedRepo<Character, CharacterData>, FilteredRepo<Character,CharacterData>> {
         private class TestClass : OrderedRepo<Character, CharacterData> {
-            public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { }
+            public TestClass(DbContext? context, DbSet<CharacterData>? set) : base(context, set) { }
             protected internal override Character ToDomain(CharacterData d) => new(d);
         }
         protected override OrderedRepo<Character, CharacterData> CreateObj() {
@@ -25,8 +24,8 @@ namespace WizardingWorld.Tests.Infra {
         
         [DataRow(null, true)]
         [DataRow(null, false)]
-        [DataRow(nameof(Character.ID), true)]
-        [DataRow(nameof(Character.ID), false)]
+        [DataRow(nameof(Character.Id), true)]
+        [DataRow(nameof(Character.Id), false)]
         [DataRow(nameof(Character.FirstName), true)]
         [DataRow(nameof(Character.FirstName), false)]
         [DataRow(nameof(Character.LastName), true)]
@@ -35,19 +34,19 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(nameof(Character.Gender), false)]
         [DataRow(nameof(Character.DoB), true)]
         [DataRow(nameof(Character.DoB), false)]
-        [DataRow(nameof(Character.Organisation), true)]
-        [DataRow(nameof(Character.Organisation), false)]
+        [DataRow(nameof(Character.Organization), true)]
+        [DataRow(nameof(Character.Organization), false)]
         [DataRow(nameof(Character.HogwartsHouse), true)]
         [DataRow(nameof(Character.HogwartsHouse), false)]
-        [TestMethod] public void CreateSQLTest(string str, bool isDescending) {
-            obj.CurrentOrder = (str is null) ? str : isDescending ? str + TestClass.DescendingString : str;
-            IQueryable<CharacterData> q = obj.CreateSQL();
+        [TestMethod] public void CreateSqlTest(string str, bool isDescending) {
+            Obj.CurrentOrder = (str is null) ? str : isDescending ? str + TestClass.DescendingString : str;
+            IQueryable<CharacterData> q = Obj.CreateSql();
             string? actual = q.Expression.ToString();
-            if (str is null) IsTrue(actual.EndsWith(".Select(s => s)"));
+            if (str is null) IsTrue(actual.EndsWith(".Select(set => set)"));
             else if (isDescending) IsTrue(actual.EndsWith(
-                $".Select(s => s).OrderByDescending(x => Convert(x.{str}, Object))"));
+                $".Select(set => set).OrderByDescending(x => Convert(x.{str}, Object))"));
             else IsTrue(actual.EndsWith(
-                $".Select(s => s).OrderBy(x => Convert(x.{str}, Object))"));
+                $".Select(set => set).OrderBy(x => Convert(x.{str}, Object))"));
         }
         
         [DataRow(true, true)]
@@ -55,12 +54,12 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(true, false)]
         [DataRow(false,false)]
         [TestMethod] public void SortOrderTest(bool isDescending, bool isSame) { 
-            string s = GetRandom.String();
-            string c = isSame ? s : GetRandom.String();
-            obj.CurrentOrder = isDescending ? c + TestClass.DescendingString : c;
-            string actual = obj.SortOrder(s);
-            string sDes = s + TestClass.DescendingString;
-            string expected = isSame ? (isDescending ? s : sDes) : sDes;
+            string str = GetRandom.String();
+            string c = isSame ? str : GetRandom.String();
+            Obj.CurrentOrder = isDescending ? c + TestClass.DescendingString : c;
+            string actual = Obj.SortOrder(str);
+            string sDes = str + TestClass.DescendingString;
+            string expected = isSame ? (isDescending ? str : sDes) : sDes;
             AreEqual(expected, actual);
         }
     }

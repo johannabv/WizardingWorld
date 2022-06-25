@@ -8,7 +8,7 @@ namespace WizardingWorld.Infra.Party {
         internal override IQueryable<CoreMaterialData> AddFilter(IQueryable<CoreMaterialData> q) {
             string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
-                x => x.ID.Contains(y)
+                x => x.Id.Contains(y)
                   || x.Name.Contains(y)
                   || x.Code.Contains(y)
                   || x.Description.Contains(y)

@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -8,21 +7,21 @@ using WizardingWorld.Domain.Party;
 namespace WizardingWorld.Tests.Domain.Party {
     [TestClass] public class CharacterTests : SealedClassTests<Character, BaseEntity<CharacterData>> {
         protected override Character CreateObj() => new(GetRandom.Value<CharacterData>());
-        [TestMethod] public void FirstNameTest() => IsReadOnly(obj.Data.FirstName);
-        [TestMethod] public void LastNameTest() => IsReadOnly(obj.Data.LastName);
-        [TestMethod] public void OrganisationTest() => IsReadOnly(obj.Data.Organisation);
-        [TestMethod] public void HogwartsHouseTest() => IsReadOnly(obj.Data.HogwartsHouse);
-        [TestMethod] public void GenderTest() => IsReadOnly(obj.Data.Gender);
-        [TestMethod] public void DoBTest() => IsReadOnly(obj.Data.DoB);
+        [TestMethod] public void FirstNameTest() => IsReadOnly(Obj.Data.FirstName);
+        [TestMethod] public void LastNameTest() => IsReadOnly(Obj.Data.LastName);
+        [TestMethod] public void OrganizationTest() => IsReadOnly(Obj.Data.Organization);
+        [TestMethod] public void HogwartsHouseTest() => IsReadOnly(Obj.Data.HogwartsHouse);
+        [TestMethod] public void GenderTest() => IsReadOnly(Obj.Data.Gender);
+        [TestMethod] public void DoBTest() => IsReadOnly(Obj.Data.DoB);
         [TestMethod] public void ToStringTest() {
-            string expected = $"{obj.FirstName} {obj.LastName}, {obj.Organisation} ({obj.Gender.GetDescription()}, {obj.DoB}, {obj.HogwartsHouse})";
-            AreEqual(expected, obj.ToString());
+            string expected = $"{Obj.FirstName} {Obj.LastName}, {Obj.Organization} ({Obj.Gender.GetDescription()}, {Obj.DoB}, {Obj.HogwartsHouse})";
+            AreEqual(expected, Obj.ToString());
         }
         [TestMethod] public void CharacterAddressesTest() => TestList<ICharacterAddressesRepo, CharacterAddress, CharacterAddressData>(
-                d => d.CharacterID = obj.ID, d => new CharacterAddress(d), () => obj.CharacterAddresses.Value);
+                d => d.CharacterId = Obj.Id, d => new CharacterAddress(d), () => Obj.CharacterAddresses.Value);
         [TestMethod] public void AddressesTest() => TestRelatedLists<IAddressRepo, CharacterAddress, Address, AddressData>
-            (CharacterAddressesTest, () => obj.CharacterAddresses.Value, () => obj.Addresses.Value,
-                x => x.AddressID, d => new Address(d), c => c?.Data, x => x?.Address?.Data);
+            (CharacterAddressesTest, () => Obj.CharacterAddresses.Value, () => Obj.Addresses.Value,
+                x => x.AddressId, d => new Address(d), c => c?.Data, x => x?.Address?.Data);
 
     }
 }

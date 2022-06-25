@@ -2,10 +2,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Tests;
 using WizardingWorld.Domain;
 
-namespace WizardingWorld.Soft {
+namespace WizardingWorld.Tests.Soft {
     public abstract class PagesTests : HostTests {
         public static async Task GetPageTestAsync<TRepo, TObj, TData>(Func<TData, TObj> toObj)
             where TRepo : class, IRepo<TObj>
@@ -16,7 +15,7 @@ namespace WizardingWorld.Soft {
 
             _ = AddRandomItems<TRepo, TObj, TData>(out int cnt, toObj);
 
-            HttpResponseMessage page = await client.GetAsync($"/{name}?handler={handler}");
+            HttpResponseMessage page = await Client.GetAsync($"/{name}?handler={handler}");
             AreEqual(HttpStatusCode.OK, page.StatusCode);
 
             string html = await page.Content.ReadAsStringAsync();

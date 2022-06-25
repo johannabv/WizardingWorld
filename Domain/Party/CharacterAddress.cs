@@ -6,10 +6,10 @@ namespace WizardingWorld.Domain.Party {
     public sealed class CharacterAddress : BaseEntity<CharacterAddressData> {
         public CharacterAddress() : this(new ()) { }
         public CharacterAddress(CharacterAddressData d) : base(d) { }
-        public string CharacterID => GetValue(Data?.CharacterID);
-        public string AddressID => GetValue(Data?.AddressID);
-        public Character? Character => GetRepo.Instance<ICharactersRepo>()?.Get(CharacterID);
-        public Address? Address => GetRepo.Instance<IAddressRepo>()?.Get(AddressID);
+        public string CharacterId => GetValue(Data?.CharacterId);
+        public string AddressId => GetValue(Data?.AddressId);
+        public Character? Character => GetRepo.Instance<ICharactersRepo>()?.Get(CharacterId);
+        public Address? Address => GetRepo.Instance<IAddressRepo>()?.Get(AddressId);
         public AddressUse UseFor => GetValue(Data?.UseFor);
     }
 }

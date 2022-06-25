@@ -12,11 +12,11 @@ namespace WizardingWorld.Infra {
         public bool HasNextPage => PageIndex < TotalPages - 1;
         public bool HasPreviousPage => PageIndex > 0;
         public int PageSize { get; set; } = ItemsCountInPage;
-        protected PagedRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
-        protected internal override IQueryable<TData> CreateSQL() => AddSkipAndTake(base.CreateSQL());
+        protected PagedRepo(DbContext? context, DbSet<TData>? set) : base(context, set) { }
+        protected internal override IQueryable<TData> CreateSql() => AddSkipAndTake(base.CreateSql());
         internal IQueryable<TData> AddSkipAndTake(IQueryable<TData> q) => q.Skip(SkippedItemsCount).Take(PageSize);
         internal int totalPages => (int)Math.Ceiling(CountPages);
         internal double CountPages => ItemsCount / (double)PageSize;
-        internal int ItemsCount => base.CreateSQL().Count();
+        internal int ItemsCount => base.CreateSql().Count();
     }
 }

@@ -13,7 +13,7 @@ namespace WizardingWorld.Pages.Party {
             nameof(AddressView.City),
             nameof(AddressView.Region),
             nameof(AddressView.ZipCode),
-            nameof(AddressView.CountryID),
+            nameof(AddressView.CountryId),
             nameof(AddressView.Description),
         };
         public override string[] RelatedIndexColumns { get; } = new[] {
@@ -22,12 +22,12 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.Gender),
             nameof(CharacterView.DoB),
             nameof(CharacterView.HogwartsHouse),
-            nameof(CharacterView.Organisation),
+            nameof(CharacterView.Organization),
         };
 
         public IEnumerable<SelectListItem> Countries
             => countries?.GetAll(x => x.Name)?
-            .Select(x => new SelectListItem(x.Name, x.ID))
+            .Select(x => new SelectListItem(x.Name, x.Id))
             ?? new List<SelectListItem>();
 
         public string CountryName(string? countryId = null)
@@ -35,7 +35,7 @@ namespace WizardingWorld.Pages.Party {
 
         public override object? GetValue<T>(string name, T v) {
             object? r = base.GetValue<T>(name, v);
-            return name == nameof(AddressView.CountryID) ? CountryName(r as string) : r;
+            return name == nameof(AddressView.CountryId) ? CountryName(r as string) : r;
         }
 
         public Lazy<List<Character?>> Characters => ToObject(Item).Characters;

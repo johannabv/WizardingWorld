@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 
@@ -10,8 +9,8 @@ namespace WizardingWorld.Tests.Aids {
         [TestInitialize] public void Init() => list = new List<int>() { 1, 2, 3, 4, 5, 6 };
         [TestMethod] public void GetFirstTest() => AreEqual(1, list.GetFirst());
         [TestMethod] public void RemoveTest() {
-            int? cnt = list.Remove(x => x < 4);
-            AreEqual(3, cnt);
+            int? count = list.Remove(x => x < 4);
+            AreEqual(3, count);
             AreEqual(4, list.GetFirst());
         }
         [TestMethod] public void IsEmptyTest() {

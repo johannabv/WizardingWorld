@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Enums;
 using WizardingWorld.Data.Party;
@@ -88,7 +87,7 @@ namespace WizardingWorld.Tests.Aids {
             SpellData? y = GetRandom.Value<SpellData>() as SpellData;
             IsNotNull(x);
             IsNotNull(y);
-            AreNotEqual(x.ID, y.ID, nameof(x.ID));
+            AreNotEqual(x.Id, y.Id, nameof(x.Id));
             AreNotEqual(x.SpellName, y.SpellName, nameof(x.SpellName));
             AreNotEqual(x.Description, y.Description, nameof(x.Description));
             AreNotEqual(x.Type, y.Type, nameof(x.Type));
@@ -96,14 +95,14 @@ namespace WizardingWorld.Tests.Aids {
         [TestMethod] public void EnumOfGenericTest() => Test(() => GetRandom.EnumOf<IsoGender>());
         
         [DataRow(typeof(IsoGender))]
-        [TestMethod] public void EnumOfTest(Type t) => Test(() => GetRandom.EnumOf(t));
+        [TestMethod] public void EnumOfTest(Type type) => Test(() => GetRandom.EnumOf(type));
         
         [DataRow(typeof(bool?), false)]
         [DataRow(typeof(int), false)]
         [DataRow(typeof(Side?), false)]
         [DataRow(typeof(DateTime?), false)]
         [DataRow(typeof(IsoGender), true)]
-        [TestMethod] public void IsEnumTest(Type t, bool expected) => AreEqual(expected, GetRandom.IsEnum(t));
+        [TestMethod] public void IsEnumTest(Type type, bool expected) => AreEqual(expected, GetRandom.IsEnum(type));
 
         [DataRow(typeof(bool?), typeof(bool))]
         [DataRow(typeof(int?), typeof(int))]

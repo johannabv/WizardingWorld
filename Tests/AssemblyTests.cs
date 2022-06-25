@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WizardingWorld.Aids;
 
-namespace Tests {
+namespace WizardingWorld.Tests {
     public abstract class AssemblyTests : AssertTests  {
         private Assembly? testingAssembly;
         private Assembly? assemblyToBeTested;
@@ -37,16 +37,16 @@ namespace Tests {
 
         private void RemoveDuplications() => typesToBeTested?.Find(x => IsItDuplicated(x));
 
-        private bool IsItDuplicated(Type x) {
-            Type? t = typesToBeTested?.Find(y => IsDuplicated(y, x));
-            if (t == null) return false;
-            _ = typesToBeTested?.Remove(t);
-            return t is not null;
+        private bool IsItDuplicated(Type givenType) {
+            Type? type = typesToBeTested?.Find(y => IsDuplicated(y, givenType));
+            if (type == null) return false;
+            _ = typesToBeTested?.Remove(type);
+            return type is not null;
         }
-        private static bool IsDuplicated(Type x, Type y) {
-            if (x == y) return false;
-            string nameX = x.Name;
-            string nameY = y.Name;
+        private static bool IsDuplicated(Type typeA, Type typeB) {
+            if (typeA == typeB) return false;
+            string nameX = typeA.Name;
+            string nameY = typeB.Name;
             int lengthX = nameX.IndexOf('`');
             int lengthY = nameY.IndexOf('`');
             if (lengthX >= 0) nameX = nameX[..lengthX];
@@ -56,26 +56,26 @@ namespace Tests {
         private void RemoveInterface() => typesToBeTested?.RemoveAll(t => t.IsInterface);
         private void RemoveNotClassTests() => testingTypes.Remove(x => !Types.NameEnds(x, TestsStr));
         private void RemoveNotCorrectTests() => testingTypes.Remove(x => !IsCorrectTest(x));
-        private static void RemoveNotInNamespace(List<Type>? t, string? nameSpace) => t?.Remove(x => !Types.NameStarts(x, nameSpace));
-        private static Assembly? GetTheAssembly(object o) => GetAssembly.OfType(o);
+        private static void RemoveNotInNamespace(List<Type>? type, string? nameSpace) => type?.Remove(x => !Types.NameStarts(x, nameSpace));
+        private static Assembly? GetTheAssembly(object obj) => GetAssembly.OfType(obj);
         private static Assembly? GetTheAssembly(string? name) => GetAssembly.GetAssemblyByName(name);
-        private static string? RemoveTestsTagFrom(string? s) => s?.Remove(TestsProjectStr);
-        private static string? GetTheNamespace(object o) => GetNamespace.OfType(o);
-        private static List<Type>? GetTypes(Assembly? a) => GetAssembly.GetTypes(a);
+        private static string? RemoveTestsTagFrom(string? str) => str?.Remove(TestsProjectStr);
+        private static string? GetTheNamespace(object obj) => GetNamespace.OfType(obj);
+        private static List<Type>? GetTypes(Assembly? assembly) => GetAssembly.GetTypes(assembly);
         private void ReportNotAllIsTested() => IsInconclusive(NotTestedMsg);
         private string FullNameOfFirstNotTested() => FirstNotTestedType(typesToBeTested)?.FullName ?? string.Empty;
-        private static Type? FirstNotTestedType(List<Type>? l) => l.GetFirst();
+        private static Type? FirstNotTestedType(List<Type>? list) => list.GetFirst();
         private bool AllAreTested() => typesToBeTested.IsEmpty();
         private void RemoveTested() => typesToBeTested?.RemoveAll(x => IsItTested(x));
-        private bool IsItTested(Type x) {
-            Type? t = testingTypes?.Find(y => IsTestFor(y, x));
-            if(t is null) return false;
-            _ = testingTypes?.Remove(t);
-            return t is not null;
+        private bool IsItTested(Type giventType) {
+            Type? type = testingTypes?.Find(y => IsTestFor(y, giventType));
+            if(type is null) return false;
+            _ = testingTypes?.Remove(type);
+            return type is not null;
         }
-        private static bool IsCorrectTest(Type x) => IsCorrectlyInherited(x) && IsTestClass(x);
-        private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
-        private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(TypeTests));
+        private static bool IsCorrectTest(Type type) => IsCorrectlyInherited(type) && IsTestClass(type);
+        private static bool IsTestClass(Type type) => type?.HasAttribute<TestClassAttribute>() ?? false;
+        private static bool IsCorrectlyInherited(Type type) => type.IsInherited(typeof(TypeTests));
         private static bool IsTestFor(Type testingType, Type typeToBeTested) {
             string testName = typeToBeTested.FullName ?? string.Empty;
             testName = testName.RemoveHead();
@@ -84,7 +84,7 @@ namespace Tests {
             testName += TestsStr;
             return testingType.NameEnds($".{testName}");
         }
-        private void RemoveNotNeedTesting() => typesToBeTested?.Remove(x => !IsTypeToBeTested(x));
-        private bool IsTypeToBeTested(Type x) => x?.BelongsTo(namespaceOfType) ?? false;
+        private void RemoveNotNeedTesting() => typesToBeTested?.Remove(type => !IsTypeToBeTested(type));
+        private bool IsTypeToBeTested(Type type) => type?.BelongsTo(namespaceOfType) ?? false;
     }
 }

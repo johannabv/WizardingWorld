@@ -1,8 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
+using WizardingWorld.Data.Party;
+using WizardingWorld.Domain.Party;
 using WizardingWorld.Facade;
 using WizardingWorld.Facade.Party;
 
 namespace WizardingWorld.Tests.Facade.Party {
     [TestClass] public class CountryViewTests : SealedClassTests<CountryView, IsoNamedView> { }
+    [TestClass] public class CountryViewFactoryTests
+        : ViewFactoryTests<CountryViewFactory, CountryView, Country, CountryData> {
+        protected override Country ToObject(CountryData d) => new(d);
+    }
 }

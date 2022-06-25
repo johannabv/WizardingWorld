@@ -35,7 +35,7 @@ namespace WizardingWorld.Pages.Extensions {
                     l.Add(new HtmlString("</td>"));
                 }
                 l.Add(new HtmlString("<td>"));
-                l.Add(h.ItemButtons(item.ID));
+                l.Add(h.ItemButtons(item.Id));
                 l.Add(new HtmlString("</td>"));
                 l.Add(new HtmlString("</tr>"));
             }

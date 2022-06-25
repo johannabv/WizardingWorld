@@ -8,10 +8,10 @@ namespace WizardingWorld.Infra.Party {
         internal override IQueryable<WandData> AddFilter(IQueryable<WandData> q) {
             string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
-                x => x.ID.Contains(y)
-                  || x.CoreID.Contains(y)
+                x => x.Id.Contains(y)
+                  || x.CoreId.Contains(y)
                   || x.Info.Contains(y)
-                  || x.WoodID.Contains(y)
+                  || x.WoodId.Contains(y)
             );
         }
     }

@@ -8,7 +8,7 @@ namespace WizardingWorld.Infra.Party {
         internal override IQueryable<SpellData> AddFilter(IQueryable<SpellData> q) {
             string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
-                x => x.ID.Contains(y)
+                x => x.Id.Contains(y)
                   || x.SpellName.Contains(y)
                   || x.Type.Contains(y)
                   || x.Description.Contains(y)

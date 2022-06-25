@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -12,7 +11,7 @@ namespace WizardingWorld.Tests.Infra {
     [TestClass] public class FilteredRepoTests
         : AbstractClassTests<FilteredRepo<Character, CharacterData>, CrudRepo<Character, CharacterData>> {
         private class TestClass : FilteredRepo<Character, CharacterData> {
-            public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { }
+            public TestClass(DbContext? context, DbSet<CharacterData>? set) : base(context, set) { }
             protected internal override Character ToDomain(CharacterData d) => new(d);
         }
         protected override FilteredRepo<Character, CharacterData> CreateObj() {
@@ -24,13 +23,13 @@ namespace WizardingWorld.Tests.Infra {
         
         [DataRow(true)]
         [DataRow(false)]
-        [TestMethod] public void CreateSQLTest(bool hasCurrentFilter) {
-            obj.CurrentFilter = hasCurrentFilter ? GetRandom.String() : null;
-            IQueryable<CharacterData> q1 = obj.CreateSQL();
-            IQueryable<CharacterData> q2 = obj.AddFilter(q1);
+        [TestMethod] public void CreateSqlTest(bool hasCurrentFilter) {
+            Obj.CurrentFilter = hasCurrentFilter ? GetRandom.String() : null;
+            IQueryable<CharacterData> q1 = Obj.CreateSql();
+            IQueryable<CharacterData> q2 = Obj.AddFilter(q1);
             AreEqual(q1, q2);
             string s = q1.Expression.ToString();
-            IsTrue(s.EndsWith(".Select(s => s)"));
+            IsTrue(s.EndsWith(".Select(set => set)"));
         }
     }
 }

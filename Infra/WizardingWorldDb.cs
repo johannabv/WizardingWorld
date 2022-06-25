@@ -7,10 +7,8 @@ namespace WizardingWorld.Infra {
         public DbSet<CharacterData>? Characters { get; set; }
         public DbSet<SpellData>? Spells { get; set; }
         public DbSet<CountryData>? Countries { get; set; }
-        public DbSet<CurrencyData>? Currencies { get; set; }
         public DbSet<HouseData>? Houses { get; set; }
         public DbSet<AddressData>? Addresses { get; set; }
-        public DbSet<CountryCurrencyData>? CountryCurrencies { get; set; }
         public DbSet<CharacterAddressData>? CharacterAddresses { get; set; }
         public DbSet<WandData>? Wands { get; set; }
         public DbSet<WoodData>? Woods { get; set; }
@@ -24,11 +22,9 @@ namespace WizardingWorld.Infra {
             _ = (b?.Entity<CharacterData>()?.ToTable(nameof(Characters), s));
             _ = (b?.Entity<SpellData>()?.ToTable(nameof(Spells), s));
             _ = (b?.Entity<CountryData>()?.ToTable(nameof(Countries), s));
-            _ = (b?.Entity<CurrencyData>()?.ToTable(nameof(Currencies), s));
             _ = (b?.Entity<HouseData>()?.ToTable(nameof(Houses), s));
             _ = (b?.Entity<AddressData>()?.ToTable(nameof(Addresses), s));
             _ = (b?.Entity<CharacterAddressData>()?.ToTable(nameof(CharacterAddresses), s));
-            _ = (b?.Entity<CountryCurrencyData>()?.ToTable(nameof(CountryCurrencies), s));
             _ = (b?.Entity<WandData>()?.ToTable(nameof(Wands), s));
             _ = (b?.Entity<WoodData>()?.ToTable(nameof(Woods), s));
             _ = (b?.Entity<CoreMaterialData>()?.ToTable(nameof(Cores), s));

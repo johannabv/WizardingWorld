@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -17,10 +16,10 @@ namespace WizardingWorld.Tests.Domain {
             d = GetRandom.Value<CountryData>();
             return new TestClass(d);
         }
-        [TestMethod] public void IDTest() => IsReadOnly(obj.Data.ID);
+        [TestMethod] public void IdTest() => IsReadOnly(Obj.Data.Id);
         [TestMethod] public void DataTest() => IsReadOnly(d);
         [TestMethod] public void DefaultStrTest() => AreEqual("Undefined", BaseEntity.DefaultStr);
         [TestMethod] public void DefaultDateTest() => AreEqual(DateTime.MinValue, BaseEntity.DefaultDate);
-        [TestMethod] public void TokenTest() => IsReadOnly(obj.Data.Token);
+        [TestMethod] public void TokenTest() => IsReadOnly(Obj.Data.Token);
     }
 }

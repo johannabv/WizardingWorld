@@ -10,15 +10,15 @@ namespace WizardingWorld.Domain.Party {
         public string Region => GetValue(Data?.Region);
         public string ZipCode => GetValue(Data?.ZipCode);
         public string Description => GetValue(Data?.Description);
-        public string CountryID => GetValue(Data?.CountryID);
+        public string CountryId => GetValue(Data?.CountryId);
         public override string ToString() => $"{Street}, {City}, {Country?.Name} ({Description})";
-        public Country? Country => GetRepo.Instance<ICountriesRepo>()?.Get(CountryID);
+        public Country? Country => GetRepo.Instance<ICountriesRepo>()?.Get(CountryId);
 
         public Lazy<List<CharacterAddress>> CharacterAddresses { 
             get {
                 List<CharacterAddress> l = GetRepo.Instance<ICharacterAddressesRepo>()?
-                      .GetAll(x => x.AddressID)?
-                      .Where(x => x.AddressID == ID)?
+                      .GetAll(x => x.AddressId)?
+                      .Where(x => x.AddressId == Id)?
                       .ToList() ?? new List<CharacterAddress>();
                 return new Lazy<List<CharacterAddress>>(l);
             } 

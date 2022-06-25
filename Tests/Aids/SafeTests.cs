@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Tests;
 using WizardingWorld.Aids;
 
 namespace WizardingWorld.Tests.Aids {

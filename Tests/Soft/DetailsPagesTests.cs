@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 
-namespace WizardingWorld.Soft {
+namespace WizardingWorld.Tests.Soft {
     [TestClass] public class DetailsPagesTests : PagesTests {
         [TestMethod] public async Task GetAddressesDetailsPageTest()
             => await GetPageTestAsync<IAddressRepo, Address, AddressData>(x => new Address(x));
@@ -13,12 +13,8 @@ namespace WizardingWorld.Soft {
             => await GetPageTestAsync<ICharactersRepo, Character, CharacterData>(x => new Character(x));
         [TestMethod] public async Task GetCoreMaterialsDetailsPageTest()
             => await GetPageTestAsync<ICoreMaterialsRepo, CoreMaterial, CoreMaterialData>(x => new CoreMaterial(x));
-        [TestMethod] public async Task GetCountryCurrenciesDetailsPageTest()
-            => await GetPageTestAsync<ICountryCurrenciesRepo, CountryCurrency, CountryCurrencyData>(x => new CountryCurrency(x));
         [TestMethod] public async Task GetCountriesDetailsPageTest()
             => await GetPageTestAsync<ICountriesRepo, Country, CountryData>(x => new Country(x));
-        [TestMethod] public async Task GetCurrenciesDetailsPageTest()
-            => await GetPageTestAsync<ICurrenciesRepo, Currency, CurrencyData>(x => new Currency(x));
         [TestMethod] public async Task GetHousesDetailsPageTest()
             => await GetPageTestAsync<IHousesRepo, House, HouseData>(x => new House(x));
         [TestMethod] public async Task GetSpellsDetailsPageTest()

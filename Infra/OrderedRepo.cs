@@ -7,10 +7,10 @@ using WizardingWorld.Domain;
 namespace WizardingWorld.Infra {
     public abstract class OrderedRepo<TDomain, TData> : FilteredRepo<TDomain, TData>
         where TDomain : BaseEntity<TData>, new() where TData : BaseData, new() {
-        protected OrderedRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
+        protected OrderedRepo(DbContext? context, DbSet<TData>? set) : base(context, set) { }
         public string? CurrentOrder { get; set; }
         public static string DescendingString => "_desc";
-        protected internal override IQueryable<TData> CreateSQL() => AddSort(base.CreateSQL());
+        protected internal override IQueryable<TData> CreateSql() => AddSort(base.CreateSql());
         internal IQueryable<TData> AddSort(IQueryable<TData> q) {
             if (string.IsNullOrWhiteSpace(CurrentOrder)) return q;
             Expression<Func<TData, object>>? e = LambdaExpression;
@@ -33,8 +33,7 @@ namespace WizardingWorld.Infra {
         }
         public string SortOrder(string propertyName) {
             string n = propertyName;
-            return !IsSameProperty(n) ? n + DescendingString
-                : IsDescending ? n : n + DescendingString;
+            return !IsSameProperty(n) ? n + DescendingString : IsDescending ? n : n + DescendingString;
         }
     }
 }

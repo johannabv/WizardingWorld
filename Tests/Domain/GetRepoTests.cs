@@ -5,7 +5,7 @@ using WizardingWorld.Domain.Party;
 using WizardingWorld.Infra.Party;
 
 namespace WizardingWorld.Tests.Domain {
-    [TestClass] public abstract class GetRepoTests : global::Tests.TypeTests {
+    [TestClass] public abstract class GetRepoTests : global::WizardingWorld.Tests.TypeTests {
         private class TestClass : IServiceProvider {
             public object? GetService(Type serviceType) {
                 throw new NotImplementedException();
@@ -13,11 +13,11 @@ namespace WizardingWorld.Tests.Domain {
         }
         [TestMethod] public void InstanceTest() => Assert.IsInstanceOfType(GetRepo.Instance<ICountriesRepo>(), typeof(CountriesRepo));
         [TestMethod] public void SetServiceTest() {
-            IServiceProvider? s = GetRepo.service;
+            IServiceProvider? s = GetRepo.Service;
             TestClass x = new();
             GetRepo.SetService(x);
-            AreEqual(x,GetRepo.service);
-            GetRepo.service = s;
+            AreEqual(x, GetRepo.Service);
+            GetRepo.Service = s;
         }
     }
 }

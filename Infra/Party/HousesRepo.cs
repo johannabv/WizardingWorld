@@ -8,7 +8,7 @@ namespace WizardingWorld.Infra.Party {
         internal override IQueryable<HouseData> AddFilter(IQueryable<HouseData> q) {
             string? y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? q : q.Where(
-                x => x.ID.Contains(y)
+                x => x.Id.Contains(y)
                   || x.HouseName.Contains(y)
                   || x.HeadOfHouseName.Contains(y)
                   || x.FounderName.Contains(y)

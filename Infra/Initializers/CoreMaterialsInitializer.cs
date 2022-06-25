@@ -21,7 +21,7 @@ namespace WizardingWorld.Infra.Initializers {
         }
         internal static CoreMaterialData CreateCore(string name, string description)
             => new() {
-                ID = name,
+                Id = name,
                 Name = name,
                 Code = BaseEntity.DefaultStr,
                 Description = description

@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
 using WizardingWorld.Domain;
@@ -14,14 +13,14 @@ namespace WizardingWorld.Tests.Facade.Party {
         where TObj : BaseEntity<TData> {
         [TestMethod] public virtual void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
-            dynamic? v = GetRandom.Value<TView>();
-            dynamic? o = obj.Create(v);
-            ArePropertiesEqual(v, o.Data);
+            dynamic? view = GetRandom.Value<TView>();
+            dynamic? obj = Obj.Create(view);
+            ArePropertiesEqual(view, obj.Data);
         }
         [TestMethod] public void CreateObjectTest() {
-            dynamic? d = GetRandom.Value<TData>();
-            dynamic? v = obj.Create(ToObject(d));
-            ArePropertiesEqual(d, v);
+            dynamic? data = GetRandom.Value<TData>();
+            dynamic? view = Obj.Create(ToObject(data));
+            ArePropertiesEqual(data, view);
         }
         protected abstract TObj ToObject(TData d);
     }

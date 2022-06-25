@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data;
 using WizardingWorld.Data.Party;
@@ -41,8 +40,8 @@ namespace WizardingWorld.Tests.Aids {
         [TestMethod] public void IsRealTypeTest() {
             IsTrue(type.IsRealType());
             IsTrue(typeof(NamedData).IsRealType());
-            Assembly? a = GetAssembly.OfType(this);
-            List<Type>? allTypes = (a?.GetTypes() ?? Array.Empty<Type>()).ToList();
+            Assembly? assembly = GetAssembly.OfType(this);
+            List<Type>? allTypes = (assembly?.GetTypes() ?? Array.Empty<Type>()).ToList();
             List<Type>? realTypes = allTypes?.FindAll(t => t.IsRealType());
             IsNotNull(realTypes);
             IsTrue(realTypes.Count < (allTypes?.Count ?? 0));
@@ -62,7 +61,7 @@ namespace WizardingWorld.Tests.Aids {
             IsTrue(type.IsInherited(typeof(object)));
             IsTrue(type.IsInherited(typeof(NamedData)));
             IsFalse(type.IsInherited(nullType));
-            IsFalse(type.IsInherited(typeof(CurrencyData)));
+            IsFalse(type.IsInherited(typeof(CountryData)));
         }
         [TestMethod] public void HasAttributeTest() {
             IsFalse(type.HasAttribute<TestClassAttribute>());
@@ -71,9 +70,9 @@ namespace WizardingWorld.Tests.Aids {
             IsFalse(GetType().HasAttribute<TestMethodAttribute>());
         }
         [TestMethod] public void MethodTest() {
-            string n = nameof(MethodTest);
-            MethodInfo? m = Types.GetMethod(GetType(), n);
-            AreEqual(n, m?.Name);
+            string methodName = nameof(MethodTest);
+            MethodInfo? method = Types.GetMethod(GetType(), methodName);
+            AreEqual(methodName, method?.Name);
         }
     }
 }

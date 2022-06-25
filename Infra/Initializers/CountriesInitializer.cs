@@ -13,7 +13,7 @@ namespace WizardingWorld.Infra.Initializers {
                     RegionInfo c = new(new CultureInfo(cul.Name, false).LCID);
                     string id = c.ThreeLetterISORegionName;
                     if (!IsCorrectIsoCode(id)) continue;
-                    if (l.FirstOrDefault(x => x.ID == id) is not null) continue;
+                    if (l.FirstOrDefault(x => x.Id == id) is not null) continue;
                     CountryData d = CreateCountry(id, c.EnglishName, c.NativeName);
                     l.Add(d);
                 }
@@ -22,7 +22,7 @@ namespace WizardingWorld.Infra.Initializers {
         } 
         internal static CountryData CreateCountry(string code, string name, string description) 
             => new() { 
-                ID = code ?? BaseData.NewId, 
+                Id = code ?? BaseData.NewId, 
                 Name = name, 
                 Code = code ?? BaseEntity.DefaultStr, 
                 Description = description

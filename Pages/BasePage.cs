@@ -9,7 +9,7 @@ namespace WizardingWorld.Pages {
         where TView : BaseView, new() 
         where TEntity : BaseEntity
         where TRepo : IBaseRepo<TEntity>{
-        protected readonly TRepo repo;
+        protected readonly TRepo Repo;
         protected abstract TEntity ToObject(TView? item);
         protected abstract TView ToView(TEntity? entity);
         protected abstract IActionResult RedirectToIndex();
@@ -17,10 +17,10 @@ namespace WizardingWorld.Pages {
         protected internal abstract IActionResult RedirectToEdit(TView v);
         [BindProperty] public TView Item { get; set; } = new TView();
         public IList<TView> Items { get; set; } = new List<TView>();
-        public string ItemID => Item?.ID ?? string.Empty;
+        public string ItemId => Item?.Id ?? string.Empty;
         public string Token => ConcurrencyToken.ToStr(Item?.Token);
         public string ErrorMessage { get; set; }
-        public BasePage(TRepo r) => repo = r;
+        public BasePage(TRepo r) => Repo = r;
         protected abstract void SetAttributes(int index, string? filter, string? order);
         protected abstract IActionResult GetCreate();
         protected abstract Task<IActionResult> GetIndexAsync(); 

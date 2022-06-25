@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -16,10 +15,10 @@ namespace WizardingWorld.Tests.Infra {
         private WizardingWorldDb? db;
         private DbSet<CharacterData>? set;
         private int count;
-        private CharacterData? d;
-        private Character? a;
+        private CharacterData? data;
+        private Character? obj;
         private class TestClass : CrudRepo<Character, CharacterData> {
-            public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { }
+            public TestClass(DbContext? context, DbSet<CharacterData>? set) : base(context, set) { }
             protected internal override Character ToDomain(CharacterData d) => new(d);
         }
         protected override CrudRepo<Character, CharacterData> CreateObj() {
@@ -34,12 +33,12 @@ namespace WizardingWorld.Tests.Infra {
             InitCharacter();
         } 
         private void InitCharacter() {
-            d = GetRandom.Value<CharacterData>();
-            IsNotNull(d);
-            a = new Character(d);
-            Character x = obj.Get(d.ID);
+            data = GetRandom.Value<CharacterData>();
+            IsNotNull(data);
+            obj = new Character(data);
+            Character x = Obj.Get(data.Id);
             IsNotNull(x);
-            AreNotEqual(d.ID, x.ID);
+            AreNotEqual(data.Id, x.Id);
         } 
         private void InitSet() {
             count = GetRandom.Int32(5, 15);
@@ -47,44 +46,44 @@ namespace WizardingWorld.Tests.Infra {
             _ = (db?.SaveChanges());
         }
         [TestMethod] public async Task AddTest() {
-            IsNotNull(a);
+            IsNotNull(obj);
             IsNotNull(set);
-            _ = obj?.Add(a);
+            _ = Obj?.Add(obj);
             AreEqual(count + 1, await set.CountAsync());
         }
         [TestMethod] public async Task AddAsyncTest() {
-            IsNotNull(a);
+            IsNotNull(obj);
             IsNotNull(set);
-            _ = obj?.AddAsync(a);
+            _ = Obj?.AddAsync(obj);
             AreEqual(count + 1, await set.CountAsync());
         }
         [TestMethod] public async Task DeleteTest() {
-            IsNotNull(d);
+            IsNotNull(data);
             await GetTest();
-            _ = obj.Delete(d.ID);
-            Character x = obj.Get(d.ID);
-            IsNotNull(x);
-            AreNotEqual(d.ID, x.ID);
+            _ = Obj.Delete(data.Id);
+            Character entity = Obj.Get(data.Id);
+            IsNotNull(entity);
+            AreNotEqual(data.Id, entity.Id);
         }
         [TestMethod] public async Task DeleteAsyncTest() {
-            IsNotNull(d);
+            IsNotNull(data);
             await GetTest();
-            _ = obj.DeleteAsync(d.ID);
-            Character x = obj.Get(d.ID);
-            IsNotNull(x);
-            AreNotEqual(d.ID, x.ID);
+            _ = Obj.DeleteAsync(data.Id);
+            Character entity = Obj.Get(data.Id);
+            IsNotNull(entity);
+            AreNotEqual(data.Id, entity.Id);
         }
         [TestMethod] public async Task GetTest() {
-            IsNotNull(d);
+            IsNotNull(data);
             await AddTest();
-            Character x = obj.Get(d.ID);
-            ArePropertiesEqual(d, x.Data);
+            Character entity = Obj.Get(data.Id);
+            ArePropertiesEqual(data, entity.Data);
         }
         
-        [DataRow(nameof(Character.ID))]
+        [DataRow(nameof(Character.Id))]
         [DataRow(nameof(Character.FirstName))]
         [DataRow(nameof(Character.LastName))]
-        [DataRow(nameof(Character.Organisation))]
+        [DataRow(nameof(Character.Organization))]
         [DataRow(nameof(Character.DoB))]
         [DataRow(nameof(Character.Gender))]
         [DataRow(nameof(Character.HogwartsHouse))]
@@ -92,20 +91,23 @@ namespace WizardingWorld.Tests.Infra {
         [DataRow(null)]
         [TestMethod] public void GetAllTest(string s) {
             Func<Character, dynamic>? orderBy = null;
-            if (s is nameof(Character.ID)) orderBy = x => x.ID;
+
+            if (s is nameof(Character.Id)) orderBy = x => x.Id;
             else if (s is nameof(Character.FirstName)) orderBy = x => x.FirstName;
             else if (s is nameof(Character.LastName)) orderBy = x => x.LastName;
-            else if (s is nameof(Character.Organisation)) orderBy = x => x.Organisation;
+            else if (s is nameof(Character.Organization)) orderBy = x => x.Organization;
             else if (s is nameof(Character.DoB)) orderBy = x => x.DoB;
             else if (s is nameof(Character.Gender)) orderBy = x => x.Gender;
             else if (s is nameof(Character.HogwartsHouse)) orderBy = x => x.HogwartsHouse;
             else if (s is nameof(Character.ToString)) orderBy = x => x.ToString();
-            List<Character> l = obj.GetAll(orderBy);
-            AreEqual(count, l.Count);
+
+            List<Character> list = Obj.GetAll(orderBy);
+            AreEqual(count, list.Count);
             if (orderBy is null) return;
-            for (int i = 0; i < l.Count - 1; i++) {
-                Character a = l[i];
-                Character b = l[i + 1];
+
+            for (int i = 0; i < list.Count - 1; i++) {
+                Character a = list[i];
+                Character b = list[i + 1];
                 IComparable? aX = orderBy(a) as IComparable;
                 IComparable? bX = orderBy(b) as IComparable;
                 IsNotNull(aX);
@@ -115,39 +117,39 @@ namespace WizardingWorld.Tests.Infra {
             }
         }
         [TestMethod] public void GetListTest() {
-            List<Character> l = obj.Get();
-            AreEqual(count, l.Count);
+            List<Character> list = Obj.Get();
+            AreEqual(count, list.Count);
         }
         [TestMethod] public async Task GetAsyncTest() {
-            IsNotNull(d);
+            IsNotNull(data);
             await AddAsyncTest();
-            Character x = await obj.GetAsync(d.ID);
-            ArePropertiesEqual(d, x.Data);
+            Character entity = await Obj.GetAsync(data.Id);
+            ArePropertiesEqual(data, entity.Data);
         }
         [TestMethod] public async Task GetListAsyncTest() {
-            List<Character> l = await obj.GetAsync();
-            AreEqual(count, l.Count);
+            List<Character> list = await Obj.GetAsync();
+            AreEqual(count, list.Count);
         }
         [TestMethod] public async Task UpdateTest() {
             await GetTest();
             CharacterData? dX = GetRandom.Value<CharacterData>() as CharacterData;
-            IsNotNull(d);
+            IsNotNull(data);
             IsNotNull(dX);
-            dX.ID = d.ID;
-            Character aX = new Character(dX);
-            _ = obj.Update(aX);
-            Character x = obj.Get(d.ID);
+            dX.Id = data.Id;
+            Character aX = new(dX);
+            _ = Obj.Update(aX);
+            Character x = Obj.Get(data.Id);
             ArePropertiesEqual(dX, x.Data);
         }
         [TestMethod] public async Task UpdateAsyncTest() {
             await GetTest();
             CharacterData? dX = GetRandom.Value<CharacterData>() as CharacterData;
-            IsNotNull(d);
+            IsNotNull(data);
             IsNotNull(dX);
-            dX.ID = d.ID;
+            dX.Id = data.Id;
             Character aX = new Character(dX);
-            _ = await obj.UpdateAsync(aX);
-            Character x = obj.Get(d.ID);
+            _ = await Obj.UpdateAsync(aX);
+            Character x = Obj.Get(data.Id);
             ArePropertiesEqual(dX, x.Data);
         }
     }

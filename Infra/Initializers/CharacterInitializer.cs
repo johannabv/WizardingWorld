@@ -4,14 +4,14 @@ using WizardingWorld.Data.Party;
 namespace WizardingWorld.Infra.Initializers {
     public sealed class CharacterInitializer : BaseInitializer<CharacterData> {
         public CharacterInitializer(WizardingWorldDb? db) : base(db, db?.Characters) { }
-        internal static CharacterData CreateCharacter(string firstName, string lastName, IsoGender gender, DateTime DoB, string hogwartsHouse, Side organisation) {
+        internal static CharacterData CreateCharacter(string firstName, string lastName, IsoGender gender, DateTime doB, string hogwartsHouse, Side organization) {
             CharacterData character = new() {
-                ID = firstName + lastName,
+                Id = firstName + lastName,
                 FirstName = firstName,
                 LastName = lastName,
                 Gender = gender,
-                Organisation = organisation,
-                DoB = DoB,
+                Organization = organization,
+                DoB = doB,
                 HogwartsHouse = hogwartsHouse
             };
             return character;

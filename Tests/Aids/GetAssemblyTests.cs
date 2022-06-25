@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 
@@ -28,16 +27,16 @@ namespace WizardingWorld.Tests.Aids {
             assembly = GetAssembly.OfType(new CountryData());
         }
         [TestMethod] public void TypesTest() {
-            List<Type>? l = GetAssembly.GetTypes(assembly);
-            IsTrue(typeNames.Length < (l?.Count ?? -2));
-            foreach (string name in typeNames) AreEqual(l?.FirstOrDefault(x => x.Name == name)?.Name, name);
-            IsNull(l?.FirstOrDefault(x => x.Name == GetRandom.String()));
+            List<Type>? list = GetAssembly.GetTypes(assembly);
+            IsTrue(typeNames.Length < (list?.Count ?? -2));
+            foreach (string name in typeNames) AreEqual(list?.FirstOrDefault(x => x.Name == name)?.Name, name);
+            IsNull(list?.FirstOrDefault(x => x.Name == GetRandom.String()));
         }
         [TestMethod] public void TypeTest() {
-            string n = RandomTypeName;
-            Type? obj = GetAssembly.GetType(assembly, n);
+            string name = RandomTypeName;
+            Type? obj = GetAssembly.GetType(assembly, name);
             IsNotNull(obj);
-            AreEqual(n, obj.Name);
+            AreEqual(name, obj.Name);
         }
         private string RandomTypeName => typeNames[GetRandom.Int32(0, typeNames.Length)];
     }

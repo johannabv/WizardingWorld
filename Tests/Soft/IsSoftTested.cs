@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
 
-namespace WizardingWorld.Soft {
+namespace WizardingWorld.Tests.Soft {
     [TestClass] public class IsSoftTested : AssemblyTests{ }
 }

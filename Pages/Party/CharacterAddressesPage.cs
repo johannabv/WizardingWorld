@@ -16,16 +16,16 @@ namespace WizardingWorld.Pages.Party {
         protected override CharacterAddressView ToView(CharacterAddress? entity) => new CharacterAddressViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(CharacterAddressView.UseFor),
-            nameof(CharacterAddressView.CharacterID),
-            nameof(CharacterAddressView.AddressID),
+            nameof(CharacterAddressView.CharacterId),
+            nameof(CharacterAddressView.AddressId),
         };
         public IEnumerable<SelectListItem> Characters
             => characters?.GetAll(x => x.ToString())?
-            .Select(x => new SelectListItem(x.ToString(), x.ID))
+            .Select(x => new SelectListItem(x.ToString(), x.Id))
             ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Addresses
             => addresses?.GetAll(x => x.ToString())?
-            .Select(x => new SelectListItem(x.ToString(), x.ID))
+            .Select(x => new SelectListItem(x.ToString(), x.Id))
             ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> UseFors
          => Enum.GetValues<AddressUse>()?
@@ -39,8 +39,8 @@ namespace WizardingWorld.Pages.Party {
             => Addresses?.FirstOrDefault(x => x.Value == (addressId ?? string.Empty))?.Text ?? "Unspecified";
         public override object? GetValue<T>(string name, T v) {
             object? r = base.GetValue(name, v);
-            return name == nameof(CharacterAddressView.CharacterID) ? CharacterName(r as string)
-                : name == nameof(CharacterAddressView.AddressID) ? AddressName(r as string)
+            return name == nameof(CharacterAddressView.CharacterId) ? CharacterName(r as string)
+                : name == nameof(CharacterAddressView.AddressId) ? AddressName(r as string)
                 : name == nameof(CharacterAddressView.UseFor) ? UseForDescription((AddressUse) r)
                 : r;
         }

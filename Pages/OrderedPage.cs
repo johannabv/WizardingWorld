@@ -10,27 +10,27 @@ namespace WizardingWorld.Pages {
         where TRepo : IOrderedRepo<TEntity> {
         protected OrderedPage(TRepo r) : base(r) { }
         public string? CurrentOrder {
-            get => FromCurrentOrder(repo.CurrentOrder);
-            set => repo.CurrentOrder = ToCurrentOrder(value);
+            get => FromCurrentOrder(Repo.CurrentOrder);
+            set => Repo.CurrentOrder = ToCurrentOrder(value);
         } 
         private static string? FromCurrentOrder(string? value) {
             bool isDesc = value?.Contains("_desc") ?? false;
             string? propertyName = value?.Replace("_desc", string.Empty);
-            PropertyInfo? pi = typeof(TView).GetProperty(propertyName);
-            string? displayName = GetDisplayName(pi);
+            PropertyInfo? propertyInfo = typeof(TView).GetProperty(propertyName);
+            string? displayName = GetDisplayName(propertyInfo);
             return isDesc ? displayName + "_desc" : displayName;
         }
         private static string? GetDisplayName(PropertyInfo? pi) => pi?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
         private static string? ToCurrentOrder(string? value) {
             bool isDesc = value?.Contains("_desc") ?? false;
             string? displayName = value?.Replace("_desc", string.Empty);
-            foreach (PropertyInfo pi in typeof(TView).GetProperties()) {
-                if (!IsThisDisplayName(pi, displayName)) continue;
-                return isDesc ? pi.Name + "_desc" : pi.Name;
+            foreach (PropertyInfo propertyInfo in typeof(TView).GetProperties()) {
+                if (!IsThisDisplayName(propertyInfo, displayName)) continue;
+                return isDesc ? propertyInfo.Name + "_desc" : propertyInfo.Name;
             }
             return value;
         }
-        private static bool IsThisDisplayName(PropertyInfo pi, string? displayName) => GetDisplayName(pi) == displayName; 
-        public string? SortOrder(string displayName) => repo.SortOrder(ToCurrentOrder(displayName)); 
+        private static bool IsThisDisplayName(PropertyInfo propertyInfo, string? displayName) => GetDisplayName(propertyInfo) == displayName; 
+        public string? SortOrder(string displayName) => Repo.SortOrder(ToCurrentOrder(displayName)); 
     }
 }

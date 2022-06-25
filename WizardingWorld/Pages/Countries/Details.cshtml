@@ -6,10 +6,8 @@
 @{
     Layout = "_Details";
     CountryView forModel = new();
-    CurrencyView forDisplayName = new();
 }
 
 <body>
     <partial name = "_ShowCountry" />
-    @Html.ShowRelatedTable(Model.Currencies.Value, forModel, forDisplayName)
 </Body>

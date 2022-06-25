@@ -5,11 +5,11 @@ namespace WizardingWorld.Pages
 {
     public class IndexModel : PageModel
     {
-        protected readonly ILogger<IndexModel> _logger;
+        protected readonly ILogger<IndexModel> Logger;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
-            _logger = logger;
+            Logger = logger;
         }
 
         public void OnGet()

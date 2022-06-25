@@ -5,18 +5,18 @@ namespace WizardingWorld.Domain.Party {
     public sealed class Wand : BaseEntity<WandData> {
         public Wand() : this(new()) { }
         public Wand(WandData d) : base(d) { }
-        public string CoreID => GetValue(Data?.CoreID);
-        public string WoodID => GetValue(Data?.WoodID);
+        public string CoreId => GetValue(Data?.CoreId);
+        public string WoodId => GetValue(Data?.WoodId);
         public string Info => GetValue(Data?.Info);
-        public Wood? WoodItem => GetRepo.Instance<IWoodsRepo>()?.Get(WoodID);
-        public CoreMaterial? CoreItem => GetRepo.Instance<ICoreMaterialsRepo>()?.Get(CoreID);
+        public Wood? WoodItem => GetRepo.Instance<IWoodsRepo>()?.Get(WoodId);
+        public CoreMaterial? CoreItem => GetRepo.Instance<ICoreMaterialsRepo>()?.Get(CoreId);
         public override string ToString() => $"{Info},{CoreItem}, {WoodItem}";
         
         public Lazy<List<Wood>> Woods {
             get {
                 List<Wood> l = GetRepo.Instance<IWoodsRepo>()?
                       .GetAll(x => x.Name)?
-                      .Where(x => x.Name == WoodID)?
+                      .Where(x => x.Name == WoodId)?
                       .ToList() ?? new List<Wood>();
                 return new Lazy<List<Wood>>(l);
             }

@@ -14,16 +14,16 @@ namespace WizardingWorld.Pages.Party {
         protected override WandView ToView(Wand? entity) => new WandViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(WandView.Info),
-            nameof(WandView.CoreID),
-            nameof(WandView.WoodID)
+            nameof(WandView.CoreId),
+            nameof(WandView.WoodId)
         };
         public IEnumerable<SelectListItem> WoodInfos
             => woods?.GetAll(x => x.ToString())?
-            .Select(x => new SelectListItem(x.ToString(), x.ID))
+            .Select(x => new SelectListItem(x.ToString(), x.Id))
             ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> CoreInfos
             => cores?.GetAll(x => x.ToString())?
-            .Select(x => new SelectListItem(x.ToString(), x.ID)) 
+            .Select(x => new SelectListItem(x.ToString(), x.Id)) 
             ?? new List<SelectListItem>();
         public string WoodDescription(string? woodId = null)
             => WoodInfos?.FirstOrDefault(x => x.Value == (woodId ?? string.Empty))?.Text ?? "Unspecified";
@@ -32,8 +32,8 @@ namespace WizardingWorld.Pages.Party {
         
         public override object? GetValue<T>(string name, T v) {
             object? r = base.GetValue(name, v);
-            return name == nameof(WandView.CoreID) ? CoreDescription(r as string)
-                : name == nameof(WandView.WoodID) ? WoodDescription(r as string)
+            return name == nameof(WandView.CoreId) ? CoreDescription(r as string)
+                : name == nameof(WandView.WoodId) ? WoodDescription(r as string)
                 : r;
         }
         public Lazy<List<Wood>> Woods => ToObject(Item).Woods;

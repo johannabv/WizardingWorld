@@ -7,6 +7,6 @@ namespace WizardingWorld.Data.Party {
         public IsoGender? Gender { get; set; }
         public DateTime? DoB { get; set; }
         public string? HogwartsHouse { get; set; }
-        public Side? Organisation { get; set; }
+        public Side? Organization { get; set; }
     }
 }

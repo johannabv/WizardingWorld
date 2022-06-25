@@ -17,8 +17,8 @@ namespace WizardingWorld.Facade.Party {
         [DisplayName("City")] public string? City { get; set; }
         [DisplayName("Region")] public string? Region { get; set; }
         [DisplayName("Zip code")] public string? ZipCode { get; set; }
-        [DisplayName("Country")] public string? CountryID { get; set; }
-        [Required] [DisplayName("GetDescription")] public string? Description { get; set; } 
+        [DisplayName("Country")] public string? CountryId { get; set; }
+        [Required] [DisplayName("Description")] public string? Description { get; set; } 
         [DisplayName("Full info")] public string? FullName { get; set; }
     }
 }

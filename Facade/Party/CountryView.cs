@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using WizardingWorld.Data.Party;
+﻿using WizardingWorld.Data.Party;
 using WizardingWorld.Domain.Party;
 
 namespace WizardingWorld.Facade.Party {

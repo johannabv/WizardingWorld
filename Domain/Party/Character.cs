@@ -9,17 +9,17 @@ namespace WizardingWorld.Domain.Party {
         public Character(CharacterData d) : base(d) { } 
         public string FirstName =>GetValue(Data?.FirstName);
         public string LastName => GetValue(Data?.LastName);
-        public Side Organisation => GetValue(Data?.Organisation);
+        public Side Organization => GetValue(Data?.Organization);
         public string HogwartsHouse => GetValue(Data?.HogwartsHouse);
         public IsoGender Gender => GetValue(Data?.Gender);
         public DateTime DoB => GetValue(Data?.DoB); 
-        public override string ToString() => $"{FirstName} {LastName}, {Organisation} ({Gender.GetDescription()}, {DoB}, {HogwartsHouse})";
+        public override string ToString() => $"{FirstName} {LastName}, {Organization} ({Gender.GetDescription()}, {DoB}, {HogwartsHouse})";
 
         public Lazy<List<CharacterAddress>> CharacterAddresses {
             get {
                 List<CharacterAddress> l = GetRepo.Instance<ICharacterAddressesRepo>()?
-                      .GetAll(x => x.CharacterID)?
-                      .Where(x => x.CharacterID == ID)?
+                      .GetAll(x => x.CharacterId)?
+                      .Where(x => x.CharacterId == Id)?
                       .ToList() ?? new List<CharacterAddress>();
                 return new Lazy<List<CharacterAddress>>(l);
             }

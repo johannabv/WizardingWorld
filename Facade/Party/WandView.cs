@@ -13,8 +13,8 @@ namespace WizardingWorld.Facade.Party {
         }
     }
     public sealed class WandView : BaseView {
-        [DisplayName("Core"), Required] public string? CoreID { get; set; }
-        [DisplayName("Wood"), Required] public string? WoodID { get; set; }
+        [DisplayName("Core"), Required] public string? CoreId { get; set; }
+        [DisplayName("Wood"), Required] public string? WoodId { get; set; }
         [DisplayName("Info")] public string? Info { get; set; }
         [DisplayName("Full Wand Info")] public string? FullName { get; set; }
     }

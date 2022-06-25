@@ -5,6 +5,6 @@ namespace WizardingWorld.Data.Enums {
         [Description("Not known")] NotKnown = 0,
         [Description("Order of the Phoenix")] OoP = 1,
         [Description("Deatheaters")] DeathEaters = 2,
-        [Description("Dumbledore's Army")] DA = 3,
+        [Description("Dumbledore's Army")] Da = 3,
     }
 }

@@ -10,8 +10,8 @@ namespace WizardingWorld.Infra.Party {
             return string.IsNullOrWhiteSpace(y)
                 ? q : q.Where(
                 x => x.Street.Contains(y)
-                  || x.CountryID.Contains(y)
-                  || x.ID.Contains(y)
+                  || x.CountryId.Contains(y)
+                  || x.Id.Contains(y)
                   || x.City.Contains(y)
                   || x.Region.Contains(y)
                   || x.ZipCode.Contains(y)

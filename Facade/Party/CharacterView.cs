@@ -11,13 +11,13 @@ namespace WizardingWorld.Facade.Party {
             CharacterView v = base.Create(e);
             v.FullName=e?.ToString();
             v.Gender=e?.Gender;
-            v.Organisation=e?.Organisation;
+            v.Organization=e?.Organization;
             return v;
         }
         public override Character Create(CharacterView? v) {
             v ??= new CharacterView();
             v.Gender ??= IsoGender.NotApplicable;
-            v.Organisation ??= Side.NotKnown;
+            v.Organization ??= Side.NotKnown;
             return base.Create(v);
         }
     }
@@ -27,7 +27,7 @@ namespace WizardingWorld.Facade.Party {
         [DisplayName("Gender"), Required] public IsoGender? Gender { get; set; }
         [DisplayName("Date of Birth")] public DateTime? DoB { get; set; }
         [DisplayName("Hogwartz House")] public string? HogwartsHouse { get; set; }
-        [DisplayName("Organisation")] public Side? Organisation { get; set; }
+        [DisplayName("Organization")] public Side? Organization { get; set; }
         [DisplayName("Full info")] public string? FullName { get; set; }
     }
 }

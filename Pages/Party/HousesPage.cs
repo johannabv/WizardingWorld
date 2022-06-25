@@ -19,7 +19,7 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.Gender),
             nameof(CharacterView.DoB),
             nameof(CharacterView.HogwartsHouse),
-            nameof(CharacterView.Organisation),
+            nameof(CharacterView.Organization),
         };
         public Lazy<List<Character>> Characters => ToObject(Item).Characters;
     }

@@ -13,17 +13,17 @@ namespace WizardingWorld.Pages {
         where TRepo : IPagedRepo<TEntity> {
         protected PagedPage(TRepo r) : base(r) { }
         public int PageIndex {
-            get => repo.PageIndex;
-            set => repo.PageIndex = value;
+            get => Repo.PageIndex;
+            set => Repo.PageIndex = value;
         }
         protected override void SetAttributes(int pageIndex, string? currentFilter, string? sortOrder) {
             PageIndex = pageIndex;
             CurrentFilter = currentFilter;
             CurrentOrder = sortOrder;
         }
-        public int TotalPages => repo.TotalPages;
-        public bool HasNextPage  => repo.HasNextPage;
-        public bool HasPreviousPage  => repo.HasPreviousPage; 
+        public int TotalPages => Repo.TotalPages;
+        public bool HasNextPage  => Repo.HasNextPage;
+        public bool HasPreviousPage  => Repo.HasPreviousPage; 
         public virtual string[] IndexColumns => Array.Empty<string>();
         public virtual string[] RelatedIndexColumns => Array.Empty<string>();
         protected override IActionResult RedirectToIndex() => RedirectToPage("./Index", "Index", new {
@@ -35,7 +35,7 @@ namespace WizardingWorld.Pages {
             TempData["Item"] = JsonSerializer.Serialize(v);
             return RedirectToPage("./Edit", "Edit",
             new {
-                id = v.ID,
+                id = v.Id,
                 pageIndex = PageIndex,
                 currentFilter = CurrentFilter,
                 sortOrder = CurrentOrder
@@ -58,13 +58,13 @@ namespace WizardingWorld.Pages {
         } 
         public virtual object? GetValue<T>(string name, T v)
             => Safe.Run(() => {
-                PropertyInfo? pi = v?.GetType()?.GetProperty(name);
-                return pi?.GetValue(v);
+                PropertyInfo? propertyInfo = v?.GetType()?.GetProperty(name);
+                return propertyInfo?.GetValue(v);
             }, null); 
         public string? GetDisplayName<T>(string propertyName) 
             => Safe.Run(() => {
-                PropertyInfo? pInfo = typeof(T).GetProperty(propertyName);
-                object[]? obj = pInfo ? .GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                PropertyInfo? propertyInfo = typeof(T).GetProperty(propertyName);
+                object[]? obj = propertyInfo ? .GetCustomAttributes(typeof(DisplayNameAttribute), true);
                 return obj?.Cast<DisplayNameAttribute>().Single().DisplayName;
             }, propertyName);
     }

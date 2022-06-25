@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tests;
 using WizardingWorld.Aids;
 using WizardingWorld.Data.Party;
 using WizardingWorld.Domain;
@@ -14,7 +13,7 @@ namespace WizardingWorld.Tests.Infra {
     [TestClass] public class BaseRepoTests
         : AbstractClassTests<BaseRepo<Character, CharacterData>, object> {
         private class TestClass : BaseRepo<Character, CharacterData> {
-            public TestClass(DbContext? c, DbSet<CharacterData>? s) : base(c, s) { }
+            public TestClass(DbContext? context, DbSet<CharacterData>? set) : base(context, set) { }
             public override bool Add(Character obj) => throw new NotImplementedException();
             public override Task<bool> AddAsync(Character obj) => throw new NotImplementedException();
             public override bool Delete(string id) => throw new NotImplementedException();
@@ -35,34 +34,34 @@ namespace WizardingWorld.Tests.Infra {
             WizardingWorldDb? db = GetRepo.Instance<WizardingWorldDb>();
             DbSet<CharacterData>? set = db?.Characters;
             IsNotNull(set);
-            obj = new TestClass(db, set);
-            AreEqual(db, obj.Db);
-            AreEqual(set, obj.Set);
+            Obj = new TestClass(db, set);
+            AreEqual(db, Obj.Db);
+            AreEqual(set, Obj.Set);
         }
         [TestMethod] public async Task ClearTest() {
             BaseRepoTest();
             int cnt = GetRandom.Int32(5, 30);
-            DbContext? db = obj.Db;
+            DbContext? db = Obj.Db;
             IsNotNull(db);
-            DbSet<CharacterData>? set = obj.Set;
+            DbSet<CharacterData>? set = Obj.Set;
             IsNotNull(set);
             for (int i = 0; i < cnt; i++) set.Add(GetRandom.Value<CharacterData>());
             AreEqual(0, await set.CountAsync());
             db.SaveChanges();
             AreEqual(cnt, await set.CountAsync());
-            obj.Clear();
+            Obj.Clear();
             AreEqual(0, await set.CountAsync());
         }
-        [TestMethod] public void AddTest() => IsAbstractMethod(nameof(obj.Add), typeof(Character));
-        [TestMethod] public void AddAsyncTest() => IsAbstractMethod(nameof(obj.AddAsync), typeof(Character));
-        [TestMethod] public void DeleteTest() => IsAbstractMethod(nameof(obj.Delete), typeof(string));
-        [TestMethod] public void DeleteAsyncTest() => IsAbstractMethod(nameof(obj.DeleteAsync), typeof(string));
-        [TestMethod] public void GetTest() => IsAbstractMethod(nameof(obj.Get), typeof(string));
-        [TestMethod] public void GetAllTest() => IsAbstractMethod(nameof(obj.GetAll), typeof(Func<Character, dynamic>));
-        [TestMethod] public void GetListTest() => IsAbstractMethod(nameof(obj.Get));
-        [TestMethod] public void GetAsyncTest() => IsAbstractMethod(nameof(obj.GetAsync), typeof(string));
-        [TestMethod] public void GetListAsyncTest() => IsAbstractMethod(nameof(obj.GetAsync));
-        [TestMethod] public void UpdateTest() => IsAbstractMethod(nameof(obj.Update), typeof(Character));
-        [TestMethod] public void UpdateAsyncTest() => IsAbstractMethod(nameof(obj.UpdateAsync), typeof(Character));
+        [TestMethod] public void AddTest() => IsAbstractMethod(nameof(Obj.Add), typeof(Character));
+        [TestMethod] public void AddAsyncTest() => IsAbstractMethod(nameof(Obj.AddAsync), typeof(Character));
+        [TestMethod] public void DeleteTest() => IsAbstractMethod(nameof(Obj.Delete), typeof(string));
+        [TestMethod] public void DeleteAsyncTest() => IsAbstractMethod(nameof(Obj.DeleteAsync), typeof(string));
+        [TestMethod] public void GetTest() => IsAbstractMethod(nameof(Obj.Get), typeof(string));
+        [TestMethod] public void GetAllTest() => IsAbstractMethod(nameof(Obj.GetAll), typeof(Func<Character, dynamic>));
+        [TestMethod] public void GetListTest() => IsAbstractMethod(nameof(Obj.Get));
+        [TestMethod] public void GetAsyncTest() => IsAbstractMethod(nameof(Obj.GetAsync), typeof(string));
+        [TestMethod] public void GetListAsyncTest() => IsAbstractMethod(nameof(Obj.GetAsync));
+        [TestMethod] public void UpdateTest() => IsAbstractMethod(nameof(Obj.Update), typeof(Character));
+        [TestMethod] public void UpdateAsyncTest() => IsAbstractMethod(nameof(Obj.UpdateAsync), typeof(Character));
     }
 }

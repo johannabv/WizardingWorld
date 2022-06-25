@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WizardingWorld.Aids;
 
-namespace Tests {
+namespace WizardingWorld.Tests {
     public abstract class TypeTests : HostTests {
         private string? nameOfTest;
         private string? nameOfType;
@@ -36,35 +36,34 @@ namespace Tests {
         private string NameOfFirstNotTested() => membersOfType?.GetFirst() ?? string.Empty;
         private bool AllAreTested() => membersOfType.IsEmpty();
         private void RemoveTested() => membersOfType?.Remove(x => IsItTested(x));
-        private bool IsItTested(string x) => membersOfTest?.ContainsItem(y => IsTestFor(y, x)) ?? false;
+        private bool IsItTested(string str) => membersOfTest?.ContainsItem(y => IsTestFor(y, str)) ?? false;
         private static bool IsTestFor(string testingMember, string memberToBeTested)
             => testingMember.Equals(memberToBeTested + "Test");
         private void RemoveNotNeedTesting() => membersOfType?.Remove(x => !IsTypeToBeTested(x));
-        private static bool IsTypeToBeTested(string x) => x?.IsTypeName() ?? false;
-        private void RemoveNotTests(Type t) => membersOfTest?.Remove(x => !IsCorrectTestMethod(x, t));
-        private static bool IsCorrectTestMethod(string x, Type t) => IsCorrectlyInherited(t) && IsTestClass(t) && IsTestMethod(x, t);
-        private static bool IsTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
-        private static bool IsTestMethod(string methodName, Type t) => t?.GetMethod(methodName).HasAttribute<TestMethodAttribute>() ?? false;
-        private static bool IsCorrectlyInherited(Type x) => x.IsInherited(typeof(TypeTests));
+        private static bool IsTypeToBeTested(string str) => str?.IsTypeName() ?? false;
+        private void RemoveNotTests(Type type) => membersOfTest?.Remove(x => !IsCorrectTestMethod(x, type));
+        private static bool IsCorrectTestMethod(string str, Type type) => IsCorrectlyInherited(type) && IsTestClass(type) && IsTestMethod(str, type);
+        private static bool IsTestClass(Type type) => type?.HasAttribute<TestClassAttribute>() ?? false;
+        private static bool IsTestMethod(string methodName, Type type) => type?.GetMethod(methodName).HasAttribute<TestMethodAttribute>() ?? false;
+        private static bool IsCorrectlyInherited(Type type) => type.IsInherited(typeof(TypeTests));
 
-        private static List<string>? GetMembers(Type? t) => t?.GetDeclaredMembers();
-        // private static GetType? getType(Assembly? a, string? name) => a?.GetType(name);
-        private static Type? GetType(Assembly? a, string? name) {
+        private static List<string>? GetMembers(Type? type) => type?.GetDeclaredMembers();
+        private static Type? GetType(Assembly? assembly, string? name) {
             if (string.IsNullOrWhiteSpace(name)) return null;
-            foreach (TypeInfo t in a?.DefinedTypes ?? Array.Empty<TypeInfo>())
-                if (t.Name.StartsWith(name)) return t.AsType();
+            foreach (TypeInfo typeInfo in assembly?.DefinedTypes ?? Array.Empty<TypeInfo>())
+                if (typeInfo.Name.StartsWith(name)) return typeInfo.AsType();
             return null;
         }
         private static Assembly? GetTheAssembly(string? name) {
             while (!string.IsNullOrWhiteSpace(name)) {
-                Assembly? a = GetAssembly.GetAssemblyByName(name);
-                if (a is not null) return a;
+                Assembly? assembly = GetAssembly.GetAssemblyByName(name);
+                if (assembly is not null) return assembly;
                 name = name.RemoveTail();
             }
             return null;
         }
-        private static string? GetTheNamespace(object o) => GetNamespace.OfType(o);
-        private static string? RemoveTestsTagFrom(string? s) => s?.Remove("Tests")?.Remove("Test")?.Replace("..", ".");
-        private static string? GetName(object o) => Types.GetName(o?.GetType());
+        private static string? GetTheNamespace(object obj) => GetNamespace.OfType(obj);
+        private static string? RemoveTestsTagFrom(string? str) => str?.Remove("Tests")?.Remove("Test")?.Replace("..", ".");
+        private static string? GetName(object obj) => Types.GetName(obj?.GetType());
     }
 }

@@ -2,9 +2,9 @@
 
 namespace WizardingWorld.Domain {
     public static class GetRepo {
-        internal static IServiceProvider? service;
+        internal static IServiceProvider? Service;
         public static TRepo? Instance<TRepo>() where TRepo : class 
-            => service?.CreateScope()?.ServiceProvider.GetRequiredService<TRepo>();
-        public static void SetService(IServiceProvider s) => service = s;
+            => Service?.CreateScope()?.ServiceProvider.GetRequiredService<TRepo>();
+        public static void SetService(IServiceProvider s) => Service = s;
     }
 }

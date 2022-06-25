@@ -9,8 +9,8 @@ namespace WizardingWorld.Facade.Party {
         protected override CharacterAddress ToEntity(CharacterAddressData d) => new(d);
     }
     public sealed class CharacterAddressView : BaseView { 
-        [Required] [DisplayName("Character")] public string CharacterID { get; set; } = string.Empty;
-        [Required] [DisplayName("Place")] public string AddressID { get; set; } = string.Empty;
+        [Required] [DisplayName("Character")] public string CharacterId { get; set; } = string.Empty;
+        [Required] [DisplayName("Place")] public string AddressId { get; set; } = string.Empty;
         [DisplayName("Use for")] public AddressUse? UseFor { get; set; }
     }
 }

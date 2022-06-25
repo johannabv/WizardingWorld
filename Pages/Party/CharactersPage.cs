@@ -16,22 +16,22 @@ namespace WizardingWorld.Pages.Party {
             nameof(CharacterView.Gender),
             nameof(CharacterView.DoB),
             nameof(CharacterView.HogwartsHouse),
-            nameof(CharacterView.Organisation),
+            nameof(CharacterView.Organization),
         };
         public override string[] RelatedIndexColumns { get; } = new[] {
             nameof(AddressView.Street),
             nameof(AddressView.City),
             nameof(AddressView.Region),
-            nameof(AddressView.CountryID),
+            nameof(AddressView.CountryId),
             nameof(AddressView.Description)
         };
         public IEnumerable<SelectListItem> Houses
             => houses?.GetAll(x => x.HouseName)?.Select(x => new SelectListItem(x.HouseName, x.HouseName)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Genders
          => Enum.GetValues<IsoGender>()?.Select(x => new SelectListItem(x.GetDescription(), x.ToString())) ?? new List<SelectListItem>();
-        public IEnumerable<SelectListItem> Organisations
+        public IEnumerable<SelectListItem> Organizations
          => Enum.GetValues<Side>()?.Select(x => new SelectListItem(x.GetDescription(), x.ToString())) ?? new List<SelectListItem>();
-        public string OrganisationDescription(Side? x)
+        public string OrganizationDescription(Side? x)
             => (x ?? Side.NotKnown).GetDescription(); 
         public string GenderDescription(IsoGender? x)
             => (x ?? IsoGender.NotApplicable).GetDescription();
@@ -41,7 +41,7 @@ namespace WizardingWorld.Pages.Party {
             object? r = base.GetValue(name, v);
             if (name == nameof(CharacterView.HogwartsHouse)) return HouseName(r as string);
             if (name == nameof(CharacterView.Gender)) return GenderDescription((IsoGender)r);
-            if (name == nameof(CharacterView.Organisation)) return OrganisationDescription((Side)r);
+            if (name == nameof(CharacterView.Organization)) return OrganizationDescription((Side)r);
             return r;
         }
         public Lazy<List<Address?>> Addresses => ToObject(Item).Addresses;
