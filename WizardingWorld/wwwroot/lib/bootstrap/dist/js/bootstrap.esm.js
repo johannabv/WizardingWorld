@@ -11,7 +11,7 @@ import * as Popper from '@popperjs/core';
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
-const MAX_UID = 1000000;
+const MAX_UId = 1000000;
 const MILLISECONDS_MULTIPLIER = 1000;
 const TRANSITION_END = 'transitionend'; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
@@ -29,9 +29,9 @@ const toType = obj => {
  */
 
 
-const getUID = prefix => {
+const getUId = prefix => {
   do {
-    prefix += Math.floor(Math.random() * MAX_UID);
+    prefix += Math.floor(Math.random() * MAX_UId);
   } while (document.getElementById(prefix));
 
   return prefix;
@@ -41,7 +41,7 @@ const getSelector = element => {
   let selector = element.getAttribute('data-bs-target');
 
   if (!selector || selector === '#') {
-    let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+    let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are Ids or classes,
     // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
     // `document.querySelector` will rightfully complain it is invalid.
     // See https://github.com/twbs/bootstrap/issues/32273
@@ -1100,8 +1100,8 @@ const KEY_TO_DIRECTION = {
   [ARROW_LEFT_KEY]: DIRECTION_RIGHT,
   [ARROW_RIGHT_KEY]: DIRECTION_LEFT
 };
-const EVENT_SLIDE = `slide${EVENT_KEY$a}`;
-const EVENT_SLID = `slid${EVENT_KEY$a}`;
+const EVENT_SLIdE = `slide${EVENT_KEY$a}`;
+const EVENT_SLId = `slid${EVENT_KEY$a}`;
 const EVENT_KEYDOWN = `keydown${EVENT_KEY$a}`;
 const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$a}`;
 const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$a}`;
@@ -1115,7 +1115,7 @@ const EVENT_LOAD_DATA_API$2 = `load${EVENT_KEY$a}${DATA_API_KEY$6}`;
 const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
 const CLASS_NAME_CAROUSEL = 'carousel';
 const CLASS_NAME_ACTIVE$2 = 'active';
-const CLASS_NAME_SLIDE = 'slide';
+const CLASS_NAME_SLIdE = 'slide';
 const CLASS_NAME_END = 'carousel-item-end';
 const CLASS_NAME_START = 'carousel-item-start';
 const CLASS_NAME_NEXT = 'carousel-item-next';
@@ -1128,8 +1128,8 @@ const SELECTOR_ITEM_IMG = '.carousel-item img';
 const SELECTOR_NEXT_PREV = '.carousel-item-next, .carousel-item-prev';
 const SELECTOR_INDICATORS = '.carousel-indicators';
 const SELECTOR_INDICATOR = '[data-bs-target]';
-const SELECTOR_DATA_SLIDE = '[data-bs-slide], [data-bs-slide-to]';
-const SELECTOR_DATA_RIDE = '[data-bs-ride="carousel"]';
+const SELECTOR_DATA_SLIdE = '[data-bs-slide], [data-bs-slide-to]';
+const SELECTOR_DATA_RIdE = '[data-bs-ride="carousel"]';
 const POINTER_TYPE_TOUCH = 'touch';
 const POINTER_TYPE_PEN = 'pen';
 /**
@@ -1224,7 +1224,7 @@ class Carousel extends BaseComponent {
     }
 
     if (this._isSliding) {
-      EventHandler.one(this._element, EVENT_SLID, () => this.to(index));
+      EventHandler.one(this._element, EVENT_SLId, () => this.to(index));
       return;
     }
 
@@ -1365,7 +1365,7 @@ class Carousel extends BaseComponent {
 
     const fromIndex = this._getItemIndex(SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element));
 
-    return EventHandler.trigger(this._element, EVENT_SLIDE, {
+    return EventHandler.trigger(this._element, EVENT_SLIdE, {
       relatedTarget,
       direction: eventDirectionName,
       from: fromIndex,
@@ -1456,7 +1456,7 @@ class Carousel extends BaseComponent {
     this._activeElement = nextElement;
 
     const triggerSlidEvent = () => {
-      EventHandler.trigger(this._element, EVENT_SLID, {
+      EventHandler.trigger(this._element, EVENT_SLId, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
         from: activeElementIndex,
@@ -1464,7 +1464,7 @@ class Carousel extends BaseComponent {
       });
     };
 
-    if (this._element.classList.contains(CLASS_NAME_SLIDE)) {
+    if (this._element.classList.contains(CLASS_NAME_SLIdE)) {
       nextElement.classList.add(orderClassName);
       reflow(nextElement);
       activeElement.classList.add(directionalClassName);
@@ -1583,9 +1583,9 @@ class Carousel extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
+EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_SLIdE, Carousel.dataApiClickHandler);
 EventHandler.on(window, EVENT_LOAD_DATA_API$2, () => {
-  const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
+  const carousels = SelectorEngine.find(SELECTOR_DATA_RIdE);
 
   for (let i = 0, len = carousels.length; i < len; i++) {
     Carousel.carouselInterface(carousels[i], Carousel.getInstance(carousels[i]));
@@ -1626,15 +1626,15 @@ const DefaultType$9 = {
 };
 const EVENT_SHOW$5 = `show${EVENT_KEY$9}`;
 const EVENT_SHOWN$5 = `shown${EVENT_KEY$9}`;
-const EVENT_HIDE$5 = `hide${EVENT_KEY$9}`;
-const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$9}`;
+const EVENT_HIdE$5 = `hide${EVENT_KEY$9}`;
+const EVENT_HIdDEN$5 = `hidden${EVENT_KEY$9}`;
 const EVENT_CLICK_DATA_API$4 = `click${EVENT_KEY$9}${DATA_API_KEY$5}`;
 const CLASS_NAME_SHOW$7 = 'show';
 const CLASS_NAME_COLLAPSE = 'collapse';
 const CLASS_NAME_COLLAPSING = 'collapsing';
 const CLASS_NAME_COLLAPSED = 'collapsed';
 const CLASS_NAME_HORIZONTAL = 'collapse-horizontal';
-const WIDTH = 'width';
+const WIdTH = 'width';
 const HEIGHT = 'height';
 const SELECTOR_ACTIVES = '.show, .collapsing';
 const SELECTOR_DATA_TOGGLE$4 = '[data-bs-toggle="collapse"]';
@@ -1771,7 +1771,7 @@ class Collapse extends BaseComponent {
       return;
     }
 
-    const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$5);
+    const startEvent = EventHandler.trigger(this._element, EVENT_HIdE$5);
 
     if (startEvent.defaultPrevented) {
       return;
@@ -1806,7 +1806,7 @@ class Collapse extends BaseComponent {
 
       this._element.classList.add(CLASS_NAME_COLLAPSE);
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN$5);
+      EventHandler.trigger(this._element, EVENT_HIdDEN$5);
     };
 
     this._element.style[dimension] = '';
@@ -1832,7 +1832,7 @@ class Collapse extends BaseComponent {
   }
 
   _getDimension() {
-    return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
+    return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIdTH : HEIGHT;
   }
 
   _initializeChildren() {
@@ -1942,8 +1942,8 @@ const ARROW_DOWN_KEY = 'ArrowDown';
 const RIGHT_MOUSE_BUTTON = 2; // MouseEvent.button value for the secondary button, usually the right button
 
 const REGEXP_KEYDOWN = new RegExp(`${ARROW_UP_KEY}|${ARROW_DOWN_KEY}|${ESCAPE_KEY$2}`);
-const EVENT_HIDE$4 = `hide${EVENT_KEY$8}`;
-const EVENT_HIDDEN$4 = `hidden${EVENT_KEY$8}`;
+const EVENT_HIdE$4 = `hide${EVENT_KEY$8}`;
+const EVENT_HIdDEN$4 = `hidden${EVENT_KEY$8}`;
 const EVENT_SHOW$4 = `show${EVENT_KEY$8}`;
 const EVENT_SHOWN$4 = `shown${EVENT_KEY$8}`;
 const EVENT_CLICK_DATA_API$3 = `click${EVENT_KEY$8}${DATA_API_KEY$4}`;
@@ -2084,7 +2084,7 @@ class Dropdown extends BaseComponent {
 
 
   _completeHide(relatedTarget) {
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4, relatedTarget);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIdE$4, relatedTarget);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -2107,7 +2107,7 @@ class Dropdown extends BaseComponent {
     this._element.setAttribute('aria-expanded', 'false');
 
     Manipulator.removeDataAttribute(this._menu, 'popper');
-    EventHandler.trigger(this._element, EVENT_HIDDEN$4, relatedTarget);
+    EventHandler.trigger(this._element, EVENT_HIdDEN$4, relatedTarget);
   }
 
   _getConfig(config) {
@@ -2738,9 +2738,9 @@ const DefaultType$5 = {
   keyboard: 'boolean',
   focus: 'boolean'
 };
-const EVENT_HIDE$3 = `hide${EVENT_KEY$6}`;
-const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY$6}`;
-const EVENT_HIDDEN$3 = `hidden${EVENT_KEY$6}`;
+const EVENT_HIdE$3 = `hide${EVENT_KEY$6}`;
+const EVENT_HIdE_PREVENTED = `hidePrevented${EVENT_KEY$6}`;
+const EVENT_HIdDEN$3 = `hidden${EVENT_KEY$6}`;
 const EVENT_SHOW$3 = `show${EVENT_KEY$6}`;
 const EVENT_SHOWN$3 = `shown${EVENT_KEY$6}`;
 const EVENT_RESIZE = `resize${EVENT_KEY$6}`;
@@ -2834,7 +2834,7 @@ class Modal extends BaseComponent {
       return;
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$3);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIdE$3);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -2985,7 +2985,7 @@ class Modal extends BaseComponent {
 
       this._scrollBar.reset();
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN$3);
+      EventHandler.trigger(this._element, EVENT_HIdDEN$3);
     });
   }
 
@@ -3015,7 +3015,7 @@ class Modal extends BaseComponent {
   }
 
   _triggerBackdropTransition() {
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIdE_PREVENTED);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -3113,7 +3113,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, functi
       return;
     }
 
-    EventHandler.one(target, EVENT_HIDDEN$3, () => {
+    EventHandler.one(target, EVENT_HIdDEN$3, () => {
       if (isVisible(this)) {
         this.focus();
       }
@@ -3165,8 +3165,8 @@ const CLASS_NAME_BACKDROP = 'offcanvas-backdrop';
 const OPEN_SELECTOR = '.offcanvas.show';
 const EVENT_SHOW$2 = `show${EVENT_KEY$5}`;
 const EVENT_SHOWN$2 = `shown${EVENT_KEY$5}`;
-const EVENT_HIDE$2 = `hide${EVENT_KEY$5}`;
-const EVENT_HIDDEN$2 = `hidden${EVENT_KEY$5}`;
+const EVENT_HIdE$2 = `hide${EVENT_KEY$5}`;
+const EVENT_HIdDEN$2 = `hidden${EVENT_KEY$5}`;
 const EVENT_CLICK_DATA_API$1 = `click${EVENT_KEY$5}${DATA_API_KEY$2}`;
 const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY$5}`;
 const SELECTOR_DATA_TOGGLE$1 = '[data-bs-toggle="offcanvas"]';
@@ -3249,7 +3249,7 @@ class Offcanvas extends BaseComponent {
       return;
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$2);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIdE$2);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -3278,7 +3278,7 @@ class Offcanvas extends BaseComponent {
         new ScrollBarHelper().reset();
       }
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN$2);
+      EventHandler.trigger(this._element, EVENT_HIdDEN$2);
     };
 
     this._queueCallback(completeCallback, this._element, true);
@@ -3362,7 +3362,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, functi
     return;
   }
 
-  EventHandler.one(target, EVENT_HIDDEN$2, () => {
+  EventHandler.one(target, EVENT_HIdDEN$2, () => {
     // focus on trigger when it is closed
     if (isVisible(this)) {
       this.focus();
@@ -3564,8 +3564,8 @@ const Default$3 = {
   popperConfig: null
 };
 const Event$2 = {
-  HIDE: `hide${EVENT_KEY$4}`,
-  HIDDEN: `hidden${EVENT_KEY$4}`,
+  HIdE: `hide${EVENT_KEY$4}`,
+  HIdDEN: `hidden${EVENT_KEY$4}`,
   SHOW: `show${EVENT_KEY$4}`,
   SHOWN: `shown${EVENT_KEY$4}`,
   INSERTED: `inserted${EVENT_KEY$4}`,
@@ -3582,7 +3582,7 @@ const HOVER_STATE_SHOW = 'show';
 const HOVER_STATE_OUT = 'out';
 const SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
 const SELECTOR_MODAL = `.${CLASS_NAME_MODAL}`;
-const EVENT_MODAL_HIDE = 'hide.bs.modal';
+const EVENT_MODAL_HIdE = 'hide.bs.modal';
 const TRIGGER_HOVER = 'hover';
 const TRIGGER_FOCUS = 'focus';
 const TRIGGER_CLICK = 'click';
@@ -3671,7 +3671,7 @@ class Tooltip extends BaseComponent {
 
   dispose() {
     clearTimeout(this._timeout);
-    EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
+    EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIdE, this._hideModalHandler);
 
     if (this.tip) {
       this.tip.remove();
@@ -3702,7 +3702,7 @@ class Tooltip extends BaseComponent {
     }
 
     const tip = this.getTipElement();
-    const tipId = getUID(this.constructor.NAME);
+    const tipId = getUId(this.constructor.NAME);
     tip.setAttribute('id', tipId);
 
     this._element.setAttribute('aria-describedby', tipId);
@@ -3786,7 +3786,7 @@ class Tooltip extends BaseComponent {
 
       this._element.removeAttribute('aria-describedby');
 
-      EventHandler.trigger(this._element, this.constructor.Event.HIDDEN);
+      EventHandler.trigger(this._element, this.constructor.Event.HIdDEN);
 
       if (this._popper) {
         this._popper.destroy();
@@ -3795,7 +3795,7 @@ class Tooltip extends BaseComponent {
       }
     };
 
-    const hideEvent = EventHandler.trigger(this._element, this.constructor.Event.HIDE);
+    const hideEvent = EventHandler.trigger(this._element, this.constructor.Event.HIdE);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -4001,7 +4001,7 @@ class Tooltip extends BaseComponent {
       }
     };
 
-    EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
+    EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIdE, this._hideModalHandler);
 
     if (this._config.selector) {
       this._config = { ...this._config,
@@ -4227,8 +4227,8 @@ const DefaultType$2 = { ...Tooltip.DefaultType,
   content: '(string|element|function)'
 };
 const Event$1 = {
-  HIDE: `hide${EVENT_KEY$3}`,
-  HIDDEN: `hidden${EVENT_KEY$3}`,
+  HIdE: `hide${EVENT_KEY$3}`,
+  HIdDEN: `hidden${EVENT_KEY$3}`,
   SHOW: `show${EVENT_KEY$3}`,
   SHOWN: `shown${EVENT_KEY$3}`,
   INSERTED: `inserted${EVENT_KEY$3}`,
@@ -4561,8 +4561,8 @@ const NAME$1 = 'tab';
 const DATA_KEY$1 = 'bs.tab';
 const EVENT_KEY$1 = `.${DATA_KEY$1}`;
 const DATA_API_KEY = '.data-api';
-const EVENT_HIDE$1 = `hide${EVENT_KEY$1}`;
-const EVENT_HIDDEN$1 = `hidden${EVENT_KEY$1}`;
+const EVENT_HIdE$1 = `hide${EVENT_KEY$1}`;
+const EVENT_HIdDEN$1 = `hidden${EVENT_KEY$1}`;
 const EVENT_SHOW$1 = `show${EVENT_KEY$1}`;
 const EVENT_SHOWN$1 = `shown${EVENT_KEY$1}`;
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY$1}${DATA_API_KEY}`;
@@ -4606,7 +4606,7 @@ class Tab extends BaseComponent {
       previous = previous[previous.length - 1];
     }
 
-    const hideEvent = previous ? EventHandler.trigger(previous, EVENT_HIDE$1, {
+    const hideEvent = previous ? EventHandler.trigger(previous, EVENT_HIdE$1, {
       relatedTarget: this._element
     }) : null;
     const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$1, {
@@ -4620,7 +4620,7 @@ class Tab extends BaseComponent {
     this._activate(this._element, listElement);
 
     const complete = () => {
-      EventHandler.trigger(previous, EVENT_HIDDEN$1, {
+      EventHandler.trigger(previous, EVENT_HIdDEN$1, {
         relatedTarget: this._element
       });
       EventHandler.trigger(this._element, EVENT_SHOWN$1, {
@@ -4762,12 +4762,12 @@ const EVENT_MOUSEOVER = `mouseover${EVENT_KEY}`;
 const EVENT_MOUSEOUT = `mouseout${EVENT_KEY}`;
 const EVENT_FOCUSIN = `focusin${EVENT_KEY}`;
 const EVENT_FOCUSOUT = `focusout${EVENT_KEY}`;
-const EVENT_HIDE = `hide${EVENT_KEY}`;
-const EVENT_HIDDEN = `hidden${EVENT_KEY}`;
+const EVENT_HIdE = `hide${EVENT_KEY}`;
+const EVENT_HIdDEN = `hidden${EVENT_KEY}`;
 const EVENT_SHOW = `show${EVENT_KEY}`;
 const EVENT_SHOWN = `shown${EVENT_KEY}`;
 const CLASS_NAME_FADE = 'fade';
-const CLASS_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
+const CLASS_NAME_HIdE = 'hide'; // @deprecated - kept here only for backwards compatibility
 
 const CLASS_NAME_SHOW = 'show';
 const CLASS_NAME_SHOWING = 'showing';
@@ -4833,7 +4833,7 @@ class Toast extends BaseComponent {
       this._maybeScheduleHide();
     };
 
-    this._element.classList.remove(CLASS_NAME_HIDE); // @deprecated
+    this._element.classList.remove(CLASS_NAME_HIdE); // @deprecated
 
 
     reflow(this._element);
@@ -4850,21 +4850,21 @@ class Toast extends BaseComponent {
       return;
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIdE);
 
     if (hideEvent.defaultPrevented) {
       return;
     }
 
     const complete = () => {
-      this._element.classList.add(CLASS_NAME_HIDE); // @deprecated
+      this._element.classList.add(CLASS_NAME_HIdE); // @deprecated
 
 
       this._element.classList.remove(CLASS_NAME_SHOWING);
 
       this._element.classList.remove(CLASS_NAME_SHOW);
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN);
+      EventHandler.trigger(this._element, EVENT_HIdDEN);
     };
 
     this._element.classList.add(CLASS_NAME_SHOWING);

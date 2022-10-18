@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM.
+// The following GUId is for the Id of the typelib if this project is exposed to COM.
 
 [assembly: Guid("e72a1498-95bd-4f19-b478-fd871ebf1bed")]
 [assembly: InternalsVisibleTo("WizardingWorld.Tests")]
